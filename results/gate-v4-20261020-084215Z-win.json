@@ -1,0 +1,47 @@
+{
+ "bot": "v4",
+ "verdict": "FAIL",
+ "reasons": [
+  "mapid mismatch: ['boss_battle->unknown', 'boss_battle->unknown', 'corridors->unknown', 'corridors->unknown', 'elk_arena->unknown', 'elk_arena->unknown']"
+ ],
+ "pool": [
+  "ambush",
+  "big_world",
+  "boss_battle",
+  "broken_curve",
+  "collision",
+  "concentrated_wealth",
+  "contest",
+  "corners",
+  "corridors",
+  "eight",
+  "elk_arena",
+  "elkring",
+  "expanse",
+  "fracture",
+  "fragment",
+  "gold_rush",
+  "hooks",
+  "interlock",
+  "islands",
+  "lanes",
+  "monolith"
+ ],
+ "date": "2026-10-20 09:43",
+ "games": 42,
+ "wins": 42,
+ "max_fuel": 90697,
+ "mapid_checked": true,
+ "mapgate": "gate-v4-20261020-084215Z-win-mapgate.json",
+ "tags": {
+  "cli": "3.0.1",
+  "engine_ground_truth": "1.0.0",
+  "pool_hash_ground_truth": "da4707523852",
+  "maps_hash_local": "da4707523852",
+  "maps_n_local": 21,
+  "engine_played": [
+   "1.0.0"
+  ],
+  "date": "2026-10-20 09:43"
+ }
+}

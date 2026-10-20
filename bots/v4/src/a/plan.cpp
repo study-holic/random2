@@ -78,6 +78,8 @@ MapPlan& current() {
         if (const auto* d = w7::draft_for(p.id)) p.draft = *d;   // w7: static per-map drafts (w7_drafts.h)
         p.counter = w7::counter_on(p.id);                          // w7 part 2 flag (off unless W7_CD_ALL or listed)
         std::cout << "mapid=" << mapid::map_name(p.id) << '\n';   // once per process; scripts/gate.py reads it
+        if (p.id == mapid::MapId::unknown)   // the exact-id key of a map not in the table (mapid.h), for adding it
+            std::cout << "key=" << cambc::map::width() << 'x' << cambc::map::height() << 'x' << mapid::cached_groups().size() << '\n';
         return p;
     }();
     return plan;
