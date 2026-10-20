@@ -1,5 +1,5 @@
 {
- "date": "2026-10-20 07:17",
+ "date": "2026-10-20 09:36",
  "tz": "GMT Summer Time",
  "cli": "3.0.1",
  "cli_latest": "3.0.1",
@@ -80,15 +80,15 @@
  "champions_sdk": 12,
  "champion_max_seen": 11,
  "ladder": {
-  "total": 715,
-  "rank": 493,
-  "rating": 1420.0,
-  "matches": 185,
+  "total": 716,
+  "rank": 536,
+  "rating": 1388.4,
+  "matches": 199,
   "at_rank": {
-   "10": 1975,
-   "20": 1885,
-   "50": 1780,
-   "100": 1702
+   "10": 1970,
+   "20": 1897,
+   "50": 1790,
+   "100": 1706
   }
  },
  "live_bot": "v3b (19 Oct 23:45; uploaded 06:05 BST 20 Oct as platform \"bot version 2\", approved by Xans)"

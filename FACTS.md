@@ -16,8 +16,16 @@ Site doc = docs/rules/GameRules.md (20 Oct copy, lags engine). ENG = engine tabl
 - Monolith: 20000 HP, str 200, 300 gold, 200 gems, respawn 150, range 5 (was 3) [ENG, SDK]
 - Golem (camp_type 5): 5000 HP, str 120, range 4 [SDK, ENG]; rewards/respawn unknown; absent from all 21 maps
 - Some map groups carry a x2 reward multiplier (group totals in notes/map-economics.md) [data/maps21.json info]
-- Monsters: vision 8, see through bushes, do not chase; damage wakes group; 2 rounds with no champion in range and they sleep [doc l.164-166]
+- Monsters: vision 8, see through bushes (so bush rows can hide a camp that is hitting you: corridors), do not chase; damage wakes group; 2 rounds with no champion in range and they sleep [doc l.164-166; arena 1]
 - Group = camps the map defines together (engine group data; not always cardinally connected); rewards combine; respawn at the longest member timer; an occupied spawn tile delays the group [doc l.133,139]
+## Measured in engine arenas (cloud, 20 Oct; results/arena-1020.md)
+- Rewards paid match ENG exactly: wolf 4 gems/40 gold, elk 15/90, gem cluster 7, gold cluster 20 (Vesper 26) [arena test 1]
+- First-damage range: wolf 3, elk 4, monolith 5 (site doc l.164 "all range 3" is wrong); asleep camps never attack; sleep 2 rounds after the last in-range round [arena 1]
+- Monster target = the NEAREST champion of either team; ties alternate; switches at once when someone comes nearer; a group we woke keeps hitting a nearer enemy who never attacked it (camp aggro works as a weapon) [arena 2]
+- Occupied spawn tile: the respawn timer runs normally, then at 0 the group waits as long as ANY spawn tile is occupied (own or enemy) and respawns the round it is freed; an adjacent champion has no effect [arena 3]
+- Capture region = the group's spawn tiles only: an adjacent enemy does not contest; an adjacent ally gets no share; allies on tiles split (21 -> 11 + 10, remainder to the lower id) [arena 3-4]
+- Prism Focus 80/101/122 at 0/21/42 gems (+1.0 per gem); stun 1.5x, area 1.0x Focus. Duels: beats Stellar 80-95 % with 21-42 gems, loses to Ren and Varg at every gem level [arena 5; duel bots only, no items]
+- Heart of Ruin duels: beats Prism, Stellar, Willow, Tavi, Vesper (100 %), Vendetta 83 %, Ren 67 %; loses to Ryth 33 %, Varg 30 %, C&I 0 %, Marcella 0 %; HoR+Stellar vs Ren+Varg 41 % [arena 6; duel bots only]
 ## Capture
 - After every monster in the group is dead, occupy a spawn tile of the group uncontested; first capture phase starts a 5-round timer; empty region or enemy present resets; more allies do not speed it; reward split among allies present, lowest ID gets remainder [doc l.139]
 ## Death, recall, tribute
