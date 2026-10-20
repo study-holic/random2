@@ -138,7 +138,11 @@ public:
     float wd_hp = -1;
     double wd_best = 0;
     cambc::vec2 wd_pos{-1, -1};
+    std::array<cambc::vec2, 6> wd_trail{};
+    unsigned wd_trail_i = 0;
     bool wd_tick(const TurnView& v);
+    void wd_after_target(const TurnView& v);
+    int wd_force = -1, wd_force_until = 0;
     TurnView build_view() const;
     void init();
     struct MonoPos { cambc::vec2 pos; int range; };
@@ -150,7 +154,7 @@ public:
     int init_cluster_groups = 0;
     cambc::distance_field init_field;
     cambc::bitboard init_reach;
-    static bool init_fuel_ok(std::uint64_t need) { return cambc::fuel_remaining() >= need; }
+    static bool init_fuel_ok(std::uint64_t need) { return cambc::fuel_remaining() >= (P_W_FUELCAP ? std::min<std::uint64_t>(need + 30000, 90000) : need); }   // P_W_FUELCAP: round 1 reached 198,764 of 200,000 on monolith; capped so a later turn (~100k) can still pass
     void buy_items();
     void buy_items_w8();   // w8 build C, only where MapPlan::tavi_focus_field is set
     bool refresh_group(int index, int round, const cambc::bitboard& visible);

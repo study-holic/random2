@@ -786,6 +786,7 @@ void Bot::play_turn_inner() {
     S1F(7);
     if (P_S1_AUCTION && cambc::fuel_remaining() < 45000) return;   // S1 fuel: an expensive turn (view, enemies) ends before the choice and the move
     resolve_target(v, allies);
+    wd_after_target(v);   // P_W_WATCHDOG level 3: a forced nearest task when target choice returns none
     Plan::target(*this, v, target);
     S1F(8);
     if (P_S1_THREAT_COST && target >= 0) g_threat_exempt = groups[target].mask;
