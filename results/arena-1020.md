@@ -119,3 +119,10 @@ With the lab's retreat policy instead (P_ADAPT without P_NORETREAT, `results/are
 - Duel win rates measure these bots: w14t's fight policy, open corridors, no items, no camps nearby. A 100-0 or 0-100 cell means the outcome is set by stats and policy with little room for start positions to change it. It is not a ladder win rate. The many identical results show that the effective number of distinct duels is smaller than the count.
 - 48 of 122 duel games exhausted the 200,000-fuel first gameplay turn (init); the champion idles on its spawn for round 1. 6 probe turns out of about 3,000 hit 100,000 fuel and lost that turn, delaying a script step by one round at most. No measurement above depends on a lost turn.
 - Raw data: `results/arena-1020-probe.json` (tests 1-4: range rows (round, distance, damage), targeting timelines, event logs), `results/arena-1020-duels.json` (decisive policy), `results/arena-1020-duels-adapt.json` (retreat policy).
+
+## Added 20 Oct (w1 session): Monolith regeneration and the "nearest" metric
+| Scenario | Setup | Result |
+|---|---|---|
+| p14 mono_regen | Vesper hits a Monolith once from d3, backs off to d8 (in sight) for 380 rounds | Monolith 19,950 HP unchanged (**no regeneration**); the champion's 300 HP also unchanged away from spawn |
+| p15 metric | elk; A diagonal at Chebyshev 3 (Euclid² 18) attacks, B straight at Chebyshev 4 (Euclid² 16) passive | A hit every round, B never: **nearest = Chebyshev** |
+| p16 metric_ctl | elk; A straight at Chebyshev 3 (Euclid² 9) attacks, B diagonal at Chebyshev 3 (Euclid² 18) passive | hits alternate A, B every round: a Chebyshev tie alternates whatever the Euclidean distance |

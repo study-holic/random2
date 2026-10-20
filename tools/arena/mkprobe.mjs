@@ -16,6 +16,9 @@ const S = [
   { name: 'contest', champs: 1, camps: [['GEM_CLUSTER', 26, 14], ['GEM_CLUSTER', 26, 15]] },   // 26,16 is the mirror of 26,14
   { name: 'contest_adjacent', champs: 1, camps: [['GEM_CLUSTER', 27, 15]] },
   { name: 'ally_adjacent', champs: 2, camps: [['GEM_CLUSTER', 28, 15]] },
+  { name: 'mono_regen', champs: 1, camps: [['MONOLITH', 16, 2]] },
+  { name: 'metric', champs: 1, camps: [['ELK', 30, 15]] },
+  { name: 'metric_ctl', champs: 1, camps: [['ELK', 31, 15]] },
 ];
 S.forEach((s, n) => {
   const b = new Builder(E, 31 + 2 * n, 31, 'ROTATIONAL180'); b.champs(s.champs); b.spawnA(0, 0, 3, 3);
