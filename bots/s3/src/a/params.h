@@ -175,6 +175,17 @@
 #ifndef P_TANK_ROTATE_HP
 #define P_TANK_ROTATE_HP 0.0          // >0: a melee champion below this fraction beside a camp yields to a fresher mate
 #endif
+// v5 S3 part 3, ability-first opener (results/v5-s3.md). Top-10 teams open 85 % of fights with an ability, v4 47 %
+// (results/v5-s3-diag.md); 19 % of the fights v4 opened came with every ability on cooldown.
+#ifndef P_S3_SAVE_CASTS
+#define P_S3_SAVE_CASTS 1   // no damage, area or stun cast on a camp while an enemy champion is within 8 tiles
+#endif
+#ifndef P_S3_CAST_ORDER
+#define P_S3_CAST_ORDER 1   // cast_on_enemy: stun first, then damage; ground-target casts aimed at the foe's tile
+#endif
+#ifndef P_S3_FOCUS
+#define P_S3_FOCUS 1        // focus: Cassi (her death kills Issac too), then the biggest bag, then the lowest health
+#endif
 #ifndef P_SAVE_CC
 #define P_SAVE_CC 0                   // 1: no stun/cc on camps while an enemy champion is within 8 tiles
 #endif

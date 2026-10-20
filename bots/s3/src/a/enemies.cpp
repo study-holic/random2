@@ -33,6 +33,13 @@ static int carried(const cambc::champion& c) {
     try { return static_cast<int>(c.gem_count()); } catch (...) { return 0; }
 }
 static bool better_focus(const cambc::champion& a, const cambc::champion& b, vec2 pos) {
+    if (P_S3_FOCUS) {   // S3: Cassi first (one kill takes both bodies and both bags), then the bag, then health
+        const bool ca = a.champion_name() == cambc::champion_type::cassi, cb = b.champion_name() == cambc::champion_type::cassi;
+        if (ca != cb) return ca;
+        const int ga = carried(a), gb = carried(b);
+        if (ga != gb) return ga > gb;
+        return a.health() < b.health();
+    }
     if (P_FOCUS_RULE == 1) {
         const int ga = carried(a), gb = carried(b);
         if (ga != gb) return ga > gb;
@@ -71,6 +78,18 @@ static bool kite_step(const TurnView& v, const std::vector<cambc::champion>& ene
 static bool cast_on_enemy(const cambc::champion& foe) {
     auto& me = cambc::self();
     if (!me.can_cast()) return false;
+    if (P_S3_CAST_ORDER) {   // S3: a stun first (it also cancels a channel), then damage; ground casts land on the foe's tile
+        for (int pass = 0; pass < 2; ++pass)
+            for (const auto& ab : me.abilities()) {
+                if (!ab.is_ready()) continue;
+                if (pass == 0 ? !ab.is_cc() : !(ab.is_damage() || ab.is_aoe_damage())) continue;
+                try {
+                    if (!ab.valid_tiles().is_set(foe.position())) continue;
+                    if (ab.can_target_enemies() ? ab.use(foe) : ab.can_target_ground() && ab.use(foe.position())) return true;
+                } catch (...) {}
+            }
+        return false;
+    }
     for (const auto& ab : me.abilities()) {
         if (!ab.is_ready() || !(ab.is_damage() || ab.is_aoe_damage() || ab.is_cc()) || !ab.can_target_enemies()) continue;
         try {

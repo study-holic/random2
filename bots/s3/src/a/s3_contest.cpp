@@ -23,22 +23,29 @@ namespace va {
 // dist - 2 < T). The sighting is broadcast in shared byte 7 so champions out of sight converge too. Source: the
 // "interdiction" pattern of MOBA objective play (contest the channel, not the fight) mapped onto the tribute channel rule.
 //
-// P_S3_MONO (play b). Model: the Monolith hits the nearest champion for 200 every round (s3 self-play trace, 20 Oct;
-// results/arena-1020.md sections 1-2: nearest targeting, ties alternate, no chase, no regeneration). The squad's damage D per turn kills it
-// in 20,000 / D turns while it deals 200 per turn to whoever is nearest. Rule: from round P_S3_MONO_START champions above
-// P_S3_MONO_ENTER health stage at distance 6-7 until P_S3_MONO_SQUAD are within 6 (or it is already damaged); melee stand adjacent and ranged at 3 (nearest melee absorb the
-// hits), ranged stand at distance 2..attack range; everybody attacks and casts on it. A champion below its
-// leave health (200 per step it needs to drop behind the next-nearest ally, plus P_S3_MONO_MARGIN) leaves (v4's retreat: step out of range, recall, heal), which hands the aggro to the next
-// nearest; progress is kept because the Monolith does not heal. On death the healthiest visible ally within 6 takes the
-// spawn tile (a 200-gem carrier must survive 20 channel turns), the rest guard within 2; the carrier banks through
-// v4's lock-aware Bot::bank. Source: raid "tank and spank" with tank rotation (MMO/MOBA objective play: Roshan in Dota 2,
-// Baron in League of Legends), mapped onto nearest-target aggro.
+// P_S3_MONO (play b). Model, measured on s3 self-play replays 20 Oct (tools: metrics.py decodes): the Monolith hits
+// once a round for 200 the champion nearest to it after the round's moves (Chebyshev; ties to the lower champion index,
+// 2,399 of 2,556 ties); it attacks only while awake, and an asleep camp never attacks (results/arena-1020.md); it does
+// not heal. The squad's damage D per round kills it in 20,000 / D rounds. Decision rules:
+//   enter  from round P_S3_MONO_START, champions above P_S3_MONO_ENTER health (melee only with max health >=
+//          P_S3_MONO_TANK_HP) stage at distance 6-7 in its line of sight, and walk in while it sleeps once
+//          P_S3_MONO_SQUAD are within 7; awake, only behind an ally already within 3;
+//   stand  melee at distance 1, ranged at their attack range 3 (they move or attack, not both: GameRules l.50);
+//   wake   only when P_S3_MONO_SQUAD of us are within 3;
+//   leave  when health < 400 while a healthy ally is as near as I am (one step back hands it the aggro), else
+//          < 200 x (6 - d) + P_S3_MONO_MARGIN (the aggro follows me out); Cassi and Issac add P_S3_MONO_CI_MARGIN.
+//          A leaver walks out of range itself and recalls there; it re-enters only at P_S3_MONO_ENTER (sticky).
+//   reward the healthiest visible ally within 6 takes the spawn tile, the rest guard within 2.
+// Source: raid "tank and spank" with tank rotation (Roshan in Dota 2, Baron in League of Legends), mapped onto
+// nearest-target aggro; the leave rule is a safety stock (inventory theory): keep the hits needed to reach safety.
 //
+// P_S3_CARRY: carriers of >= P_S3_CARRY_BAG walk straight to an altar and submit (carry()).
 // P_S3_ESCORT: a champion without a bag walks beside a visible ally carrying >= 100 gems until it has tributed.
 #include "plan.h"
 #include "bot.h"
 #include "util.h"
 #include "s3_contest.h"
+#include "params.h"   // params_override.h can set the P_S3_ switches (ablation copies)
 
 #ifndef P_S3_MONO
 #define P_S3_MONO 1
@@ -47,7 +54,13 @@ namespace va {
 #define P_S3_INTERDICT 1
 #endif
 #ifndef P_S3_ESCORT
-#define P_S3_ESCORT 1
+#define P_S3_ESCORT 0   // off: ablation 20 Oct, 20 contest games each: escort on 480 tributed, 12 wins; off 580, 16 wins
+#endif
+#ifndef P_S3_CARRY
+#define P_S3_CARRY 1
+#endif
+#ifndef P_S3_CARRY_BAG
+#define P_S3_CARRY_BAG 100   // bags this large go straight to an altar (a Monolith pays 200)
 #endif
 #ifndef P_S3_INT_BAG
 #define P_S3_INT_BAG 40   // smallest channelling bag worth a lock (a 40-bag channels 4 turns)
@@ -190,6 +203,40 @@ bool escort(Bot& b, const TurnView& v, std::vector<cambc::champion>& allies) {
     return true;
 }
 
+// Siege moves ignore v4's Monolith zone (util.cpp: an awake Monolith's range is a wall unless we stand inside): the
+// zone stays on for every other move, so champions outside the siege keep avoiding it.
+bool walk(Bot& b, const cambc::bitboard& goals) {
+    const bool z = g_mono_zone_on;
+    g_mono_zone_on = false;
+    const bool ok = move_towards_closest(b.static_block, b.camp_static, goals);
+    g_mono_zone_on = z;
+    return ok;
+}
+
+// P_S3_CARRY: a bag of >= P_S3_CARRY_BAG goes straight to the central altar with fewer visible enemies within 3 (ties:
+// nearer) and is submitted from distance 1; damage does not interrupt it, and against a lock the engine turns the submit
+// into an attack on the lock (GameRules l.199). Traced 20 Oct (s3 vs v4): v4's Bot::bank gave up on contested altars
+// (altar scoring), and 200-gem carriers stood beside the altar for 12+ rounds or walked off to farm until killed.
+bool carry(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies) {
+    auto& me = cambc::self();
+    if (static_cast<int>(me.gem_count()) < P_S3_CARRY_BAG || b.altars.empty()) return false;
+    int best = -1, bs = 1 << 20;
+    for (int i = 0; i < static_cast<int>(b.altars.size()); ++i) {
+        int foes = 0;
+        for (const auto& e : enemies) if (e.is_visible() && tile_distance(e.position(), b.altars[i]) <= 3) ++foes;
+        const int sc = 100 * foes + tile_distance(v.pos, b.altars[i]);
+        if (sc < bs) { bs = sc; best = i; }
+    }
+    const vec2 a = b.altars[best];
+    b.banking = true;
+    if (tile_distance(v.pos, a) <= static_cast<int>(cambc::constants::submit_gems_range)) {
+        try { me.submit_gems(a); } catch (...) {}
+        return true;
+    }
+    walk(b, tiles_around(a, static_cast<int>(cambc::constants::submit_gems_range)) & ~b.static_block);
+    return true;
+}
+
 // Refresh what this champion sees of each Monolith.
 void observe(Bot& b, const TurnView& v) {
     for (auto& m : g_m) {
@@ -203,16 +250,6 @@ void observe(Bot& b, const TurnView& v) {
             else if (std::holds_alternative<cambc::map::camp_group_reward_available>(s)) m.ready = -1;   // reward on the tile
         } catch (...) {}
     }
-}
-
-// Siege moves ignore v4's Monolith zone (util.cpp: an awake Monolith's range is a wall unless we stand inside): the
-// zone stays on for every other move, so champions outside the siege keep avoiding it.
-bool walk(Bot& b, const cambc::bitboard& goals) {
-    const bool z = g_mono_zone_on;
-    g_mono_zone_on = false;
-    const bool ok = move_towards_closest(b.static_block, b.camp_static, goals);
-    g_mono_zone_on = z;
-    return ok;
 }
 
 bool mono(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std::vector<cambc::champion>& allies) {
@@ -321,7 +358,7 @@ bool mono(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std:
 }  // namespace
 
 void init(Bot& b) {
-    if (!(P_S3_MONO || P_S3_INTERDICT || P_S3_ESCORT)) return;
+    if (!(P_S3_MONO || P_S3_INTERDICT || P_S3_ESCORT || P_S3_CARRY)) return;
     g_ready = true;
     for (int i = 0; i < static_cast<int>(b.groups.size()); ++i) {
         if (!b.groups[i].monolith) continue;
@@ -339,10 +376,12 @@ void init(Bot& b) {
 
 bool pre(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std::vector<cambc::champion>& allies) {
     if (!g_ready) return false;
-    if (P_S3_INTERDICT && interdict(b, v, enemies)) return true;
-    if (P_S3_ESCORT && escort(b, v, allies)) return true;
-    if (P_S3_MONO && !g_m.empty() && mono(b, v, enemies, allies)) return true;
-    return false;
+    const bool took = (P_S3_INTERDICT && interdict(b, v, enemies)) || (P_S3_CARRY && carry(b, v, enemies))
+        || (P_S3_ESCORT && escort(b, v, allies)) || (P_S3_MONO && !g_m.empty() && mono(b, v, enemies, allies));
+    // v4's stuck detector (stuck.cpp, before this hook) does not see these turns as work: a tank standing still beside the
+    // Monolith was sent home every other turn (traced: d1-d2-d1 bounces under fire).
+    if (took) { b.still_rounds = 0; b.walk_home = 0; }
+    return took;
 }
 
 bool buy(Bot& b) {

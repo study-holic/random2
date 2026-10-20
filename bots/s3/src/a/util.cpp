@@ -105,6 +105,7 @@ bool cast_on_camp(const cambc::camp& camp) {
     for (const auto& ab : me.abilities()) {
         if (!ab.is_ready() || !(ab.is_damage() || ab.is_aoe_damage() || ab.is_cc()) || !ab.can_target_camps()) continue;
         if (P_SAVE_CC && ab.is_cc() && enemy_champion_near()) continue;   // keep the stun for the champion fight
+        if (P_S3_SAVE_CASTS && enemy_champion_near()) return false;        // S3: keep every cast for the fight opener
         try {
             if (ab.valid_tiles().is_set(camp.position()) && ab.use(camp)) { DBG(" CAST"); return true; }
         } catch (...) {}
