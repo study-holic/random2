@@ -6,4 +6,6 @@ You are a cloud test runner for Team Xanarchy's Cambridge Battlecode 2026 bot (t
 4. Run the gate in the background (commands over 2 minutes must run in the background): `python3 scripts/gate.py v3b --jobs <nproc minus 1>`. It plays v3b vs starter-cpp on all 21 maps, both sides, salt 0 (42 games) and writes results/gate-v3b-<HHMM>.json.
 5. Compare it game by game with the laptop's run on the same CLI, engine, SDK and maps: results/gate-v3b-0657.json. Match games by (map, side); compare win, final round, gems, opponent gems, faults and max fuel per turn. The engine is deterministic, so every field should be identical; list every difference.
 6. Record seconds per game and total wall time.
-7. Write results/cloud-parity.md (environment, timings, comparison summary, verdict IDENTICAL or DIFFERENT with the differing games). Commit it and the new gate JSON on a new branch `cloud/parity` and push that branch. Do not push to main.
+7. Write results/cloud-parity.md (environment, timings, comparison summary, verdict IDENTICAL or DIFFERENT with the differing games). Commit it and the new gate JSON on this session's own branch and push it. Do not push to main.
+
+Cloud notes (lead, 20 Oct): run `bash tools/cloud/setup.sh` first (toolchain fetch through the proxy; if it fails, follow results/cloud-parity.md and fix the script). Push results to this session's own branch (claude/...); the lead merges them.
