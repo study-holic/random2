@@ -1,7 +1,7 @@
 """v5 shared metrics (S3). One record per (game, side) from full-action decodes (tools/top10/extract_pilot.mjs --stride 1).
 
 Usage (run with python3 -I; inputs are replay-derived data):
-  python3 -I tools/cloud/metrics.py panel <decoded_dir> [--labels v4top-] [--out f.jsonl]     real panel: <label>--<pos>.json, side and map from data/unranked/matches.jsonl
+  python3 -I tools/cloud/metrics.py panel <decoded_dir> [--labels v4top-] [--them] [--out f.jsonl]  real panel (--them: the opponent's side): <label>--<pos>.json, side and map from data/unranked/matches.jsonl
   python3 -I tools/cloud/metrics.py mapgate <mapgate.json> [--out f.jsonl] [--cache dir]      local games: decodes each replay (cached), side = the bot's side
   python3 -I tools/cloud/metrics.py files <decoded.json ...> --map <name> --side A|B           any decode
   python3 -I tools/cloud/metrics.py table <f.jsonl ...> [--by map|opp]                       aggregate table of the fields below
@@ -50,6 +50,15 @@ def parse_key(k):
     return {int(a): int(b) for a, b in (t.split(":") for t in k.split(","))} if k else {}
 
 
+def all_camps(m):
+    """data/maps21.json lists one half of each symmetric pair; sym 0 mirrors x, 1 mirrors y, 2 rotates (checked 20 Oct on decoded camps)."""
+    w, h, sym = m["w"], m["h"], m["sym"]
+    mir = {0: lambda x, y: (w - 1 - x, y), 1: lambda x, y: (x, h - 1 - y), 2: lambda x, y: (w - 1 - x, h - 1 - y)}[sym]
+    out = {(t, x, y) for t, x, y in m["camps"]}
+    out |= {(t, *mir(x, y)) for t, x, y in m["camps"]}
+    return sorted(out)
+
+
 def analyse(d, mp, side):
     """d: decoded game; mp: map name; side: 0 (team A) or 1 (team B). Returns the record for that side."""
     m = MAPS[mapkey(mp)]
@@ -59,8 +68,9 @@ def analyse(d, mp, side):
     c0 = snaps[0]["c"]; n = len(c0)
     team = [c[0] for c in c0]; typ = [c[1] for c in c0]
     start = {t: [(c[3], c[4]) for c in c0 if c[0] == t] for t in (0, 1)}
-    mons = [(x, y) for t, x, y in m["camps"] if t in (0, 1, 4)]
-    camp_tiles = {(x, y) for t, x, y in m["camps"]}
+    camps = all_camps(m)
+    mons = [(x, y) for t, x, y in camps if t in (0, 1, 4)]
+    camp_tiles = {(x, y) for t, x, y in camps}
     altars = [tuple(a) for a in m["altars"]]
     acts = d["actions"]
     by_r = collections.defaultdict(list)
@@ -252,8 +262,9 @@ def main():
             if "--" not in b or not b.startswith(lab): continue
             label, pos = b.split("--"); g = idx.get((label, int(pos)))
             if not g: continue
-            rec = analyse(json.load(open(fn)), g["map"], 0 if g["our_side"] == "a" else 1)
-            rec.update(game=b, opp=g["opponent"], match=g["match"]); rows.append(rec)
+            d = json.load(open(fn)); us = 0 if g["our_side"] == "a" else 1
+            rec = analyse(d, g["map"], 1 - us if "--them" in a else us)
+            rec.update(game=b, opp=g["opponent"], match=g["match"], who="them" if "--them" in a else "us"); rows.append(rec)
     elif a[0] == "mapgate":
         mg = json.load(open(a[1])); cache = opt("--cache", os.path.join(ROOT, "matches", "decoded"))
         for r in mg["results"]:
