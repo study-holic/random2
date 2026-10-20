@@ -42,10 +42,13 @@ using cambc::team;
 #ifndef P_S2_GATE_MAX
 #define P_S2_GATE_MAX 3              // gated turns in a row before the tribute starts anyway
 #endif
+#ifndef P_S2_FUEL_FLOOR
+#define P_S2_FUEL_FLOOR 45000        // S2 checks are skipped when less fuel than this is left in the turn
+#endif
 static constexpr int kLockRange = 2;   // GameRules l.193: placed within 2 tiles of an altar
 
 void Bot::s2_buy_lock() {
-    if (!P_S2_ALTAR_LOCK) return;
+    if (!P_S2_ALTAR_LOCK || static_cast<int>(cambc::round_number()) < P_S2_LOCK_FROM) return;
     auto& me = cambc::self();
     using C = cambc::consumable_type;
     try { if (me.can_buy(C::altar_lock)) { me.buy(C::altar_lock); s2_has_lock = true; } } catch (...) {}
@@ -58,13 +61,16 @@ static bool altar_locked(const std::vector<cambc::altar_lock>& locks, vec2 a) {
 
 bool Bot::s2_lock_turn(const TurnView& v, const std::vector<cambc::champion>& enemies) {
     if (!P_S2_ALTAR_LOCK || !s2_has_lock || altars.empty()) return false;
+    if (cambc::fuel_remaining() < P_S2_FUEL_FLOOR) return false;   // fuel guard: lanes/fracture fights ran out at 100k
     auto& me = cambc::self();
     // Enemy channels in view: altar index of the nearest one, if any.
     int chan = -1, chan_d = 1 << 20;
     for (const auto& e : enemies) {
-        if (tile_distance(e.position(), v.pos) > 8) continue;
+        vec2 ep;
+        try { ep = e.position(); } catch (...) { continue; }   // one live query per enemy (was one per altar: 12k fuel in lanes fights)
+        if (tile_distance(ep, v.pos) > 8) continue;
         for (std::size_t i = 0; i < altars.size(); ++i) {
-            if (tile_distance(e.position(), altars[i]) > cambc::constants::submit_gems_range) continue;
+            if (tile_distance(ep, altars[i]) > cambc::constants::submit_gems_range) continue;
             bool sub = false;
             try { sub = e.is_submitting_gems(); } catch (...) {}
             if (!sub) continue;
@@ -108,14 +114,15 @@ bool Bot::s2_lock_turn(const TurnView& v, const std::vector<cambc::champion>& en
 
 // True: do not start the tribute this turn.
 bool Bot::s2_tribute_gate(const TurnView& v, const std::vector<cambc::champion>& enemies, vec2 altar, int gems) {
-    if (!P_S2_TRIBUTE_GATE) return false;
+    if (!P_S2_TRIBUTE_GATE || cambc::fuel_remaining() < P_S2_FUEL_FLOOR) return false;
     auto& me = cambc::self();
     const int ticks = std::max(1, (gems + 9) / 10);
     float dmg = 0;
     bool stun = false, lock = false;
     try {
     for (const auto& e : enemies) {
-        const int d = tile_distance(e.position(), v.pos);
+        const vec2 ep = e.position();
+        const int d = tile_distance(ep, v.pos);
         if (d <= 5) {
             try {
                 for (const auto& ab : e.abilities()) if (ab.is_cc() && ab.cooldown() <= 1) stun = true;
@@ -127,7 +134,7 @@ bool Bot::s2_tribute_gate(const TurnView& v, const std::vector<cambc::champion>&
             try { f = e.focus(); s = e.strength(); } catch (...) {}
             dmg += s + 1.5f * f;
         }
-        if (tile_distance(e.position(), altar) <= kLockRange + 1) {
+        if (tile_distance(ep, altar) <= kLockRange + 1) {
             bool carries = true;   // unknown inventory counts as carrying (5 of 8 top-10 teams buy locks)
             try { carries = e.consumables()[cambc::consumable_type::altar_lock].count() > 0; } catch (...) {}
             lock |= carries;
