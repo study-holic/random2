@@ -167,3 +167,85 @@ None of these has played real teams yet. Noise we have seen: builds of the same 
 ---
 
 ## Answers
+
+Pasted by Xans on the evening of 20 Oct. Condensed below. Option numbers are translated to Prompt 1's order: 1 release, 2 fights, 3 production, 4 map-specific, 5 imitation, 6 new layer, 7 not listed, 8 none. Prompt 2 listed its options in reverse, so ChatGPT's and Copilot's numbers are translated.
+
+### Claude (Prompt 1)
+- **Gap decomposition:** alive share 77.8 % vs 94.9 % (×1.22). Pickups ×4.2 = ×1.6 more clearing and capturing time × ×2.7 more gems per such round (camp choice, clearing speed, gear, monoliths). Closing ×3.5 per alive round is work for 31 Oct.
+- **Sprint 2:** the logistic expectation against rank 100 is 0.16 a game, so the bracket matches we can win are against teams near our rating.
+- **Ranking:** 1 release (the draft travels inside the package; test the package with v4's draft vs the core draft) > 7 robustness (35-map sweep, fuel watchdog at about 90k, arena test of an overrun) > 5 narrowed to production queries (pickups by camp type; recalls by location and HP; gold spent and purchase order by round 200) > 3 built on 5 (siege every reachable monolith) > 2 avoidance only > 4 zero maps > 6 > 8.
+- **Leave out:** ability-first (67 vs 75) and the second-death rule (73). The auction waits for a watchdog and at least 5,000 fuel of headroom.
+- **Release:** freeze code Fri 04:00; submit the version with the best ladder performance rating.
+- **Idea, a basketball screen:** a chased champion retreats past an awake camp, so the nearer pursuer takes the camp's hits (measured rule 1). Test in an arena first.
+- **Pivotal fact:** dead share 22.2 % vs 5.1 %, which caps the gain from avoidance at ×1.22.
+- **Measure:**
+  - tributed gems, champion-kill deaths and pickups, paired, with v4 run in the same window; release at 2 SE or more of the paired gem difference;
+  - a per-version ladder performance rating; decode ranked games;
+  - self-play only as a regression gate (reject below 62/126);
+  - choose per-map exceptions on one seed set and score them on another.
+- **Unreliable facts flagged:** top-10 deaths 4.3 vs 6.0; 59 % vs 201/270 = 74 %; samples of 180, 90 and 91 games; a recall share of 15.8 % implies about 150-170 recalls a game; the 73 null may be harness bias; package 82 vs 70; duels exclude items; the decoders differ by 6 %.
+
+### Copilot (Prompt 2)
+- **Diagnosis:** the bot often fails to take part in the economy at all. Fix that; no rewrite.
+- **Ranking:**
+  - 1 release, in this order: pathing, spending, tribute rule, locks, contest siege, the auction only after a fuel cut, then map overrides;
+  - 7 progress watchdog: track each champion's progress, then escalate (relax soft hazards, drop the claim, nearest feasible task, escape tile), with hysteresis against oscillation;
+  - 4 map-specific: structural families, no seed-fit exceptions;
+  - 3 production: assignment, travel, clearing and conversion measured separately;
+  - 2 fights: disengage, focus only when committed, no blanket ability-first;
+  - 5 imitation: conditional rules only (covariate shift);
+  - then 6, then 8.
+- **Fuel:** no production peak above about 85,000 without knowing the engine's overrun behaviour and having a fallback.
+- **Idea:** model-predictive control with a safety shield. Log predicted against actual travel, clearing, banked gems and death-risk bands to check calibration.
+- **Pivotal fact:** the pathing change's 1.5-1.8× gain with no map more than 1 % slower.
+- **Measure:** a deterministic regression suite (zero-gem maps, cycles, stuck carriers, fuel); paired self-play with a second reference bot; a top-10 panel on fixed-round gems, conversion and deaths. Win rate last.
+
+### ChatGPT (Prompt 2)
+- **Diagnosis:** an economic throughput problem amplified by a death spiral: about 19 kills × 50 gold, or about 950 gold a game, handed to opponents.
+- **Ranking:** 7 correctness and bottleneck removal > 3 production > 1 release, as a discipline > 4 map-specific > 2 fights (bounded: decline losing isolated fights, conditional abilities) > 5 > 6 > 8.
+- **Changes:** reject the universal core draft (54/126). Freeze the auction: its 78 includes the pathing change, and it peaks at 97,209 fuel. Spending is the strongest ablation. Separate the lock and tribute effects. Run pathing-only on shortcut.
+- **Idea, renewal-aware camp scheduling (operations research):** V = G·P(bank) / (travel + clear + capture + bank share + expected loss); vacate spawn tiles. It is falsified if spawn suppression is already negligible.
+- **Pivotal fact:** the pickup gap, 270 vs 1,110-1,175.
+- **Measure:** paired tributed-gem margin against a frozen v4, interleaved, with a clustered bootstrap; fuel below about 90,000.
+- **Flags:** 59 % vs 74 %; deaths 4.3 vs 5.2 and 6.0; only 20 of 35 maps tested; a median round to 1,000 hides maps that never finish.
+
+### DeepSeek (Prompt 1)
+- **Diagnosis:** economy, conversion, survival and map robustness, not micro.
+- **Ranking:** 7 as a prerequisite (rule checks, a frozen v4, a continuous-metric gate) > 3 production > 5 imitation of macro invariants > 4 map-specific > 1 release, as a mechanism (pathing alone first, then contest, then one macro package) > 6 > 2 > 8.
+- **Locks:** our 4.0 a game may be wasted gold; only 5 of 146 top-10 locks cancelled a tribute.
+- **Idea, a domestique escort:** one champion stands nearer the camp or altar to take monster aggro (rule 1), and clears locks while the carrier channels.
+- **Pivotal fact:** that the 180 unranked games against the top 10 represent the bracket's top 10 (they may run test builds).
+- **Measure:** no-opponent regression on 35 maps; self-play at 80/126 or more to count; a top-10 panel on continuous metrics with a pre-registered rule (for example +15 % median tributed gems, +10 points conversion, deaths not up more than 10 %).
+
+## Claim check and classification (lead, 20 Oct)
+
+| Claim | Who | Class | Check |
+|---|---|---|---|
+| No new decision layer or auction before the lock | all 4 | agrees across all four; new against Draft 4's S1 plan | auction 78 vs pathing-only 74 is inside noise; peak 97,209 (results/v5-s1.md) |
+| Reliability first: 35-map sweep, stuck detection, fuel watchdog | all 4 | new | confirmed tonight: no build passes all 35 maps (v5 shortcut 0-0; pathing-only lost shortcut A 84-115, and starvation hit 100,000 fuel; results/s1g1-newmaps-vs-starter-20261020.json) |
+| Ship the pathing change first | all 4 | agrees | needs the starvation fuel fix first |
+| The core draft inside the package may be offsetting it: A/B the draft | Claude; all 4 doubt it | new | draft alone scored 54/126 (results/v5-s2a.md) |
+| Drop ability-first and the second-death rule | 4 / 2 | agrees | 67 vs 75; 73 = null |
+| Judge on paired continuous metrics, with v4 in the same window | all 4 | new for "same window" | NOT POSSIBLE: `match-groups create` has no version option, so groups always play the live submission. Use A-B-A in alternating windows |
+| Self-play as a regression gate only (reject below 62) / promotion needs 80+ | Claude / DeepSeek | contradict each other | adopt 62 as the rejection gate; 80 is not required (the panel decides) |
+| 59 % conversion is inconsistent with 201/270 | Claude, ChatGPT | correct | our prompt mixed samples: 59 % = 159/269 from the 90 A/B games (results/v5-s3-diag.md); 201 is from the 180-game baseline. Erratum |
+| Top-10 deaths 4.3 vs 6.0 | Claude, ChatGPT | correct | 4.3 from the 180-game baseline script, 6.0 from S3's 90-game decode; reconcile (method or sample) |
+| Recall share 15.8 % implies about 170 recalls a game | Claude | plausible | 5 bodies × about 1,100 rounds × 15.8 % / 5 ≈ 174; verify the decoder's label before copying recall behaviour |
+| Lock value may be overstated in self-play if v4 does not clear locks | Claude | partly answered | v4 does detect and attack locks (bot.cpp:432-461); it attacked 26 of 146 top-10 locks, and one took 5 hits |
+| 82 → 70 means the package regressed | Copilot | contradicts | these are two separate implementations (builds A and B); B scored 78 before its fuel stop (results/v5-s2b.md) |
+| Spawn-suppression scheduling | ChatGPT | new idea, mostly falsified by our data | self-block is 0-6 champion-rounds a game except concentrated_wealth, 601 (results/v5-s1-diag.md) |
+| Winnable bracket matches are near our rating: decode ranked games and compute a per-version performance rating | Claude (DeepSeek on representativeness) | new | ranked games run anyway and use no quota; the top-10-only rule applies to unranked groups |
+| Logistic 0.16 vs rank 100; 0.43 appearances per map per 15 games; about 2,800 groups to Fri 04:00 | Claude | checked | 1/(1+10^(284/400)) = 0.163; 15/35 = 0.43; 56 h × 50 = 2,800 |
+| Fuel ceiling for new code 85-95k | Copilot, ChatGPT, Claude | new | our gate allows 100k; adopt 90,000 for new code |
+
+## Synthesis (lead)
+- **Consensus of all four:**
+  - no rewrite;
+  - reliability on all 35 maps first;
+  - the pathing change first;
+  - ability-first and the second-death rule left out;
+  - panels judged on continuous paired metrics;
+  - fuel headroom.
+- **What changes:** the release order (PLAN-v4.md, Draft 5).
+- **Advice we can't follow:** the concurrent-control advice cannot be followed on this platform; A-B-A in alternating windows replaces it.
+- **Errata for our prompt:** 59 % and 0/90 come from the 90-game sample; 201 and 4.3 come from the 180-game sample.

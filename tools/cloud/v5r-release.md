@@ -30,3 +30,8 @@ Write results/v5r.md, admission table first, then per-map tables for the 14 new 
 - starvation (80×80): **fuel_max 100,000 with 2 exhausted turns** on side A, 99,508 on side B. v5 peaked at 72-91k there. Find which path field or loop the change adds on large open maps before anything else; the gate fails on any exhaustion after round 1.
 - stampede: 0-0 and 80-80 gems (won on gold); pilgrimage 371 and 243.
 Unranked groups always play the live submission (no version option), so v4 cannot run as a concurrent control on the panel.
+
+## Then build R1 and R2a (PLAN-v4.md Draft 5; consultants want the pathing change released first and on its own)
+- **bots/r1** = bots/s1g1 (on main: bots/s1 with P_S1_AUCTION, P_S1_THREAT_COST and P_S1_ONE_CAPTURER at 0 in params_override.h) + the same 14 map ids + the starvation fuel fix you find for v5r. Gate on 35 maps; r1 vs v4 (210 games; reject below 62/126 on the old 21); unopposed vs bots/idle on 35 maps.
+- **R2a** = v5r with P_S2_DRAFT_CORE 0 (v4's drafts): gate only. R2b is v5r itself.
+Push r1 first if v5r is still failing: R1 is the first upload.
