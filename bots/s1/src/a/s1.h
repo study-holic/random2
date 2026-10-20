@@ -1,5 +1,22 @@
 #pragma once
 // v5 S1 economy controller switches (tools/cloud/v5-s1-economy.md; report results/v5-s1.md). Each is 0 = v4 behaviour.
+#if __has_include("../salt.h")
+#include "../salt.h"   // mapgate --salts: P_SALT of this copy (measurement only)
+#endif
+#ifndef P_SALT
+#define P_SALT 0
+#endif
+// Measurement salt: with P_SALT > 0, target scores get a fixed pseudo-random tie-break of at most +-0.5 x P_S1_NOISE tile
+// per (salt, champion, group), so salted copies play distinct games (the first-turn fuel burn alone repeated 28 of 42
+// map-sides). Salt 0 is unchanged.
+#ifndef P_S1_NOISE
+#define P_S1_NOISE 1.0
+#endif
+inline double s1_salt_noise(int who, int group) {
+    if (P_SALT <= 0) return 0.0;
+    const unsigned h = (static_cast<unsigned>(P_SALT) * 2654435761u) ^ (static_cast<unsigned>(who + 1) * 40503u) ^ (static_cast<unsigned>(group + 7) * 2246822519u);
+    return P_S1_NOISE * (static_cast<double>((h >> 8) % 1000) / 1000.0 - 0.5);
+}
 #ifndef P_S1_DIAG
 #define P_S1_DIAG 0   // diagnostics: self-block and shared-tile counters printed to stdout every 25 rounds (bot.cpp s1_diag)
 #endif
@@ -17,4 +34,49 @@
 #endif
 #ifndef P_S1_NSB_STEP
 #define P_S1_NSB_STEP 0   // part of NO_SELF_BLOCK: step off a respawning group's tile at turn end (off: no self-block left after NSB_WALK, and it cost broken_curve 930->434, gold_rush 719->484 gems unopposed)
+#endif
+#ifndef P_S1_ONE_CAPTURER
+#define P_S1_ONE_CAPTURER 0   // one capturer per group: no second pack member on the tiles; non-capturers step off a reward-available group (bot.cpp step_off_respawn, squads.cpp)
+#endif
+#ifndef P_S1_THREAT_COST
+#define P_S1_THREAT_COST 0    // paths: detour around the reach of awake wolves/elks not being fought, up to P_S1_DETOUR extra tiles (util.cpp)
+#endif
+#ifndef P_S1_DETOUR
+#define P_S1_DETOUR 6
+#endif
+#ifndef P_S1_AUCTION
+#define P_S1_AUCTION 0        // 1: sequential single-item auction on u_ij replaces choose_target and the squad claim (s1econ.cpp); 2: hybrid, v4's squads and passes ranked by u_ij, light claims with ETA outbid
+#endif
+#ifndef P_S1_ASSEMBLE
+#define P_S1_ASSEMBLE 1       // with P_S1_AUCTION: wait outside a heavy group until its coalition has arrived
+#endif
+#ifndef P_S1_TANK_SWAP
+#define P_S1_TANK_SWAP 0      // camp fights: highest effective HP nearest, others strictly farther; swap below 35 % (micro.cpp)
+#endif
+#ifndef P_S1_LAMBDA
+#define P_S1_LAMBDA 0.1       // gems per gold in u_ij (wolf: 4 gems + 40 gold -> 8)
+#endif
+#ifndef P_S1_DPS_MULT
+#define P_S1_DPS_MULT 1.5     // dps = strength x this (basic attack plus resets and spells)
+#endif
+#ifndef P_S1_RISK_RATIO
+#define P_S1_RISK_RATIO 0.6   // damage taken while clearing / pooled health at which the clear starts to fail
+#endif
+#ifndef P_S1_FOE_MEMORY
+#define P_S1_FOE_MEMORY 40    // rounds an enemy sighting near a group raises its risk
+#endif
+#ifndef P_S1_CANDIDATES
+#define P_S1_CANDIDATES 8     // groups evaluated per turn (fuel)
+#endif
+#ifndef P_S1_HYST
+#define P_S1_HYST 1.2         // switch only when u_new > this x u_cur
+#endif
+#ifndef P_S1_ASSEMBLE_WAIT
+#define P_S1_ASSEMBLE_WAIT 25 // rounds waiting for the coalition before engaging anyway
+#endif
+#ifndef P_S1_TABLE_FUEL
+#define P_S1_TABLE_FUEL 30000 // distance tables are built while more fuel than this remains at the end of a turn
+#endif
+#ifndef P_S1_U_SCALE
+#define P_S1_U_SCALE 100.0   // hybrid: score = -u x this (v4's pass logic compares scores; the claim bonus is 8 tiles)
 #endif

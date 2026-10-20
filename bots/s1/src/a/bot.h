@@ -31,6 +31,7 @@ struct GroupInfo {
     bool cluster = false;             // EXP-030: a gem cluster and no damaging camp (wolf, Elk, Monolith)
     bool has_gem_cluster = false;     // EXP-030: at least one gem cluster (mixed groups too)
     int cluster_seen = -1000;         // EXP-030: last round a mixed group was seen with only clusters alive
+    int hp_total = 0, str_total = 0, gold = 0, respawn = 60;   // S1: summed camp HP and strength, gold, respawn
 };
 
 // A live camp with its group index and health, read once per turn.
@@ -50,6 +51,8 @@ struct TurnView {
 
 // Shared memory: bytes 0..5 hold each champion's target + 1, bytes 6 and 7 each squad's claimed group + 1.
 inline constexpr int kSquadClaimByte = 6;
+
+int eta_bucket(int eta);   // S1 claim ETA bucket (s1econ.cpp)
 
 // Per-champion state survives between turns.
 class Bot {
@@ -209,6 +212,24 @@ public:
     int diag_on = 0, diag_selfblock = 0, diag_resp = 0, diag_capt = 0, diag_dup = 0;
     void s1_diag();
     void step_off_respawn();   // P_S1_NO_SELF_BLOCK
+    // S1 economy controller (s1econ.cpp)
+    double s1_prior = 0;
+    std::vector<cambc::distance_field> s1_fields;
+    std::vector<char> s1_field_ok;
+    std::vector<int> s1_foe_round, s1_foe_n;
+    int s1_tables_next = 0, s1_eta = 0, assemble_wait = 0;
+    void s1_init();
+    void s1_tables_step();
+    int s1_tau(int i, cambc::vec2 pos) const;
+    void s1_note_foes(const TurnView& v, const std::vector<cambc::champion>& enemies);
+    int s1_coalition(int i) const;
+    double s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed = 0) const;
+    int squad_size = 1;
+    int s1_claimants(const std::array<std::uint8_t, 8>& mem, int i, int& best_bucket) const;
+    int s1_pick(const TurnView& v, int exclude, double* best_u);
+    void s1_reauction(const TurnView& v);
+    int s1_capture_rank(const std::vector<cambc::champion>& allies, int group) const;
+    bool s1_assemble(const TurnView& v, const std::vector<cambc::champion>& allies);
 public:
     void play_turn();
 };

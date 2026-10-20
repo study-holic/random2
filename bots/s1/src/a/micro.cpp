@@ -131,6 +131,7 @@ void Bot::farm(const TurnView& v, const std::vector<cambc::champion>& allies) {
         return;
     }
     wait_rounds = 0;
+    if (P_S1_AUCTION == 1 && P_S1_ASSEMBLE && s1_assemble(v, allies)) return;   // S1: coalition first
     if (!is_squad_group(target)) { farm_solo(v, nullptr); return; }
     if (wait_for_squad(v, allies)) return;
 
@@ -150,7 +151,7 @@ void Bot::farm(const TurnView& v, const std::vector<cambc::champion>& allies) {
 bool Bot::fresher_mate_near(const TurnView& v, const std::vector<cambc::champion>& allies) const {
     auto& me = cambc::self();
     const float mine = me.health() / me.max_health();
-    if (mine >= static_cast<float>(P_TANK_ROTATE_HP)) return false;
+    if (mine >= static_cast<float>(P_S1_TANK_SWAP ? 0.35 : P_TANK_ROTATE_HP)) return false;   // S1 tank swap at 35 %
     for (const auto& a : allies) {
         const int idx = roster_index(a);
         if (idx < 0 || a == me || roster_squad[idx] != squad || !roster_melee[idx]) continue;
@@ -175,13 +176,13 @@ void Bot::farm_squad(const TurnView& v, const std::vector<cambc::champion>& alli
     if (is_melee) {
         goals = tiles_around(pp, 1) & ~g.mask & ~static_block;   // off the spawn tiles so the capture is not split
         if (goals.is_empty()) goals = tiles_around(pp, 1) & ~live;
-        if (P_TANK_ROTATE_HP > 0.0 && camp_strength(prey->camp) > 0 && fresher_mate_near(v, allies)) {
+        if ((P_TANK_ROTATE_HP > 0.0 || P_S1_TANK_SWAP) && camp_strength(prey->camp) > 0 && fresher_mate_near(v, allies)) {
             // P_TANK_ROTATE_HP: hurt tank yields the adjacent ring to a fresher melee mate (camps hit the adjacent one).
             auto off = (tiles_around(pp, camp_range(prey->camp)) & ~tiles_around(pp, 1)) & ~g.mask & ~static_block;
             if (!off.is_empty()) goals = off;
         }
     } else {
-        engaged = false; if (true) { engaged = true; }
+        engaged = false; if (!P_S1_TANK_SWAP) { engaged = true; }   // S1 tank swap: a ranged champion engages only when an ally is adjacent to the prey (nearest-champion targeting, arena test 2)
         for (const auto& a : allies)
             if (!(a == me) && tile_distance(a.position(), pp) <= 1) { engaged = true; break; }
         if (engaged) {

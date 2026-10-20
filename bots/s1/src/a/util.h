@@ -2,6 +2,7 @@
 // Shared helpers: geometry, strength table, attack and cast wrappers, and the obstacle-aware step.
 #include <cambc.h>
 #include <vector>
+#include <cstdint>
 
 struct TurnView;
 
@@ -63,6 +64,9 @@ void cast_shield(const TurnView& v);
 // FIX_MONO_ZONE: tiles within a Monolith's range (5 on engine 1.0); path steps avoid them unless we already stand inside.
 struct MonoZone { cambc::vec2 pos; cambc::bitboard zone; };
 extern std::vector<MonoZone> g_mono_list;
+extern std::vector<std::int8_t> g_camp_rng;   // P_S1_THREAT_COST (util.cpp)
+extern int g_camp_w;
+extern cambc::bitboard g_threat_exempt;
 extern bool g_mono_zone_on;
 bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitboard& camp_static,
                           cambc::bitboard goals);

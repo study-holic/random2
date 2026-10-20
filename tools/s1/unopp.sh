@@ -5,5 +5,5 @@ set -e
 cd "$(dirname "$0")/../.."
 b=$1; shift
 if [ $# -gt 0 ]; then python3 tools/s1/variant.py "$b" "$@"; fi
-python3 scripts/mapgate.py "$b" all --jobs 3 --salts 0,1,2 --panel idle --out results/s1/u-$b.json > results/s1/u-$b.log 2>&1
+python3 scripts/mapgate.py "$b" all --jobs 3 --salts ${SALTS:-0,1,2,3,4,5} --panel idle --out results/s1/u-$b.json > results/s1/u-$b.log 2>&1
 python3 tools/s1/diag.py results/s1/u-$b.json | tail -1

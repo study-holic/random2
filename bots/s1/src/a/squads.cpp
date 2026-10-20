@@ -68,6 +68,7 @@ void Bot::assign_squads() {
     int members = 0;
     for (int i = 0; i < n; ++i) if (roster_squad[i] == squad) { ++members; if (roster_melee[i]) squad_capable = true; }
     if (members < P_ELK_MIN_SQUAD) squad_capable = false;
+    squad_size = std::max(1, members);
 }
 
 int Bot::roster_index(const cambc::champion& c) const {
@@ -100,6 +101,7 @@ bool Bot::claim_usable(int claim, int round, int exclude) const {
 // solo groups are free for whoever is nearest and unclaimed. Scores follow v2 (distance, wait, gem value) with
 // v3-quick's own half first before round 400.
 int Bot::choose_target(const TurnView& v, int exclude) {
+    if (P_S1_AUCTION == 1) return s1_pick(v, exclude, nullptr);   // S1: auction replaces the scoring below
     std::array<std::uint8_t, 8> mem{};
     cambc::shared_memory.read(0, std::span{mem.data(), mem.size()});
     const int round = v.round;
@@ -135,6 +137,12 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             if (is_squad_group(i)) {
                 if (i == other_claim) continue;
                 if (claim_ok && i != my_claim) continue;
+            } else if (P_S1_AUCTION == 2) {   // S1: a claimed light group is taken only by outbidding (ETA bucket 2 better)
+                int bb = 4;
+                if (s1_claimants(mem, i, bb) > 0) {
+                    int eta = 0; s1_value(i, v, 0, eta, 1);
+                    if (eta_bucket(eta) > bb - 2) continue;
+                }
             } else {
                 bool taken = false;
                 for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) taken = true;
@@ -143,6 +151,11 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             const int d = min_distance(v.pos, g.tiles);
             const int wait = std::max(0, g.ready_round - round - d);
             double score = d + P_WAIT_WEIGHT * wait - 0.05 * g.gems;
+            if (P_S1_AUCTION == 2) {   // S1: score = -u_ij (value rate), coalition = the squad for squad groups
+                int eta = 0;
+                score = -s1_value(i, v, 0, eta, is_squad_group(i) ? squad_size : 1) * P_S1_U_SCALE;
+            }
+            score += s1_salt_noise(ally_index, i);   // measurement salt (0 at salt 0)
             if (claim_ok && i == my_claim) score -= kClaimBonus;   // squads stay together
             if (round >= P_OWN_HALF_ROUNDS) score += 0.5 * std::max(0, g.dist_ally - g.dist_enemy);
             if (score < best_score) { best_score = score; best = i; }
@@ -241,15 +254,20 @@ void Bot::resolve_target(const TurnView& v, const std::vector<cambc::champion>& 
     }
     if (is_squad_group(target) && groups[target].ready_round <= round && group_cleared(v, target)) {
         const int cleared = target;
-        const int rank = capture_rank(allies, cleared);
+        const int rank = P_S1_AUCTION == 1 ? s1_capture_rank(allies, cleared) : capture_rank(allies, cleared);
         const int next = choose_target(v, cleared);
         bool stay = rank == 0 || next < 0;
-        if (!stay && !rows && rank == 1 && groups[cleared].wolves >= 3 && min_distance(groups[cleared].tiles[0], groups[next].tiles) > 5)
+        if (!stay && !rows && !P_S1_ONE_CAPTURER && rank == 1 && groups[cleared].wolves >= 3 && min_distance(groups[cleared].tiles[0], groups[next].tiles) > 5)
             stay = true;   // three-wolf pack with the next group far: the second member also captures
         if (stay) { holding = cleared; hold_since = round; return; }
         groups[cleared].ready_round = round + kRespawnTime;
-        if (read_squad_claim() == cleared) write_squad_claim(is_squad_group(next) ? next : -1);
+        if (P_S1_AUCTION != 1 && read_squad_claim() == cleared) write_squad_claim(is_squad_group(next) ? next : -1);
         target = next;
+        return;
+    }
+    if (P_S1_AUCTION == 1) {   // S1: cleared groups and holds handled above; otherwise re-auction with hysteresis
+        if (target >= 0 && groups[target].excluded_until > round) target = -1;
+        s1_reauction(v);
         return;
     }
     if (target >= 0 && groups[target].excluded_until > round) target = -1;

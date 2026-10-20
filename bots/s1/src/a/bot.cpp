@@ -264,6 +264,16 @@ void Bot::init() {
   }
   if (!init_fuel_ok(40000)) return;
   Plan::init(*this);
+  s1_init();
+  if (P_S1_THREAT_COST) {   // reach of each camp spawn tile: wolf 3, elk 4, monolith 5, golem 4 (arena test 1)
+      g_camp_w = cambc::map::width();
+      g_camp_rng.assign(static_cast<std::size_t>(g_camp_w) * cambc::map::height(), 0);
+      for (const auto& g : groups)
+          for (const auto& c : g.group.camps()) {
+              const int r = c.is_wolf() ? 3 : c.is_elk() ? 4 : c.is_monolith() ? 5 : c.is_golem() ? 4 : 0;
+              g_camp_rng[c.spawn_position().y * g_camp_w + c.spawn_position().x] = static_cast<std::int8_t>(r);
+          }
+  }
   initialised = true;
 #if TRACE_V
   if (ally_index == 0) for (std::size_t i = 0; i < groups.size(); ++i) { const auto& g = groups[i]; std::cout << "G" << i << " " << g.tiles[0].x << "," << g.tiles[0].y << " m" << g.monolith << " h" << g.heavy << " w" << g.wolves << " gem" << g.gems << " sq" << g.squad_target << " da" << g.dist_ally << " de" << g.dist_enemy << " ex" << (g.excluded_until > 1000000) << "\n"; }
@@ -510,7 +520,11 @@ void Bot::step_off_respawn() {
         if (static_cast<int>(i) == holding && groups[i].ready_round <= static_cast<int>(cambc::round_number())) return;
         try {
             const auto st = groups[i].group.state();
-            if (!std::holds_alternative<cambc::map::camp_group_respawning>(st)) return;
+            const bool paid = std::holds_alternative<cambc::map::camp_group_respawning>(st);
+            // P_S1_ONE_CAPTURER: a capture in progress belongs to the holder (or the solo farmer of the group) alone
+            const bool other = P_S1_ONE_CAPTURER && std::holds_alternative<cambc::map::camp_group_reward_available>(st)
+                && static_cast<int>(i) != holding && static_cast<int>(i) != target;
+            if (!paid && !other) return;
         } catch (...) { return; }
         cambc::bitboard out = tiles_around(p, 3) & ~camp_static & ~static_block;
         move_towards_closest(static_block, camp_static, out);
@@ -606,6 +620,12 @@ void Bot::play_turn() {
     s1_diag();
 #endif
     std::uint8_t mine = me.is_alive() ? static_cast<std::uint8_t>(target + 1) : 0;
+    if (P_S1_AUCTION == 2 && mine && initialised) {   // hybrid: ETA of the current target for the claim byte
+        const int rnd = static_cast<int>(cambc::round_number()), tau = s1_tau(target, me.position());
+        s1_eta = tau + std::max(0, groups[target].ready_round - rnd - tau);
+    }
+    if (P_S1_AUCTION && mine) mine |= static_cast<std::uint8_t>(eta_bucket(s1_eta) << 6);   // S1 claim: task | ETA bucket
+    if (P_S1_AUCTION) s1_tables_step();
     cambc::shared_memory.write(ally_index, std::span<const std::uint8_t>{&mine, 1});
 }
 
@@ -620,6 +640,7 @@ void Bot::play_turn_inner() {
     if (P_OPENING_ASSIGN && me.gem_count() > 0) open_done = true;   // EXP-079: first gems collected
     const TurnView v = build_view();
     last_nc = static_cast<int>(v.camps.size());
+    g_threat_exempt.clear();   // P_S1_THREAT_COST: retreats avoid every camp; set to the target after resolve_target
     update_group_memory(v);
     note_mixed_clusters(v);   // EXP-030
     const bool at_spawn = ally_spawn.is_set(v.pos);
@@ -632,7 +653,8 @@ void Bot::play_turn_inner() {
     cast_shield(v);   // S-14
 
     auto enemies = cambc::vision::champions(team::enemy);
-    last_had_foe = !enemies.empty();   // FIX_DEATH_LOOP: a death with no enemy champion in view was the camps
+    last_had_foe = !enemies.empty();
+    if (P_S1_AUCTION) s1_note_foes(v, enemies);   // FIX_DEATH_LOOP: a death with no enemy champion in view was the camps
     auto allies = cambc::vision::champions(team::ally);
     update_contested(v, enemies);   // EXP-018
     if (Plan::turn(*this, Plan::Phase::pre, v, enemies, allies)) return;
@@ -709,6 +731,7 @@ void Bot::play_turn_inner() {
 
     resolve_target(v, allies);
     Plan::target(*this, v, target);
+    if (P_S1_THREAT_COST && target >= 0) g_threat_exempt = groups[target].mask;
     if (target >= 0) last_tgt = target;
 #if TRACE_V
     if ((v.round >= 18 && v.round <= 45) || v.round % 200 == 5) std::cout << "T r" << v.round << " u" << ally_index << " p" << v.pos.x << "," << v.pos.y << " tg" << target << "x" << (target >= 0 ? groups[target].excluded_until : -1) << " hp" << (int)cambc::self().health() << " g" << (int)cambc::self().gem_count() << "\n";

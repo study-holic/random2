@@ -133,6 +133,21 @@ const cambc::bitboard& awake_tiles() {
     return awake;
 }
 
+std::vector<std::int8_t> g_camp_rng;   // P_S1_THREAT_COST: reach of the camp spawned on each tile (0 none)
+int g_camp_w = 0;
+cambc::bitboard g_threat_exempt;       // tiles of the group being fought (its camps are the prey, not a threat)
+
+// Reach of awake damaging camps in vision, minus the exempt group: wolves 3, elks 4, monoliths 5 (arena test 1).
+static cambc::bitboard threat_zone() {
+    cambc::bitboard z; z.clear();
+    if (g_camp_rng.empty()) return z;
+    for (auto p : awake_tiles().positions()) {
+        const int r = g_camp_rng[p.y * g_camp_w + p.x];
+        if (r > 0 && !g_threat_exempt.is_set(p)) z |= tiles_around(p, r);
+    }
+    return z;
+}
+
 std::vector<MonoZone> g_mono_list;
 bool g_mono_zone_on = false;
 
@@ -183,11 +198,25 @@ static bool move_towards_closest_impl(const cambc::bitboard& static_block, const
     blocked.set(pos, false);
     goals &= ~blocked | cambc::vision::camp_tiles();
     if (goals.is_empty()) return false;
-    if (goals.count() == 1 && !blocked.is_set(goals.positions()[0])) { const bool ok = me.move_towards(goals.positions()[0]); DBG(" MT1" + std::string(ok ? "ok" : "NO")); return ok; }
+    cambc::bitboard threat; threat.clear();
+    if (P_S1_THREAT_COST && !g_zone_skip) { threat = threat_zone() & ~goals & ~blocked; threat.set(pos, false); }
+    if (threat.is_empty() && goals.count() == 1 && !blocked.is_set(goals.positions()[0])) { const bool ok = me.move_towards(goals.positions()[0]); DBG(" MT1" + std::string(ok ? "ok" : "NO")); return ok; }
     const auto path_walls = blocked & ~goals;
     cambc::distance_field field; cambc::bitboard visited;
     field.compute_to(path_walls, goals, tiles_around(pos, 0), visited);
     auto step = pos;
+    bool detour = false;
+    if (!threat.is_empty()) {   // P_S1_THREAT_COST: a path outside the threat reach is taken when it costs at most P_S1_DETOUR extra tiles
+        cambc::distance_field f2; cambc::bitboard vis2;
+        f2.compute_to(path_walls | threat, goals, tiles_around(pos, 0), vis2);
+        const int d1 = field.get(pos), d2 = f2.get(pos);
+        if (d2 != cambc::distance_field::unreachable && (d1 == cambc::distance_field::unreachable || d2 <= d1 + P_S1_DETOUR)) {
+            detour = true;
+            for (auto tile : (blocked | threat).reachable_tiles(step, me.base_stats().base_move_speed).positions())
+                if (f2.get(tile) < f2.get(step)) step = tile;
+        }
+    }
+    if (!detour)
     for (auto tile : blocked.reachable_tiles(step, me.base_stats().base_move_speed).positions())
         if (field.get(tile) < field.get(step)) step = tile;
     const bool ok = step != pos && me.move_absolute(step);
