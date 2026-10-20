@@ -423,6 +423,16 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
             return true;
         }
     }
+    if (P_S2_BANK_VIA && !rows_sched && !bank_spawn_done) {   // P_S2_BANK_VIA: shop on the way to the altar
+        if (ally_spawn.is_set(v.pos) || me.gold_count() < P_S2_VIA_GOLD) bank_spawn_done = true;
+        else if (enemies.empty()) {
+            int da = 1 << 20, dsa = 1 << 20;
+            for (auto a : altars) { da = std::min(da, tile_distance(v.pos, a)); dsa = std::min(dsa, min_distance(a, spawn_tiles)); }
+            if (min_distance(v.pos, spawn_tiles) + dsa <= da + P_S2_VIA_SLACK && move_towards_closest(static_block, camp_static, ally_spawn))
+                return true;
+            bank_spawn_done = true;
+        }
+    }
     // EXP-023: the best altar by distance plus contest; when every altar is held by two or more enemies, keep
     // farming with the bag instead of walking into them or standing still.
     int contest = 0;
@@ -644,6 +654,7 @@ void Bot::play_turn_inner() {
         return;
     }
 
+    if (P_S2_FUEL_STOP && cambc::fuel_remaining() < P_S2_FUEL_STOP) return;   // P_S2_FUEL_STOP: a clean end beats a suspended turn
     if (s2_shop_detour(v, enemies)) return;   // P_S2_SPEND_NOW
     resolve_target(v, allies);
     Plan::target(*this, v, target);

@@ -14,6 +14,7 @@
 namespace va {
 // EXP-018 (v4.2): contested-group memory and the leave rule, and the stuck detector, ported from v4.1 (EXP-017).
 #include <cambc.h>
+#include "s2.h"
 #include "bot.h"
 #include "util.h"
 #include "params.h"
@@ -31,6 +32,24 @@ static constexpr int kStuckExcludeRounds = P_STUCK_EXCLUDE_ROUNDS;
 static constexpr int kStuckWalkTiles = P_STUCK_WALK_TILES;
 
 void Bot::update_contested(const TurnView& v, const std::vector<cambc::champion>& enemies) {
+    if (P_S2_FAST_CONTEST) {   // S2 fuel fix: one position query per enemy and one distance pass per group, same decisions (lanes fights: 28k)
+        std::vector<vec2> foes;
+        foes.reserve(enemies.size());
+        for (const auto& e : enemies) foes.push_back(e.position());
+        if (foes.empty()) return;
+        for (std::size_t i = 0; i < groups.size(); ++i) {
+            int n = 0;
+            bool seen = false;
+            for (auto f : foes) {
+                const int d = min_distance(f, groups[i].tiles);
+                if (d <= kContestRadius + 2) seen = true;
+                if (d <= kContestRadius) ++n;
+            }
+            if (P_THREAT_LAYER && seen) foe_seen[i] = v.round;
+            if (foes.size() >= 2 && n >= 2) groups[i].contested_round = v.round;
+        }
+        return;
+    }
     if (P_THREAT_LAYER) {   // EXP-071: any enemy champion near a group's spawn tiles (leash memory)
         for (const auto& e : enemies) {
             const vec2 f = e.position();

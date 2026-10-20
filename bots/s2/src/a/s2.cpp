@@ -62,6 +62,11 @@ static bool altar_locked(const std::vector<cambc::altar_lock>& locks, vec2 a) {
 bool Bot::s2_lock_turn(const TurnView& v, const std::vector<cambc::champion>& enemies) {
     if (!P_S2_ALTAR_LOCK || !s2_has_lock || altars.empty()) return false;
     if (cambc::fuel_remaining() < P_S2_FUEL_FLOOR) return false;   // fuel guard: lanes/fracture fights ran out at 100k
+    {   // no altar within reach: nothing to place or chase (no SDK calls; the enemy loop cost 8-10k in lanes fights)
+        int near = 1 << 20;
+        for (auto a : altars) near = std::min(near, tile_distance(v.pos, a));
+        if (near > std::max(P_S2_LOCK_CHASE, kLockRange)) return false;
+    }
     auto& me = cambc::self();
     // Enemy channels in view: altar index of the nearest one, if any.
     int chan = -1, chan_d = 1 << 20;

@@ -50,6 +50,9 @@
 #ifndef P_S2_FUEL_STOP
 #define P_S2_FUEL_STOP 35000          // end the turn before targeting, banking and farming with less fuel left (gate: lanes/B ran out in bank)
 #endif
+#ifndef P_S2_FAST_CONTEST
+#define P_S2_FAST_CONTEST 1           // update_contested in one pass (stuck.cpp); decisions unchanged
+#endif
 #ifndef P_S2_LOCK_LOG
 #define P_S2_LOCK_LOG 1               // print "LK" per placement (metrics_s2.py); '\n' only, no flush
 #endif
