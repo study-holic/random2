@@ -178,9 +178,16 @@ def fights_and_time(path, d, S, us, mp, rec):
             hit_c = any(h[0] == "c" for a in A for h in a[9] if a[2] in (K_ATK, K_CAST))
             hit_m = any(h[0] == "m" for a in A for h in a[9] if a[2] in (K_ATK, K_CAST))
             moved = K_MOVE in kinds or any(a[2] == K_CAST and a[11] == 6 for a in A)
-            if (K_TRIB in kinds or K_RECALL in kinds) or (i in chan_until and r <= chan_until[i] and not (moved or hit_c or hit_m)):
-                cnt[chan_kind[i]] += 1; continue
-            chan_until.pop(i, None)
+            # A channel starts at the end of a turn (often after a move) and runs while the champion takes no other action;
+            # any move or hit without a new start ends it. Pantheon starts a recall at the end of every walking turn and
+            # cancels it the next turn (kind 16): those turns count as walking (the first version counted them as
+            # recalling: 15.8 % of top-10 rounds, results/imitate.md).
+            started = K_TRIB in kinds or K_RECALL in kinds
+            if not (moved or hit_c or hit_m):
+                if started or (i in chan_until and r <= chan_until[i]):
+                    cnt[chan_kind[i]] += 1; continue
+            elif not started:
+                chan_until.pop(i, None)
             if hit_c: cnt["fighting"] += 1
             elif hit_m: cnt["clearing"] += 1
             elif moved: cnt["walking"] += 1
@@ -205,6 +212,24 @@ def decode(replays, cache, jobs=3):
     procs = [subprocess.Popen(["node", os.path.join(ROOT, "tools", "top10", "extract_pilot.mjs"), *c, "--out", cache, "--stride", "1"],
                               env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) for c in chunks]
     for p in procs: p.wait()
+
+
+def panel_index(known):
+    """Sets missing from matches.jsonl (v4top C and D): position and match id from the zip names inside each
+    data/real/v4-panel group, side, map, team and result from data/real/v4-panel/baseline-v4top.csv (by match id)."""
+    import csv, zipfile
+    P = os.path.join(ROOT, "data", "real", "v4-panel"); out = {}
+    base = {r["match"]: r for r in csv.DictReader(open(os.path.join(P, "baseline-v4top.csv"), encoding="utf8"))}
+    for g in sorted(os.listdir(P)):
+        if not g.startswith("v4top-"): continue
+        try: names = zipfile.ZipFile(os.path.join(P, g)).namelist()
+        except Exception: continue
+        for nm in names:
+            pos, mid = int(nm[:2]), nm[3:-4]
+            if (g, pos) in known or mid not in base: continue
+            r = base[mid]
+            out[(g, pos)] = dict(label=g, position=pos, map=r["map"], our_side=r["side"], opponent=r["team"], result=r["result"], match=mid)
+    return out
 
 
 def mean(xs):
@@ -249,6 +274,7 @@ def main(argv):
         idx = {}
         for l in open(os.path.join(ROOT, "data", "unranked", "matches.jsonl"), encoding="utf8"):
             mm = json.loads(l); idx[(mm["label"], mm["position"])] = mm
+        idx.update(panel_index(idx))
         for f in sorted(glob.glob(os.path.join(panel, "*.json"))):
             b = os.path.basename(f)[:-5]; lab, pos = b.rsplit("-", 1)
             mm = idx.get((lab, int(pos)))
