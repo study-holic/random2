@@ -10,3 +10,5 @@ Tasks (one switch each, ablate each):
 5. Do not tribute into a visible enemy: if an enemy champion is within 4 of the altar and the bag is large, wait out of range or fight first.
 Trace one v4 death at an altar in a v4-vs-v3b-e1 game before building, to check which of these is the real cause.
 Expected effect: champion deaths per game down by a quarter and the gem margin from kills positive.
+
+Added (lead, 10:10): your target maps are the small contact maps where v4 loses every real game with about 50 deaths: fragment (30x30, 3 a side), hooks (31x31, 4 a side), gold_rush (31x31, 3 a side). Trace at least two real losses on each from data/real/v4-panel (the map order is in index.csv) before building: who kills us, where, while doing what, and how the opponent's fights start (who casts first, at what range, on whom). Report deaths per game on these three maps before and after in self-play.

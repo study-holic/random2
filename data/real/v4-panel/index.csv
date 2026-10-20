@@ -1,0 +1,51 @@
+file,bot,opponent,maps_in_order,group_id,queued_bst
+v4-micron-A,v4,micron,"00eight,00contest,00ambush,00collision,00corners",d6a33458-455c-4c51-bc4f-8321d314dbf5,09:47
+v4-micron-B,v4,micron,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",0ea5349d-bfd3-45d4-8508-7c2e17d1db00,09:48
+v4-micron-C,v4,micron,"00interlock,00elkring,01hooks,00monolith,00expanse",45422b5e-be76-49fc-be3b-2b9ef6f607ba,09:48
+v4-micron-D,v4,micron,"00lanes,00fragment,01elk_arena,01fracture,01islands",f9c76535-9f32-4a10-9202-2ba68836d3e2,09:48
+v4-deerpark-A,v4,deerpark,"00fragment,00contest,00ambush,00interlock,01gold_rush",4df758b0-96ef-4062-bfb7-6d4dbc2990c5,09:48
+v4-deerpark-B,v4,deerpark,"00eight,00lanes,00collision,01hooks,01big_world",5d0ae8a9-bb7a-455b-96bf-a116fbcfccdd,09:48
+v4-deerpark-C,v4,deerpark,"01fracture,01boss_battle,01islands,00elkring,00corners",f1d9d3b8-ee6d-4152-9bcd-5a8ab420b9a6,09:48
+v4-deerpark-D,v4,deerpark,"00expanse,01broken_curve,01concentrated_wealth,01corridors,00monolith",0c23924a-905f-4812-9fe6-dac6a8f40764,09:48
+v4-tvojtatko-A,v4,tvojtatko,"01corridors,01fracture,01concentrated_wealth,01islands,00expanse",7f022f4f-8a5a-4831-9bfd-aafc2373ebc6,09:48
+v4-tvojtatko-B,v4,tvojtatko,"00collision,00lanes,00corners,00monolith,01big_world",c5dfd76c-a840-468a-a7ce-b37b4f2c68d6,09:48
+v4-tvojtatko-C,v4,tvojtatko,"01broken_curve,01boss_battle,00elkring,01elk_arena,01gold_rush",41f85fdf-5404-49aa-bdf2-8c688249c3b2,09:48
+v4-tvojtatko-D,v4,tvojtatko,"00eight,00fragment,00contest,00interlock,01hooks",90dc676c-4372-4deb-ae66-032db53f07a8,09:48
+v4-t777-A,v4,t777,"00fragment,01concentrated_wealth,01elk_arena,00corners,01corridors",51694c39-3c5d-4afa-a7e3-155498837335,09:48
+v4-t777-B,v4,t777,"00lanes,01fracture,01gold_rush,00expanse,00contest",e248c20a-d8e2-4c0c-b003-f69a65f432e4,09:48
+v4-t777-C,v4,t777,"01boss_battle,00eight,00monolith,01big_world,01broken_curve",5fb7020d-601a-4bfa-96f9-8390ec879f58,09:48
+v4-t777-D,v4,t777,"00ambush,00collision,01islands,01hooks,00interlock",6347502d-bea9-4c86-8cb6-afeaddb1eeeb,09:48
+v4-snowman-A,v4,snowman,"01islands,01big_world,01gold_rush,00fragment,00elkring",54394942-b767-4720-bbe6-697830da38fd,09:48
+v4-snowman-B,v4,snowman,"01elk_arena,01fracture,00contest,00expanse,01corridors",f798271e-7bf8-4078-800e-6331df360318,09:48
+v4-snowman-C,v4,snowman,"00interlock,00ambush,00lanes,00collision,01hooks",d5a99cc2-a803-43dd-a360-6b347d56458d,09:48
+v4-snowman-D,v4,snowman,"01boss_battle,01concentrated_wealth,00eight,00corners,01broken_curve",68a2da2c-f655-407a-902a-192547d5c6a1,09:48
+v4-hacking-A,v4,hacking,"01broken_curve,00eight,00corners,01big_world,00monolith",43dc8192-8dbd-4409-b16c-bd8a1251635c,09:48
+v4-hacking-B,v4,hacking,"00expanse,00contest,01islands,00lanes,01hooks",af87f90c-ed92-4e9d-901d-67dc987ba5b0,09:48
+v4-hacking-C,v4,hacking,"00ambush,01elk_arena,00interlock,00fragment,01gold_rush",7fdbe17b-0889-4f22-a49d-db2b562ece54,09:48
+v4-hacking-D,v4,hacking,"00elkring,00collision,01fracture,01concentrated_wealth,01boss_battle",838d07c6-8fa3-4be3-96a9-f0bbc28597f1,09:48
+v4-tozo-A,v4,tozo,"00collision,00elkring,01boss_battle,01gold_rush,01broken_curve",cc7143b7-a368-46ce-b453-7ce85dd53b49,09:48
+v4-tozo-B,v4,tozo,"01fracture,00corners,00lanes,00eight,01concentrated_wealth",0a9086b3-4dbb-4fcd-8b5e-6bfd6c49797c,09:48
+v4-tozo-C,v4,tozo,"00interlock,01big_world,00monolith,01corridors,00contest",4f9ce549-19d8-4cf1-9603-617f19f4aec6,09:48
+v4-tozo-D,v4,tozo,"01hooks,01elk_arena,00fragment,00expanse,00ambush",c824db92-4e09-4031-9851-fba5db3fb131,09:48
+v4-uma-A,v4,uma,"01fracture,01broken_curve,00elkring,01boss_battle,00expanse",4b0b2614-6134-42a2-85ba-c9875757216f,09:48
+v4-uma-B,v4,uma,"01elk_arena,00ambush,01concentrated_wealth,01gold_rush,00collision",537dcacd-a653-4f38-b5a3-c9b00803edd2,09:48
+v4-uma-C,v4,uma,"01big_world,01corridors,01hooks,00lanes,00contest",f21b5977-6c46-4b14-a220-a565a84f7361,09:48
+v4-uma-D,v4,uma,"00monolith,00corners,01islands,00fragment,00interlock",44788bc3-b1c9-4c03-9887-887881b40974,09:48
+v4top-t02-A,v4top,procless,"00eight,00contest,00ambush,00collision,00corners",bbf939ad-4421-402d-9a47-afbc11b63cf4,09:51
+v4top-t03-A,v4top,Nyx,"00eight,00contest,00ambush,00collision,00corners",303f05d0-adbf-44d4-9d92-dd3e4226ae6d,09:51
+v4top-t04-A,v4top,Mite,"00eight,00contest,00ambush,00collision,00corners",088ffa31-a445-4594-a609-bdc4c5b05611,09:51
+v4top-t05-A,v4top,Sponge(Albert and Bob),"00eight,00contest,00ambush,00collision,00corners",c07139ad-53bf-4188-8026-45792a718b58,09:51
+v4top-t06-A,v4top,Pantheon,"00eight,00contest,00ambush,00collision,00corners",9f804486-0fb9-4e64-8b3f-2bf0c5e8517f,09:51
+v4top-t07-A,v4top,Tartarus,"00eight,00contest,00ambush,00collision,00corners",1a00c2a4-378b-4220-9986-7474eec66dec,09:51
+v4top-t08-A,v4top,Univardisty of Shingtonwash,"00eight,00contest,00ambush,00collision,00corners",01222619-75ef-4b31-8787-fd67913c0f93,09:51
+v4top-t09-A,v4top,NEETCoders,"00eight,00contest,00ambush,00collision,00corners",2b319376-e392-4ef4-b72b-24c469ad6602,09:51
+v4top-t10-A,v4top,Sneaky Bush Campers,"00eight,00contest,00ambush,00collision,00corners",7c52176d-6bfb-45da-a512-bfc93cfc9bfe,09:51
+v4top-t02-B,v4top,procless,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",4e33fad1-df17-4ecc-8530-1d9bd46846e9,09:51
+v4top-t03-B,v4top,Nyx,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",3583890d-759e-45e1-b221-54f5b677de72,09:51
+v4top-t04-B,v4top,Mite,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",7bf87b0d-4c49-4bae-b22c-b55ae605d10e,09:51
+v4top-t05-B,v4top,Sponge(Albert and Bob),"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",05158842-8ff2-4c11-9b56-defc075617a6,09:51
+v4top-t06-B,v4top,Pantheon,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",c6ee5cdb-7ae9-4621-b077-809dcc52263b,09:51
+v4top-t07-B,v4top,Tartarus,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",fe9c2f66-8a95-4567-a5dd-280d03cd1476,09:51
+v4top-t08-B,v4top,Univardisty of Shingtonwash,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",bc3a1073-269b-445c-8950-088f148a2f87,09:51
+v4top-t09-B,v4top,NEETCoders,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",b05331e2-98e8-4d55-a065-5a0201394e47,09:51
+v4top-t10-B,v4top,Sneaky Bush Campers,"01corridors,01broken_curve,01gold_rush,01boss_battle,01concentrated_wealth",5d82eab5-b8df-41e4-8e65-7c2cc56e7c16,09:51
