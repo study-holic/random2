@@ -1,6 +1,6 @@
 # v5 S3 diagnostics: v4's gem funnel, deaths, locks and time use (20 Oct)
 
-Data: the 90 real top-10 games (`data/real/v4-panel/v4top-t02..t10-A/B`, ranks 2-10, sets A and B, engine 1.0.0), decoded at stride 1 with `tools/top10/extract_pilot.mjs`; our side from `data/unranked/matches.jsonl`. Self-play: `results/s3-v4-vs-v3b-e1-s0.json` (v4 vs v3b-e1, 21 maps x 2 sides, salt 0, 42 games, 32-10). All numbers come from `tools/cloud/metrics.py` (field definitions are in its docstring). It reproduces `notes/panel-v4-top10-AB.md`: gems 159 / 943, deaths 22.7 / 6.0, gems lost to kills 62, W-L 1-89, and the win flag agrees with the platform result in 90/90 games.
+Data: the 90 real top-10 games (`data/real/v4-panel/v4top-t02..t10-A/B`, ranks 2-10, sets A and B, engine 1.0.0), decoded at stride 1 with `tools/top10/extract_pilot.mjs`; our side from `data/unranked/matches.jsonl`. Self-play: `results/s3-v4-vs-v3b-e1-s0.json` (v4 vs v3b-e1, 21 maps x 2 sides, salt 0, 42 games, 32-10). All numbers come from `tools/cloud/metrics.py` (13:20 BST revision: `data/maps21.json` lists one side's camps, so the script now mirrors camps and altars by the map's symmetry; this moved 0.2 deaths a game from other to monster) (field definitions are in its docstring). It reproduces `notes/panel-v4-top10-AB.md`: gems 159 / 943, deaths 22.7 / 6.0, gems lost to kills 62, W-L 1-89, and the win flag agrees with the platform result in 90/90 games.
 
 Commands:
 ```
@@ -23,12 +23,12 @@ python3 -I tools/cloud/metrics.py --mapgate results/<x>.json --out f.json       
 
 | cause | per game | share | at spawn | at an altar (<= 8) | at a camp (<= 8) | elsewhere | rounds 0-200 | 200-600 | 600+ | gems lost per game |
 |---|---|---|---|---|---|---|---|---|---|---|
-| champion | 18.5 | **81 %** | 2.9 | 8.0 | 4.0 | 3.6 | 1.8 | 5.9 | 10.7 | 62.2 |
-| monster | 3.8 | 17 % | 0.9 | 1.1 | 1.9 | 0.0 | 0.8 | 1.6 | 1.4 | 14.2 |
-| other | 0.3 | 1 % | | | | | | | | 0.6 |
-| all | 22.7 | | 3.8 (17 %) | 9.1 (40 %) | 5.9 (26 %) | 3.8 (17 %) | 2.7 (12 %) | 7.6 (34 %) | 12.4 (54 %) | |
+| champion | 18.5 | **81 %** | 2.9 | 8.0 | 4.7 | 2.9 | 1.8 | 5.9 | 10.7 | 62.2 |
+| monster | 4.0 | 18 % | 0.9 | 1.1 | 2.0 | 0.0 | 0.9 | 1.7 | 1.5 | 14.4 |
+| other | 0.2 | 1 % | | | | | | | | 0.3 |
+| all | 22.7 | | 3.8 (17 %) | 9.1 (40 %) | 6.8 (30 %) | 3.0 (13 %) | 2.7 (12 %) | 7.6 (34 %) | 12.4 (54 %) | |
 
-- **Claude's deciding fact holds:** 81 % of v4's deaths against the top 10 are champion kills, so fights rise in priority. The top 10 lose 6.0 champions a game, mostly to monsters (4.1 monster, 0.5 champion, 1.4 other).
+- **Claude's deciding fact holds:** 81 % of v4's deaths against the top 10 are champion kills, so fights rise in priority. The top 10 lose 6.0 champions a game, mostly to monsters (5.2 monster, 0.5 champion, 0.3 other).
 - 78 % of the champion-killed v4 champions carried no gems (1,299 of 1,667). Only 95 carried 20 or more. A kill therefore costs us mostly the 60-turn respawn, not the bag: dead is 22 % of v4's champion-rounds against the top teams' 5 %.
 - Killers: C&I 334, Heart of Ruin 298, Ren 298, Stellar 285, Ryth 159, Varg 95, Tavi 88, Prism 40.
 - Per map, champion deaths per game: contest 47.9, gold_rush 30.2, eight 24.6, concentrated_wealth 24.3, collision 22.7, corners 11.1, ambush 8.7, corridors 8.2, broken_curve 7.3, boss_battle 0.2.
@@ -46,8 +46,8 @@ python3 -I tools/cloud/metrics.py --mapgate results/<x>.json --out f.json       
 
 | set | dead | walking | clearing camps | capturing | fighting | tributing | recalling | idle |
 |---|---|---|---|---|---|---|---|---|
-| v4 vs the top 10 | **22.2 %** | 48.5 % | 10.2 % | 3.5 % | 0.8 % | 0.4 % | 4.6 % | 9.8 % |
-| top 10 vs v4 | 5.1 % | 46.3 % | **17.1 %** | 2.4 % | 1.4 % | 2.2 % | **15.8 %** | 9.7 % |
+| v4 vs the top 10 | **22.2 %** | 48.5 % | 10.2 % | 4.0 % | 0.8 % | 0.4 % | 4.6 % | 9.4 % |
+| top 10 vs v4 | 5.1 % | 46.3 % | **17.1 %** | 5.3 % | 1.4 % | 2.2 % | **15.8 %** | 6.8 % |
 | v4 vs v3b-e1 | 11.3 % | 55.4 % | 13.1 % | 3.6 % | 1.8 % | 1.2 % | 4.3 % | 9.4 % |
 
 Definitions: dead = alive flag 0. Tributing = from a tribute start (step kind 12, aimed at an altar) for ceil(bag/10) rounds. Recalling = 5 rounds from a recall start (kind 11). Either channel ends early at the champion's next move or hit. Fighting = an attack or cast that hit a champion. Clearing = one that hit a camp. Walking = a move or a dash. Capturing = a capture step (kind 23) or standing on a camp spawn tile. Idle = the rest. Engine 1.0 step kinds were checked on decoded games: 4 move, 5 attack, 6 cast, 11 recall (the champion appears at spawn 5 rounds later), 12 tribute start (the target is the altar tile), 13 shop, 23 capture. The kind list in `notes/v3-data-scope.md` (11 channel, 12 ward, 20 consumable) is engine 0.0.x and no longer holds.
