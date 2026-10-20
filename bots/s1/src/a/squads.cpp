@@ -102,6 +102,9 @@ bool Bot::claim_usable(int claim, int round, int exclude) const {
 // v3-quick's own half first before round 400.
 int Bot::choose_target(const TurnView& v, int exclude) {
     if (P_S1_AUCTION == 1) return s1_pick(v, exclude, nullptr);   // S1: auction replaces the scoring below
+#if P_S1_FUELDBG
+    const auto fct0 = cambc::fuel_remaining();
+#endif
     std::array<std::uint8_t, 8> mem{};
     cambc::shared_memory.read(0, std::span{mem.data(), mem.size()});
     squad_live = 1;   // S1 hybrid coalition: me plus squad mates alive (non-zero claim byte; 0 = dead, bot.cpp)
@@ -129,6 +132,7 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             && g.dist_ally <= g.dist_enemy && g.ready_round <= round + 30;
     }
     int best = -1; double best_score = 1e18;
+    std::vector<double> u_cache(groups.size(), -1e18);   // S1 hybrid: u per group, once per call
     for (int pass = 0; pass < 3 && best < 0; ++pass) {
         const bool skip_contested = alt_own_half && pass < 2;
         if (pass == 2 && !alt_own_half && !P_THREAT_LAYER) break;   // pass 2 only retries with contested groups allowed
@@ -159,7 +163,8 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             double score = d + P_WAIT_WEIGHT * wait - 0.05 * g.gems;
             if (P_S1_AUCTION == 2) {   // S1: score = -u_ij (value rate), coalition = the squad for squad groups
                 int eta = 0;
-                const double u = s1_value(i, v, 0, eta, is_squad_group(i) ? squad_live : 1);
+                if (u_cache[i] < -1e17) u_cache[i] = s1_value(i, v, 0, eta, is_squad_group(i) ? squad_live : 1);   // once per call (3 passes)
+                const double u = u_cache[i];
                 score = u > 0 ? -u * P_S1_U_SCALE : 1000.0 + d;   // no positive value: last resort, nearest first
             }
             score += s1_salt_noise(ally_index, i);   // measurement salt (0 at salt 0)
@@ -169,6 +174,9 @@ int Bot::choose_target(const TurnView& v, int exclude) {
         }
     }
     if (best >= 0 && is_squad_group(best) && !claim_ok) write_squad_claim(best);
+#if P_S1_FUELDBG
+    std::cout << "FC r" << round << " a" << ally_index << " choose" << (fct0 - cambc::fuel_remaining()) << std::endl;
+#endif
     return best;
 }
 

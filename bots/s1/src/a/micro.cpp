@@ -182,7 +182,7 @@ void Bot::farm_squad(const TurnView& v, const std::vector<cambc::champion>& alli
             if (!off.is_empty()) goals = off;
         }
     } else {
-        engaged = false; if (!P_S1_TANK_SWAP) { engaged = true; }   // S1 tank swap: a ranged champion engages only when an ally is adjacent to the prey (nearest-champion targeting, arena test 2)
+        engaged = false; if (P_S1_TANK_SWAP < 2) { engaged = true; }   // S1 tank swap: a ranged champion engages only when an ally is adjacent to the prey (nearest-champion targeting, arena test 2)
         for (const auto& a : allies)
             if (!(a == me) && tile_distance(a.position(), pp) <= 1) { engaged = true; break; }
         if (engaged) {

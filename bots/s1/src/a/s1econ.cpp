@@ -80,7 +80,11 @@ void Bot::s1_tables_step() {
     while (s1_tables_next < static_cast<int>(groups.size()) && cambc::fuel_remaining() > static_cast<std::uint64_t>(P_S1_TABLE_FUEL)) {
         const int i = s1_tables_next++;
         if (groups[i].monolith) continue;
+        const auto f0 = cambc::fuel_remaining();
         try { s1_fields[i].compute(walls & ~groups[i].mask, groups[i].mask, seen); s1_field_ok[i] = 1; } catch (...) {}
+#if P_S1_FUELDBG
+        std::cout << "FT g" << i << " cost" << (f0 - cambc::fuel_remaining()) << std::endl;
+#endif
     }
 }
 
@@ -97,11 +101,14 @@ int Bot::s1_tau(int i, vec2 pos) const {
 
 // Enemy sightings near groups (risk term).
 void Bot::s1_note_foes(const TurnView& v, const std::vector<cambc::champion>& enemies) {
-    if (enemies.empty()) return;
+    if (enemies.empty() || cambc::fuel_remaining() < 60000) return;   // optional: skipped on expensive turns
+    std::vector<vec2> foes;   // positions read once (each position() is a host call: 34-68k fuel per turn on islands)
+    foes.reserve(enemies.size());
+    for (const auto& e : enemies) foes.push_back(e.position());
     for (std::size_t i = 0; i < groups.size(); ++i) {
-        if (min_distance(v.pos, groups[i].tiles) > 14) continue;
+        if (tile_distance(v.pos, groups[i].tiles[0]) > 16 || min_distance(v.pos, groups[i].tiles) > 14) continue;
         int n = 0;
-        for (const auto& e : enemies) if (min_distance(e.position(), groups[i].tiles) <= 6) ++n;
+        for (auto f : foes) if (min_distance(f, groups[i].tiles) <= 6) ++n;
         if (n > 0) { s1_foe_round[i] = v.round; s1_foe_n[i] = n; }
     }
 }

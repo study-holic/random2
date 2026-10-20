@@ -51,7 +51,7 @@ inline double s1_salt_noise(int who, int group) {
 #define P_S1_ASSEMBLE 1       // with P_S1_AUCTION: wait outside a heavy group until its coalition has arrived
 #endif
 #ifndef P_S1_TANK_SWAP
-#define P_S1_TANK_SWAP 0      // camp fights: highest effective HP nearest, others strictly farther; swap below 35 % (micro.cpp)
+#define P_S1_TANK_SWAP 0      // camp fights: 1 = a melee champion below 35 % yields the adjacent ring to a fresher melee mate within 2; 2 = also ranged engage only once an ally is adjacent to the prey (micro.cpp)
 #endif
 #ifndef P_S1_LAMBDA
 #define P_S1_LAMBDA 0.1       // gems per gold in u_ij (wolf: 4 gems + 40 gold -> 8)
@@ -103,4 +103,10 @@ inline double s1_salt_noise(int who, int group) {
 #endif
 #ifndef P_S1_BANK_MULT
 #define P_S1_BANK_MULT 1.0
+#endif
+#ifndef P_S1_FUELDBG
+#define P_S1_FUELDBG 0   // debug: fuel prints (distance tables, turns over 60k)
+#endif
+#ifndef P_S1_CARRY_ROUNDS
+#define P_S1_CARRY_ROUNDS 40   // v4: bank after carrying this many rounds
 #endif
