@@ -24,12 +24,14 @@ namespace va {
 using D = cambc::champion_draft;
 
 // P_S2_DRAFT_KEEPV4: maps where v4's own draft beat the core by >= 2 of 6 in the forced-draft head-to-head with play code
-// unchanged (results/s2d-vs-v4.json, core <= 1/6: boss_battle 0, corners 0, interlock 0, elk_arena 1, gold_rush 1, islands 1).
+// unchanged (results/s2d-vs-v4.json, core <= 1/6 on boss_battle, corners, interlock, elk_arena, gold_rush, islands), then
+// re-tested with locks, gate and spending on (results/s2-keep6-vs-v4.json vs s2-allcore-vs-v4.json, wins of 6, v4 draft vs
+// core): boss_battle 3-0, gold_rush 3-1 kept; interlock 4-3, elk_arena 6-5, corners 6-6 below the +2 bar; islands 2-6 reverted.
 static bool s2_keep_v4_draft(mapid::MapId id) {
     if (!P_S2_DRAFT_KEEPV4) return false;
     using M = mapid::MapId;
     switch (id) {
-        case M::boss_battle: case M::corners_v2: case M::interlock_v2: case M::elk_arena: case M::gold_rush: case M::islands: return true;
+        case M::boss_battle: case M::gold_rush: return true;
         default: return false;
     }
 }
