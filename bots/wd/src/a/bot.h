@@ -142,6 +142,12 @@ public:
     unsigned wd_trail_i = 0;
     bool wd_tick(const TurnView& v);
     void wd_after_target(const TurnView& v);
+    // P_W_FUELCAP altar tables: walking distance to each altar's submit tiles (static walls), one built per spare turn
+    std::vector<std::vector<std::uint16_t>> wd_alt_tbl;
+    std::size_t wd_alt_next = 0;
+    void wd_tables_step();
+    bool wd_step_altar(int i, const TurnView& v);
+    int wd_alt_dist(int i, cambc::vec2 p) const;
     int wd_force = -1, wd_force_until = 0;
     TurnView build_view() const;
     void init();

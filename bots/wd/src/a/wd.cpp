@@ -55,7 +55,9 @@ bool Bot::wd_tick(const TurnView& v) {
     if (banking && gems > 0 && !altars.empty()) {
         int best = 1 << 20;
         for (std::size_t i = 0; i < altars.size(); ++i) { const int d = tile_distance(v.pos, altars[i]); if (d < best) { best = d; obj = static_cast<int>(i); } }
-        mode = 3; phi = best; W = best <= 3 ? 10 : 12;
+        mode = 3; W = best <= 3 ? 10 : 12;
+        const int pd = wd_alt_dist(obj, v.pos);   // walking distance when the altar table exists
+        phi = pd >= 0 ? pd : best;
     } else if (target >= 0 && target < static_cast<int>(groups.size())) {
         const int d = min_distance(v.pos, groups[target].tiles);
         obj = target;
@@ -67,7 +69,9 @@ bool Bot::wd_tick(const TurnView& v) {
         }
     }
     bool prog = wait_ok;
-    if (mode != wd_mode || obj != wd_obj) { prog = true; wd_mode = mode; wd_obj = obj; wd_best = phi; }
+    // An objective change resets the best potential but not the stall timer: a target flipping between a group and none
+    // every few rounds reset the watchdog for good (Cassi at spawn on reverse_spiral, traced).
+    if (mode != wd_mode || obj != wd_obj) { wd_mode = mode; wd_obj = obj; wd_best = phi; }
     if (phi < wd_best - 1e-6) { wd_best = phi; prog = true; }
     if (gems != wd_gems || gold != wd_gold) prog = true;
     if (hp > wd_hp + 0.5f && ally_spawn.is_set(v.pos)) prog = true;
@@ -113,5 +117,45 @@ void Bot::wd_after_target(const TurnView& v) {
     if (!P_W_WATCHDOG || target >= 0 || wd_force < 0) return;
     if (v.round >= wd_force_until || groups[wd_force].excluded_until > v.round) { wd_force = -1; return; }
     target = wd_force;
+}
+// P_W_FUELCAP: bank() walked to the altar with a fresh path field each turn, retried up to three times when the step
+// failed (about 70k on starvation, 36k on lanes; sweep35 stamps). A full field costs 13k on starvation and 24k on
+// big_world plus as much to export (bots/fcost), so each altar's field is built once, at the end of a turn with 75k
+// left, and the carrier steps to the reachable neighbour with the smallest table distance.
+void Bot::wd_tables_step() {
+    if (!P_W_FUELCAP || !initialised || wd_alt_next >= altars.size()) return;
+    if (wd_alt_tbl.size() != altars.size()) wd_alt_tbl.assign(altars.size(), {});
+    if (cambc::fuel_remaining() < 75000) return;
+    const std::size_t i = wd_alt_next++;
+    try {
+        const auto roots = tiles_around(altars[i], cambc::constants::submit_gems_range) & ~static_block;
+        cambc::distance_field f; cambc::bitboard seen;
+        f.compute(static_block & ~roots, roots, seen);
+        wd_alt_tbl[i] = f.export_linear_buffer();
+    } catch (...) {}
+}
+
+int Bot::wd_alt_dist(int i, cambc::vec2 p) const {
+    if (i < 0 || i >= static_cast<int>(wd_alt_tbl.size()) || wd_alt_tbl[i].empty()) return -1;
+    const std::size_t k = static_cast<std::size_t>(p.y) * cambc::map::width() + p.x;
+    if (k >= wd_alt_tbl[i].size() || wd_alt_tbl[i][k] == cambc::distance_field::unreachable) return -1;
+    return wd_alt_tbl[i][k];
+}
+
+bool Bot::wd_step_altar(int i, const TurnView& v) {
+    if (!P_W_FUELCAP) return false;
+    auto& me = cambc::self();
+    const int here = wd_alt_dist(i, v.pos);
+    if (here <= 0 || !me.can_move()) return false;
+    auto blocked = static_block | camp_static | cambc::vision::champion_tiles() | cambc::vision::camp_tiles() | cambc::vision::teleport_tiles();
+    blocked.set(v.pos, false);
+    cambc::vec2 best = v.pos; int bd = here;
+    for (auto t : blocked.reachable_tiles(v.pos, me.base_stats().base_move_speed).positions()) {
+        const int d = wd_alt_dist(i, t);
+        if (d >= 0 && d < bd) { bd = d; best = t; }
+    }
+    if (best == v.pos) return false;
+    try { if (me.move_absolute(best)) { DBG(" WDSTEP"); return true; } } catch (...) {}
+    return false;
 }
 } // namespace va

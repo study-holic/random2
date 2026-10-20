@@ -519,6 +519,7 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
         if (near >= 0 && near_d > 2)
             for (const auto& e : enemies) if (tile_distance(e.position(), altars[near]) <= 4) return false;
     }
+    if (kAltarScoring && pick >= 0 && wd_step_altar(pick, v)) return true;   // P_W_FUELCAP: cached altar table
     if (kAltarScoring && pick >= 0)
         move_towards_closest(static_block, camp_static, tiles_around(altars[pick], cambc::constants::submit_gems_range));
     else
@@ -666,6 +667,7 @@ void Bot::play_turn() {
     }
     if (P_S1_AUCTION && mine) mine |= static_cast<std::uint8_t>(eta_bucket(s1_eta) << 6);   // S1 claim: task | ETA bucket
     if (P_S1_AUCTION) s1_tables_step();
+    wd_tables_step();   // P_W_FUELCAP: altar tables on spare turns
     cambc::shared_memory.write(ally_index, std::span<const std::uint8_t>{&mine, 1});
 }
 
