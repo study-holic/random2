@@ -23,3 +23,10 @@ Also weak against starter-cpp: split (36-45 deaths a game), starvation (about 40
 4. vs v4 at least 45 % (rejection gate only).
 
 Write results/v5r.md, admission table first, then per-map tables for the 14 new maps, then the trace of shortcut's cause. If a line fails, say so plainly.
+
+## Added by the lead (laptop probe, 20 Oct evening)
+`bots/s1g1` = bots/s1 with AUCTION, THREAT_COST and ONE_CAPTURER at 0 (v4 + the two fixes only), vs starter-cpp, salt 0 (results/s1g1-newmaps-vs-starter-20261020.json):
+- shortcut: side A **lost 84-115 with 29 deaths**; side B won 376-32. So the pathing change alone may not secure shortcut; check v5r on both sides and 3 seeds, and trace what kills us there.
+- starvation (80×80): **fuel_max 100,000 with 2 exhausted turns** on side A, 99,508 on side B. v5 peaked at 72-91k there. Find which path field or loop the change adds on large open maps before anything else; the gate fails on any exhaustion after round 1.
+- stampede: 0-0 and 80-80 gems (won on gold); pilgrimage 371 and 243.
+Unranked groups always play the live submission (no version option), so v4 cannot run as a concurrent control on the panel.
