@@ -92,7 +92,7 @@ void reset_and_attack_again(const cambc::unit& target) {
 }
 
 // P_SAVE_CC: an enemy champion within 8 tiles of this champion.
-static bool enemy_champion_near() {
+bool enemy_champion_near() {
     const cambc::vec2 p = cambc::self().position();
     for (auto e : cambc::vision::champion_tiles(cambc::team::enemy).positions())
         if (tile_distance(p, e) <= 8) return true;

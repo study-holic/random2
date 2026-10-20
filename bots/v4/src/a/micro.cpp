@@ -30,13 +30,50 @@ static constexpr int kGiveUpWait = P_GIVE_UP_WAIT;     // v3-quick: rounds at a 
 static constexpr int kTankWait = P_TANK_WAIT;       // ranged: rounds to wait for a melee ally to engage
 
 // v2: attack camps within reach (spell range is 4, so farther camps are skipped before any ability query).
+// FIX_FIGHT_CACHE (P_FIGHT_CACHE): same decisions as cast_on_camp per camp, but each ability's valid_tiles() and the
+// P_SAVE_CC enemy check are queried once per call instead of once per camp (farm_solo peaked at 76k fuel).
+#ifndef P_FIGHT_CACHE
+#define P_FIGHT_CACHE 1
+#endif
 static bool fight_any(const TurnView& v) {
+#if P_FIGHT_CACHE
+    auto& me = cambc::self();
+    const bool can_cast = me.can_cast();
+    std::array<cambc::bitboard, 2> valid{};
+    std::array<bool, 2> usable{false, false};
+    bool prepared = false;
+    const auto abs = me.abilities();
+    for (const auto& c : v.camps) {
+        if (tile_distance(v.pos, c.camp.spawn_position()) > 4) continue;
+        if (can_cast) {
+            if (!prepared) {
+                prepared = true;
+                int near = -1;   // enemy_champion_near(), queried only when a ready CC ability needs it
+                for (std::size_t i = 0; i < abs.size(); ++i) {
+                    const auto& ab = abs[i];
+                    if (!ab.is_ready() || !(ab.is_damage() || ab.is_aoe_damage() || ab.is_cc()) || !ab.can_target_camps()) continue;
+                    if (P_SAVE_CC && ab.is_cc()) { if (near < 0) near = enemy_champion_near() ? 1 : 0; if (near) continue; }
+                    try { valid[i] = ab.valid_tiles(); usable[i] = true; } catch (...) {}
+                }
+            }
+            bool cast = false;
+            for (std::size_t i = 0; i < abs.size() && !cast; ++i) {
+                if (!usable[i] || !valid[i].is_set(c.camp.position())) continue;
+                try { if (abs[i].use(c.camp)) { DBG(" CAST"); cast = true; } } catch (...) {}
+            }
+            if (cast) { attack_if_in_range(c.camp); return true; }
+        }
+        if (attack_if_in_range(c.camp)) { reset_and_attack_again(c.camp); return true; }
+    }
+    return false;
+#else
     for (const auto& c : v.camps) {
         if (tile_distance(v.pos, c.camp.spawn_position()) > 4) continue;
         if (cast_on_camp(c.camp)) { attack_if_in_range(c.camp); return true; }
         if (attack_if_in_range(c.camp)) { reset_and_attack_again(c.camp); return true; }
     }
     return false;
+#endif
 }
 
 bool Bot::engaged_at_squad_target(const TurnView& v) const {
@@ -155,6 +192,13 @@ void Bot::farm_squad(const TurnView& v, const std::vector<cambc::champion>& alli
             for (const auto& c : v.camps)
                 if (&c != prey && camp_strength(c.camp) > 0) others |= tiles_around(c.camp.spawn_position(), camp_range(c.camp));
             if (!(goals & ~others).is_empty()) goals &= ~others;
+#if P_STAND_SIGHT
+            if (goals.count() <= 12) {   // FIX_STAND_SIGHT: keep stand tiles that see the prey (cost capped)
+                cambc::bitboard seen; seen.clear();
+                for (auto t : goals.positions()) { try { if (me.visible_tiles_from(t).is_set(pp)) seen.set(t, true); } catch (...) {} }
+                goals = seen;
+            }
+#endif
             if (goals.is_empty()) goals = tiles_around(pp, range) & ~live;
         } else {
             bool melee_coming = false;

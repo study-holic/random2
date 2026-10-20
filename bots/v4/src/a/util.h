@@ -20,6 +20,23 @@ inline int camp_range(const cambc::camp& c) {
     return cache[k] > 0 ? cache[k] : kMonsterRange;
 }
 
+// FIX_UNSEEN_HIT (P_UNSEEN_HIT): health lost with no enemy champion in view and no visible camp in range means a camp we
+// cannot see is hitting us (corridors: camps 3 tiles away are out of sight while they hit). A retreat then walks home
+// instead of recalling: the hit interrupts every recall, which was a death loop.
+#ifndef P_UNSEEN_HIT
+#define P_UNSEEN_HIT 1   // 0 off, 1 on
+#endif
+#ifndef P_UNSEEN_MEMORY
+#define P_UNSEEN_MEMORY 3   // rounds an unseen hit is remembered
+#endif
+
+// FIX_STAND_SIGHT (P_STAND_SIGHT): a ranged stand tile must see its prey (corridors: tiles at range 3 sit behind a bush
+// row, the prey drops out of sight there, and the squad stepped in and out without attacking).
+#ifndef P_STAND_SIGHT
+#define P_STAND_SIGHT 1   // 0 off, 1 on
+#endif
+
+bool enemy_champion_near();   // P_SAVE_CC: an enemy champion within 8 tiles (util.cpp)
 int tile_distance(cambc::vec2 a, cambc::vec2 b);
 cambc::bitboard tiles_around(cambc::vec2 position, int radius);
 int camp_strength(const cambc::camp& c);

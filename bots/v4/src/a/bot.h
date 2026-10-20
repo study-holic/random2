@@ -79,6 +79,8 @@ public:
     bool banking = false;               // decided to bank: keep going until the bag is empty
     int wait_rounds = 0;                // rounds spent waiting beside a respawning group
     int wait_tank = 0;
+    float unseen_hp_prev = -1;   // FIX_UNSEEN_HIT: health at the previous own turn
+    int unseen_hit_until = -1;   // FIX_UNSEEN_HIT: last round that counts as under unseen fire
     int wait_cohesion = 0;              // rounds spent waiting for squad members to catch up                  // ranged: rounds spent waiting for a melee ally to engage
     std::size_t state_cursor = 0;       // rotates the group whose state is refreshed this turn
     // Stuck detector (EXP-018): rounds alive at the same position, not tributing, capturing or attacking.

@@ -536,7 +536,7 @@ void Bot::play_turn() {
 
 void Bot::play_turn_inner() {
     auto& me = cambc::self();
-    if (!me.is_alive()) { buy_items(); holding = -1; retreating = false; banking = false; bank_spawn_done = false; regrouping = false; bag_fled = false; return; }
+    if (!me.is_alive()) { unseen_hp_prev = -1; buy_items(); holding = -1; retreating = false; banking = false; bank_spawn_done = false; regrouping = false; bag_fled = false; return; }
     if (me.is_submitting_gems()) was_submitting = true;
     if (me.is_recalling() || me.is_submitting_gems() || me.is_teleporting()) return;
     const bool tribute_done = was_submitting && me.gem_count() == 0;   // P_SHOP_RECALL: first free turn after a tribute
@@ -564,6 +564,12 @@ void Bot::play_turn_inner() {
     float threshold = (me.gem_count() > 0 || enemies_near) ? kRetreatHurt : kRetreatCalm;
     if (engaged_at_squad_target(v)) threshold = std::max(threshold, kRetreatTank);   // tank swap at 35 per cent
     const double incoming = incoming_damage(v, v.pos);
+    if (P_UNSEEN_HIT) {   // FIX_UNSEEN_HIT
+        const float hp = me.health();
+        if (unseen_hp_prev >= 0 && hp < unseen_hp_prev && incoming == 0 && enemies.empty() && !at_spawn) unseen_hit_until = v.round + P_UNSEEN_MEMORY;
+        unseen_hp_prev = hp;
+    }
+    const bool unseen_hit = P_UNSEEN_HIT && v.round <= unseen_hit_until;
     if (P_SHOP_RECALL && tribute_done && !at_spawn && incoming == 0 && min_distance(v.pos, spawn_tiles) >= P_SHOP_RECALL_ALTAR_DIST) {
         // P_SHOP_RECALL: recall to shop and heal after a far tribute (no champion within 8; damage would interrupt it).
         bool foe8 = false;
@@ -601,7 +607,8 @@ void Bot::play_turn_inner() {
         if (incoming > 0) {
             if (v.round < retreat_walk_until && move_towards_closest(static_block, camp_static, ally_spawn)) return;
             if (move_towards_closest(static_block, camp_static, ~danger_zone(v))) return;
-        } else if (!enemies_near) { me.recall(); return; }
+        } else if (unseen_hit) { move_towards_closest(static_block, camp_static, ally_spawn); return; }   // FIX_UNSEEN_HIT
+        else if (!enemies_near) { me.recall(); return; }
         else { move_towards_closest(static_block, camp_static, ally_spawn); return; }
     }
 
