@@ -47,6 +47,7 @@ Site doc = docs/rules/GameRules.md (20 Oct copy, lags engine). ENG = engine tabl
 ## Vision, memory, fuel
 - Vision 8, symmetric shadowcasting; walls and bushes occlude; own bush cluster transparent; one free ward per champion; vision not shared [doc l.294-312]
 - Fuel: 100k/turn C++/Rust (OCaml 5x, Python 25x); draft first turn 10x; first play turn 2x; unused fuel not carried; out of fuel suspends and resumes next round [doc l.344-348]
+- Past the limit (engine, measured): actions before the overrun are kept, no botFault, execution resumes mid-code later; the champion is frozen about 10 rounds + 1 per 10k over (1k over -> 11 rounds, 10k -> 12, 50k -> 16), each frozen turn recorded at 100,000 with one fuelExhausted event [results/arena-1020.md arena 7]
 - Shared memory 8 bytes read/write all match; draft memory 1,024 bytes written in draft, read-only in match [doc l.352-358]
 - Draft: 3 to 5 picks per team by map; A submits then B submits, both revealed together each round (B does not see A's pick of that round); no duplicate in own team, duplicates across teams allowed; draft bot sees full map and opponent picks so far; no pick/crash = random pick [doc l.58-85]
 ## Champions (12 drafts; base health/str/focus at engine 1.0; all abilities cooldown 8; move 1; vision 8) [ENG]

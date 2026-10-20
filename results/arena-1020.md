@@ -126,3 +126,21 @@ With the lab's retreat policy instead (P_ADAPT without P_NORETREAT, `results/are
 | p14 mono_regen | Vesper hits a Monolith once from d3, backs off to d8 (in sight) for 380 rounds | Monolith 19,950 HP unchanged (**no regeneration**); the champion's 300 HP also unchanged away from spawn |
 | p15 metric | elk; A diagonal at Chebyshev 3 (Euclid² 18) attacks, B straight at Chebyshev 4 (Euclid² 16) passive | A hit every round, B never: **nearest = Chebyshev** |
 | p16 metric_ctl | elk; A straight at Chebyshev 3 (Euclid² 9) attacks, B diagonal at Chebyshev 3 (Euclid² 18) passive | hits alternate A, B every round: a Chebyshev tie alternates whatever the Euclidean distance |
+
+## Arena 7: past the per-turn fuel limit (sweep35 task 2, 20 Oct evening, cloud)
+Probe: `bots/fuelprobe` (drafts like bots/idle) vs bots/idle on elkring, `cambc run --release`. Every champion takes one step each turn. On the burn round it steps first, then runs a loop of BURN_FUEL units (calibrated at 0.996-0.998 fuel a unit), then tries a second step and prints `AFTER` with the round it reached. Per-turn fuel is read from `team-a.fuel` in the bundle; fuelExhausted events come from `--statistics`.
+
+| burn (round) | limit | over by | first action of the turn | fuelExhausted events | turns recorded at the full limit | `AFTER` printed at | champion frozen |
+|---|---|---|---|---|---|---|---|
+| 101,000 (r50) | 100,000 | ~1k | kept (the step shows in the next snapshot) | – | 11 | round 61 | rounds 50-60 |
+| 110,000 (r50) | 100,000 | ~10k | kept | 12 per champion, rounds 50-61 | 12 | round 62 | rounds 50-61 |
+| 150,000 (r50) | 100,000 | ~50k | kept | – | 16 | round 66 | rounds 50-65 |
+| 175,000 (r1; 21k already used by init) | 200,000 | ~-4k + init | – | – | ≥ 9 of 10 played | not by round 10 | yes |
+
+**Result.**
+- **The turn is not cut short with its actions lost.** Actions taken before the limit are applied.
+- **The bot is not removed.** No botFault is raised, and the game runs to round 2,000.
+- **Execution is suspended mid-code and resumed later from the same point.** The second step and the print run, but only after a freeze.
+- **Freeze length:** the champion takes no action for about 10 rounds plus about 1 round per 10,000 fuel of overrun. Fit: 1k over gives 11 rounds, 10k gives 12, 50k gives 16. Every frozen turn is recorded at the full 100,000 and raises one fuelExhausted event.
+- **Later turns are delayed, not lost:** the bot resumes with its stale view of the world. One overrun of any size costs that champion about 10 rounds standing still: it does not move, attack or channel. It also keeps standing on a camp tile or spawn, and is exposed to camps and enemies.
+- **Implication:** the fuel stop must leave margin. The 97.7k peak of S2 and the 100,000 turn of s1g1 on starvation are each about 10 frozen rounds when they tip over.
