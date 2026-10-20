@@ -91,7 +91,7 @@ const std::vector<cambc::champion_draft>* draft() {
 }
 
 void init(Bot& b) {
-    if (P_SALT > 0) {   // burn a fixed amount of first-turn fuel: fuel-dependent code then takes another trajectory
+    if (P_SALT > 0 && !P_W_FUELCAP) {   // P_W_FUELCAP: off: s1.h includes ../salt.h, so this second burn (main.cpp burns on round 1) ran in the last init stage of salted copies, on a 100k turn
         volatile unsigned sink = 0;
         for (unsigned i = 0; i < P_SALT * 4000u; ++i) sink = sink + i;
     }
