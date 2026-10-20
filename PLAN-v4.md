@@ -19,6 +19,8 @@ Releases are admitted, not single modules. Primary measures: paired gem margin a
 | **v7** main | **Fri 14:00** (patches until 22:00) | Per-map fixes from panel data; experiments that passed (Heart of Ruin initiator, Prism big-bag, Marcella gold) | top-20 sample ≥ 40 % (M3) |
 | Sat | – | Bug fixes only; last upload by 20:00 | gate |
 
+**Decision 10:10 BST 20 Oct (kill rule fired):** v4 went 37-123 (23 %) on the paired 8-team panel, below the 30 % kill line; deaths 23.0 (rule <= 25 passes). No rollback: v3b is worse on every measure (29-131, 37.9 deaths). The rule's premise (gap = economy, so A+B+F first and micro waits) is contradicted by the per-map split: large maps are near even, and the gap sits on four contact maps (contest 0 gems, fragment, hooks, gold_rush; 45-56 deaths a game). So v5 keeps fights (w2) and points it at those maps; contest goes to w1. Real-team replays are in data/real/ for the cloud. To put to the consultants at the next consult (notes/panel-v4-vs-v3b.md).
+
 **Real-team panels (Xans, 20 Oct 09:50): unranked groups go ONLY to the current top 10** (`tools/v3/queue_panel.py`, `data/unranked/top10.csv`; teams without an eligible bot are skipped). Against the top 10 most games will be lost, so a release is judged on paired gem margin and deaths per game against the previous live bot's top-10 panel (same teams, same map sets), with win rate secondary. The milestone win rates against the 8-team and rank-50-100 panels are replaced by: v5 gem margin vs top 10 better than v4's by >= 100 a game; v7 >= 25 % wins vs top 10. Quota: 50 groups an hour (one panel = 9 teams x 4 map sets = 36 groups).
 
 Main release moves to Fri 14:00 (Claude's computation: a top-20-strength bot needs about 3-5 hours of ranked play to climb from about 1,700).
