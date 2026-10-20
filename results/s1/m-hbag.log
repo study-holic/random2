@@ -1,0 +1,11 @@
+hbag: 96 games in 61 s (94.0/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+fragment     2.0/2   0.0/0    1633   0.2 1007.0   0     8 
+ambush       2.0/2   0.0/0    1752   6.7 1019.2   0    36 
+big_world    2.0/2   0.0/0    1829   2.1 1014.4   0    65 
+islands      2.0/2   0.0/0    1429   0.6 1040.0   0    66 
+corners      2.0/2   0.0/0    1383   0.0 1014.7   0    64 
+lanes        2.0/2   0.0/0    1371   8.5 1012.8   0    60 
+collision    2.0/2   0.0/0    1293   2.7 1015.2   0    32 
+corridors    2.0/2   0.0/0    2000   3.2  421.5   0    40 
+total 16.0/16 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/8; out results/s1/m-hbag.json

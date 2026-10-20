@@ -1,0 +1,13 @@
+s1a2r2: 60 games in 38 s (94.2/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+islands      2.0/2   0.0/0    1427   0.3 1027.0   0  2134 
+expanse      2.0/2   0.0/0    1681   0.2 1011.0   0     0 
+interlock    2.0/2   0.0/0    1232   0.3 1019.3   0     0 
+corners      2.0/2   0.0/0    1193   0.0 1015.0   0     0 
+lanes        2.0/2   0.0/0    1305   8.0 1008.5   0     0 
+broken_curve 2.0/2   0.0/0    2000   8.5  563.7   0     0 
+corridors    2.0/2   0.0/0    2000   1.5  353.7   0     0 
+gold_rush    2.0/2   0.0/0    2000   5.0  729.7   0     0 
+fracture     2.0/2   0.0/0    2000  11.3  856.5   0     0 
+concentrated_wealth 2.0/2   0.0/0    1887   0.0 1008.8   0     1 
+total 20.0/20 (mean over salts [0, 1, 2]); maps passing 0/10; out results/s1/m-s1a2r2.json

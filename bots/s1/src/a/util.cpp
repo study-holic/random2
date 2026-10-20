@@ -159,6 +159,8 @@ bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitb
                           cambc::bitboard goals) {
     bool zone_used = false;
     if (move_towards_closest_impl(static_block, camp_static, goals, zone_used)) return true;
+    // S1 fuel: each retry below builds new fields (20-35k on big maps); none when the turn is already expensive.
+    if ((P_S1_AUCTION || P_S1_THREAT_COST) && cambc::fuel_remaining() < 40000) return false;
     if (P_S1_NO_SELF_BLOCK && P_S1_NSB_WALK && camp_static.is_set(cambc::self().position())) {
         // P_S1_NO_SELF_BLOCK: standing inside a block of spawn tiles (concentrated_wealth group 0 is 5x5), every
         // neighbour is a spawn tile and so a wall: the champion froze there and held the respawn (902 rounds in one
@@ -199,14 +201,24 @@ static bool move_towards_closest_impl(const cambc::bitboard& static_block, const
     goals &= ~blocked | cambc::vision::camp_tiles();
     if (goals.is_empty()) return false;
     cambc::bitboard threat; threat.clear();
-    if (P_S1_THREAT_COST && !g_zone_skip) { threat = threat_zone() & ~goals & ~blocked; threat.set(pos, false); }
+    // P_S1_THREAT_COST: optional, so skipped on expensive turns and for large goal sets (a retreat to anything outside
+    // the danger zone gains nothing from a detour and its fields are the most expensive).
+    if (P_S1_THREAT_COST && !g_zone_skip && cambc::fuel_remaining() > 55000 && goals.count() <= 64) { threat = threat_zone() & ~goals & ~blocked; threat.set(pos, false); }
     if (threat.is_empty() && goals.count() == 1 && !blocked.is_set(goals.positions()[0])) { const bool ok = me.move_towards(goals.positions()[0]); DBG(" MT1" + std::string(ok ? "ok" : "NO")); return ok; }
     const auto path_walls = blocked & ~goals;
     cambc::distance_field field; cambc::bitboard visited;
+    static std::uint64_t field_max = 0;   // S1 fuel governor: the most expensive path field seen in this game
+    const auto fuel0 = cambc::fuel_remaining();
+    if ((P_S1_AUCTION || P_S1_THREAT_COST) && fuel0 < field_max + 8000) return false;   // no move rather than running out mid-field
     field.compute_to(path_walls, goals, tiles_around(pos, 0), visited);
+    const auto fuel1 = cambc::fuel_remaining(), field_cost = fuel0 > fuel1 ? fuel0 - fuel1 : 0;
+    field_max = std::max(field_max, field_cost);
     auto step = pos;
     bool detour = false;
-    if (!threat.is_empty()) {   // P_S1_THREAT_COST: a path outside the threat reach is taken when it costs at most P_S1_DETOUR extra tiles
+    // P_S1_THREAT_COST: the detour needs a second field (about 30k on fracture), so only when the fuel left covers it
+    // twice over plus a 15k margin for the rest of the turn.
+    // A path outside the threat reach is taken when it costs at most P_S1_DETOUR extra tiles.
+    if (!threat.is_empty() && fuel1 > 2 * field_cost + 15000) {
         cambc::distance_field f2; cambc::bitboard vis2;
         f2.compute_to(path_walls | threat, goals, tiles_around(pos, 0), vis2);
         const int d1 = field.get(pos), d2 = f2.get(pos);

@@ -131,8 +131,35 @@ int Bot::choose_target(const TurnView& v, int exclude) {
         alt_own_half = !g.monolith && g.excluded_until <= round && i != exclude && !contested(i, round)
             && g.dist_ally <= g.dist_enemy && g.ready_round <= round + 30;
     }
+#if P_S1_FUELDBG
+    const auto fct1 = cambc::fuel_remaining();
+#endif
     int best = -1; double best_score = 1e18;
-    std::vector<double> u_cache(groups.size(), -1e18);   // S1 hybrid: u per group, once per call
+    // S1 hybrid scratch on the stack (no heap allocation): u per group once per call, the candidate set (u only for the
+    // P_S1_CANDIDATES best by v4's cheap score, ranked by bounding-box distance), exact distances once per call.
+    constexpr int kMaxG = 64;
+    const int ng = std::min<int>(static_cast<int>(groups.size()), kMaxG);
+    std::array<double, kMaxG> u_cache; u_cache.fill(-1e18);
+    std::array<char, kMaxG> u_cand; u_cand.fill(1);
+    std::array<int, kMaxG> d_cache; d_cache.fill(-1);
+    auto dist = [&](int i) { if (i >= kMaxG) return min_distance(v.pos, groups[i].tiles); if (d_cache[i] < 0) d_cache[i] = min_distance(v.pos, groups[i].tiles); return d_cache[i]; };
+    if (P_S1_AUCTION == 2) {
+        std::array<std::pair<int, int>, kMaxG> cs; int ncs = 0;
+        for (int i = 0; i < ng; ++i) {
+            const auto& g = groups[i];
+            if (g.monolith || g.excluded_until > round || i == exclude) continue;
+            const int d = g.box_distance(v.pos);
+            cs[ncs++] = {d + 2 * std::max(0, g.ready_round - round - d), i};
+        }
+        if (ncs > P_S1_CANDIDATES) {
+            std::nth_element(cs.begin(), cs.begin() + P_S1_CANDIDATES, cs.begin() + ncs);
+            u_cand.fill(0);
+            for (int c = 0; c < P_S1_CANDIDATES; ++c) u_cand[cs[c].second] = 1;
+        }
+    }
+#if P_S1_FUELDBG
+    const auto fct2 = cambc::fuel_remaining();
+#endif
     for (int pass = 0; pass < 3 && best < 0; ++pass) {
         const bool skip_contested = alt_own_half && pass < 2;
         if (pass == 2 && !alt_own_half && !P_THREAT_LAYER) break;   // pass 2 only retries with contested groups allowed
@@ -150,22 +177,25 @@ int Bot::choose_target(const TurnView& v, int exclude) {
                 int bb = 4;
                 if (s1_claimants(mem, i, bb) > 0) {
                     if (!P_S1_OUTBID) continue;
-                    int eta = 0; s1_value(i, v, 0, eta, 1);
-                    if (eta_bucket(eta) > bb - 2) continue;
+                    if (eta_bucket(s1_eta_of(i, v)) > bb - 2) continue;
                 }
             } else {
                 bool taken = false;
                 for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) taken = true;
                 if (taken) continue;
             }
-            const int d = min_distance(v.pos, g.tiles);
+            const bool cand = i >= kMaxG || u_cand[i];
+            const int d = P_S1_AUCTION == 2 ? (cand ? dist(i) : g.box_distance(v.pos)) : min_distance(v.pos, g.tiles);
             const int wait = std::max(0, g.ready_round - round - d);
             double score = d + P_WAIT_WEIGHT * wait - 0.05 * g.gems;
             if (P_S1_AUCTION == 2) {   // S1: score = -u_ij (value rate), coalition = the squad for squad groups
                 int eta = 0;
-                if (u_cache[i] < -1e17) u_cache[i] = s1_value(i, v, 0, eta, is_squad_group(i) ? squad_live : 1);   // once per call (3 passes)
-                const double u = u_cache[i];
-                score = u > 0 ? -u * P_S1_U_SCALE : 1000.0 + d;   // no positive value: last resort, nearest first
+                if (!cand) score = 2000.0 + d;   // outside the candidate set: after every candidate, nearest first
+                else {
+                    double u = i < kMaxG ? u_cache[i] : -1e18;
+                    if (u < -1e17) { u = s1_value(i, v, 0, eta, is_squad_group(i) ? squad_live : 1); if (i < kMaxG) u_cache[i] = u; }   // once per call (3 passes)
+                    score = u > 0 ? -u * P_S1_U_SCALE : 1000.0 + d;   // no positive value: last resort, nearest first
+                }
             }
             score += s1_salt_noise(ally_index, i);   // measurement salt (0 at salt 0)
             if (claim_ok && i == my_claim) score -= kClaimBonus;   // squads stay together
@@ -175,7 +205,7 @@ int Bot::choose_target(const TurnView& v, int exclude) {
     }
     if (best >= 0 && is_squad_group(best) && !claim_ok) write_squad_claim(best);
 #if P_S1_FUELDBG
-    std::cout << "FC r" << round << " a" << ally_index << " choose" << (fct0 - cambc::fuel_remaining()) << std::endl;
+    std::cout << "FC r" << round << " a" << ally_index << " choose" << (fct0 - cambc::fuel_remaining()) << " pre" << (fct0 - fct1) << " cand" << (fct1 - fct2) << std::endl;
 #endif
     return best;
 }
@@ -286,6 +316,8 @@ void Bot::resolve_target(const TurnView& v, const std::vector<cambc::champion>& 
         return;
     }
     if (target >= 0 && groups[target].excluded_until > round) target = -1;
+    if (P_S1_AUCTION && target < 0 && banking && cambc::self().gem_count() > 0) return;   // S1 fuel: bank() clears the target each banking turn; choose after the tribute
+    if (P_S1_AUCTION && cambc::fuel_remaining() < static_cast<std::uint64_t>(P_S1_CHOOSE_FUEL)) return;   // S1 fuel: an expensive turn defers the choice one round
     if (target < 0 || (groups[target].ready_round && groups[target].ready_round > round + 10 + (P_CLUSTER_WAIT > 0 && harmless_now(target, round) ? P_CLUSTER_WAIT + P_CLUSTER_REACH : 0))) {
         target = choose_target(v, -1);
         wait_rounds = 0;

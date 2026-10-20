@@ -1,0 +1,9 @@
+s1walk: 36 games in 23 s (94.2/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+broken_curve 2.0/2   0.0/0    1915   7.0  929.7   0     0 
+gold_rush    2.0/2   0.0/0    2000   5.2  718.7   0     0 
+concentrated_wealth 2.0/2   0.0/0    2000   0.0  810.8   0     0 
+elk_arena    2.0/2   0.0/0    2000   1.2  408.0   0     0 
+fracture     2.0/2   0.0/0    2000  17.8  690.8   0     0 
+corridors    2.0/2   0.0/0    2000   7.2  267.5   0     0 
+total 12.0/12 (mean over salts [0, 1, 2]); maps passing 0/6; out results/s1/m-s1walk.json

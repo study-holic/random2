@@ -123,7 +123,7 @@ void Bot::farm(const TurnView& v, const std::vector<cambc::champion>& allies) {
         if (wait_rounds > give_up || contested) {
             exclude_group(target, v.round);
             wait_rounds = 0;
-            target = choose_target(v, -1);
+            target = (P_S1_AUCTION && cambc::fuel_remaining() < static_cast<std::uint64_t>(P_S1_CHOOSE_FUEL)) ? -1 : choose_target(v, -1);   // S1 fuel
             return;
         }
         if (!g.ring().is_set(v.pos)) move_towards_closest(static_block, camp_static, g.ring());
@@ -196,7 +196,11 @@ void Bot::farm_squad(const TurnView& v, const std::vector<cambc::champion>& alli
 #if P_STAND_SIGHT
             if (goals.count() <= 12) {   // FIX_STAND_SIGHT: keep stand tiles that see the prey (cost capped)
                 cambc::bitboard seen; seen.clear();
-                for (auto t : goals.positions()) { try { if (me.visible_tiles_from(t).is_set(pp)) seen.set(t, true); } catch (...) {} }
+                for (auto t : goals.positions()) {
+                    // S1 fuel: a vision query per tile; past the reserve the unchecked tiles are kept (v4 checked all)
+                    if ((P_S1_AUCTION || P_S1_THREAT_COST) && cambc::fuel_remaining() < 35000) { seen.set(t, true); continue; }
+                    try { if (me.visible_tiles_from(t).is_set(pp)) seen.set(t, true); } catch (...) {}
+                }
                 goals = seen;
             }
 #endif

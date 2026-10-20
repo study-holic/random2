@@ -1,0 +1,11 @@
+hmx: 96 games in 60 s (96.3/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+islands      2.0/2   0.0/0    1476   0.2 1027.5   0  2388 
+corners      2.0/2   0.0/0    1357   0.0 1020.4   0    72 
+expanse      2.0/2   0.0/0    1558   1.0 1019.0   0    60 
+interlock    2.0/2   0.0/0    1290   0.4 1015.2   0    30 
+gold_rush    2.0/2   0.0/0    2000   5.8  644.4   0    24 
+corridors    2.0/2   0.0/0    2000   0.0  359.8   0    40 
+elk_arena    2.0/2   0.0/0    1606   0.3 1008.0   0   145 
+concentrated_wealth 2.0/2   0.0/0    2000   0.0  965.2   0    39 
+total 16.0/16 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/8; out results/s1/m-hmx.json

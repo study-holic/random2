@@ -1,0 +1,31 @@
+{
+ "bot": "s1",
+ "verdict": "FAIL",
+ "reasons": [
+  "release build failed: 2.get(tile) < f2.get(step)) step = tile;\n      |                                    ^~\n6 errors generated.\nninja: build stopped: subcommand failed.\nerror: cmake build failed with status exit status: 1"
+ ],
+ "pool": [
+  "ambush",
+  "big_world",
+  "boss_battle",
+  "broken_curve",
+  "collision",
+  "concentrated_wealth",
+  "contest",
+  "corners",
+  "corridors",
+  "eight",
+  "elk_arena",
+  "elkring",
+  "expanse",
+  "fracture",
+  "fragment",
+  "gold_rush",
+  "hooks",
+  "interlock",
+  "islands",
+  "lanes",
+  "monolith"
+ ],
+ "date": "2026-10-20 15:26"
+}

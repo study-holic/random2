@@ -783,6 +783,7 @@ void Bot::play_turn_inner() {
     }
 
     S1F(7);
+    if (P_S1_AUCTION && cambc::fuel_remaining() < 45000) return;   // S1 fuel: an expensive turn (view, enemies) ends before the choice and the move
     resolve_target(v, allies);
     Plan::target(*this, v, target);
     S1F(8);
@@ -794,6 +795,7 @@ void Bot::play_turn_inner() {
     if (bank(v, enemies, allies)) { DBG(" BANK"); S1F(9); return; }
     S1F(10);
     DBG(" FARM");
+    if ((P_S1_AUCTION || P_S1_THREAT_COST) && cambc::fuel_remaining() < 25000) return;   // S1 fuel: skip the move rather than run out mid-turn
     farm(v, allies);
 }
 } // namespace va
