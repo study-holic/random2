@@ -124,20 +124,15 @@ public:
     int takes = 0;                      // EXP-093: finished takes (rotation counter)
     bool rows = false;                  // EXP-093: rows commander (50x50, six wolf packs, no Elk)
     bool open_done = false;             // EXP-079: first gems collected, assignment released
-    // S2 quick wins (s2.cpp)
-    int s2_enemy_altar_idx = -2;        // altar nearest the enemy spawn (-2 = not computed)
-    int s2_trib_altar = -1, s2_trib_round = -1000;   // last altar where an enemy was seen channelling a tribute
-    int s2_locks_placed = 0;
-    bool s2_foe_locks = false;          // an enemy lock has been seen this game
-    int s2_last_trip = -1000;           // last shop recall
-    int s2_walk_until = 0;              // a near shop trip walks home until this round
-    int s2_to_emblem = 5;               // shards still needed to complete the current emblem (set by buy_items)
-    int s2_enemy_altar();
-    bool s2_lock(const TurnView& v, const std::vector<cambc::champion>& enemies);
-    bool s2_tribute_ok(const TurnView& v, const std::vector<cambc::champion>& enemies,
-                       const std::vector<cambc::champion>& allies, cambc::vec2 altar, int gems);
-    bool s2_shop_recall(const TurnView& v, const std::vector<cambc::champion>& enemies, double incoming, bool at_spawn);
 
+    // s2.cpp (S2 quick wins, s2.h)
+    bool s2_has_lock = false;           // P_S2_ALTAR_LOCK: carrying a lock (set on buy, cleared on use)
+    int s2_enemy_altar = -1;            // P_S2_ALTAR_LOCK: altar of the last enemy tribute seen
+    int s2_gate_turns = 0;              // P_S2_TRIBUTE_GATE: gated turns in a row
+    void s2_buy_lock();
+    bool s2_lock_turn(const TurnView& v, const std::vector<cambc::champion>& enemies);
+    bool s2_tribute_gate(const TurnView& v, const std::vector<cambc::champion>& enemies, cambc::vec2 altar, int gems);
+    bool s2_shop_detour(const TurnView& v, const std::vector<cambc::champion>& enemies);
     TurnView build_view() const;
     void init();
     struct MonoPos { cambc::vec2 pos; int range; };

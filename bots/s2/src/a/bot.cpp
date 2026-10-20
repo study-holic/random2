@@ -19,6 +19,7 @@ namespace va {
 #include "plan.h"
 #include "util.h"
 #include "params.h"
+#include "s2.h"
 #include <algorithm>
 #include <array>
 #if P_ROWS_DBG
@@ -260,22 +261,15 @@ void Bot::init() {
 // Build (ladder-losses.md fix 3): Monster Emblem of the main stat first (five 30-gold shards combine), then Power
 // shards alternating Health and the main stat (Focus for Cassi, Stellar and Prism; Strength otherwise).
 void Bot::buy_items() {
-    if (P_S2_ALTAR_LOCK) {   // S2 (b): one 10-gold lock carried at all times (bought first: 10 gold is kept for it)
-        auto& me0 = cambc::self();
-        try { if (me0.can_buy(cambc::consumable_type::altar_lock)) me0.buy(cambc::consumable_type::altar_lock); } catch (...) {}
-    }
+    s2_buy_lock();   // S2: lock first (10 gold kept for it), shards from the rest
     if (Plan::buy(*this)) return;
     if (tavi_focus_field) { buy_items_w8(); return; }   // w8 build C (map flag); every other map runs v2a's code below
     auto& me = cambc::self();
     using I = cambc::item_type;
     const auto type = me.champion_name();
     const bool focus = type == CT::cassi || type == CT::stellar || type == CT::prism;
-    // S2 role emblem (P_S2_SPEND_NOW): the front line (melee kits) takes Durability of Health first (-10% damage taken,
-    // + health growth per shard: survival is the top-10 gap, notes/top10-2026-10-20.md section 5 item 1); farmers keep Monster.
-    const bool front = P_S2_SPEND_NOW && !focus && (type == CT::varg || type == CT::ryth || type == CT::ren || type == CT::issac
-        || type == CT::vendetta || type == CT::marcella || type == CT::heart_of_ruin);
-    const I mon_shard = front ? I::durability_shard_of_health : focus ? I::monster_shard_of_focus : I::monster_shard_of_strength;
-    const I mon_emb = front ? I::durability_emblem_of_health : focus ? I::monster_emblem_of_focus : I::monster_emblem_of_strength;
+    const I mon_shard = focus ? I::monster_shard_of_focus : I::monster_shard_of_strength;
+    const I mon_emb = focus ? I::monster_emblem_of_focus : I::monster_emblem_of_strength;
     const I pow_main = focus ? I::power_shard_of_focus : I::power_shard_of_strength;
     const I pow_main_emb = focus ? I::power_emblem_of_focus : I::power_emblem_of_strength;
     const std::uint32_t price = mon_shard.cost();
@@ -304,11 +298,6 @@ void Bot::buy_items() {
     go(mon_shard, buy_mon);
     go(I::power_shard_of_health, buy_ph);
     go(pow_main, buy_pm);
-    {   // S2: shards left to the next emblem (first emblem, then the Power pair) for the shop-recall rule
-        const auto own = me.item_count();
-        const int m = static_cast<int>(own[mon_shard]) + 5 * static_cast<int>(own[mon_emb]);
-        s2_to_emblem = m < 5 ? 5 - m : 5 - static_cast<int>(std::min(own[I::power_shard_of_health], own[pow_main]) % 5);
-    }
 }
 
 // w8 build C (results/w8-builds.md; code from bots/w8tf with its macros P_TAVI_DMG_FOCUS and P_FIELD_SHOP replaced by the
@@ -434,6 +423,16 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
             return true;
         }
     }
+    if (P_S2_BANK_VIA && !rows_sched && !bank_spawn_done) {   // P_S2_BANK_VIA: shop on the way to the altar
+        if (ally_spawn.is_set(v.pos) || me.gold_count() < P_S2_VIA_GOLD) bank_spawn_done = true;
+        else if (enemies.empty()) {
+            int da = 1 << 20, dsa = 1 << 20;
+            for (auto a : altars) { da = std::min(da, tile_distance(v.pos, a)); dsa = std::min(dsa, min_distance(a, spawn_tiles)); }
+            if (min_distance(v.pos, spawn_tiles) + dsa <= da + P_S2_VIA_SLACK && move_towards_closest(static_block, camp_static, ally_spawn))
+                return true;
+            bank_spawn_done = true;
+        }
+    }
     // EXP-023: the best altar by distance plus contest; when every altar is held by two or more enemies, keep
     // farming with the bag instead of walking into them or standing still.
     int contest = 0;
@@ -475,7 +474,7 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
         lock_wait = 0;
         // EXP-024/025 (coordinator, strategy/collision-v43-game.md): damage does not interrupt a tribute, so a
         // carrier in submit range of an unlocked altar submits at once, whatever the enemies.
-        if (!s2_tribute_ok(v, enemies, allies, altars[i], gems)) return false;   // S2 (d): stun, lock or kill threat
+        if (s2_tribute_gate(v, enemies, altars[i], gems)) return false;   // P_S2_TRIBUTE_GATE
         try { me.submit_gems(altars[i]); } catch (...) {}
         return true;
     }
@@ -573,8 +572,8 @@ void Bot::play_turn_inner() {
     last_had_foe = !enemies.empty();   // FIX_DEATH_LOOP: a death with no enemy champion in view was the camps
     auto allies = cambc::vision::champions(team::ally);
     update_contested(v, enemies);   // EXP-018
-    if (s2_lock(v, enemies)) return;   // S2 (c): place or chase a lock
     if (Plan::turn(*this, Plan::Phase::pre, v, enemies, allies)) return;
+    if (s2_lock_turn(v, enemies)) return;   // P_S2_ALTAR_LOCK
     const bool enemies_near = !enemies.empty();
     float threshold = (me.gem_count() > 0 || enemies_near) ? kRetreatHurt : kRetreatCalm;
     if (engaged_at_squad_target(v)) threshold = std::max(threshold, kRetreatTank);   // tank swap at 35 per cent
@@ -592,7 +591,15 @@ void Bot::play_turn_inner() {
         const bool can_shop = !((P_FIELD_SHOP || tavi_focus_field) && remote_shop) && me.gold_count() >= cambc::item_type::monster_shard_of_strength.cost();   // w8: Tavi shops where he stands
         if (!foe8 && (can_shop || me.health() < me.max_health() * 0.9f)) { try { me.recall(); } catch (...) {} return; }
     }
-    if (s2_shop_recall(v, enemies, incoming, at_spawn)) return;   // S2: back timing on an affordable emblem
+    if (P_S2_SPEND_NOW && tribute_done && !at_spawn && incoming == 0 && me.gold_count() >= P_S2_SHOP_GOLD) {
+        // P_S2_SPEND_NOW: shop after every tribute with 3+ shards of gold (top-10 recall-and-shop loop, 62 recalls a game).
+        bool foe8 = false;
+        for (const auto& e : enemies) if (tile_distance(e.position(), v.pos) <= 8) foe8 = true;
+        if (!foe8) {
+            if (min_distance(v.pos, spawn_tiles) <= kNearSpawn && move_towards_closest(static_block, camp_static, ally_spawn)) return;
+            try { me.recall(); return; } catch (...) {}
+        }
+    }
     // Inside camp range the retreat starts early enough to walk out and finish a recall.
     double need = std::max<double>(me.max_health() * threshold, incoming * P_RETREAT_INCOMING_MULT + P_RETREAT_INCOMING_BASE * me.max_health());
     if (rows_sched && !enemies_near) {   // EXP-096 rule 1: leave below 35 per cent unless an ally is within 3 tiles of my pack (floor 15 per cent)
@@ -647,6 +654,8 @@ void Bot::play_turn_inner() {
         return;
     }
 
+    if (P_S2_FUEL_STOP && cambc::fuel_remaining() < P_S2_FUEL_STOP) return;   // P_S2_FUEL_STOP: a clean end beats a suspended turn
+    if (s2_shop_detour(v, enemies)) return;   // P_S2_SPEND_NOW
     resolve_target(v, allies);
     Plan::target(*this, v, target);
     if (target >= 0) last_tgt = target;

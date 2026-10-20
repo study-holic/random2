@@ -23,19 +23,6 @@ namespace va {
 
 using D = cambc::champion_draft;
 
-// P_S2_DRAFT_KEEPV4: maps where v4's own draft beat the core by >= 2 of 6 in the forced-draft head-to-head with play code
-// unchanged (results/s2d-vs-v4.json, core <= 1/6 on boss_battle, corners, interlock, elk_arena, gold_rush, islands), then
-// re-tested with locks, gate and spending on (results/s2-keep6-vs-v4.json vs s2-allcore-vs-v4.json, wins of 6, v4 draft vs
-// core): boss_battle 3-0, gold_rush 3-1 kept; interlock 4-3, elk_arena 6-5, corners 6-6 below the +2 bar; islands 2-6 reverted.
-static bool s2_keep_v4_draft(mapid::MapId id) {
-    if (!P_S2_DRAFT_KEEPV4) return false;
-    using M = mapid::MapId;
-    switch (id) {
-        case M::boss_battle: case M::gold_rush: return true;
-        default: return false;
-    }
-}
-
 void play_draft() {
     const auto mine = cambc::draft::current_draft(cambc::team::ally);
     const auto size = cambc::draft::team_size();
@@ -52,15 +39,6 @@ void play_draft() {
         }
         rows = !elk && packs == 6;   // EXP-096b: monolith has six packs among 22 groups
     } } catch (...) { rows = false; }
-    if (P_S2_DRAFT_CORE && !s2_keep_v4_draft(Plan::current().id)) {   // S2 task 1: top-10 core by pick count (notes/top10-2026-10-20.md l.49-51); duplicates across
-        // teams are allowed and picks within a round are simultaneous, so a fixed table is the whole policy. Overrides the
-        // map files and w7 lists, except where s2_keep_v4_draft() keeps v4's draft.
-        static const std::vector<D> core5{D::ryth, D::cassi_and_issac, D::stellar, D::ren, D::varg};
-        static const std::vector<D> core3{D::cassi_and_issac, D::stellar, D::ren};
-        const auto& core = size <= 3 ? core3 : core5;   // 4 picks = the first 4 of core5
-        for (auto pick : core)
-            if (std::find(mine.begin(), mine.end(), pick) == mine.end()) { cambc::draft::pick(pick); return; }
-    }
     const auto* plan = Plan::draft();   // a map file's draft overrides the lists
     const auto& prefs = plan ? *plan : (rows ? rows_prefs : (size <= 3 ? small : large));
     D counter_choice{};   // w7 part 2: data-driven counter at our last pick (counter.h), per-map flag

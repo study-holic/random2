@@ -16,6 +16,7 @@ namespace va {
 #include "plan.h"
 #include "bot.h"
 #include "w7_drafts.h"
+#include "s2.h"
 #include <iostream>
 #if 0   // w3: salt burn moved to the dispatcher (src/main.cpp)
 #include "salt.h"   // written by scripts/mapgate.py --salts: a noise sample of the same bot
@@ -76,6 +77,7 @@ MapPlan& current() {
         default: break;
         }
         if (const auto* d = w7::draft_for(p.id)) p.draft = *d;   // w7: static per-map drafts (w7_drafts.h)
+        if (P_S2_DRAFT_CORE && !s2::keep_v4_draft(p.id)) p.draft = s2::core_draft();           // S2 task 1: top-10 core on every map (s2.h)
         p.counter = w7::counter_on(p.id);                          // w7 part 2 flag (off unless W7_CD_ALL or listed)
         std::cout << "mapid=" << mapid::map_name(p.id) << '\n';   // once per process; scripts/gate.py reads it
         if (p.id == mapid::MapId::unknown)   // the exact-id key of a map not in the table (mapid.h), for adding it

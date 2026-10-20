@@ -6,23 +6,6 @@
 #include "params_override.h"
 #endif
 
-// ---- S2 quick wins (tools/cloud/v5-s2-quickwins.md; results/v5-s2.md) ------------------------------------------------
-#ifndef P_S2_DRAFT_CORE
-#define P_S2_DRAFT_CORE 1             // draft.cpp: top-10 core (Ryth, C&I, Stellar, Ren, Varg; 3 picks C&I, Stellar, Ren); v4 opened Vendetta on 14/21
-#endif
-#ifndef P_S2_DRAFT_KEEPV4
-#define P_S2_DRAFT_KEEPV4 1           // draft.cpp: keep v4's draft on boss_battle and gold_rush (beat the core by >= 2 of 6) (results/v5-s2.md)
-#endif
-#ifndef P_S2_ALTAR_LOCK
-#define P_S2_ALTAR_LOCK 1             // bot.cpp: buy a 10-gold altar lock on spawn and place it where enemies tribute (top-10 6.4 a game, v4 0)
-#endif
-#ifndef P_S2_TRIBUTE_GATE
-#define P_S2_TRIBUTE_GATE 1           // bot.cpp bank(): walk to the altar unless a stunner/locker/killer can reach us (damage does not cancel a tribute)
-#endif
-#ifndef P_S2_SPEND_NOW
-#define P_S2_SPEND_NOW 1              // bot.cpp: role emblem first; recall to shop when an emblem is affordable (gear 1.7 vs top-10 3.8 at round 200)
-#endif
-
 // ---- bot.cpp: banking, altars, retreat ------------------------------------------------------------------------
 #ifndef P_BANK_BAG
 #define P_BANK_BAG 36                 // gems carried before banking
