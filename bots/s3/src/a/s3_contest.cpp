@@ -12,7 +12,7 @@
 namespace va {
 // s3_contest.cpp (v5 S3): contest plays. Contest's only gem sources are two Monoliths, (17,31) and (32,18), one
 // spawn tile each, 20,000 health, strength 200 at range 5, 200 gems, respawn 150 (data/maps21.json, decoded camps),
-// each in a walled pocket. v4 dealt them 0 damage against the top 10 (results/v5-s3-diag.md section 6), farmed gold
+// each in a walled pocket. v4 dealt them no damage in 7 of 9 top-10 games (results/v5-s3-diag.md section 6), farmed gold
 // clusters and died 48.7 times a game. Model (results/v5-s3.md section 2 has the formulas and the traces):
 //  (b) siege: the Monolith hits the NEAREST champion (results/arena-1020.md arena 2) and keeps one target until
 //      someone is nearer; asleep camps never attack. Melee tanks stand at distance 1, ranged at 2-3 behind them;

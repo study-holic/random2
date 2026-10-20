@@ -99,10 +99,10 @@ Fights this side started (champion-on-champion damage clustered by 5-round gaps 
 | | v4 | top 10 |
 |---|---|---|
 | gems | 0 | 822 (tributes of exactly 200, 4.1 a game) |
-| monolith damage dealt | 110 in 1 of 9 games; 0 in the rest | all of it |
+| monolith damage dealt | 0 in 7 of 9 games; 110 and 264 (of 20,000) in the other two | all of it |
 | deaths | 48.7 (47.9 champion) | 7.3 (6.0 near a camp) |
 | dead time | 33 % | 5 % |
 
 Contest has two monoliths, (17,31) and (32,18) (decoded camp list; one group each, one spawn tile each, 20,000 health, 200 gems). Both altars sit at the centre, (25,24) and (24,25), adjacent to each other and 7 tiles from each monolith. v4's siege mode is off on contest (`P_SIEGE_CONTEST 0`, engine 1.0 monolith range 5 > cast range 4), so v4 farms gold clusters and dies to the team holding the centre.
 
-How the top 10 kill a monolith (`mono.py`, scratch; Pantheon, Sponge, procless): hitters stand at distance 1 (234 of 273 hits in Pantheon's first siege; 137 of 182 in Sponge's), so the 200-a-round monolith hit alternates over the tied champions. First sieges last 190-424 rounds with leave-and-return (monolith health does not regenerate), 0-4 deaths; later sieges with gear last 17-34 rounds at 600-1,200 damage a round. Tributes: 200 gems each at a centre altar, a 20-turn channel, none interrupted by v4.
+How the top 10 kill a monolith (`mono.py`, scratch; Pantheon, Sponge, procless): hitters stand at distance 1 (234 of 273 hits in Pantheon's first siege; 137 of 182 in Sponge's), with the ranged out of range; the monolith keeps hitting one tank (126 a hit through Jungle + Durability emblems) until that tank steps to distance 2 and recalls in place, then the next tank takes over (Pantheon rounds 214-249). First sieges last 190-424 rounds with leave-and-return (monolith health does not regenerate), 0-4 deaths; later sieges with gear last 17-34 rounds at 600-1,200 damage a round. Tributes: 200 gems each at a centre altar, a 20-turn channel, none interrupted by v4.
