@@ -41,6 +41,9 @@ void Bot::update_contested(const TurnView& v, const std::vector<cambc::champion>
     std::vector<vec2> foes;
     for (const auto& e : enemies) foes.push_back(e.position());
     for (auto& g : groups) {
+        // S1 fuel (same result): enemies in view are within 8 tiles of us (vision 8), so a group farther than
+        // 8 + kContestRadius from us cannot have one within kContestRadius (32k fuel with six enemies on islands).
+        if (P_S1_AUCTION && min_distance(v.pos, g.tiles) > 8 + kContestRadius) continue;
         int n = 0;
         for (auto f : foes) if (min_distance(f, g.tiles) <= kContestRadius) ++n;
         if (n >= 2) g.contested_round = v.round;

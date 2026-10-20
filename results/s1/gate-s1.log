@@ -1,0 +1,1 @@
+GATE FAIL s1: 42/42 won on 21 pool maps, max fuel 100000 | fuelExhausted after round 1: ['big_world/B', 'boss_battle/B', 'corners/B', 'fracture/A', 'fracture/B', 'lanes/A'] -> results/gate-s1-20261020-150356Z-linux.json

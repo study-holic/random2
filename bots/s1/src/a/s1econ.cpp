@@ -59,6 +59,8 @@ void Bot::s1_init() {
     double supply = 0;
     for (auto& g : groups) {
         g.hp_total = 0; g.str_total = 0;
+        g.bx0 = g.bx1 = g.tiles[0].x; g.by0 = g.by1 = g.tiles[0].y;
+        for (auto t : g.tiles) { g.bx0 = std::min(g.bx0, t.x); g.bx1 = std::max(g.bx1, t.x); g.by0 = std::min(g.by0, t.y); g.by1 = std::max(g.by1, t.y); }
         for (const auto& c : g.group.camps()) { g.hp_total += camp_hp(c); g.str_total += camp_strength(c); }
         g.gold = static_cast<int>(g.group.gold_value());
         g.respawn = static_cast<int>(g.group.max_respawn_timer());
@@ -66,7 +68,8 @@ void Bot::s1_init() {
     }
     const int n = std::max<int>(1, static_cast<int>(roster.size()));
     s1_prior = supply / (2.0 * n);
-    s1_fields.resize(groups.size());
+    s1_tbl.assign(groups.size(), {});
+    s1_w = cambc::map::width();
     s1_field_ok.assign(groups.size(), 0);
     s1_foe_round.assign(groups.size(), -1000);
     s1_foe_n.assign(groups.size(), 0);
@@ -77,31 +80,45 @@ void Bot::s1_init() {
 void Bot::s1_tables_step() {
     if (!initialised || s1_tables_next >= static_cast<int>(groups.size())) return;
     cambc::bitboard walls = static_block, seen;
+    int built = 0;
     while (s1_tables_next < static_cast<int>(groups.size()) && cambc::fuel_remaining() > static_cast<std::uint64_t>(P_S1_TABLE_FUEL)) {
         const int i = s1_tables_next++;
         if (groups[i].monolith) continue;
-        try { s1_fields[i].compute(walls & ~groups[i].mask, groups[i].mask, seen); s1_field_ok[i] = 1; } catch (...) {}
+        if (built++ >= 1) { --s1_tables_next; break; }   // one table per turn (a 100x100 field can cost more than the reserve)
+        const auto f0 = cambc::fuel_remaining();
+        try {   // computed by the engine, then copied once into wasm memory: lookups are then plain reads (get() is a host call)
+            cambc::distance_field f;
+            f.compute(walls & ~groups[i].mask, groups[i].mask, seen);
+            s1_tbl[i] = f.export_linear_buffer();
+            s1_field_ok[i] = 1;
+        } catch (...) {}
+#if P_S1_FUELDBG
+        std::cout << "FT g" << i << " cost" << (f0 - cambc::fuel_remaining()) << std::endl;
+#endif
     }
 }
 
 int Bot::s1_tau(int i, vec2 pos) const {
     if (s1_field_ok[i]) {
-        try {
-            const int d = s1_fields[i].get(pos);
-            if (d != cambc::distance_field::unreachable) return d;
-            return 1 << 12;
-        } catch (...) {}
+        const std::size_t k = static_cast<std::size_t>(pos.y) * s1_w + pos.x;
+        if (k < s1_tbl[i].size()) {
+            const int d = s1_tbl[i][k];
+            return d != cambc::distance_field::unreachable ? d : (1 << 12);
+        }
     }
     return (min_distance(pos, groups[i].tiles) * 5) / 4;   // Chebyshev x 1.25 until the table exists
 }
 
 // Enemy sightings near groups (risk term).
 void Bot::s1_note_foes(const TurnView& v, const std::vector<cambc::champion>& enemies) {
-    if (enemies.empty()) return;
+    if (enemies.empty() || (v.round + ally_index) % 4 != 0 || cambc::fuel_remaining() < 60000) return;   // every 4th round (40-round memory), never on expensive turns
+    std::vector<vec2> foes;   // positions read once (each position() is a host call: 34-68k fuel per turn on islands)
+    foes.reserve(enemies.size());
+    for (const auto& e : enemies) foes.push_back(e.position());
     for (std::size_t i = 0; i < groups.size(); ++i) {
-        if (min_distance(v.pos, groups[i].tiles) > 14) continue;
+        if (tile_distance(v.pos, groups[i].tiles[0]) > 16 || min_distance(v.pos, groups[i].tiles) > 14) continue;
         int n = 0;
-        for (const auto& e : enemies) if (min_distance(e.position(), groups[i].tiles) <= 6) ++n;
+        for (auto f : foes) if (min_distance(f, groups[i].tiles) <= 6) ++n;
         if (n > 0) { s1_foe_round[i] = v.round; s1_foe_n[i] = n; }
     }
 }
@@ -120,28 +137,46 @@ int Bot::s1_coalition(int i) const {
 
 // u_ij of group i for this champion; `claim` = claimants other than me; eta receives tau + wait. k_fixed > 0 overrides
 // the coalition size (P_S1_AUCTION 2: the squad that clears it together).
+// Champion and team numbers for u_ij, read once per round (each read is a host call).
+void Bot::s1_ctx_refresh(int round) const {
+    if (s1_ctx_round == round) return;
+    s1_ctx_round = round;
+    auto& me = cambc::self();
+    s1_ctx_dps = std::max(10.0, static_cast<double>(me.strength()) * P_S1_DPS_MULT);
+    s1_ctx_hp = static_cast<double>(me.health());
+    s1_ctx_maxhp = static_cast<double>(me.max_health());
+    s1_ctx_bag = static_cast<double>(me.gem_count());
+    s1_ctx_banked = static_cast<double>(cambc::global_submitted_gems(team::ally));
+}
+
+int Bot::s1_eta_of(int i, const TurnView& v) const {
+    const int tau = s1_tau(i, v.pos);
+    return tau + std::max(0, groups[i].ready_round - v.round - tau);
+}
+
 double Bot::s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed) const {
     const auto& g = groups[i];
-    auto& me = cambc::self();
+    s1_ctx_refresh(v.round);
     const int tau = s1_tau(i, v.pos);
     const int wait = std::max(0, g.ready_round - v.round - tau);
     eta = tau + wait;
     const int k = k_fixed > 0 ? k_fixed : std::max(1, std::max(s1_coalition(i), claim + 1));
-    const double dps = std::max(10.0, static_cast<double>(me.strength()) * P_S1_DPS_MULT);
-    const double s = static_cast<double>(g.hp_total) / (dps * k) + 5.0;
-    const double h = std::max(300.0, static_cast<double>(me.health()));
-    const double ratio = g.str_total * (s - 5.0) / (h * k);
+    const double dps = s1_ctx_dps;
+    // service: clear + 5 capture rounds + the walk between the group's members (corners pairs camps 22 tiles apart)
+    const double s = static_cast<double>(g.hp_total) / (dps * k) + 5.0 + (P_S1_SPAN ? std::max(g.bx1 - g.bx0, g.by1 - g.by0) : 0);
+    const double h = std::max(300.0, P_S1_RISK_MAXHP ? s1_ctx_maxhp : s1_ctx_hp);   // retreat at 30-45 % already guards a hurt champion
+    const double ratio = g.str_total * (static_cast<double>(g.hp_total) / (dps * k)) / (h * k);
     double rho_c = std::clamp((ratio - P_S1_RISK_RATIO) / P_S1_RISK_RATIO, 0.0, 1.0);
     double rho_e = 0;
     if (v.round - s1_foe_round[i] <= P_S1_FOE_MEMORY) rho_e = std::min(0.8, 0.25 * s1_foe_n[i]);
     const double rho = 1.0 - (1.0 - rho_c) * (1.0 - rho_e);
     const int nch = std::max<int>(1, static_cast<int>(roster.size()));
-    const double banked = static_cast<double>(cambc::global_submitted_gems(team::ally));
+    const double banked = s1_ctx_banked;
     const double income = std::max(s1_prior, banked / (nch * std::max(1, v.round)));
     const double cost = 60.0 * income + P_S1_LAMBDA * 50.0;
-    const double bag = static_cast<double>(me.gem_count());
+    const double bag = s1_ctx_bag;
     const double gain = (g.gems * (1.0 - rho) + P_S1_LAMBDA * g.gold) / k - rho * (cost + bag);
-    return gain / (tau + wait + s);
+    return gain / (P_S1_TRAVEL_W * tau + P_S1_WAIT_W * wait + s);   // travel weighted: a far task also leaves the champion far from the next one
 }
 
 // Claimants of group i other than me, and the best (lowest) ETA bucket among them.

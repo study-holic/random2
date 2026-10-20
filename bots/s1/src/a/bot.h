@@ -32,6 +32,8 @@ struct GroupInfo {
     bool has_gem_cluster = false;     // EXP-030: at least one gem cluster (mixed groups too)
     int cluster_seen = -1000;         // EXP-030: last round a mixed group was seen with only clusters alive
     int hp_total = 0, str_total = 0, gold = 0, respawn = 60;   // S1: summed camp HP and strength, gold, respawn
+    int bx0 = 0, by0 = 0, bx1 = 0, by1 = 0;                     // S1: bounding box of the spawn tiles
+    int box_distance(cambc::vec2 p) const { return std::max(std::max(std::max(bx0 - p.x, p.x - bx1), 0), std::max(std::max(by0 - p.y, p.y - by1), 0)); }
 };
 
 // A live camp with its group index and health, read once per turn.
@@ -209,22 +211,28 @@ public:
     bool wait_for_squad(const TurnView& v, const std::vector<cambc::champion>& allies);
 
     int last_nc = 0, diag_sb_grp = -1;
+    int diag_mode[7] = {0, 0, 0, 0, 0, 0, 0};
     int diag_on = 0, diag_selfblock = 0, diag_resp = 0, diag_capt = 0, diag_dup = 0;
     void s1_diag();
     void step_off_respawn();   // P_S1_NO_SELF_BLOCK
     // S1 economy controller (s1econ.cpp)
     double s1_prior = 0;
-    std::vector<cambc::distance_field> s1_fields;
+    std::vector<std::vector<std::uint16_t>> s1_tbl;   // per group: walking distance to its spawn tiles, row-major
+    int s1_w = 0;
     std::vector<char> s1_field_ok;
     std::vector<int> s1_foe_round, s1_foe_n;
     int s1_tables_next = 0, s1_eta = 0, assemble_wait = 0;
+    mutable int s1_ctx_round = -1;
+    mutable double s1_ctx_dps = 10, s1_ctx_hp = 1000, s1_ctx_maxhp = 1000, s1_ctx_bag = 0, s1_ctx_banked = 0;
+    void s1_ctx_refresh(int round) const;
+    int s1_eta_of(int i, const TurnView& v) const;
     void s1_init();
     void s1_tables_step();
     int s1_tau(int i, cambc::vec2 pos) const;
     void s1_note_foes(const TurnView& v, const std::vector<cambc::champion>& enemies);
     int s1_coalition(int i) const;
     double s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed = 0) const;
-    int squad_size = 1;
+    int squad_size = 1, squad_live = 1;
     int s1_claimants(const std::array<std::uint8_t, 8>& mem, int i, int& best_bucket) const;
     int s1_pick(const TurnView& v, int exclude, double* best_u);
     void s1_reauction(const TurnView& v);

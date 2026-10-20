@@ -34,6 +34,12 @@ using cambc::team;
 using CT = cambc::champion_type;
 
 static constexpr int kBankBag = P_BANK_BAG;
+#if P_S1_FUELDBG
+static std::uint64_t g_s1f[16];   // fuel stamps per stage of play_turn_inner (debug)
+#define S1F(k) (g_s1f[k] = cambc::fuel_remaining())
+#else
+#define S1F(k) do { } while (0)
+#endif
 static constexpr int kNearSpawn = P_NEAR_SPAWN;
 static constexpr bool kAltarScoring = P_ALTAR_SCORING;  // EXP-023 (a): contested-altar choice and farm-on; off = v4-2 goals
 static constexpr int kGiveUpContest = P_GIVE_UP_CONTEST;    // EXP-023: two or more enemies (8 each) at the best altar: farm on
@@ -431,7 +437,20 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
             banking = gems >= P_ROWS_BAG2   // EXP-096: rule 1, bank at 66
                 || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
         } else
-        banking = gems >= (rows ? P_ROWS_BAG : kBankBag) || opening_bank(v, gems) || far || v.round - carry_since >= 40
+        if (P_S1_BANK_RATE && !rows) {   // S1 bank task on the u scale (v5-s1-economy.md): u_bank = B(1 - rho_a) / (tau_altar + ceil(B/10))
+            int tau_a = 1 << 20, foes = 0;
+            for (std::size_t i = 0; i < altars.size(); ++i) {
+                const int d = (tile_distance(v.pos, altars[i]) * 5) / 4;
+                if (d < tau_a) { tau_a = d; foes = v.round - altar_foes_round[i] <= kAltarFoeMemory ? altar_foes[i] : 0; }
+            }
+            const double rho_a = std::min(0.8, 0.25 * foes);
+            const double u_bank = gems * (1.0 - rho_a) / (tau_a + (gems + 9) / 10);
+            double u_t = 0;
+            if (target >= 0) { int eta = 0; u_t = s1_value(target, v, 0, eta, is_squad_group(target) ? squad_size : 1); }
+            banking = (gems >= P_S1_BANK_MIN && u_bank > P_S1_BANK_MULT * u_t) || target < 0 || far
+                || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
+        } else
+        banking = gems >= (rows ? P_ROWS_BAG : kBankBag) || opening_bank(v, gems) || far || v.round - carry_since >= P_S1_CARRY_ROUNDS
             || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
         if (!banking) return false;
     }
@@ -524,7 +543,7 @@ void Bot::step_off_respawn() {
             // P_S1_ONE_CAPTURER: a capture in progress belongs to the holder (or the solo farmer of the group) alone
             const bool other = P_S1_ONE_CAPTURER && std::holds_alternative<cambc::map::camp_group_reward_available>(st)
                 && static_cast<int>(i) != holding && static_cast<int>(i) != target;
-            if (!paid && !other) return;
+            if (!(paid && P_S1_NO_SELF_BLOCK && P_S1_NSB_STEP) && !other) return;
         } catch (...) { return; }
         cambc::bitboard out = tiles_around(p, 3) & ~camp_static & ~static_block;
         move_towards_closest(static_block, camp_static, out);
@@ -559,12 +578,23 @@ void Bot::s1_diag() {
         const vec2 p = me.position();
         std::cout << "S1T r" << rnd << " a" << ally_index << " ch" << int(me.champion_name()) << " p" << p.x << "," << p.y << " hp" << int(me.is_alive() ? me.health() : -1)
                   << " g" << me.gem_count() << " au" << me.gold_count() << " tg" << target << " hd" << holding << " rt" << retreating << " bk" << banking << " sub" << me.is_submitting_gems() << " rc" << me.is_recalling()
-                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << " sbg" << diag_sb_grp << " wt" << wait_rounds;
+                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << " sbg" << diag_sb_grp << " wt" << wait_rounds << " sq" << squad << "/" << squad_size << is_squad_group(target);
+        if (target >= 0) { int eta = 0; std::cout << " T" << groups[target].tiles[0].x << "," << groups[target].tiles[0].y << " u" << int(1000 * s1_value(target, build_view(), 0, eta, is_squad_group(target) ? squad_size : 1)); }
         if (diag_sb_grp >= 0) for (auto t : groups[diag_sb_grp].tiles) std::cout << " " << t.x << "," << t.y;
         std::cout << std::endl;
     }
 #endif
-    if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << std::endl;
+    {   // time budget: dead, retreat (incl. recall), bank (walk or tribute), hold (capture), wait (respawn ring), fight (attacked), travel
+        int m = 6;
+        if (!me.is_alive()) m = 0;
+        else if (retreating || me.is_recalling()) m = 1;
+        else if (banking || me.is_submitting_gems()) m = 2;
+        else if (holding >= 0) m = 3;
+        else if (wait_rounds > 0) m = 4;
+        else if (attacked) m = 5;
+        ++diag_mode[m];
+    }
+    if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << " md" << diag_mode[0] << "_" << diag_mode[1] << "_" << diag_mode[2] << "_" << diag_mode[3] << "_" << diag_mode[4] << "_" << diag_mode[5] << "_" << diag_mode[6] << std::endl;
 }
 #endif
 
@@ -612,10 +642,20 @@ void Bot::play_turn() {
                   << " mem" << int(mm[0]) << int(mm[1]) << int(mm[2]) << int(mm[3]) << int(mm[4]) << g_dbg << std::endl;
     }
 #else
+#if P_S1_FUELDBG
+    const auto fz0 = cambc::fuel_remaining();
+    play_turn_inner();
+    if (cambc::round_number() % 50 == 7 || fz0 - cambc::fuel_remaining() > 60000) {
+        std::cout << "FU r" << cambc::round_number() << " a" << ally_index << " inner" << (fz0 - cambc::fuel_remaining()) << " st";
+        for (int k = 0; k < 14; ++k) std::cout << " " << (g_s1f[k] ? static_cast<long long>(fz0) - static_cast<long long>(g_s1f[k]) : -1);
+        std::cout << " tg" << target << " bk" << banking << std::endl;
+    }
+#else
     play_turn_inner();
 #endif
+#endif
     attacked = could_attack && me.is_alive() && !me.can_attack();
-    if (P_S1_NO_SELF_BLOCK && P_S1_NSB_STEP) step_off_respawn();
+    if ((P_S1_NO_SELF_BLOCK && P_S1_NSB_STEP) || P_S1_ONE_CAPTURER) step_off_respawn();
 #if P_S1_DIAG
     s1_diag();
 #endif
@@ -630,6 +670,10 @@ void Bot::play_turn() {
 }
 
 void Bot::play_turn_inner() {
+#if P_S1_FUELDBG
+    for (auto& x : g_s1f) x = 0;
+    g_s1f[0] = cambc::fuel_remaining();
+#endif
     auto& me = cambc::self();
     if (!me.is_alive()) { unseen_hp_prev = -1; buy_items(); holding = -1; retreating = false; banking = false; bank_spawn_done = false; regrouping = false; bag_fled = false; return; }
     if (me.is_submitting_gems()) was_submitting = true;
@@ -641,22 +685,29 @@ void Bot::play_turn_inner() {
     const TurnView v = build_view();
     last_nc = static_cast<int>(v.camps.size());
     g_threat_exempt.clear();   // P_S1_THREAT_COST: retreats avoid every camp; set to the target after resolve_target
+    S1F(1);
     update_group_memory(v);
-    note_mixed_clusters(v);   // EXP-030
+    note_mixed_clusters(v);
+    S1F(2);   // EXP-030
     const bool at_spawn = ally_spawn.is_set(v.pos);
     if (at_spawn || (P_FIELD_SHOP && remote_shop) || (tavi_focus_field && remote_shop && v.round >= field_shop_off_until)) buy_items();   // w8 C
     if (!me.can_move() && !me.can_attack()) return;
     // Spawn recovery happens at the end of a turn spent on the spawn, so a hurt champion stays until healed.
     if (at_spawn && me.health() < me.max_health() * kSpawnLeaveHp) { DBG(" HEALWAIT"); return; }
+    S1F(3);
     if (handle_stuck(v)) return;   // EXP-018
+    S1F(11);
 
     cast_shield(v);   // S-14
 
     auto enemies = cambc::vision::champions(team::enemy);
     last_had_foe = !enemies.empty();
     if (P_S1_AUCTION) s1_note_foes(v, enemies);   // FIX_DEATH_LOOP: a death with no enemy champion in view was the camps
+    S1F(12);
     auto allies = cambc::vision::champions(team::ally);
+    S1F(13);
     update_contested(v, enemies);   // EXP-018
+    S1F(4);
     if (Plan::turn(*this, Plan::Phase::pre, v, enemies, allies)) return;
     const bool enemies_near = !enemies.empty();
     float threshold = (me.gem_count() > 0 || enemies_near) ? kRetreatHurt : kRetreatCalm;
@@ -719,7 +770,9 @@ void Bot::play_turn_inner() {
     if (banking && me.gem_count() > 0)
         for (auto altar : altars)
             if (tile_distance(v.pos, altar) <= cambc::constants::submit_gems_range) { if (bank(v, enemies, allies)) return; break; }
+    S1F(5);
     if (enemy_response(v, enemies, allies)) { DBG(" ENEMYRESP"); return; }
+    S1F(6);
     if (P_ALLY_VISION_FIX) { keep_visible(enemies); keep_visible(allies); }   // killed or out-of-sight handles throw 97
     if (Plan::turn(*this, Plan::Phase::mid, v, enemies, allies)) return;
 
@@ -729,15 +782,20 @@ void Bot::play_turn_inner() {
         return;
     }
 
+    S1F(7);
+    if (P_S1_AUCTION && cambc::fuel_remaining() < 45000) return;   // S1 fuel: an expensive turn (view, enemies) ends before the choice and the move
     resolve_target(v, allies);
     Plan::target(*this, v, target);
+    S1F(8);
     if (P_S1_THREAT_COST && target >= 0) g_threat_exempt = groups[target].mask;
     if (target >= 0) last_tgt = target;
 #if TRACE_V
     if ((v.round >= 18 && v.round <= 45) || v.round % 200 == 5) std::cout << "T r" << v.round << " u" << ally_index << " p" << v.pos.x << "," << v.pos.y << " tg" << target << "x" << (target >= 0 ? groups[target].excluded_until : -1) << " hp" << (int)cambc::self().health() << " g" << (int)cambc::self().gem_count() << "\n";
 #endif
-    if (bank(v, enemies, allies)) { DBG(" BANK"); return; }
+    if (bank(v, enemies, allies)) { DBG(" BANK"); S1F(9); return; }
+    S1F(10);
     DBG(" FARM");
+    if ((P_S1_AUCTION || P_S1_THREAT_COST) && cambc::fuel_remaining() < 25000) return;   // S1 fuel: skip the move rather than run out mid-turn
     farm(v, allies);
 }
 } // namespace va

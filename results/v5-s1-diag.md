@@ -63,3 +63,5 @@ median round to 1,000 over 21 maps: 1623; reached on 12 maps
 2. **Self-blocking (timer 0, our own champion on the tile) is rare**: 601 champion-rounds a game on concentrated_wealth, 0-6 elsewhere. P_S1_NO_SELF_BLOCK can matter on concentrated_wealth alone.
 3. **Two allies on one group's tiles**: 371 champion-rounds on concentrated_wealth, 52 on hooks, at most 14 elsewhere. The counter includes clearing rounds, when allies stand on the dead members' tiles while fighting the rest; no capture-phase sharing was split out in this run.
 4. Time on reward-available tiles is large where gems are scarce: contest 1,430 champion-rounds, elk_arena 1,160, hooks 966. On contest these rounds produced no tributed gems (gold-only groups or captures never completing): traced next.
+
+Note (later, results/v5-s1.md §1): the projected-round column above averages 2000 × 1000 ÷ gems per game, which one bad game dominates. Later tables use 1000 ÷ (mean of gems ÷ last round) and 6 salts.

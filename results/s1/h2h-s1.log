@@ -1,0 +1,24 @@
+s1: 126 games in 144 s (52.7/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+ambush       1.33/2   0.0/0    1791  15.2   89.5   0    12 
+big_world    0.33/2   0.0/0    1799   7.2   -8.7   0    20 
+boss_battle  2.0/2   0.0/0    2000   2.8    0.0   0    20 
+broken_curve 2.0/2   0.0/0    2000  24.0  341.7   0     0 
+collision    1.0/2   0.0/0    1739  23.5 -121.5   0     1 
+concentrated_wealth 1.0/2   0.0/0    2000  32.7   60.3   0     4 
+contest      2.0/2   0.0/0    2000  22.2    0.0   0     0 
+corners      0.33/2   0.0/0    1225  16.0 -110.0   0    14 
+corridors    1.0/2   0.0/0    2000   9.3   22.5   0     0 
+eight        0.33/2   0.0/0    1429  32.7 -308.7   0     0 
+elk_arena    2.0/2   0.0/0    2000  16.8  456.0   0     0 
+elkring      2.0/2   0.0/0     997   8.2  220.0   0     0 
+expanse      1.67/2   0.0/0    1478   2.8   70.7   0    12 
+fracture     1.67/2   0.0/0    2000  16.2  438.8   0    13 
+fragment     0.67/2   0.0/0    2000  57.3 -287.7   0     0 
+gold_rush    2.0/2   0.0/0    2000  28.5  337.3   0     0 
+hooks        1.0/2   0.0/0    1654  51.8  -49.5   0     0 
+interlock    1.0/2   0.0/0    1443  20.7  -11.8   0     0 
+islands      1.0/2   0.0/0    1340  11.7  150.7   0    16 
+lanes        0.33/2   0.0/0    1319   7.8  -48.8   0    18 
+monolith     1.33/2   0.0/0    1426  21.7   98.3   0     0 
+total 25.99/42 (mean over salts [0, 1, 2]); maps passing 0/21; out results/s1-vs-v4.json

@@ -7,7 +7,7 @@ d = json.load(open(sys.argv[1]))
 md = "--md" in sys.argv
 rows = {}
 for r in d["results"]:
-    m = rows.setdefault(r["map"], {"r1000": [], "gems": [], "deaths": [], "on": [], "sb": [], "dup": [], "cp": [], "dupc": []})
+    m = rows.setdefault(r["map"], {"r1000": [], "gems": [], "deaths": [], "on": [], "sb": [], "dup": [], "cp": [], "dupc": [], "md": []})
     g = r.get("gems", 0)
     m["gems"].append(g); m["deaths"].append(r.get("deaths", 0))
     m["r1000"].append(g / max(1, r["round"]))   # gem rate per game; round to 1,000 = 1000 / mean rate
@@ -21,6 +21,14 @@ for r in d["results"]:
         if last:
             for f in ("on", "sb", "dup", "cp", "dupc"):
                 m[f].append(sum(int(v.get(f, 0)) for v in last.values()))
+            md = [0] * 7
+            for mm2 in re.finditer(r"S1D a(\d+) r\d+[^\n]* md([\d_]+)", txt):
+                pass
+            lastmd = {}
+            for mm2 in re.finditer(r"S1D a(\d+) r\d+[^\n]* md([\d_]+)", txt): lastmd[mm2.group(1)] = [int(x) for x in mm2.group(2).split("_")]
+            if lastmd:
+                tot = [sum(v[i] for v in lastmd.values()) for i in range(7)]
+                m["md"].append([x / max(1, sum(tot)) for x in tot])
     except Exception:
         pass
 def mean(x): return sum(x) / len(x) if x else float("nan")
@@ -34,4 +42,9 @@ print(("| map | round to 1,000 (proj.) | gems | deaths | on-tile | self-block | 
 for o in out:
     print(fmt.format(o[0], ("%.0f" % o[1]) if o[1] != float("inf") else "inf", *o[2:]))
 rs = [o[1] for o in out]
+if "--modes" in sys.argv:
+    print("time shares (champion-rounds): dead retreat bank hold wait fight travel")
+    for mp in sorted(rows):
+        L = rows[mp]["md"]
+        if L: print("%-20s " % mp + " ".join("%5.2f" % (sum(x[i] for x in L) / len(L)) for i in range(7)))
 print("median round to 1,000 over %d maps: %.0f; reached on %d maps" % (len(rs), statistics.median(rs), sum(1 for o in out if o[1] <= 2000)))
