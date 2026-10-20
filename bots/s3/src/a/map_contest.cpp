@@ -26,7 +26,7 @@ namespace va {
 #define P_S3_CONTEST 1   // v5 S3: contest plays (s3_contest.cpp); v4 scored 0 gems on contest against every real team
 #endif
 #ifndef P_S3_DRAFT
-#define P_S3_DRAFT 1     // v5 S3: 1 = the top-10 core (Stellar, C&I, Ren, Varg, Ryth); 0 = v4 lists
+#define P_S3_DRAFT 2     // v5 S3: 1 = the top-10 core (Stellar, C&I, Ren, Varg, Ryth); 2 = Sponge's contest draft (HoR, Ren, Stellar, Ryth, Varg: no C&I partner deaths); 0 = v4 lists
 #endif
 
 #ifndef P_SIEGE_CONTEST
@@ -55,6 +55,7 @@ void setup_contest(MapPlan& p) {
         using D = cambc::champion_draft;
         S3C::enable();
         if (P_S3_DRAFT == 1) p.draft = {D::stellar, D::cassi_and_issac, D::ren, D::varg, D::ryth};
+        else if (P_S3_DRAFT == 2) p.draft = {D::heart_of_ruin, D::ren, D::stellar, D::ryth, D::varg};
         p.init = S3C::init;
         p.pre = S3C::pre;
         p.buy = S3C::buy;

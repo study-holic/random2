@@ -11,21 +11,21 @@
 #include <vector>
 namespace va {
 // s3_contest.cpp (v5 S3): contest plays. Contest's only gem sources are two Monoliths, (17,31) and (32,18), one
-// spawn tile each, 20,000 health, strength 200 at range 5, 200 gems, respawn 150 (data/maps21.json, decoded camps).
-// v4 dealt them 0 damage against the top 10 (results/v5-s3-diag.md section 6), farmed gold clusters and died 48.7
-// times a game. Model (results/v5-s3.md has the formulas):
-//  (b) pack siege: the Monolith hits the NEAREST champion, ties alternate (results/arena-1020.md, arena 2), and an
-//      asleep camp never attacks. So the team gathers on the 8 tiles at distance 1 before the first hit (asleep:
-//      free), then all hit: each tied champion takes 200/k a round. A champion leaves at h < 200*steps_out/k + 100
-//      (steps_out = 6 - d when alone, 1 otherwise), heals (recall) and returns at h >= P_S3_ENTER of max; health
-//      does not regenerate, so the siege resumes where it stopped (top-10 replays: 190-424 round first sieges).
-//      Capture: the ally with the highest health within 6 holds the spawn tile; the bag (200) banks by the default
-//      bank() at a centre altar, escorted (shared bytes 6-7, as siege.cpp).
+// spawn tile each, 20,000 health, strength 200 at range 5, 200 gems, respawn 150 (data/maps21.json, decoded camps),
+// each in a walled pocket. v4 dealt them 0 damage against the top 10 (results/v5-s3-diag.md section 6), farmed gold
+// clusters and died 48.7 times a game. Model (results/v5-s3.md section 2 has the formulas and the traces):
+//  (b) siege: the Monolith hits the NEAREST champion (results/arena-1020.md arena 2) and keeps one target until
+//      someone is nearer; asleep camps never attack. Melee tanks stand at distance 1, ranged at 2-3 behind them;
+//      the first hit waits for min(2, melee alive) tanks at 1. A hurt champion leaves at h < 350 when another ally
+//      is nearer (it then recalls in place: only damage interrupts a recall), or at h < 200 * exit_steps + 150 when
+//      it is the nearest (it walks out on a BFS exit field; the pockets need up to 5 steps). Tanks buy Jungle then
+//      Durability emblems of health (x 0.63 Monolith damage, Pantheon's build) and join from round 250 ungeared.
+//      Capture: the healthiest ally within 6 holds the spawn tile; the 200-gem bag banks by v4's bank(), escorted.
 //  (a) interdiction: an enemy channelling a tribute (is_submitting_gems) with >= P_S3_INT_MIN gems in view: place
 //      an altar lock if carried and within 2 tiles of its altar (a new lock cancels the channel), else cast a stun or
 //      damage ability on it, else attack, else walk to it. A stun or the carrier's death cancels a tribute and a
 //      kill transfers the bag (FACTS, Tribute and Death lines); damage alone does not cancel.
-// The champion that does neither falls through to v4's behaviour.
+// A champion that does neither falls through to v4's behaviour.
 #include "s3_contest.h"
 #include "bot.h"
 #include "util.h"
@@ -76,6 +76,12 @@ using cambc::team;
 #ifndef P_S3_SIEGE_ROUND
 #define P_S3_SIEGE_ROUND 250  // (b) an ungeared melee joins the siege from this round anyway
 #endif
+#ifndef P_S3_AVOID
+#define P_S3_AVOID 0          // (b) leave an enemy-held Monolith to them (tested t32: -133 gems a game vs v4, deaths up; off)
+#endif
+#ifndef P_S3_NOSWITCH
+#define P_S3_NOSWITCH 1       // (b) no switch to the other Monolith while enemies hold it
+#endif
 #ifndef P_S3_TRACE
 #define P_S3_TRACE 0
 #endif
@@ -90,6 +96,7 @@ struct Mono {
     vec2 pos{};
     float hp = 20000.0f;
     int ready = 0;      // estimated round it is alive again (0 = assume alive)
+    int foe_round = -1000;   // last round an enemy champion was seen within 6 of it
     // Host-computed distance fields over walls (cambc::distance_field::compute): exit = steps to a tile at distance
     // >= 6 (out of range 5); ring = steps to a tile at distance 1. Built once, in init.
     cambc::distance_field fexit, fring;
@@ -257,6 +264,7 @@ bool siege(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std
 
     // Refresh what is in view.
     for (auto& m : g_m) {
+        for (const auto& e : enemies) if (tile_distance(e.position(), m.pos) <= 6) { m.foe_round = v.round; break; }
         if (!v.visible.is_set(m.pos)) continue;
         try { if (m.camp.is_visible() && m.camp.health() > 0) { m.hp = m.camp.health(); m.ready = 0; continue; } } catch (...) {}
         int timer = 0;
@@ -273,7 +281,10 @@ bool siege(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std
         if (m.ready > v.round + d) continue;
         int mates = 0;
         for (int s = 0; s < kSquadClaimByte; ++s) if (s != b.ally_index && mem[s] == m.group + 1) ++mates;
-        const bool foes_there = m.group < static_cast<int>(b.foe_seen.size()) && v.round - b.foe_seen[m.group] <= 30;
+        const bool foes_there = v.round - m.foe_round <= 30;
+        // P_S3_NOSWITCH: our Monolith is respawning; do not move to the other one while enemies hold it (side B vs
+        // v3b-e1: 13 of 19 deaths were champion kills at the other Monolith, t30). Farm (v4) instead.
+        if (P_S3_NOSWITCH && foes_there && g_cur >= 0 && k != g_cur) continue;
         const double sc = 30.0 * (m.hp / 20000.0) + tile_distance(g_home, m.pos) - 10.0 * mates + (foes_there ? 40.0 : 0.0) - (k == g_cur ? 15.0 : 0.0);
         if (sc < best_s) { best_s = sc; best = k; }
     }
@@ -282,6 +293,14 @@ bool siege(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std
     g_cur = best;
     if (best < 0) return false;
     auto& m = g_m[best];
+    // P_S3_AVOID: an enemy siege on this Monolith (enemies seen near it in the last 30 rounds) with none of us
+    // fighting there is theirs: farm (v4) until ours respawns instead of walking into their pack (side B vs v3b-e1: 13 of 19
+    // deaths were champion kills at the other Monolith, s3d2 t30).
+    if (P_S3_AVOID && v.round - m.foe_round <= 30 && !g_healing) {
+        bool ours = false;   // an ally already fighting there (within 3) keeps it ours
+        for (const auto& a : allies) if (!(a == me) && a.is_visible() && tile_distance(a.position(), m.pos) <= 3) { ours = true; break; }
+        if (!ours) { b.target = -1; trace("AVOID", v.round, b); return false; }
+    }
     const int d = tile_distance(v.pos, m.pos);
     b.target = m.group;
     const float hp = me.health(), mx = me.max_health();
@@ -484,7 +503,7 @@ bool pre(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std::
     if (!g_on) return false;
     if (P_S3_TRACE >= 2) std::cout << "S3F r" << v.round << " u" << b.ally_index << " pre " << cambc::fuel_remaining() << '\n';
     for (auto& m : g_m)   // one Monolith's fields a turn, while fuel allows
-        if (!m.built) { if (v.round >= 2 && cambc::fuel_remaining() > 60000) { build_fields(m); trace("BUILD", v.round, b); } break; }
+        if (!m.built) { if (v.round >= 2 && cambc::fuel_remaining() > 75000) { build_fields(m); trace("BUILD", v.round, b); } break; }
     if (P_S3_INTERDICT && interdict(b, v, enemies)) return true;
     if (P_S3_ESCORT && escort(b, v, allies)) return true;
     if (P_S3_MONO && siege(b, v, enemies, allies)) return true;
