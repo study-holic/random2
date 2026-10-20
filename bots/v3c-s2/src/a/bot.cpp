@@ -99,7 +99,7 @@ const cambc::bitboard& GroupInfo::ring() const {
 // FIX_STAGED_INIT: init runs in phases that each check the fuel left (init_fuel_ok) and return, to resume next turn,
 // instead of letting the engine suspend the turn mid-computation. Total init was ~380k fuel on big_world.
 #ifndef P_DEATH_LOOP
-#define P_DEATH_LOOP 0   // 0 off, 1 second death at a group within P_DEATH_WINDOW rounds, 2 any death with no enemy champion in view
+#define P_DEATH_LOOP 2   // 0 off, 1 second death at a group within P_DEATH_WINDOW rounds, 2 any death with no enemy champion in view
 #endif
 #ifndef P_DEATH_WINDOW
 #define P_DEATH_WINDOW 300
