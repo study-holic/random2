@@ -5,6 +5,35 @@ Versions: integer only from now on (Xans, 20 Oct). v4 = the first release on eng
 Deadlines (platform Tournaments page, checked 20 Oct 06:50): **Sprint 2 lock Sat 24 Oct 23:59 BST** (single elimination, 15 games per pairing, locked submission); Sprint 3 lock Sat 31 Oct; qualifiers 4 Nov (international) and 11 Nov (UK); finals 18 Nov.
 Xans's standing approvals (20 Oct 06:48): upload any candidate that passes `gate.py` and the critic, for real-team testing; up to 10 game jobs 00:00-07:00; upload v4 base once it passes the gate.
 
+## Draft 3 (07:58 BST Tue): decisions after the consultation (`consult/2020-plan-v4.md`; ChatGPT, DeepSeek and Claude answered; Copilot blocked by the browser safety check)
+
+This section supersedes §5 (schedule) and the module order in §3 where they differ. The lead decided under Xans's standing approval: proceed after consultation.
+
+Releases are admitted, not single modules. Primary measures: paired gem margin and deaths per game on the 160-game real-team panel; win rate is secondary.
+
+| Release | Target time | Contents (consensus items marked ★ = all 3 consultants) | Admission |
+|---|---|---|---|
+| **v4** "do no harm" | Tue ~18:00 | ★ 21-map hash identification + safe default for unknown maps; ★ islands/holes reachability (never target unreachable groups); ★ anti-feeding on contest and gold_rush (monolith range 5, elk range 4); fuel ≤ 70k a turn; Heart of Ruin and enum safety; v3b kept as rollback | gate.py PASS; local h2h vs v3b on engine 1.0 ≥ 45 %; panel: kill if < 30 %, deaths ≤ 25 a game |
+| **v5** survival + gear | Wed 18:00 | ★ camp threat model (monster ranges 3/4/5; camp kills destroy carried gems); ★ spawn anti-feed (enemies spend 8-9 champion-rounds near our spawn vs 0.8 for top-10); ★ ability-first opener (≥ 70 %); ★ carrier protection, with tribute timing set by exposure rather than a fixed bag; ★ predictive recall (gold or HP); ★ focus Cassi (C&I die together); ★ stun enemy channels (tribute, recall, crystal); gear curve (gear at round 200 ≥ 3.0); draft lookup (★ core Stellar, C&I, Ren, Varg, Ryth; measure v3b's actual drafts first); ★ gold-tiebreak mode on boss_battle and contest | panel ≥ 45 % vs the 8 teams (M1 50 % stretch); deaths ≤ 20 |
+| **v6** economy | Thu 18:00 | ★ offline map compiler: hash-keyed tables per map from the econsim, made HP-aware, unpacked at draft; ★ one capturer per group, conveyor, respawn-window routing; runtime dispatcher; capture-into-tribute geometry; narrow G only if its arena test passes (monolith lock-out or respawn blockade) | ≥ 50 % vs ranks 50-100 (M2); gems per round ≥ 0.40 |
+| **v7** main | **Fri 14:00** (patches until 22:00) | Per-map fixes from panel data; experiments that passed (Heart of Ruin initiator, Prism big-bag, Marcella gold) | top-20 sample ≥ 40 % (M3) |
+| Sat | – | Bug fixes only; last upload by 20:00 | gate |
+
+Main release moves to Fri 14:00 (Claude's computation: a top-20-strength bot needs about 3-5 hours of ranked play to climb from about 1,700).
+
+**Step 0, now:** split our deaths by cause (camp, enemy, near our spawn, while carrying), check what v3b actually drafts, and make the same split for the top 10. Analyst, cheap, data already decoded.
+
+**Engine arena tests before building on them** (★; cloud once parity passes):
+- do monsters attack the nearest champion?
+- does an occupied spawn tile delay respawn (GameRules l.134/139), and by how much?
+- Prism at 0/20/40 gems;
+- Heart of Ruin 2v2 and 3v3;
+- camp aggro used against enemies.
+
+**Cut:** H (opponent model); E as minimax (no pick can deny the opponent, so a lookup table); S3 full draft matrix (forced-draft comparisons only).
+
+Odds stated by a consultant: Claude gives about 1 in 8 for top-20 strength by Friday. The others call it a stretch.
+
 ## 0. Target and arithmetic
 
 | Mark | Rating (06:30 Tue) |

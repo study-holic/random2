@@ -99,7 +99,7 @@ const cambc::bitboard& GroupInfo::ring() const {
 // FIX_STAGED_INIT: init runs in phases that each check the fuel left (init_fuel_ok) and return, to resume next turn,
 // instead of letting the engine suspend the turn mid-computation. Total init was ~380k fuel on big_world.
 #ifndef P_DEATH_LOOP
-#define P_DEATH_LOOP 2   // 0 off, 1 second death at a group within P_DEATH_WINDOW rounds, 2 any death with no enemy champion in view
+#define P_DEATH_LOOP 3   // 3 any death at the target group; 0 off, 1 second death at a group within P_DEATH_WINDOW rounds, 2 any death with no enemy champion in view
 #endif
 #ifndef P_DEATH_WINDOW
 #define P_DEATH_WINDOW 300
@@ -499,7 +499,7 @@ void Bot::play_turn() {
                 auto& lg = groups[last_tgt];
             const int rnd = static_cast<int>(cambc::round_number());
             // a loop = a second death at the same group within P_DEATH_WINDOW rounds (period ~90 in the corridors/broken_curve loops)
-            if (((P_DEATH_LOOP == 2) ? !last_had_foe : (lg.last_death >= 0 && rnd - lg.last_death <= P_DEATH_WINDOW)) && ++lg.deaths >= P_DEATH_LOOP_N)
+            if (((P_DEATH_LOOP == 3) ? true : (P_DEATH_LOOP == 2) ? !last_had_foe : (lg.last_death >= 0 && rnd - lg.last_death <= P_DEATH_WINDOW)) && ++lg.deaths >= P_DEATH_LOOP_N)
                 lg.excluded_until = std::max(lg.excluded_until, rnd + P_DEATH_EXCLUDE);
             lg.last_death = rnd;
         }
