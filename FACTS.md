@@ -33,7 +33,7 @@ Site doc = docs/rules/GameRules.md (20 Oct copy, lags engine). ENG = engine tabl
 - Kill reward: killer gets all carried gems + 50 base gold; assists no gold; camp kills destroy carried gems [doc l.320]
 - Cassi and Issac: if one dies the other dies; both lose gems; one kill reward [doc l.387]
 - Recall: channel 5 owner turn ends (3 with Home emblem), interrupted by damage, stun, death; carried gems kept; arrival at turn start, heal needs staying to turn end [doc l.229,332]
-- Tribute: within Chebyshev 1 of altar; length max(1, ceil(bag/10)) owner turn ends; start turn counts; completes at next turn start; tributes entire bag at completion; damage does not interrupt; stun, death or a new altar lock does [doc l.181-188,229]
+- Tribute: within Chebyshev 1 of altar; length max(1, ceil(bag/10)) owner turn ends; start turn counts; completes at next turn start; tributes entire bag at completion; DAMAGE DOES NOT INTERRUPT IT, only stun, death or a newly placed altar lock (recall IS interrupted by damage; teleport crystal: not by damage, by stun and death) [doc l.181, l.229]; damage does not interrupt; stun, death or a new altar lock does [doc l.181-188,229]
 - Win: first to 1000 tributed gems, or round 2000: tributed gems, then lifetime gold, then kills, then Team B wins [doc l.14]
 - Altar lock (consumable): within 2 tiles of altar, blocks enemy tributes, 3 basic attacks remove it, cancels tributes at that altar [doc l.195-199,271]
 ## Shop

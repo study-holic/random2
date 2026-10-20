@@ -1,5 +1,7 @@
 # Consult 10:29 BST Tue 20 Oct: v4 real-team result and the v5 direction
 
+> **Erratum (10:58):** both prompts said a tribute is interrupted by damage. Wrong: GameRules l.181 and l.229 say damage does not stop a tribute; only a stun, death or a newly placed altar lock does (recall is stopped by damage). Copilot caught it; a correction follow-up was sent to DeepSeek, Claude and ChatGPT.
+
 Senders: DeepSeek and Claude get Prompt 1 (rules-heavy); ChatGPT and Copilot get Prompt 2 (code and data). Copilot is pasted by Xans (the browser safety check blocks the agent from sending files to Copilot). Answers are appended below with claim checks.
 
 ---
@@ -247,4 +249,19 @@ Each cell has fewer than 30 games.
 
 ## Answers
 
-(appended when they come back)
+### Copilot (10:58; full text consult/answers/1029-copilot.md)
+Top: **G, a "safe tempo" package**: draft core lookup, recall and shop at gold and risk thresholds, one capturer per group with fixed opening routes, banking carriers before contact, and an ability before committing. If it must pick one listed option: B. It calls the pre-registered rule correct (structural), and says "economy first" must not become a 40-hour optimiser. Ranking: G > B > F > C > A > E > D > H.
+
+Claim checks:
+| Claim | Class | Check |
+|---|---|---|
+| Damage does not interrupt a tribute; stun, death or an altar lock does | **contradicts our prompt** | **TRUE**: GameRules l.181, l.229. Our prompt was wrong; FACTS.md and the w2 brief are corrected |
+| Top-10 teams capture ~15 groups by round 300 vs our 10-11 | new (to this consult) | TRUE: notes/top10-2026-10-20.md l.38 (15.0 vs 11.1/9.7) |
+| Extra allies do not speed a 5-round capture | agrees | TRUE: GameRules l.134; arena: allies on tiles split the reward |
+| Shopping while dead | agrees | TRUE: FACTS l.32 |
+| Eight shared bytes for focus broadcast | new | TRUE: FACTS l.39 (8 bytes shared memory) |
+| Gear 3.8 vs 1.7, 41 vs 24-30 gems per tribute | agrees | TRUE: our prompt, notes/top10 |
+| E's ceiling: four maps 0 % -> 25 % = +4.8 pts | new | arithmetic TRUE if maps are uniform (4/21 × 25 %) |
+| Self-play is a rejection gate only, not an estimator | agrees with our data | the 68 % self-play vs 23 % real gap |
+| Elo effects per option | opinion | unverifiable estimates |
+
