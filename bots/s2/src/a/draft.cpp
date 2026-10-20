@@ -36,21 +36,6 @@ static bool s2_keep_v4_draft(mapid::MapId id) {
     }
 }
 
-// S2 per-map draft exceptions to the core (admitted only where a variant beat the core by >= 2 of 6 on the map and the
-// overall head-to-head did not drop; results/v5-s2.md). nullptr = core.
-static const std::vector<D>* s2_draft_exception(mapid::MapId id, int size) {
-    (void)id; (void)size;
-#if defined(P_S2_DRAFT_VARIANT) && P_S2_DRAFT_VARIANT == 1   // test build: Tavi instead of Ren (top-10 second set)
-    static const std::vector<D> v5{D::ryth, D::cassi_and_issac, D::stellar, D::varg, D::tavi};
-    static const std::vector<D> v3{D::cassi_and_issac, D::stellar, D::varg};
-    return size <= 3 ? &v3 : &v5;
-#elif defined(P_S2_DRAFT_VARIANT) && P_S2_DRAFT_VARIANT == 2   // test build: core order with Varg before Ren on 4 picks
-    static const std::vector<D> v4{D::ryth, D::cassi_and_issac, D::stellar, D::varg, D::ren};
-    return size == 4 ? &v4 : nullptr;
-#endif
-    return nullptr;
-}
-
 void play_draft() {
     const auto mine = cambc::draft::current_draft(cambc::team::ally);
     const auto size = cambc::draft::team_size();
@@ -69,11 +54,10 @@ void play_draft() {
     } } catch (...) { rows = false; }
     if (P_S2_DRAFT_CORE && !s2_keep_v4_draft(Plan::current().id)) {   // S2 task 1: top-10 core by pick count (notes/top10-2026-10-20.md l.49-51); duplicates across
         // teams are allowed and picks within a round are simultaneous, so a fixed table is the whole policy. Overrides the
-        // map files and w7 lists; s2_draft_exception() returns a per-map list only where a test admitted one.
+        // map files and w7 lists, except where s2_keep_v4_draft() keeps v4's draft.
         static const std::vector<D> core5{D::ryth, D::cassi_and_issac, D::stellar, D::ren, D::varg};
         static const std::vector<D> core3{D::cassi_and_issac, D::stellar, D::ren};
-        const std::vector<D>* ex = s2_draft_exception(Plan::current().id, size);
-        const auto& core = ex ? *ex : (size <= 3 ? core3 : core5);   // 4 picks = the first 4 of core5
+        const auto& core = size <= 3 ? core3 : core5;   // 4 picks = the first 4 of core5
         for (auto pick : core)
             if (std::find(mine.begin(), mine.end(), pick) == mine.end()) { cambc::draft::pick(pick); return; }
     }
