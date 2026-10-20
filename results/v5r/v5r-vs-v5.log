@@ -1,4 +1,4 @@
-v5r: 210 games in 216 s (58.2/min, jobs 3), rc 0
+v5r: 210 games in 211 s (59.8/min, jobs 3), rc 0
 map            wins  strong  medR death   gemD flt fuelL gate
 ambush       1.0/2   0.0/0    1943   9.7  -43.3   0     0 
 big_world    1.33/2   0.0/0    1816   4.5    8.7   0     0 
@@ -31,8 +31,8 @@ shortcut     2.0/2   0.0/0    2000  20.5  217.5   0     0
 split        0.33/2   0.0/0    1743  52.7  -55.2   0     0 
 stampede     1.33/2   0.0/0    2000  25.7   80.0   0     0 
 starfish     0.33/2   0.0/0    1802  65.8 -629.5   0     0 
-starvation   1.0/2   0.0/0    2000  22.0  100.0   0     1 
+starvation   0.33/2   0.0/0    2000  26.2 -168.0   0     0 
 swirl        1.0/2   0.0/0    2000  62.8   98.8   0     0 
 the_farm     1.0/2   0.0/0    1378   5.3  -72.8   0     0 
 yellow_brick_road 1.0/2   0.0/0    1154  16.7   63.8   0     2 
-total 41.65/70 (mean over salts [0, 1, 2]); maps passing 0/35; out results/v5r/v5r-vs-v5.json
+total 40.98/70 (mean over salts [0, 1, 2]); maps passing 0/35; out results/v5r/v5r-vs-v5.json
