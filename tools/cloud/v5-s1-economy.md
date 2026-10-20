@@ -21,17 +21,20 @@ where:
 - e_j is the earliest round the group is available. Use the respawn round of groups we captured (capture round + respawn), or "now" if the group is seen alive. Expire stale estimates.
 - s_ij is the clear time (Σ monster HP ÷ the dps of the champions assigned to clear it) + 5 capture rounds;
 - ρ_ij is the death risk on the path and at the task: awake camps within 3/4/5 tiles, plus enemies seen in the last k rounds;
-- C_i is the cost of a death: 60 rounds × the team's income per champion-round, plus the 50 gold the killer gains;
+- C_i is the cost of a death: 60 rounds × the team's income per champion-round, plus the 50 gold the killer gains. Income per champion-round = gems banked so far ÷ (champions × round), floored at the map's prior from notes/map-economics.md. "1,000 gems" always means tributed (banked) gems;
 - B_i is i's carried bag, lost on death.
 
 The bank task competes on the same scale, u_bank = B_i(1 − ρ) / (τ_altar + ceil(B_i/10)). A tribute is cancelled by a stun, a death or a newly placed lock, NOT by damage (GameRules l.181).
 
-**Allocation:** a sequential single-item auction (Koenig et al. 2006, "The power of sequential single-item auctions for agent coordination", AAAI; with time windows, Nunes and Gini 2015, AAAI, TeSSI). Champions share no vision; they share 8 bytes of memory and 1,024 read-only draft bytes (FACTS.md). So run the auction in turn order through claims:
-- byte k holds champion k's claimed task (6-bit task id) and its ETA bucket (2 bits);
-- on its turn, champion k takes the best u_kj among unclaimed tasks, or outbids a claim whose ETA bucket is at least 2 worse than its own, then writes its claim;
-- claims are rewritten every turn and expire otherwise; a dead champion clears its own claim.
+**Allocation:** a sequential single-item auction (Koenig et al. 2006, "The power of sequential single-item auctions for agent coordination", AAAI; with time windows, Nunes and Gini 2015, AAAI, TeSSI). Champions share no vision; they share 8 bytes of memory (writes are visible at once, SDK cambc.h about l.5004, so allies later in the same round see them) and 1,024 read-only draft bytes.
 
-First verify, with a probe, exactly when one champion's write becomes visible to an ally in the same round. If visibility is delayed, adapt the scheme and say how.
+**Byte map.** v4 already writes byte k (ally index 0-4) = target + 1 every turn, and 0 when dead (bot.cpp:534). That is a claim channel that refreshes itself, so stale claims clear by construction. Extend it:
+- low 6 bits = task id (group index + 1; the maximum is 46, on islands);
+- high 2 bits = ETA bucket: 0 for 10 rounds or fewer, 1 for 25 or fewer, 2 for 50 or fewer, 3 for more.
+
+Bytes 5-6 are written only on the rows map (not in the pool; rows.cpp:105) and by the contest siege (byte 6, kSquadClaimByte; siege is off by P_SIEGE_CONTEST 0). So on the 21-map pool, byte 5 is reserved for S3's focus target, byte 6 for a channel alert (an enemy tributing or recalling, with its altar id), and byte 7 is free.
+
+On its turn, champion k takes the best u_kj among unclaimed tasks, or outbids a claim whose ETA bucket is at least 2 worse than its own, then writes its claim. Turn order is fixed within a team, so champion 0 always bids first. The 2-bucket outbid rule makes the outcome mostly independent of that order; measure duplicate and orphaned tasks to confirm it.
 
 **Commitment (hysteresis):** keep the current task unless u_new > 1.2·u_cur. Pre-empt at once on: death risk above a threshold, an enemy tribute or recall channel that we can stun or lock within reach, or an ally in danger.
 
@@ -41,7 +44,7 @@ First verify, with a probe, exactly when one champion's write becomes visible to
 
 **Paths:** add a cost per tile within range 3/4/5 of awake wolves, elk and monoliths. Use a cost, not an exclusion; excluding elk range 4 cost wins in v4's ablation.
 
-**Fuel:** v4 peaks at 90,697 of 100,000 (186,807 of 200,000 on round 1), so this controller must REPLACE v4's target scoring (resolve_target and farm target choice), not add to it. Distance tables are built at the draft turn (1,000,000 fuel) or staged in Bot::init. Evaluate at most 8 candidate tasks per champion a turn, using table lookups.
+**Fuel:** v4 peaks at 90,697 of 100,000 (186,807 of 200,000 on round 1), so this controller must REPLACE v4's target scoring (resolve_target and farm target choice), not add to it. The draft bot is a separate instance, and only the 1,024 draft-memory bytes reach the match (for example a precomputed group order). So build distance tables in Bot::init, staged over the first rounds; round 1 has only about 13k spare fuel. Evaluate at most 8 candidate tasks per champion a turn, using table lookups.
 
 ## Order of work
 1. Diagnostics, done before building:
@@ -49,7 +52,7 @@ First verify, with a probe, exactly when one champion's write becomes visible to
    - the rounds per game v4 champions stand on our own spawn tiles of a group whose timer is 0;
    - the rounds per game with two allies on one group's tiles.
    Push these at once to this session's branch as results/v5-s1-diag.md.
-2. Build behind switches: P_ECON_AUCTION, P_ONE_CAPTURER, P_NO_SELF_BLOCK, P_TANK_SWAP, P_THREAT_COST. Ablate each.
+2. Build in this order, each behind its own switch and ablated: P_S1_NO_SELF_BLOCK, P_S1_ONE_CAPTURER, P_S1_THREAT_COST, then P_S1_AUCTION, then P_S1_TANK_SWAP (S1 owns the tank swap; S3 reuses it). Push a working intermediate after each step.
 
 ## Admission (fixed before testing)
 1. gate.py PASS.
