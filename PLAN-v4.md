@@ -19,6 +19,8 @@ Releases are admitted, not single modules. Primary measures: paired gem margin a
 | **v7** main | **Fri 14:00** (patches until 22:00) | Per-map fixes from panel data; experiments that passed (Heart of Ruin initiator, Prism big-bag, Marcella gold) | top-20 sample ≥ 40 % (M3) |
 | Sat | – | Bug fixes only; last upload by 20:00 | gate |
 
+**Real-team panels (Xans, 20 Oct 09:50): unranked groups go ONLY to the current top 10** (`tools/v3/queue_panel.py`, `data/unranked/top10.csv`; teams without an eligible bot are skipped). Against the top 10 most games will be lost, so a release is judged on paired gem margin and deaths per game against the previous live bot's top-10 panel (same teams, same map sets), with win rate secondary. The milestone win rates against the 8-team and rank-50-100 panels are replaced by: v5 gem margin vs top 10 better than v4's by >= 100 a game; v7 >= 25 % wins vs top 10. Quota: 50 groups an hour (one panel = 9 teams x 4 map sets = 36 groups).
+
 Main release moves to Fri 14:00 (Claude's computation: a top-20-strength bot needs about 3-5 hours of ranked play to climb from about 1,700).
 
 **Step 0, now:** split our deaths by cause (camp, enemy, near our spawn, while carrying), check what v3b actually drafts, and make the same split for the top 10. Analyst, cheap, data already decoded.
