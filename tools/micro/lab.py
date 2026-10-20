@@ -13,7 +13,7 @@ W (foe died), L (I died), E (I escaped past my line), X (foe escaped / left sigh
 import argparse, json, os, re, subprocess, time, zipfile, collections
 
 ROOT = "C:/cambc-solo"
-CAMBC = os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 NAMES = ["Ryth", "Vesper", "Vendetta", "C&I", "Stellar", "Prism", "Marcella", "Willow", "Ren", "Varg", "Tavi"]
 PICK = {n: i for i, n in enumerate(NAMES)}
 CORE = ["C&I", "Stellar", "Ryth", "Varg", "Ren", "Tavi", "Vendetta", "Prism"]

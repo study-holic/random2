@@ -9,7 +9,7 @@ played matches the recorded engine. Writes results/gate-<bot>-<HHMM>.json (+ the
 import argparse, json, os, subprocess, sys, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAMBC = os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 LIMIT = 100000
 
 

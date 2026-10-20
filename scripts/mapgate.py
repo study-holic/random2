@@ -9,7 +9,7 @@ is reported as wins/games only.
 import argparse, hashlib, json, os, struct, subprocess, sys, time, glob, zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAMBC = os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 PANEL = ["x-v4-14", "x-foundry-v16", "x-hello", "x-ifish", "x-mite", "x-shawn"]
 STRONG = ["x-v4-14", "x-foundry-v16"]
 

@@ -7,7 +7,12 @@ struct TurnView;
 
 inline constexpr int kMonsterRange = 3;   // wolf range; engine 1.0: elk 4, monolith 5, golem 4 (use camp_range)
 // FIX_CAMP_RANGE: the attack range of a camp from the API (cached by kind; engine 1.0 raised elk to 4 and monolith to 5).
+#ifndef P_CAMP_RANGE
+#define P_CAMP_RANGE 2   // 0 off, 1 all kinds from the API, 2 monolith and golem only (ablation: elk 4 hurt collision/eight/expanse h2h)
+#endif
 inline int camp_range(const cambc::camp& c) {
+    if (!P_CAMP_RANGE) return kMonsterRange;
+    if (P_CAMP_RANGE == 2 && !c.is_monolith() && !c.is_golem()) return kMonsterRange;
     static int cache[16] = {0};
     const int k = static_cast<int>(c.kind());
     if (k < 0 || k >= 16) return kMonsterRange;

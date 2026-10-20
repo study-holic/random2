@@ -6,7 +6,7 @@ python scripts/preflight.py [--fix] [--keep-scratch]
 import argparse, difflib, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile, time, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAMBC = os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 TEAM = "6c59147e-576f-465f-8d00-bdde9ed12f22"
 GT = os.path.join(ROOT, "state", "ground-truth.json")
 rows = []  # (check, status, text)
@@ -57,7 +57,7 @@ def main():
         cli = run([CAMBC, "--version"]).split()[-1]
         gt["cli"] = cli
         try:
-            out = subprocess.run(["py", "-3.14", "-m", "pip", "index", "versions", "cambc"], capture_output=True, text=True, timeout=40).stdout
+            out = subprocess.run((["py", "-3.14"] if os.name == "nt" else [sys.executable]) + ["-m", "pip", "index", "versions", "cambc"], capture_output=True, text=True, timeout=40).stdout
             latest = re.search(r"cambc \(([\d.]+)\)", out).group(1)
         except Exception:
             latest = None

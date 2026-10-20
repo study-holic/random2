@@ -13,7 +13,7 @@ ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--rate", type=float, default=1.0)
 ap.add_argument("--threads", type=int, default=3)
 a = ap.parse_args()
-CAMBC = os.path.expandvars("%APPDATA%/Python/Python314/Scripts/cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 OUT = "C:/cambc-solo/data/v3/replays"
 os.makedirs(OUT, exist_ok=True)
 ids = [l.strip() for l in open(a.ids) if l.strip()]

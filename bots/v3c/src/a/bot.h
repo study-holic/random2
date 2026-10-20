@@ -19,6 +19,7 @@ struct GroupInfo {
     bool squad_target = false;        // an Elk or three or more wolves: farmed by a squad
     int wolves = 0;
     int gems = 0;
+    int last_death = -1;
     int deaths = 0;                   // FIX_DEATH_LOOP
     int ready_round = 0;              // estimated round the group respawns (0 = assume alive)
     int excluded_until = 0;           // gave up here: skip this group until this round
@@ -126,7 +127,7 @@ public:
     void init();
     struct MonoPos { cambc::vec2 pos; int range; };
     std::vector<MonoPos> init_monos;
-    int last_tgt = -1; bool was_alive = true;
+    int last_tgt = -1; bool was_alive = true, last_had_foe = false;
     int init_phase = 0, init_gi = 0, init_unreachable = 0;
     cambc::vec2 init_ally_centre{0, 0}, init_enemy_centre{0, 0};
     bool init_any_elk = false;

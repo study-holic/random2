@@ -6,7 +6,7 @@ Usage: py -I tools/v3/fetch_unranked.py     (resumable; rerun until every group 
 """
 import csv, io, json, os, re, subprocess, sys, time, zipfile
 
-CAMBC = os.path.expandvars("%APPDATA%/Python/Python314/Scripts/cambc.exe")
+CAMBC = os.environ.get("CAMBC") or (os.path.expandvars(r"%APPDATA%\Python\Python314\Scripts\cambc.exe") if os.name == "nt" else (__import__("shutil").which("cambc") or "cambc"))
 U = "C:/cambc-solo/data/unranked"
 REP = "C:/cambc-solo/data/v3/replays"
 OURS = "6c59147e-576f-465f-8d00-bdde9ed12f22"

@@ -18,5 +18,6 @@ for b in "$@"; do
     echo "CONFLICT applying $b; rejects:"; find "bots/$out/src" -name '*.rej'; exit 2
   fi
 done
-"$APPDATA/Python/Python314/Scripts/cambc.exe" build --release "$out"
+CAMBC="${CAMBC:-$(command -v cambc || echo "$APPDATA/Python/Python314/Scripts/cambc.exe")}"
+"$CAMBC" build --release "$out"
 echo "built bots/$out from v2a + $*"
