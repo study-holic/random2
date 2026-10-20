@@ -57,7 +57,8 @@ const args = process.argv.slice(2);
 const oi = args.indexOf('--out'), si = args.indexOf('--stride');
 const outDir = oi >= 0 ? args[oi + 1] : null;
 const stride = si >= 0 ? Number(args[si + 1]) : 1;
-const files = args.filter((x, i) => ![oi, oi + 1, si, si + 1].includes(i) || (oi < 0 && si < 0));
+const flagIdx = [oi, si].filter((k) => k >= 0).flatMap((k) => [k, k + 1]); // (was: si = -1 dropped args[0] when --stride was absent)
+const files = args.filter((x, i) => !flagIdx.includes(i));
 if (!outDir || !files.length) { console.error('usage: node extract_pilot.mjs <replay|zip ...> --out <dir>'); process.exit(2); }
 fs.mkdirSync(outDir, { recursive: true });
 for (const f of files) {
