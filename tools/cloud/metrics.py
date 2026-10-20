@@ -35,6 +35,14 @@ K_MOVE, K_ATK, K_CAST, K_RECALL, K_TRIB, K_CAPT = 4, 5, 6, 11, 12, 23
 LOCK_BIT = 2
 
 
+def mirror(m, pts):
+    """data/maps21.json lists half the camps (one side); sym 0 mirrors x, 1 mirrors y, 2 rotates (checked against both
+    teams' spawn tiles on the 10 panel maps). Returns the points plus their mirror images, deduplicated."""
+    w, h, s = m["w"], m["h"], m["sym"]
+    f = (lambda x, y: (w - 1 - x, y)) if s == 0 else (lambda x, y: (x, h - 1 - y)) if s == 1 else (lambda x, y: (w - 1 - x, h - 1 - y))
+    return sorted(set(pts) | {f(x, y) for x, y in pts})
+
+
 def snaps_of(d):
     out, last = [], -1
     for s in d["rounds"]:
@@ -48,9 +56,8 @@ def game_metrics(d, us, mp, label=""):
     c0 = S[0]["c"]; n = len(c0); team = [c[0] for c in c0]; typ = [c[1] for c in c0]
     th = 1 - us
     start = {t: [(c[3], c[4]) for c in c0 if c[0] == t] for t in (0, 1)}
-    mons = [(x, y) for t, x, y in m["camps"] if t in (0, 1, 4)]
-    alt = [tuple(a) for a in m["altars"]]
-    grp_tiles = {(x, y) for g in m["grp"] for _, x, y in g["camps"]}
+    mons = mirror(m, [(x, y) for t, x, y in m["camps"] if t in (0, 1, 4)])
+    alt = mirror(m, [tuple(a) for a in m["altars"]])
     by_r = collections.defaultdict(list)
     for a in d["actions"]:
         by_r[a[0]].append(a)
@@ -147,8 +154,8 @@ def fights_and_time(path, d, S, us, mp, rec):
     rec["ability_open_share_opp"] = rec["fights_opened_ability_opp"] / len(fo) if fo else None
 
     # time use per champion-round
-    m = MAPS[mapkey(mp)]; alt = [tuple(a) for a in m["altars"]]
-    grp_tiles = {(x, y) for g in m["grp"] for _, x, y in g["camps"]}
+    m = MAPS[mapkey(mp)]; alt = mirror(m, [tuple(a) for a in m["altars"]])
+    grp_tiles = set(mirror(m, [(x, y) for g in m["grp"] for _, x, y in g["camps"]]))
     c0 = S[0]["c"]; n = len(c0); team = [c[0] for c in c0]
     acts = collections.defaultdict(list)
     for a in d["actions"]:
