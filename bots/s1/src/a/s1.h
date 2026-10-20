@@ -113,3 +113,6 @@ inline double s1_salt_noise(int who, int group) {
 #ifndef P_S1_CHOOSE_FUEL
 #define P_S1_CHOOSE_FUEL 70000   // a target choice (about 20k) is deferred one round when less fuel than this remains
 #endif
+#ifndef P_S1_SPAN
+#define P_S1_SPAN 1   // service time includes the walk between a group's members (bounding box)
+#endif

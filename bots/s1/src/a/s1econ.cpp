@@ -162,9 +162,10 @@ double Bot::s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed)
     eta = tau + wait;
     const int k = k_fixed > 0 ? k_fixed : std::max(1, std::max(s1_coalition(i), claim + 1));
     const double dps = s1_ctx_dps;
-    const double s = static_cast<double>(g.hp_total) / (dps * k) + 5.0;
+    // service: clear + 5 capture rounds + the walk between the group's members (corners pairs camps 22 tiles apart)
+    const double s = static_cast<double>(g.hp_total) / (dps * k) + 5.0 + (P_S1_SPAN ? std::max(g.bx1 - g.bx0, g.by1 - g.by0) : 0);
     const double h = std::max(300.0, P_S1_RISK_MAXHP ? s1_ctx_maxhp : s1_ctx_hp);   // retreat at 30-45 % already guards a hurt champion
-    const double ratio = g.str_total * (s - 5.0) / (h * k);
+    const double ratio = g.str_total * (static_cast<double>(g.hp_total) / (dps * k)) / (h * k);
     double rho_c = std::clamp((ratio - P_S1_RISK_RATIO) / P_S1_RISK_RATIO, 0.0, 1.0);
     double rho_e = 0;
     if (v.round - s1_foe_round[i] <= P_S1_FOE_MEMORY) rho_e = std::min(0.8, 0.25 * s1_foe_n[i]);
