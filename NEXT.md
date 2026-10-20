@@ -4,6 +4,14 @@ Read this first, then `PLAN-v3.md` (root causes, workstreams) and the tail of `R
 No agents are running; every agent stopped at about 21:00 on the session limit. Their files are saved and listed below.
 Standing rules from Xans: unranked matches may be run freely (`cambc match-groups create`, 50 groups an hour); **ask him before every upload**.
 
+
+## Resume here (16:15 BST 20 Oct)
+- **v5 = S2 build B** (bots/v5, frozen copy of nice-cray 25ec32b): gate PASS on laptop and cloud (42/42, max 93,816), 70/126 vs v4, deaths 17.0 vs 22.9, gem margin +132, gear 2.71 (FAIL vs 3.0, waived in PLAN-v4.md). Upload blocked for Claude by the permission classifier: Xans runs `cambc submit bots/v5`. After that: VERSIONS.md entry, then `python tools/v3/queue_panel.py v5top --sets ABCD` (check top10.csv is current) and judge by PLAN-v4.md "Waiver and panel thresholds".
+- **v6 = v5 + S3 contest module** (heisenberg's, 13.7 deaths vs 35.4 for archimedes's): bots/v6, compiles, brief tools/cloud/v6-integrate.md for the idle "parity" cloud session.
+- **Null for self-play:** v4 vs v4 = 73/126 in mapgate (S3 session). w1's 73/126 equals it: per-map N2 shows no gain, not integrated.
+- Build A (sleepy-clarke) kept as bots/s2a, not uploaded (no gate cap, latching lock flag). S3 "archimedes" module stays on main as bots/s3 (data).
+- Sessions: S1 economy still running (nifty-cray).
+
 ## Where we stand
 
 - Live bot: v2 (platform "v1"), uploaded 23:33 BST 18 Oct. Ladder at 18:00 Mon: rating 1,417, rank 499; 515 ranked games, 46 % wins.
