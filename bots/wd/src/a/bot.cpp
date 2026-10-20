@@ -602,7 +602,7 @@ void Bot::play_turn() {
 #if TRACE_V
     struct FG { int r, u; ~FG() { if (r <= 14) std::cout << "F r" << r << " u" << u << " left" << cambc::fuel_remaining() << "\n"; } } fg{static_cast<int>(cambc::round_number()), ally_index};
 #endif
-    if (!initialised) { init(); if (!initialised || cambc::fuel_remaining() < 80000) return; }   // staged init: an unfinished init (or one that left < 80k) yields the turn
+    if (!initialised) { init(); if (!initialised || cambc::fuel_remaining() < (P_W_FUELCAP ? 100000u : 80000u)) return; }   // P_W_FUELCAP: a play turn costs up to ~95k   // staged init: an unfinished init (or one that left < 80k) yields the turn
 #if TRACE_V
     if (ally_index == 0 && cambc::round_number() >= 18 && cambc::round_number() <= 45) std::cout << "S r" << cambc::round_number() << " p" << cambc::self().position().x << "," << cambc::self().position().y << " hp" << (int)cambc::self().health() << " alive" << cambc::self().is_alive() << "\n";
 #endif

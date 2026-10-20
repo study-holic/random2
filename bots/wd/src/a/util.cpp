@@ -211,6 +211,12 @@ static bool move_towards_closest_impl(const cambc::bitboard& static_block, const
     cambc::distance_field field; cambc::bitboard visited;
     static std::uint64_t field_max = 0;   // S1 fuel governor: the most expensive path field seen in this game
     const auto fuel0 = cambc::fuel_remaining();
+    if (P_W_FUELCAP && (fuel0 < field_max + 25000 || fuel0 < 40000)) {   // the field may not fit (70k on starvation): one engine step to the nearest goal
+        vec2 best = pos; int bd = 1 << 20;
+        for (auto t : goals.positions()) { const int d = static_cast<int>(pos.chebyshev_distance(t)); if (d < bd) { bd = d; best = t; } }
+        if (bd < (1 << 20)) { try { return me.move_towards(best); } catch (...) { return false; } }
+        return false;
+    }
     if ((P_S1_AUCTION || P_S1_THREAT_COST) && fuel0 < field_max + 8000) return false;   // no move rather than running out mid-field
     field.compute_to(path_walls, goals, tiles_around(pos, 0), visited);
     const auto fuel1 = cambc::fuel_remaining(), field_cost = fuel0 > fuel1 ? fuel0 - fuel1 : 0;

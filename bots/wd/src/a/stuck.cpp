@@ -32,9 +32,14 @@ static constexpr int kStuckWalkTiles = P_STUCK_WALK_TILES;
 
 void Bot::update_contested(const TurnView& v, const std::vector<cambc::champion>& enemies) {
     if (P_THREAT_LAYER) {   // EXP-071: any enemy champion near a group's spawn tiles (leash memory)
+        // P_W_FUELCAP (same result): enemies in view are within 8 tiles of us, so a group farther than 8 + radius + 2 from
+        // us cannot have one within radius + 2 (32-48k fuel on islands and yellow_brick_road, sweep35 stamps).
+        std::vector<char> near(groups.size(), 1);
+        if (P_W_FUELCAP && !enemies.empty())
+            for (std::size_t i = 0; i < groups.size(); ++i) near[i] = min_distance(v.pos, groups[i].tiles) <= 8 + kContestRadius + 2;
         for (const auto& e : enemies) {
             const vec2 f = e.position();
-            for (std::size_t i = 0; i < groups.size(); ++i) if (min_distance(f, groups[i].tiles) <= kContestRadius + 2) foe_seen[i] = v.round;
+            for (std::size_t i = 0; i < groups.size(); ++i) if (near[i] && min_distance(f, groups[i].tiles) <= kContestRadius + 2) foe_seen[i] = v.round;
         }
     }
     if (enemies.size() < 2) return;
@@ -43,7 +48,7 @@ void Bot::update_contested(const TurnView& v, const std::vector<cambc::champion>
     for (auto& g : groups) {
         // S1 fuel (same result): enemies in view are within 8 tiles of us (vision 8), so a group farther than
         // 8 + kContestRadius from us cannot have one within kContestRadius (32k fuel with six enemies on islands).
-        if (P_S1_AUCTION && min_distance(v.pos, g.tiles) > 8 + kContestRadius) continue;
+        if ((P_S1_AUCTION || P_W_FUELCAP) && min_distance(v.pos, g.tiles) > 8 + kContestRadius) continue;
         int n = 0;
         for (auto f : foes) if (min_distance(f, g.tiles) <= kContestRadius) ++n;
         if (n >= 2) g.contested_round = v.round;
