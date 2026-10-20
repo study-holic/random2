@@ -205,6 +205,7 @@ public:
     bool fresher_mate_near(const TurnView& v, const std::vector<cambc::champion>& allies) const;
     bool wait_for_squad(const TurnView& v, const std::vector<cambc::champion>& allies);
 
+    int last_nc = 0;
     int diag_on = 0, diag_selfblock = 0, diag_resp = 0, diag_capt = 0, diag_dup = 0;
     void s1_diag();
 public:

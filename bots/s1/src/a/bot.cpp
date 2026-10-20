@@ -78,8 +78,12 @@ TurnView Bot::build_view() const {
         const int reach = focus ? 8 : 4;
         if (min_distance(v.pos, g.tiles) > reach) continue;
         const auto& area = focus ? v.visible : near;
+        // P_S1_BANK_REACH: an asleep Monolith outside the target is left out of the view, so no fight code wakes it
+        // when a carrier walks past it to an altar inside its range (it cannot hurt while asleep: arena test 1).
+        const bool skip_mono = P_S1_BANK_REACH && g.monolith && static_cast<int>(i) != target && static_cast<int>(i) != holding;
         for (const auto& c : g.group.camps())
             if (area.is_set(c.spawn_position()) && c.is_visible()) {
+                if (skip_mono && c.is_monolith() && !awake_tiles().is_set(c.spawn_position())) continue;
                 const float h = c.health();
                 if (h > 0) v.camps.push_back({c, static_cast<int>(i), h});
             }
@@ -191,6 +195,15 @@ void Bot::init() {
         std::vector<vec2> usable;
         for (auto a : altars)
             if (!(tiles_around(a, cambc::constants::submit_gems_range) & reach).is_empty()) usable.push_back(a);
+        if (P_S1_BANK_REACH) {   // a submit tile that is a Monolith spawn tile needs the Monolith dead (boss_battle): not usable
+            cambc::bitboard mono; mono.clear();
+            for (const auto& g : groups) if (g.monolith) mono |= g.mask;
+            std::vector<vec2> open;
+            for (auto a : usable)
+                if (!(tiles_around(a, cambc::constants::submit_gems_range) & reach & ~mono).is_empty()) open.push_back(a);
+            usable = open;
+            if (usable.empty()) altars.clear();   // no altar we can use: carry and farm (gold is the 0-0 tiebreak)
+        }
         if (!usable.empty()) altars = usable;
     }
     init_phase = 3;
@@ -396,6 +409,7 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
     auto& me = cambc::self();
     const int gems = static_cast<int>(me.gem_count());
     if (gems <= 0) { banking = false; carry_since = -1; bank_spawn_done = false; return false; }
+    if (altars.empty()) { banking = false; return false; }   // P_S1_BANK_REACH: no usable altar
     if (carry_since < 0) carry_since = v.round;
     if (holding >= 0) return false;
     if (!banking) {
@@ -504,6 +518,14 @@ void Bot::s1_diag() {
             break;
         }
     }
+#if P_S1_TRACE
+    if (rnd % P_S1_TRACE == 0) {
+        const vec2 p = me.position();
+        std::cout << "S1T r" << rnd << " a" << ally_index << " ch" << int(me.champion_name()) << " p" << p.x << "," << p.y << " hp" << int(me.is_alive() ? me.health() : -1)
+                  << " g" << me.gem_count() << " au" << me.gold_count() << " tg" << target << " hd" << holding << " rt" << retreating << " bk" << banking << " sub" << me.is_submitting_gems() << " rc" << me.is_recalling()
+                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << std::endl;
+    }
+#endif
     if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << std::endl;
 }
 #endif
@@ -572,6 +594,7 @@ void Bot::play_turn_inner() {
 
     if (P_OPENING_ASSIGN && me.gem_count() > 0) open_done = true;   // EXP-079: first gems collected
     const TurnView v = build_view();
+    last_nc = static_cast<int>(v.camps.size());
     update_group_memory(v);
     note_mixed_clusters(v);   // EXP-030
     const bool at_spawn = ally_spawn.is_set(v.pos);

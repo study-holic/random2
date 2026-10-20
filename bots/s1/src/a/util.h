@@ -36,6 +36,7 @@ inline int camp_range(const cambc::camp& c) {
 #define P_STAND_SIGHT 1   // 0 off, 1 on
 #endif
 
+const cambc::bitboard& awake_tiles();   // awake camp tiles in vision, once per round
 bool enemy_champion_near();   // P_SAVE_CC: an enemy champion within 8 tiles (util.cpp)
 int tile_distance(cambc::vec2 a, cambc::vec2 b);
 cambc::bitboard tiles_around(cambc::vec2 position, int radius);

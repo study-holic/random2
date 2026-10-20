@@ -126,6 +126,13 @@ void cast_shield(const TurnView& v) {
         if (ab.is_shield() && ab.is_ready()) { try { ab.use(); } catch (...) {} break; }
 }
 
+// Awake camp tiles in vision, queried once per round (shared by the Monolith zone and P_S1_BANK_REACH).
+const cambc::bitboard& awake_tiles() {
+    static int zr = -1; static cambc::bitboard awake;
+    if (zr != static_cast<int>(cambc::round_number())) { zr = static_cast<int>(cambc::round_number()); awake = cambc::vision::awake_camp_tiles(); }
+    return awake;
+}
+
 std::vector<MonoZone> g_mono_list;
 bool g_mono_zone_on = false;
 
@@ -141,7 +148,12 @@ bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitb
     {   // goals that lie inside a zone stay unwanted: only retry when some goal outside every zone could not be reached
         cambc::bitboard z; z.clear();
         for (const auto& mz : g_mono_list) z |= mz.zone;
-        if ((goals & ~z).is_empty()) return false;
+        if ((goals & ~z).is_empty()) {
+            // P_S1_BANK_REACH: every goal inside a zone (boss_battle's only altar sits within 5 of two Monoliths) is
+            // entered when no Monolith covering a goal is awake; asleep camps never attack (arena test 1).
+            if (!P_S1_BANK_REACH) return false;
+            for (const auto& mz : g_mono_list) if (!(mz.zone & goals).is_empty() && awake_tiles().is_set(mz.pos)) return false;
+        }
     }
     g_zone_skip = true;
     const bool r = move_towards_closest_impl(static_block, camp_static, goals, zone_used);
@@ -156,8 +168,7 @@ static bool move_towards_closest_impl(const cambc::bitboard& static_block, const
     auto blocked = static_block | cambc::vision::champion_tiles() | cambc::vision::camp_tiles()
         | (camp_static & ~goals) | cambc::vision::teleport_tiles();
     if (g_mono_zone_on && !g_zone_skip) {   // FIX_MONO_ZONE: a visible AWAKE Monolith's range is a wall (asleep camps do not attack: GameRules, monster details)
-        static int zr = -1; static cambc::bitboard awake;
-        if (zr != static_cast<int>(cambc::round_number())) { zr = static_cast<int>(cambc::round_number()); awake = cambc::vision::awake_camp_tiles(); }
+        const cambc::bitboard& awake = awake_tiles();
         for (const auto& mz : g_mono_list)
             if ((P_MONO_ZONE_ALWAYS || awake.is_set(mz.pos)) && !mz.zone.is_set(pos)) { blocked |= mz.zone; zone_used = true; }
     }
