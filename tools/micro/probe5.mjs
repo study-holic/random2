@@ -1,0 +1,13 @@
+import { openBuilderEngine } from './mapbuilder.mjs';
+import { makeArena, validate } from './mkarena.mjs';
+import fs from 'node:fs';
+const E = await openBuilderEngine(3);
+const { X, out, view, check } = E;
+const buf = makeArena(E, { picksA: [4, 0, 9, 10, 8], picksB: [0, 9, 4, 8, 10], polA: 0, polB: 0 });
+const p = X.Engine_Malloc(buf.length); new Uint8Array(X.memory.buffer, p, buf.length).set(buf);
+check(X.MapBuilder_FromFileBytes(p, buf.length, out), 'from'); const h = view().getBigUint64(out, true);
+console.log('add camp rc', X.MapBuilder_AddCamp(h, 3, 10, 6, out));
+check(X.MapBuilder_GetNumCamps(h, out), 'n'); console.log('camps after 1 add', view().getUint32(out, true));
+console.log('add mirror rc', X.MapBuilder_AddCamp(h, 3, 39, 6, out));
+check(X.MapBuilder_GetNumCamps(h, out), 'n'); console.log('camps after mirror add', view().getUint32(out, true));
+check(X.MapBuilder_GetNumCampGroups(h, out), 'g'); console.log('groups', view().getUint32(out, true));

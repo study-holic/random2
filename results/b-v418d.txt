@@ -1,0 +1,20 @@
+b-v418d: 204 games in 271 s (45.1/min, jobs 13), rc 0
+map            wins  strong  medR death   gemD flt gate
+ambush       11/12    3/4     926   2.3  847.2   0 PASS
+collision     9/12    1/4     765   3.8  173.3   0 fail
+contest      10/12    2/4    2000  20.6    0.0   0 PASS
+corners       5/12    2/4     480   3.3 -106.8   0 fail
+eight         9/12    1/4     682   6.8  308.2   0 fail
+elkring       8/12    1/4     674   5.2  231.0   0 fail
+expanse      12/12    4/4     426   0.8  367.7   0 PASS
+fragment      8/12    1/4     739  13.1  375.8   0 fail
+interlock     8/12    2/4     618   2.1  -70.3   0 PASS
+lanes         8/12    1/4     493   1.7  181.2   0 fail
+monolith     11/12    3/4     590   4.6  429.2   0 PASS
+packs        10/12    2/4     529   2.0  409.8   0 PASS
+pilgrimage   10/12    3/4    1291  12.2  241.0   0 PASS
+rows         12/12    4/4     493   0.3  654.5   0 PASS
+rushbait-v2   6/12    1/4    1098   3.8  128.8   0 fail
+stampede      9/12    2/4    1508  15.8  570.0   0 PASS
+swirl         6/12    1/4    1902  54.1   47.9   0 fail
+total 152/204; maps passing 9/17; out results/b-v418d.json

@@ -1,0 +1,20 @@
+w11: 102 games in 407 s (15.0/min, jobs 2), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+ambush       1.0/2   0.0/0     840   0.8   19.3   0     0 
+collision    1.0/2   0.0/0     621   5.0  188.0   0     0 
+contest      1.67/2   0.0/0    2000  25.0    0.0   0     0 
+corners      2.0/2   0.0/0     492   1.0  473.0   0     0 
+eight        1.0/2   0.0/0     576   5.0  180.0   0     0 
+elkring      2.0/2   0.0/0     727   4.5   90.0   0     0 
+expanse      0.67/2   0.0/0     448   0.0  -24.3   0    16 
+fragment     0.0/2   0.0/0    None  22.5 -422.0   0     0 
+interlock    1.67/2   0.0/0     529   3.0   87.0   0     0 
+lanes        0.67/2   0.0/0     419   0.0  -57.0   0    24 
+monolith     1.33/2   0.0/0     505   4.5   16.3   0     0 
+packs        1.0/2   0.0/0     441   2.5  -34.0   0     0 
+pilgrimage   1.0/2   0.0/0    1346  19.3   74.0   0     0 
+rows         0.67/2   0.0/0     460   0.0  -11.0   0     0 
+rushbait-v2  0.33/2   0.0/0    1032  13.5 -127.7   0     0 
+stampede     0.67/2   0.0/0    1128  12.0 -180.0   0     0 
+swirl        1.0/2   0.0/0    1132  34.5   12.0   0     0 
+total 17.68/34 (mean over salts [0, 1, 2]); maps passing 0/17; out results/w11-h2h-s123.json

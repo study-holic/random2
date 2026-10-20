@@ -1,0 +1,54 @@
+## usage per champion by map group (share of top-10 team-sides containing champion)
+00 kept 308 Ryth:69% Vesper:0% Vendetta:1% Cassi+Issac:95% Stellar:98% Prism:12% Marcella:1% Willow:1% Ren:70% Varg:75% Tavi:33% HeartOfRuin:0%
+01 new 247 Ryth:69% Vesper:1% Vendetta:3% Cassi+Issac:96% Stellar:94% Prism:13% Marcella:1% Willow:4% Ren:59% Varg:70% Tavi:33% HeartOfRuin:0%
+
+## per map: team size, top draft sets (n, win%, rating-adjusted excess in points = win - expected, mutual games only)
+00ambush | sides 18 | size {5: 18} | Prism 3 HoR 0 | Ryth+CI+Stel+Ren+Varg n=7 w=86% adj+27pt(n=5) ; CI+Stel+Ren+Varg+Tavi n=6 w=17% adj-21pt(n=5) ; Ryth+CI+Stel+Pris+Varg n=3 w=0%
+00collision | sides 18 | size {3: 18} | Prism 0 HoR 0 | CI+Stel+Ren n=12 w=67% adj+9pt(n=10) ; Ryth+CI+Varg n=4 w=25% adj-22pt(n=4) ; Ryth+Stel+Varg n=2 w=50%
+00contest | sides 27 | size {5: 27} | Prism 13 HoR 0 | Ryth+CI+Stel+Ren+Varg n=10 w=70% adj+10pt(n=9) ; CI+Stel+Pris+Ren+Tavi n=7 w=29% adj-21pt(n=7) ; Ryth+CI+Stel+Pris+Tavi n=5 w=80% adj+32pt(n=3)
+00corners | sides 26 | size {5: 26} | Prism 3 HoR 0 | Ryth+CI+Stel+Ren+Varg n=15 w=53% adj+3pt(n=13) ; Ryth+CI+Stel+Varg+Tavi n=8 w=12% adj-37pt(n=4) ; CI+Stel+Pris+Ren+Tavi n=3 w=100% adj+37pt(n=3)
+00eight | sides 30 | size {5: 30} | Prism 5 HoR 0 | Ryth+CI+Stel+Ren+Varg n=16 w=50% adj-6pt(n=13) ; Ryth+CI+Stel+Varg+Tavi n=5 w=80% adj+26pt(n=3) ; CI+Stel+Pris+Ren+Tavi n=4 w=75% adj+13pt(n=4)
+00elkring | sides 29 | size {5: 29} | Prism 3 HoR 0 | Ryth+CI+Stel+Ren+Varg n=20 w=55% adj+5pt(n=16) ; Ryth+CI+Stel+Varg+Tavi n=6 w=67% adj+6pt(n=2) ; Ryth+CI+Stel+Pris+Varg n=3 w=0% adj-44pt(n=2)
+00expanse | sides 34 | size {5: 34} | Prism 0 HoR 0 | Ryth+CI+Stel+Ren+Varg n=18 w=72% adj+22pt(n=12) ; CI+Stel+Ren+Varg+Tavi n=14 w=21% adj-29pt(n=11) ; Ryth+CI+Stel+Varg+Tavi n=2 w=100% adj+57pt(n=1)
+00fragment | sides 38 | size {3: 38} | Prism 0 HoR 0 | CI+Stel+Ren n=17 w=76% adj+14pt(n=13) ; CI+Stel+Varg n=9 w=33% adj-9pt(n=9) ; Ryth+Stel+Varg n=7 w=71% adj-45pt(n=1)
+00interlock | sides 29 | size {4: 29} | Prism 0 HoR 0 | Ryth+CI+Stel+Varg n=16 w=38% adj-17pt(n=10) ; Ryth+CI+Stel+Ren n=8 w=100% adj+46pt(n=6) ; CI+Stel+Ren+Tavi n=5 w=40% adj-27pt(n=4)
+00lanes | sides 27 | size {5: 27} | Prism 5 HoR 0 | Ryth+CI+Stel+Ren+Varg n=15 w=67% adj+11pt(n=13) ; CI+Stel+Pris+Ren+Tavi n=5 w=20% adj-56pt(n=4) ; CI+Stel+Ren+Varg+Tavi n=4 w=50% adj+26pt(n=3)
+00monolith | sides 32 | size {5: 32} | Prism 4 HoR 0 | Ryth+CI+Stel+Ren+Varg n=19 w=63% adj+10pt(n=15) ; Ryth+CI+Stel+Varg+Tavi n=9 w=78% adj+32pt(n=3) ; CI+Stel+Pris+Ren+Tavi n=4 w=0% adj-62pt(n=4)
+01big_world | sides 25 | size {5: 25} | Prism 0 HoR 0 | Ryth+CI+Stel+Ren+Varg n=8 w=25% adj-6pt(n=6) ; Ryth+CI+Stel+Varg+Tavi n=7 w=14% adj-51pt(n=4) ; CI+Stel+Ren+Varg+Tavi n=5 w=40% adj+20pt(n=3)
+01boss_battle | sides 24 | size {5: 24} | Prism 3 HoR 0 | Ryth+CI+Stel+Ren+Varg n=13 w=31% adj-5pt(n=10) ; Ryth+CI+Stel+Varg+Tavi n=4 w=50% adj+11pt(n=2) ; Ryth+Vend+CI+Will+Varg n=3 w=67% adj-18pt(n=2)
+01broken_curve | sides 26 | size {3: 26} | Prism 0 HoR 0 | CI+Stel+Ren n=13 w=62% adj+4pt(n=10) ; Ryth+CI+Varg n=7 w=43% adj+7pt(n=6) ; CI+Stel+Varg n=3 w=100% adj+56pt(n=1)
+01concentrated_wealth | sides 18 | size {5: 18} | Prism 2 HoR 0 | Ryth+CI+Stel+Ren+Varg n=6 w=67% adj+23pt(n=4) ; CI+Stel+Ren+Varg+Tavi n=5 w=20% adj-22pt(n=4) ; Ryth+CI+Stel+Ren+Tavi n=3 w=100% adj+36pt(n=3)
+01corridors | sides 34 | size {5: 34} | Prism 8 HoR 0 | Ryth+CI+Stel+Ren+Varg n=17 w=47% adj+3pt(n=13) ; Ryth+CI+Stel+Varg+Tavi n=8 w=50% adj+11pt(n=2) ; Ryth+CI+Stel+Pris+Varg n=4 w=75% adj+13pt(n=4)
+01elk_arena | sides 25 | size {5: 25} | Prism 13 HoR 0 | CI+Stel+Pris+Ren+Tavi n=7 w=43% adj-10pt(n=7) ; Ryth+CI+Stel+Ren+Varg n=7 w=71% adj+15pt(n=6) ; Ryth+CI+Stel+Varg+Tavi n=5 w=100% adj+67pt(n=1)
+01fracture | sides 19 | size {5: 19} | Prism 0 HoR 0 | Ryth+CI+Stel+Varg+Tavi n=9 w=56% adj+15pt(n=3) ; Ryth+CI+Stel+Ren+Varg n=7 w=57% adj+13pt(n=6) ; CI+Stel+Ren+Varg+Tavi n=3 w=0% adj-41pt(n=3)
+01gold_rush | sides 29 | size {3: 29} | Prism 3 HoR 0 | CI+Stel+Ren n=12 w=67% adj+19pt(n=9) ; CI+Stel+Varg n=6 w=50% adj+3pt(n=6) ; Ryth+Stel+Varg n=5 w=100% adj+55pt(n=1)
+01hooks | sides 30 | size {4: 30} | Prism 3 HoR 0 | Ryth+CI+Stel+Ren n=14 w=50% adj-9pt(n=12) ; Ryth+CI+Stel+Varg n=13 w=69% adj+17pt(n=9) ; Stel+Pris+Ren+Tavi n=3 w=33% adj-17pt(n=3)
+01islands | sides 17 | size {5: 17} | Prism 0 HoR 0 | Ryth+CI+Stel+Ren+Varg n=8 w=75% adj+19pt(n=3) ; CI+Stel+Ren+Varg+Tavi n=4 w=75% adj+0pt(n=2) ; Ryth+Vesp+CI+Stel+Varg n=3 w=33% adj-44pt(n=1)
+
+## champion presence: win excess in top10-vs-top10 games (rating adjusted), n sides
+Ryth 254 +4.6pt
+Vesper 1 -44.4pt
+Vendetta 10 +4.2pt
+Cassi+Issac 389 +0.5pt
+Stellar 380 +0.0pt
+Prism 55 -14.1pt
+Marcella 5 -9.6pt
+Willow 14 -4.1pt
+Ren 288 +1.6pt
+Varg 271 +1.4pt
+Tavi 121 -10.8pt
+
+## mutual-game draft matchups (set vs set; side A wins/n), only pairs with n>=6
+Ryth+CI+Stel+Ren+Varg vs CI+Stel+Pris+Ren+Tavi: 13/22 adj +11pt
+Ryth+CI+Stel+Ren+Varg vs CI+Stel+Ren+Varg+Tavi: 15/18 adj +28pt
+Ryth+CI+Stel+Ren+Varg vs Ryth+CI+Stel+Varg+Tavi: 11/18 adj +6pt
+CI+Stel+Ren vs CI+Stel+Varg: 7/10 adj +14pt
+Ryth+CI+Stel+Ren vs Ryth+CI+Stel+Varg: 5/9 adj +4pt
+Ryth+Vend+CI+Will+Varg vs Ryth+CI+Stel+Ren+Varg: 5/8 adj -5pt
+Ryth+CI+Varg vs CI+Stel+Ren: 2/7 adj -15pt
+Ryth+CI+Stel+Varg+Tavi vs CI+Stel+Pris+Ren+Tavi: 4/6 adj +32pt
+CI+Stel+Ren vs Stel+Ren+Tavi: 3/4 adj +30pt
+Ryth+CI+Stel+Pris+Varg vs Ryth+CI+Stel+Ren+Varg: 1/4 adj -27pt
+Ryth+CI+Stel+Pris+Tavi vs Ryth+CI+Stel+Ren+Varg: 2/4 adj +5pt
+Ryth+CI+Stel+Varg+Tavi vs CI+Stel+Ren+Varg+Tavi: 2/3 adj +3pt
+pairs with n>=6: 8 of 36

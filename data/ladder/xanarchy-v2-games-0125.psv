@@ -1,0 +1,52 @@
+# Xanarchy v2 (platform v1) ranked games to 01:25 BST 19 Oct, from /api/v1/match-groups (signed-in browser). Champion ids: 0 Ryth,1 Vesper,2 Vendetta,3 C&I,4 Stellar,5 Prism,6 Marcella,7 Willow,8 Ren,9 Varg,10 Tavi
+opp|opp_rating|map|our_side|result|our_gems|opp_gems|rounds|end|our_draft|opp_draft|bot_error|match_id
+Hidden Gem Thieves|1415|contest|b|loss|0|1000|1528|gems|2.3.9.0.10|10.9.2.0.1||06490b46-2428-4bda-9e18-0e274186153d
+Hidden Gem Thieves|1415|pilgrimage|b|loss|524|1048|849|gems|2.3.9.0.10|10.9.2.0.1||f6cc112c-7bf4-46a7-91a0-8d5ddfc156f7
+Hidden Gem Thieves|1415|collision|b|win|1022|538|774|gems|2.3.4|9.10.2||2e24c375-0e07-4fdb-be5e-f6ca94a50fdd
+Hidden Gem Thieves|1415|fragment|b|loss|168|1034|646|gems|2.3.4|9.10.2||62ed5551-4ca3-4a7b-974b-ddd4f1404f61
+Hidden Gem Thieves|1415|expanse|b|loss|868|1106|762|gems|2.3.4|9.10.2||8bddce69-4df8-4293-80f6-45eac0ae3e06
+tRust me bro|1414|packs|a|loss|448|1008|634|gems|2.3.4|3.4.8||3e92f604-a7ea-47e0-91d0-9425c6762f0c
+tRust me bro|1414|corners|a|win|1004|544|734|gems|3.4.9.0.8|3.4.8.7.9||acd81951-891f-4f54-b85e-289cf667221b
+tRust me bro|1414|rushbait_v2|a|loss|536|1018|862|gems|2.3.9.0|3.4.8.7||0d7beccf-3f54-4621-b3cb-c4d442e3efa5
+tRust me bro|1414|stampede|a|win|1200|960|1785|gems|2.3.9.0.10|3.4.8.7.9||44231d59-2530-42fb-a281-2727c1d34737
+tRust me bro|1414|eight|a|loss|408|1030|585|gems|2.3.9.0.10|3.4.8.7.9||4b2f4acc-3b4a-49a7-885e-8b1d164e5e70
+I Am The Senate|1422|rows|a|win|1056|858|459|gems|3.9.10.4|9.2.3.4||46858daf-b5a3-4805-8f5f-dd5d9511a3c2
+I Am The Senate|1422|lanes|a|win|1008|862|550|gems|2.3.9.0.10|2.9.3.4.0||8e98e52a-c1f3-48d8-a9e5-1cb040a665d1
+I Am The Senate|1422|stampede|a|loss|0|1080|1106|gems|2.3.9.0.10|9.2.3.4.0||1a16c489-0f5b-4d11-890c-2576cf1223e2
+I Am The Senate|1422|ambush|a|loss|788|1000|759|gems|2.3.9.0.10|9.2.3.4.0||46be6888-49ad-4648-a8c9-3ff512148e25
+I Am The Senate|1422|monolith|a|loss|622|1016|405|gems|2.3.9.0.10|9.2.3.4.0||e35248fe-426c-4a97-b93b-77b0c83ee806
+wuh pi|1420|pilgrimage|b|loss|160|1024|952|gems|2.3.9.0.10|3.9.10.2.0||297abed5-39d4-461c-b537-665311fdff9f
+wuh pi|1420|interlock|b|loss|696|1002|744|gems|2.3.9.0|3.9.10.2||ecc93b40-75ff-44fc-9221-35dc33846011
+wuh pi|1420|expanse|b|win|1014|622|793|gems|2.3.4|3.9.10||08974306-d083-4afa-87d8-e20e1a04fbc0
+wuh pi|1420|ambush|b|win|1024|586|1008|gems|2.3.9.0.10|3.9.10.2.0||82092861-efde-43d1-b8cc-a1f4a3b6e5f6
+wuh pi|1420|lanes|b|loss|642|1016|454|gems|2.3.9.0.10|3.9.10.2.0||f7afba91-cb2f-4ffa-b8c1-7be4492f2c1a
+Velvet Altar Keepers|1433|stampede|a|loss|0|1080|1440|gems|2.3.9.0.10|0.9.4.2.1||df52203a-6499-4758-82cf-193cd737ffa0
+Velvet Altar Keepers|1433|corners|a|win|1002|596|618|gems|3.4.9.0.8|0.9.4.2.1||15a251a8-6802-4111-99f9-d63b31bfda14
+Velvet Altar Keepers|1433|lanes|a|loss|868|1016|777|gems|2.3.9.0.10|0.9.4.2.1||ce8b2a49-2dab-4e82-a4c2-31018dd8f1b8
+Velvet Altar Keepers|1433|collision|a|loss|168|1004|829|gems|2.3.4|0.9.4||5444f5ce-fce3-4ff5-b1a7-e9d6b8f0627f
+Velvet Altar Keepers|1433|swirl|a|loss|714|1034|1372|gems|2.3.9.0|0.9.4.2||c2e510d8-83da-42b1-bc42-30aee7edc625
+Bit by Bit|1449|lanes|b|loss|972|1016|900|gems|2.3.9.0.10|4.9.0.10.8||f8dfe485-e0c9-4358-9c55-ee17e57f68cd
+Bit by Bit|1449|ambush|b|loss|774|1090|1199|gems|2.3.9.0.10|4.9.0.10.8||2aec6cba-308d-4c26-aec4-53df701d2366
+Bit by Bit|1449|packs|b|loss|180|1004|575|gems|2.3.4|4.3.9||1588b380-62d6-46b8-b31a-db6ba0c38cb2
+Bit by Bit|1449|elkring|b|loss|720|1008|846|gems|2.3.9.0.10|4.3.9.0.10||bb1bba26-9cb7-41be-bf1f-39b4e9169696
+Bit by Bit|1449|collision|b|loss|292|1014|1031|gems|2.3.4|4.3.9||b933773e-a363-47ff-8954-975a6c34546d
+mcr|1460|stampede|b|loss|720|1080|1587|gems|2.3.9.0.10|3.9.0.6.1||89e30f58-4593-4e8e-8799-93375d885fbf
+mcr|1460|contest|b|loss|0|200|2000|tiebreak_gems|2.3.9.0.10|3.9.0.6.1||0a5e1356-6ac2-47d2-a5a1-807bd0cf3925
+mcr|1460|interlock|b|loss|702|1020|723|gems|2.3.9.0|3.9.0.10||1d8caf97-64bc-4bd6-b21a-1fa86bc6bd6d
+mcr|1460|ambush|b|loss|966|1034|932|gems|2.3.9.0.10|3.9.0.6.1||e7262268-d9fc-4a8b-9a6d-c83db1095941
+mcr|1460|rushbait_v2|b|win|1004|0|1245|gems|2.3.9.0|3.9.0.10||ed8f857e-f86a-41ec-8c0c-95aa534f0ed5
+Water Water Water|1471|stampede|b|loss|720|1080|1618|gems|2.3.9.0.10|3.2.9.4.8||577ac062-606f-4949-89a7-061eb6950399
+Water Water Water|1471|collision|b|loss|372|1054|647|gems|2.3.4|3.4.9||28b2c1cd-9994-47d1-a3c9-aa10587ec772
+Water Water Water|1471|ambush|b|loss|952|1038|941|gems|2.3.9.0.10|3.4.9.8.0||309891ce-0157-4d87-a42f-3879423b94d0
+Water Water Water|1471|interlock|b|loss|370|1010|537|gems|2.3.9.0|3.4.9.8||a255057f-46f1-41cc-8c65-cb8ccb33a67e
+Water Water Water|1471|contest|b|win|200|0|2000|tiebreak_gems|2.3.9.0.10|3.2.9.4.8||229e1920-30bf-4f8e-8db8-da984e57ad00
+Howrah River Trading|1484|corners|b|loss|450|1078|405|gems|3.4.9.0.8|9.2.8.10.1||741280f4-004d-4267-8bab-fc378def6550
+Howrah River Trading|1484|pilgrimage|b|loss|518|1030|912|gems|2.3.9.0.10|9.2.8.10.1||c6073b07-a4b9-4aae-ace0-b6043e613531
+Howrah River Trading|1484|monolith|b|loss|826|1076|481|gems|2.3.9.0.10|2.9.8.10.1||76b15bb1-df6d-4a12-93f8-682ba15c910c
+Howrah River Trading|1484|expanse|b|loss|584|1010|543|gems|2.3.4|9.2.8||123dd701-ccb4-486a-b7eb-82416e97a2fb
+Howrah River Trading|1484|rushbait_v2|b|loss|190|1016|727|gems|2.3.9.0|2.9.8.10||fa137c32-4dfe-4c06-9f06-0eabd910a2b2
+Micron|1500|interlock|b|loss|768|1002|698|gems|2.3.9.0|2.3.8.9||35523664-2de2-4397-83f1-9de79ccc8cfd
+Micron|1500|corners|b|loss|684|1024|453|gems|3.4.9.0.8|2.3.8.9.0||adc78c51-2676-47a5-ad58-d1fc95d1cd1a
+Micron|1500|monolith|b|loss|482|1018|450|gems|2.3.9.0.10|2.3.8.9.0||4408dbb4-39c3-48e9-910c-6fa73ad0f8c9
+Micron|1500|lanes|b|loss|766|1018|534|gems|2.3.9.0.10|2.3.8.9.0||8754e20c-f064-4f7f-a631-23bf2cbdd223
+Micron|1500|rushbait_v2|b|loss|668|1016|747|gems|2.3.9.0|2.3.8.9||690c0ec0-06b9-4c1f-afc8-c6ac169b1c27

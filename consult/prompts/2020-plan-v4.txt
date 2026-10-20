@@ -1,0 +1,20 @@
+The attached file is the complete current context of our Cambridge Battlecode 2026 bot (team Xanarchy): situation, a fact sheet with sources, the engine 1.0 changes that went live on 20 Oct (camp rewards cut, elk range 4 and monolith range 5, base stats changed, Prism 1.0 Focus per gem, a new champion Heart of Ruin), decoded data on the current top 10 teams, our live bot's record against 8 real teams (29-131), our plan (PLAN-v4) and an internal critic's review of it, the 21 maps (the image shows them all) with per-map economics, and the public rules. Please read all of it before answering. Quote the rule line, fact-sheet line or table row behind every claim, and say where you are unsure; where the public rules and the engine 1.0 tables differ, the engine tables win.
+
+Goal: from rank 508 (rating 1,410) to the top 20 (rating 1,878 today) on the ladder by Friday 22:00 BST, when our main release must be live; the Sprint 2 tournament uses the submission locked Sat 24 Oct 23:59. One person plus AI coding agents; a 14-core laptop (4 game jobs in the day, 10 at night); 50 unranked match groups (250 games) an hour against any real team, but only with our live bot.
+
+We do not want small tweaks. We want the plan that actually gets a bot to top-20 strength in 4 days, tailored to this game's exact rules, maps and data. Please answer:
+
+1) Critique PLAN-v4 hard. What is wrong, missing or mis-ordered? Which modules would you cut, merge or add? Is the critic right?
+
+2) Write your own full action plan to top-20 strength by Friday 22:00, with modules in build order, hours, the test that admits each, and what to drop if behind. Tailor every item to cambc mechanics, covering at least:
+ a. Macro and economy under engine 1.0's reduced camp rewards (top-10 gems per round fell from 1.10 to 0.57): routing with respawn windows (orienteering or vehicle routing with time windows), bank size (top-10 bank about 41 gems per tribute, we bank 24-30), the capture rules (more allies do not speed capture; rewards are shared among allies present; any occupied spawn tile delays the entire group), and denial (altar locks: top-10 buy 6.4 a game, we buy 0).
+ b. Micro: fights at engine 1.0 stats (the top 10 open 85 % of fights with an ability, we 35-43 %; deaths 17 vs our 33-45 a game; enemies spend 8-9 champion-rounds near our spawn against 0.8 for the top 10), monster ranges 3/4/5 used against the enemy, carriers, focus fire, stun timing, dash (now crosses holes), Heart of Ruin.
+ c. Pathfinding: holes, dash paths, teleport crystals, chokepoints and bushes on the new maps (islands, fracture, big_world, corridors, elk_arena), within 100,000 fuel a turn and a 10x draft turn.
+ d. MOBA and RTS thinking that maps onto these rules (tempo, rotations, objective trading, vision, recall timing, power spikes, map control).
+ e. Game theory for the simultaneous draft (picks are revealed after each round): what to pick per map class, given that Stellar is in 96 % of top-10 drafts, the core is Ryth, Cassi & Issac, Stellar, Ren, Varg, Tavi sets run -10.8 points and Prism -14 points, and nobody drafts Heart of Ruin.
+ f. Simulation: how to build micro simulations (duel and team-fight arenas) and macro simulations (economy simulators on the map files) that are tailored to these rules and predict real games, and how to validate them against real-team results.
+ g. In-match adaptation within 8 bytes of shared memory and 1,024 bytes of draft memory, with no shared vision.
+
+3) Name the 5 game-changers you think top teams are not exploiting yet under engine 1.0 (macro or micro), each with the rule lines it exploits, the expected effect, the cheapest falsifying test, and build hours.
+
+4) Which single fact in the file, if wrong, would most change your plan?

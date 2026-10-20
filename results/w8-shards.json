@@ -1,0 +1,370 @@
+{
+ "bot": "w8",
+ "variants": {
+  "w8": "P_FIELD_SHOP 1, P_FIELD_SHOP_HEALTH 1",
+  "w8b": "P_FIELD_SHOP 1, P_FIELD_SHOP_HEALTH 0",
+  "w8d/w8d0": "draft override Tavi,Stellar,Ryth,Varg,Ren on 5-pick maps, field shop on/off (untested)"
+ },
+ "panel_runs": {
+  "w8": "results/w8.json",
+  "w8b": "results/w8b.json",
+  "base": "results/v2-panel.json",
+  "base_pilgrimage_v2a": "results/v1-base.json"
+ },
+ "idle_gold_v2_s0": {
+  "spawn_exits_ge30": 0,
+  "respawns_ge30": 0,
+  "field_mean_held": {
+   "tavi": 190,
+   "varg": 146,
+   "vendetta": 100,
+   "stellar": 86,
+   "ryth": 84,
+   "cassi": 84,
+   "issac": 52
+  },
+  "field_share_ge30": {
+   "tavi": 0.52,
+   "varg": 0.47,
+   "vendetta": 0.4,
+   "stellar": 0.43,
+   "ryth": 0.39,
+   "cassi": 0.34,
+   "issac": 0.26
+  }
+ },
+ "end_held_s0": {
+  "v2": {
+   "ambush": [
+    894,
+    229,
+    2444
+   ],
+   "contest": [
+    2728,
+    207,
+    3350
+   ],
+   "eight": [
+    759,
+    181,
+    2925
+   ],
+   "elkring": [
+    941,
+    302,
+    2725
+   ],
+   "lanes": [
+    362,
+    78,
+    1062
+   ],
+   "monolith": [
+    1312,
+    107,
+    1538
+   ],
+   "pilgrimage_v2a": [
+    1915,
+    157,
+    1538
+   ],
+   "rows": [
+    117,
+    20,
+    750
+   ],
+   "stampede": [
+    1908,
+    380,
+    4281
+   ]
+  },
+  "w8": {
+   "ambush": [
+    414,
+    15,
+    3275
+   ],
+   "contest": [
+    2176,
+    14,
+    3825
+   ],
+   "eight": [
+    567,
+    14,
+    3256
+   ],
+   "elkring": [
+    652,
+    14,
+    3206
+   ],
+   "lanes": [
+    188,
+    9,
+    1269
+   ],
+   "monolith": [
+    1121,
+    8,
+    1650
+   ],
+   "pilgrimage": [
+    1226,
+    11,
+    2038
+   ],
+   "rows": [
+    88,
+    4,
+    750
+   ],
+   "stampede": [
+    1363,
+    10,
+    5200
+   ]
+  },
+  "w8b": {
+   "ambush": [
+    497,
+    14,
+    750
+   ],
+   "contest": [
+    1943,
+    13,
+    794
+   ],
+   "eight": [
+    554,
+    13,
+    750
+   ],
+   "elkring": [
+    664,
+    15,
+    800
+   ],
+   "lanes": [
+    218,
+    10,
+    750
+   ],
+   "monolith": [
+    1155,
+    9,
+    750
+   ],
+   "pilgrimage": [
+    1186,
+    10,
+    750
+   ],
+   "rows": [
+    88,
+    4,
+    750
+   ],
+   "stampede": [
+    1512,
+    11,
+    750
+   ]
+  },
+  "columns": "team gold held at end, Tavi mean held gold while alive, Tavi final max health"
+ },
+ "not_run": [
+  "h2h vs v2",
+  "w8d vs w8d0",
+  "starter-cpp safety"
+ ],
+ "verdict": "not admitted (h2h missing); falsifier met on lanes and pilgrimage (median win round rose)",
+ "w8_per_map": {
+  "ambush": {
+   "wins": 11.0,
+   "games": 12,
+   "strong_wins": 3.0,
+   "median_win_round": 894,
+   "deaths": 2.1,
+   "gem_margin": 849.5,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "contest": {
+   "wins": 9.33,
+   "games": 12,
+   "strong_wins": 1.33,
+   "median_win_round": 2000,
+   "deaths": 23.3,
+   "gem_margin": 0.0,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "eight": {
+   "wins": 9.0,
+   "games": 12,
+   "strong_wins": 1.0,
+   "median_win_round": 629,
+   "deaths": 6.9,
+   "gem_margin": 356.8,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "elkring": {
+   "wins": 9.67,
+   "games": 12,
+   "strong_wins": 1.67,
+   "median_win_round": 572,
+   "deaths": 6.1,
+   "gem_margin": 287.5,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "lanes": {
+   "wins": 8.0,
+   "games": 12,
+   "strong_wins": 1.67,
+   "median_win_round": 464,
+   "deaths": 2.3,
+   "gem_margin": 192.9,
+   "faults": 0,
+   "fuel_late": 144
+  },
+  "monolith": {
+   "wins": 11.0,
+   "games": 12,
+   "strong_wins": 3.0,
+   "median_win_round": 566,
+   "deaths": 3.0,
+   "gem_margin": 503.8,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "pilgrimage": {
+   "wins": 8.0,
+   "games": 12,
+   "strong_wins": 1.67,
+   "median_win_round": 1268,
+   "deaths": 10.1,
+   "gem_margin": 169.7,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "rows": {
+   "wins": 12.0,
+   "games": 12,
+   "strong_wins": 4.0,
+   "median_win_round": 477,
+   "deaths": 0.4,
+   "gem_margin": 656.3,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "stampede": {
+   "wins": 10.0,
+   "games": 12,
+   "strong_wins": 2.67,
+   "median_win_round": 1504,
+   "deaths": 14.2,
+   "gem_margin": 650.0,
+   "faults": 0,
+   "fuel_late": 0
+  }
+ },
+ "w8b_per_map": {
+  "ambush": {
+   "wins": 11.0,
+   "games": 12,
+   "strong_wins": 3.0,
+   "median_win_round": 859,
+   "deaths": 2.4,
+   "gem_margin": 872.4,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "contest": {
+   "wins": 9.67,
+   "games": 12,
+   "strong_wins": 1.67,
+   "median_win_round": 2000,
+   "deaths": 21.9,
+   "gem_margin": 0.0,
+   "faults": 1,
+   "fuel_late": 0
+  },
+  "eight": {
+   "wins": 9.0,
+   "games": 12,
+   "strong_wins": 1.0,
+   "median_win_round": 652,
+   "deaths": 8.1,
+   "gem_margin": 348.0,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "elkring": {
+   "wins": 10.0,
+   "games": 12,
+   "strong_wins": 3.0,
+   "median_win_round": 605,
+   "deaths": 4.2,
+   "gem_margin": 282.5,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "lanes": {
+   "wins": 9.0,
+   "games": 12,
+   "strong_wins": 1.67,
+   "median_win_round": 462,
+   "deaths": 2.3,
+   "gem_margin": 261.4,
+   "faults": 0,
+   "fuel_late": 144
+  },
+  "monolith": {
+   "wins": 11.67,
+   "games": 12,
+   "strong_wins": 3.67,
+   "median_win_round": 558,
+   "deaths": 3.4,
+   "gem_margin": 512.4,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "pilgrimage": {
+   "wins": 9.0,
+   "games": 12,
+   "strong_wins": 2.0,
+   "median_win_round": 1271,
+   "deaths": 10.4,
+   "gem_margin": 217.8,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "rows": {
+   "wins": 12.0,
+   "games": 12,
+   "strong_wins": 4.0,
+   "median_win_round": 477,
+   "deaths": 0.4,
+   "gem_margin": 656.3,
+   "faults": 0,
+   "fuel_late": 0
+  },
+  "stampede": {
+   "wins": 8.33,
+   "games": 12,
+   "strong_wins": 1.33,
+   "median_win_round": 1542,
+   "deaths": 18.1,
+   "gem_margin": 340.0,
+   "faults": 0,
+   "fuel_late": 0
+  }
+ }
+}

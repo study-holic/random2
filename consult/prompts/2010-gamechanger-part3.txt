@@ -1,0 +1,14 @@
+Part 3: the next big move. We do not want small tweaks. We want the change that would take us from rank ~500 (rating ~1,420) to the top 100 (~1,690) in 4 days: an undiscovered macro (economy, tempo, map control, tribute timing, denial, splitting the team) or a micro that decides fights, that top teams may not be exploiting.
+
+New facts since Part 2:
+1. The map pool changed overnight to 21 maps. Kept (11): ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith. New (10): big_world, boss_battle, broken_curve, concentrated_wealth, corridors, elk_arena, fracture, gold_rush, hooks, islands. Removed: packs, pilgrimage, rows, rushbait-v2, stampede, swirl. We have never played the new maps.
+2. Fight-outcome model on 15,855 ladder fights (575 replays): HP fraction, the lowest-HP unit and gear points predict the winner (leave-teams-out AUC 0.86); body count and cooldowns add nothing once HP is in. Top-10 teams open 84 % of their fights with an ability (we 32 %) and carry 12.8 shard-points per champion at rounds 200-400 (we 5.0).
+3. Duel lab, about 15,000 deterministic 1v1 duels at base stats: our habit of walking home at 45 % health in the middle of a fight was the costliest micro (+0.149 result per duel when removed; Vendetta +0.41); Varg shielding at engage +0.19; dashes +0.05 to +0.09; casting from range 4 +0.04 to +0.08 (Marcella -0.15); our kiting rule about 0. Only ~8 of 55 champion pairs are lopsided 1v1.
+4. Counter-drafting from ladder pair win rates: 1 of 55 cells survives multiple-testing correction, none after map effects.
+5. v3b (all of the above micro, plus a monolith siege on contest and data drafts on two maps) went live this morning. Locally: 61.8 % vs our previous version, 58.8 % vs v2. v2 went 27-109 against 8 real teams rated 1,453-1,771 (tributed 0.89 vs 1.52 gems a round; 11.8 vs 22.3 tributes a game; deaths 12.0 vs 4.8).
+
+Requests:
+A) Give 8-12 candidate game-changers. For each: the rule lines it exploits (quote them), why top teams may not already do it, the mechanism step by step, how to implement it within 100,000 fuel a turn, 8 bytes of shared memory and 1,024 bytes of draft memory with no shared vision, the expected size of the effect (gems a round, deaths, win rate), the cheapest test that would falsify it (local arena maps, local games, or unranked games against real teams), and build time in hours.
+B) 10 new maps we have never seen, 4 days: generic map-reading logic (from camp positions, altar distances, chokepoints) or per-map plans? What should a bot compute at turn 1 from the map to choose its plan?
+C) Counter-drafting: given point 4, is there a draft-level edge still worth chasing (composition rules, map-specific picks, last-pick counters, picks that enable a macro), and how should we simulate it locally?
+D) Rank everything by expected rating gain per day of work, and say which fact above, if wrong, would change your top pick.

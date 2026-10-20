@@ -1,0 +1,29 @@
+Take the angle of a game-AI designer and machine-learning engineer: architecture for adaptability (utility AI, state machines, opponent modelling, online adaptation within tight compute).
+
+The attached file is the complete, current context of our Cambridge Battlecode 2026 bot: our ladder situation, six diagnosed faults with evidence, every experiment since this morning with its result, decoded data from 515 of our ranked games and 1,011 top-10 games, per-map camp economics, the full rules and the C++ API. Please read all of it before answering. You are an outside reviewer: be critical and concrete, quote the rule line or table row behind each claim, and say where you are unsure.
+
+Addendum (19:21, not in the file): damage-only item builds (no Health; Power shards of each champion's damage stat) LOST locally: head-to-head vs v2 38% (1 seed) and 43% with a Monster emblem first; our deaths rose (Cassi & Issac 9 -> 16 a game, Ryth 7 -> 12) because the local opponents (our older bots and a strong clone) burst us down. Tavi-only Focus stacking: 57% head-to-head on Tavi maps but slower camp clearing (Tavi camp damage 21.5 -> 15.5 a round); on the monolith map 12/12 and 6/6. This conflicts with the ladder evidence that the teams beating us buy no Health.
+
+QUESTION 1: is our diagnosis right, and what is missing from it? For each of F1-F6 in §3, say whether the evidence supports it as a cause of lost games, how much of the gap to top-10 income (0.98 vs 1.54 gems a round, §5) you think it explains, and what evidence would refute it. Then name the causes we have not listed that the Appendix B tables point to (for example the tribute-count gap on eight, fragment, packs, pilgrimage and swirl with equal or larger bags; our 41 deaths a game on swirl).
+
+QUESTION 2: what goes into the next version, and in what order? Options we see, in no particular order:
+(a) gem-per-round target scoring (travel, clear time, capture, share, bank trip) replacing distance-greedy targeting;
+(b) monolith siege from range 4 on the maps that have monoliths;
+(c) damage-first item builds; Focus stacking for casters; Tavi field buying;
+(d) engagement rules: no lone even fights, regroup, fight-outcome prediction before committing;
+(e) tribute cadence: smaller, more frequent tributes, or tribute timing against enemy positions;
+(f) denial: altar locks, tribute interrupts, camp-respawn blocking by standing on spawn tiles;
+(g) drafting and counter-drafting;
+(h) per-map strategy modes chosen from the map's economics (Appendix C);
+(i) an option not listed;
+(j) none of these.
+
+REQUESTS:
+1) Rank (a)-(j) by expected rating gain per day of work over the 5 days left, with reasons tied to named rules and table rows.
+2) Name each option's failure mode and the result that should make us drop it (fixed before testing).
+3) Say how to test against real teams given 250 unranked games an hour, deterministic local games, and a no-op flip rate of 7%; how many games per decision; and how to resolve conflicts like the item-build one above, where local tests and ladder evidence disagree.
+4) Say which fact in the file, if wrong, would change your ranking.
+
+Constraints: 5 days to the lock; one person plus AI coding agents; 14 cores; 100,000 fuel a turn; 8 bytes of shared team memory plus 1,024 bytes of draft memory; no shared vision; no persistence between matches.
+
+A second message (Part 2: wider strategies from other games and domains, micro and matchups, and your own new strategies) will follow after your answer.

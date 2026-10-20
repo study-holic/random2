@@ -1,0 +1,80 @@
+[
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\bot.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\bot.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\bot.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\bot.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\cluster.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\cluster.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\cluster.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\cluster.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\draft.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\draft.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\draft.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\draft.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\enemies.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\enemies.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\enemies.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\enemies.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\kit.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\kit.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\kit.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\kit.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\main.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\main.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\main.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\main.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\micro.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\micro.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\micro.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\micro.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\profile.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\profile.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\profile.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\profile.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\rows.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\rows.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\rows.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\rows.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\squads.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\squads.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\squads.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\squads.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\stuck.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\stuck.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\stuck.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\stuck.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\threat.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\threat.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\threat.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\threat.cpp.obj"
+  },
+  {
+    "command": "C:\\Users\\willi\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe --target=wasm32-wasip1 --sysroot=C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot -DCAMBC_DEBUG -IC:/cambc-solo/sdk/cpp -isystem C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/cmake/../../share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1 -O3 -DNDEBUG -std=c++20 -msimd128 -mbulk-memory -mbulk-memory-opt -fwasm-exceptions -mllvm -wasm-use-legacy-eh=false -o CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\util.cpp.obj -c C:\\cambc-solo\\bots\\b-msnext-salt\\src\\util.cpp --sysroot=\"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot\" -isystem \"C:/Users/willi/AppData/Local/cambc/wasi-sdk-33/share/wasi-sysroot/include/wasm32-wasip1/eh/c++/v1\"",
+    "directory": "C:/cambc-solo/bots/b-msnext-salt/.cambc/build",
+    "file": "C:\\cambc-solo\\bots\\b-msnext-salt\\src\\util.cpp",
+    "output": "CMakeFiles\\bot.dir\\C_\\cambc-solo\\bots\\b-msnext-salt\\src\\util.cpp.obj"
+  }
+]

@@ -1,0 +1,2181 @@
+# Team Xanarchy, Cambridge Battlecode 2026: context for an outside reviewer (v4, 19 Oct 2026 19:00 BST)
+
+Written by the team's lead agent. Self-contained: our situation and measurements first, then appendices: (B) decoded ladder behaviour data, (C) per-map camp economics, (A) the official game rules in full, and a signature index of the C++ Bot API. Everything is a fact or a measurement unless labelled "hypothesis".
+
+## 1. Situation
+
+- Cambridge Battlecode 2026: each team writes a bot (ours is C++ compiled to WebAssembly). Ranked ladder plus tournaments. **Sprint 2 submission lock: Sat 24 Oct 23:59 BST** (5 days). Team Xanarchy = one person (Xans) plus AI coding agents; 14 CPU cores locally (about 110 local games a minute), plus 50 unranked match groups (250 games) an hour against any real team on the platform.
+- Our bot "v2" went live 23:33 BST 18 Oct. Ladder: 515 ranked games since, 235 wins (46 %), rating 1,500 → 1,417 (rank 499 of about 1,050). Rank 200 ≈ 1,600, rank 100 ≈ 1,686, rank 50 ≈ 1,771, rank 1 ≈ 2,315.
+- Every team plays the same 17 maps. Team size per map is 3, 4 or 5 champions.
+
+## 2. The game in brief (full rules in Appendix A)
+
+- **Draft**: 11 champions (Ryth, Vesper Vale, Vendetta, Cassi & Issac = one pick/two bodies that die together, Stellar, Prism, Marcella, Willow, Ren, Varg, Tavi); picks alternate and are revealed; the map is known during the draft.
+- **Objective**: first team to tribute 1,000 gems wins; otherwise most tributed gems at round 2,000 (tiebreaks: lifetime gold, kills, Team B).
+- **Camps**: wolves (1,350 HP, 20 str, 90 gold, 22 gems, 40-round respawn), elks (2,400, 60, 160, 36, 60), gem clusters (500, 0, 0, 24, 50), gold clusters (500, 0, 35 gold, **0 gems**, 50), monolith (20,000, 200, 300, 200, 150; does not regenerate). Monsters hit at range 3 (Chebyshev), never chase, attack the nearest champion until undamaged for 2 turns. A cardinally connected group is captured by killing all monsters then occupying a spawn tile uncontested for 5 rounds; rewards split among allies present; "any occupied spawn tile delays the entire group" respawn.
+- **Tribute**: channel of max(1, ceil(gems/10)) turns at an altar. Damage does not interrupt it; stun, death or a new altar lock does. Altar lock: 10 gold, one carried at a time, placed within 2 tiles of an altar, blocks enemy tributes there, 3 basic attacks clear it.
+- **Combat**: melee range 1, ranged 3; ranged champions choose walking OR a basic attack each turn (attack-reset abilities restore the attack); one ability cast per turn, 8-turn cooldowns; abilities scale with Focus; stun interrupts channels; recall is interrupted by damage. Kill: the killer takes all carried gems + 50 gold; respawn after 60 rounds.
+- **Items**: gold buys shards/emblems (Strength, Focus, Health in several families: monster, power, durability, treasure, jungle, home, bruiser) on spawn tiles or while dead; Tavi may buy shards anywhere (Health bought in the field raises max HP without healing).
+- **Bots**: each champion is its own WebAssembly instance (its memory persists across its own turns for the whole match). Team memory: **8 bytes** shared all match, plus **1,024 bytes of draft memory** written during the draft (the drafter sees every enemy pick) and read-only for champions afterwards. Vision is per champion (8 tiles, plus its own ward); **teammates' vision is not shared**. Fuel: about 100,000 instructions a turn (2× first turn, 10× first draft turn). Deterministic engine. No persistence between matches; no opponent-identity API.
+
+## 3. Our bot (v2)
+
+About 2,000 lines of inherited C++ plus per-map hooks. Turn flow: shop → read view/enemies/allies → retreat/recall by health → enemy response → target choice (squads with a claim in shared memory) → farming micro (casts any ready damage/stun ability) → bank at about 36 gems to the nearest altar. Per-map files can override draft, targets and buying.
+
+Diagnosed faults (each with file:line in our code; these are hypotheses about cause, with the evidence):
+
+| # | Fault | Evidence |
+|---|---|---|
+| F1 | Target value ignores gems: score = distance + wait − 0.05 × gems (20 gems ≈ 1 tile); gold-only groups (0 gems) are ordinary targets | stampede: 30-42 % of our champion-rounds on gold clusters; Appendix B §2: pilgrimage 49 % of our champion-rounds at gold camps vs 32 % for top-10 teams; stampede gem-camp share 6 % vs 22 % |
+| F2 | Monoliths never targeted (contest's only gems are 2 monoliths) | contest: 0.06 gems/round, 48.7 deaths/game |
+| F3 | Item builds alternate Health with the main stat | decoded ladder games: an opponent bought no Health and dealt 1.3-1.5× our damage per basic hit with the same champions; another opponent's Tavi stacked Focus and averaged 1,512 damage per damaging cast (range 4) with 23 kills in one game; our Tavi buys Strength |
+| F4 | Lone even fights: champions fight any 1v1; flee only from 2+ enemies | 79 deaths in 4 decoded losses: 60 with no ally within 4 tiles, 74 at ≥ 50 % health, 78 carrying no gems; in one loss we attacked first in all 10 fatal fights. In those 60 lone fatal fights we dealt 6,893 damage and took 60,065; 33 of the 60 victims never cast. An opponent's Tavi held 32 Power Focus emblems and killed a full-health 2,400-HP Ryth in one cast from 4 tiles; our Tavi's spell stayed at 220 damage all game (v2 buys Strength for Tavi) |
+| F5 | Retreat formula counts every elk within 4 tiles as hitting us | champions recall from a 6-elk group at 90 % health |
+| F6 | Dashes and Willow's heal are never cast | code audit + replays |
+
+## 4. Experiments since 01:00 today (local, against v2 head-to-head and a 6-bot panel of our older versions; 3 seeds × 2 sides; a no-op change flips about 7 % of results)
+
+| Change | Result |
+|---|---|
+| Monolith siege from range 4 (casters ring the monolith at Chebyshev 4, escort carrier, safe tribute) on contest | contest panel 10 → 11 of 12; head-to-head vs v2 6/6; median win round 2,000 → 1,510. On the monolith map it lost ground (off there) |
+| Retreat fix (count only camps where we are the nearest champion) + gold-cluster rule fix, stampede | 11/12 (v2 9.67), deaths 9.5; head-to-head vs v2 1/2 (salt 0 only); adding a shop trip + Tavi field buys: median win round 1,703 → 1,460 but 0/2 vs v2 |
+| Altar locks: buy one, drop on enemy altars we pass | vs v2 50/102, 9 of 17 maps positive, +31 gem margin: not admitted |
+| Interrupt enemy tributes (stun/lock on a visible channelling enemy) | rejected (corners −195 gems); we see only 27-34 % of enemy tributes |
+| Tavi buys shards in the field | gold held fell on all 9 Tavi maps; median win round down on 6/8 maps; net wins +0.33 to +2.00 of 204: not admitted |
+| Data drafts per map (best ladder draft per map from 9,245 games) | admitted on eight (h2h 6/6) and stampede (5/6); across all 17 maps −1.00 |
+| Counter-draft table from ladder draft data (win excess by revealed enemy picks) | fires on 0-0.1 % of drafts; every candidate swap reverses sign between halves of the data |
+| Escape dash, death-loop breaker (earlier) | deaths fell; wins did not move enough to admit |
+| Engagement rules: step back to allies when outnumbered-or-even, avoid areas of recent enemy sightings, move as one group (contest) | rejected: head-to-head vs v2 28/102 on all maps; slower on 16 of 17 maps; a disengaging Varg was chased 10 rounds and killed by a melee champion (melee can walk and hit in one turn) |
+| Tavi all-in Power Focus with field buying | head-to-head vs v2 54/102; monolith map 6/6 |
+
+In progress tonight: gems-per-round target scoring (F1), damage-only builds and Focus stacking for casters (F3), a duel lab measuring every champion-vs-champion matchup under different micro policies, and a fight-outcome model trained on 1,923 top-team replays.
+
+## 5. Real-team evidence (Appendix B has the full tables)
+
+- Gems tributed per round (us / our opponent / top-10 mutual games): all maps 0.98 / 1.08 / 1.54. Worst gaps: swirl 0.29 / 0.94 / 1.21; eight 0.84 / 1.58 / 1.23; fragment 0.55 / 1.13 / 0.99; packs 1.01 / 1.56 / 1.78; pilgrimage 0.51 / 0.86 / 1.29; stampede 0.42 / 0.59 / 0.99; contest 0.06 / 0.12 / 0.17.
+- We out-earn opponents on ambush, elkring, expanse, lanes, rows. On our five weakest maps we make far fewer tributes than the opponent with equal or larger bags (eight 8.5 vs 21.0 tributes a game, bags 66 vs 48).
+- Deaths per game, ours vs opponent: contest 48.7 vs 30.0, swirl 41.1 vs 21.4, fragment 18.8 vs 10.4, stampede 18.7 vs 12.9, packs 10.6 vs 4.4.
+- Top-10 teams spend 45 % of champion-rounds at gem camps (we 36 %) and 8 % at gold-only camps (we 14 %).
+- Our local test panel badly overstated v2 (151.7 of 204 local wins; 46 % on the ladder against teams near 1,420-1,500).
+
+## 6. Evidence against our current lean
+
+- Draft changes measured small (−1.00 to +0.67 wins of 204 across maps), and the counter-draft table from ladder data found no stable signal; but the data stores drafts unordered and is dominated by mid-ladder teams.
+- Denial (locks, interrupts) measured neutral or negative locally, while a former teammate on a different code base reports locks/interrupts helped them on the ladder.
+- Local head-to-head vs v2 can be uninformative: on some maps v2 and our old versions play move for move alike.
+- Fight-avoidance changes cut deaths but have not yet moved wins (escape dash, death-loop breaker).
+
+
+# APPENDIX B: decoded ladder behaviour data (our 515 ranked games vs 1,011 top-10 mutual games)
+
+# v3 behaviour data: our 515 ranked games against the top-10 mutual games (partial report, 19 Oct 18:50 BST)
+
+Everything here is decoded from platform replays with `tools/v3/` (engine v0_0_3 decoder validated: final gems and rounds equal the platform score in 1,456 of 1,456 games). Maps are keyed by map id (first 8 hex shown).
+
+## 0. Samples and limits
+- **Ours**: all 515 finished ranked games of xanarchy (104 groups), 18 Oct 22:40Z to 19 Oct 16:00Z, 235 wins (46%); round-level decode of all 515, full action log of 141 team-sides' games. The platform does not record bot version, so v2 and any later upload are mixed; our win rate by UTC hour is in 7.
+- **Top-10 reference**: 1,011 games between two teams of the 18 Oct 22:39Z top 10 (2,022 team-sides), 18 Oct 13:20Z to 22:40Z: the newest 1,011 of the 4,640 such games, fetched before the machine slept. Per map 49-74 games. Full action log of 117 of them. Kill, purchase and draft rows in 3, 5 and 6 use the first 837 of the 1,011 (1,674 team-sides).
+- **Resolution**: one state per round (round-level). Events are exact to a round. Killer attribution: the enemy champion whose kill counter rose and who stood nearest (<= 8 tiles); checked against the action log on 3,658 deaths in our full-action games: right in 3,152 (86%), no answer in 502, wrong in 4. Deaths with no answer are camp deaths (411 of the 3,658) or misses.
+- Medians unless stated. A mark (†) means fewer than 30 games. Our win rates are not rating-adjusted because opponents are within a few rating points (mean expected score 50%); top-10 mutual rows have 50% win by construction.
+- "Tributed per round" = final submitted gems / game rounds. "Collected" = sum of positive bag increments (camp captures and stolen bags).
+
+## 1. Gem income per round: us, our opponent, top-10 (answers the first lead question)
+Cells are us / opponent / top-10. Deaths are own champions per game.
+| map (id) | n | win | rounds | tributed per round | tributes per game | first tribute round | deaths us / opp |
+|---|---|---|---|---|---|---|---|
+| ambush (699c96a0) | 29† | 72% | 921 | 1.06 / 0.72 / 1.63 | 10.2 / 9.7 / 10.5 | 109 / 207 / 127 | 4.1 / 5.7 |
+| collision (2e9820ee) | 26† | 54% | 810 | 0.82 / 1.06 / 1.12 | 16.6 / 25.6 / 17.8 | 84 / 58 / 58 | 9.7 / 9.6 |
+| contest (3a5c2468) | 34 | 18% | 2000 | 0.06 / 0.12 / 0.17 | 0.6 / 1.1 / 1.5 | 1446 / 1136 / 1454 | 48.7 / 30.0 |
+| corners (e3c29b68) | 33 | 45% | 574 | 1.50 / 1.56 / 1.52 | 19.2 / 25.3 / 18.2 | 59 / 70 / 64 | 4.1 / 6.1 |
+| eight (3e2df5be) | 31 | 29% | 618 | 0.84 / 1.58 / 1.23 | 8.5 / 21.0 / 11.1 | 108 / 52 / 86 | 11.2 / 7.5 |
+| elkring (bb12893c) | 21† | 52% | 649 | 1.41 / 1.17 / 1.63 | 23.9 / 21.0 / 16.4 | 49 / 69 / 75 | 10.1 / 11.6 |
+| expanse (81929320) | 36 | 67% | 754 | 1.27 / 1.17 / 1.95 | 27.6 / 26.6 / 19.9 | 78 / 40 / 50 | 0.2 / 1.0 |
+| fragment (9925f416) | 25† | 24% | 774 | 0.55 / 1.13 / 0.99 | 11.6 / 27.1 / 15.4 | 88 / 56 / 73 | 18.8 / 10.4 |
+| interlock (b777c8c8) | 32 | 41% | 722 | 1.10 / 1.23 / 1.45 | 16.2 / 26.7 / 18.1 | 38 / 58 / 51 | 11.2 / 5.5 |
+| lanes (93852276) | 32 | 72% | 578 | 1.59 / 1.39 / 2.21 | 26.5 / 28.6 / 30.5 | 87 / 71 / 63 | 5.7 / 4.4 |
+| monolith (3991a8b3) | 39 | 62% | 581 | 1.59 / 1.57 / 2.22 | 23.5 / 22.7 / 16.5 | 69 / 58 / 80 | 5.6 / 3.2 |
+| packs (b135e0fc) | 22† | 23% | 633 | 1.01 / 1.56 / 1.78 | 13.1 / 25.4 / 18.5 | 52 / 38 / 38 | 10.6 / 4.4 |
+| pilgrimage (7bfc2edd) | 39 | 23% | 1112 | 0.51 / 0.86 / 1.29 | 7.3 / 18.1 / 12.1 | 112 / 96 / 119 | 9.2 / 8.9 |
+| rows (25d81311) | 23† | 100% | 473 | 2.24 / 1.23 / 2.64 | 16.0 / 15.0 / 13.5 | 84 / 64 / 51 | 0.2 / 0.9 |
+| rushbait_v2 (df22386f) | 35 | 43% | 996 | 0.68 / 0.80 / 1.49 | 20.5 / 22.0 / 16.7 | 104 / 77 / 97 | 5.5 / 4.5 |
+| stampede (f2b6903f) | 38 | 37% | 1514 | 0.42 / 0.59 / 0.99 | 2.0 / 3.5 / 4.3 | 869 / 834 / 213 | 18.7 / 12.9 |
+| swirl (f930f43f) | 20† | 15% | 1102 | 0.29 / 0.94 / 1.21 | 4.7 / 21.8 / 12.3 | 404 / 142 / 49 | 41.1 / 21.4 |
+| all | 515 | 46% | 766 | 0.98 / 1.08 / 1.54 | 14.7 / 19.7 / 15.3 | 86 / 71 / 69 | 12.2 / 8.5 |
+- Data: we out-earn our opponent on ambush, elkring, expanse, lanes, rows (and tie on monolith, corners); we trail by more than 0.5 gems per round on swirl (0.29 v 0.94), eight (0.84 v 1.58), fragment (0.55 v 1.13), packs (1.01 v 1.56); by 0.2 to 0.4 on pilgrimage and collision; by under 0.2 on interlock, stampede, rushbait_v2, contest.
+- Data: on five of our six lowest-win maps (eight, fragment, packs, pilgrimage, swirl; the sixth is contest) we make far fewer tributes than the opponent (8.5 v 21.0, 11.6 v 27.1, 13.1 v 25.4, 7.3 v 18.1, 4.7 v 21.8). Bags are equal or larger (66 v 48 on eight; 80 v 58 on pilgrimage; 64 v 49 on swirl).
+
+## 2. Where champion-rounds go, and why income differs (second lead question)
+Share of all alive-or-dead champion-rounds, % (us / opponent / top-10). Position classes at each round start: dead; spawn (within 3 of the spawn centre); altar (within 2 of a tile where tributes completed on that map, 5 or more times); gem camps (within 4 of a wolf, elk, gem or monolith camp); gold camps (within 4 of a gold-only camp); transit (the rest, walking).
+| map | dead | spawn | altar | gem camps | gold camps | transit |
+|---|---|---|---|---|---|---|
+| ambush | 4 / 6 / 2 | 3 / 3 / 3 | 5 / 5 / 5 | 24 / 20 / 31 | 6 / 12 / 4 | 57 / 54 / 55 |
+| collision | 16 / 16 / 13 | 5 / 5 / 6 | 10 / 14 / 13 | 48 / 44 / 48 | 17 / 17 / 19 | 4 / 4 / 1 |
+| contest | 25 / 15 / 23 | 2 / 3 / 3 | 7 / 13 / 15 | 1 / 6 / 3 | 42 / 38 / 29 | 22 / 25 / 26 |
+| corners | 6 / 9 / 9 | 5 / 4 / 5 | 8 / 17 / 19 | 50 / 44 / 43 | 3 / 3 / 1 | 28 / 22 / 24 |
+| eight | 16 / 11 / 15 | 7 / 4 / 5 | 6 / 12 / 10 | 41 / 55 / 53 | 0 / 0 / 0 | 31 / 18 / 18 |
+| elkring | 13 / 17 / 10 | 6 / 9 / 8 | 7 / 7 / 9 | 46 / 43 / 48 | 9 / 12 / 14 | 19 / 11 / 11 |
+| expanse | 0 / 2 / 0 | 3 / 4 / 5 | 16 / 14 / 13 | 44 / 50 / 57 | 11 / 5 / 3 | 25 / 25 / 23 |
+| fragment | 31 / 18 / 20 | 5 / 7 / 7 | 6 / 12 / 7 | 46 / 50 / 55 | 2 / 4 / 1 | 10 / 10 / 9 |
+| interlock | 17 / 9 / 9 | 5 / 4 / 5 | 7 / 12 / 11 | 39 / 48 / 50 | 8 / 4 / 3 | 24 / 23 / 23 |
+| lanes | 8 / 6 / 2 | 3 / 4 / 4 | 15 / 18 / 17 | 52 / 49 / 54 | 0 / 4 / 1 | 21 / 20 / 22 |
+| monolith | 9 / 5 / 5 | 3 / 4 / 4 | 12 / 14 / 10 | 49 / 51 / 58 | 8 / 6 / 3 | 18 / 19 / 20 |
+| packs | 22 / 10 / 10 | 6 / 5 / 5 | 14 / 18 / 14 | 46 / 53 / 54 | 3 / 6 / 7 | 8 / 8 / 10 |
+| pilgrimage | 8 / 8 / 6 | 2 / 4 / 3 | 4 / 4 / 4 | 10 / 17 / 25 | 49 / 36 / 32 | 27 / 30 / 30 |
+| rows | 0 / 2 / 0 | 5 / 4 / 5 | 8 / 9 / 9 | 67 / 55 / 65 | 0 / 4 / 0 | 20 / 26 / 21 |
+| rushbait_v2 | 6 / 5 / 4 | 26 / 30 / 7 | 4 / 6 / 6 | 36 / 34 / 64 | 0 / 0 / 0 | 28 / 25 / 18 |
+| stampede | 11 / 9 / 8 | 3 / 5 / 3 | 1 / 1 / 2 | 6 / 8 / 22 | 39 / 38 / 26 | 39 / 37 / 38 |
+| swirl | 45 / 23 / 29 | 7 / 11 / 10 | 17 / 25 / 22 | 21 / 25 / 24 | 8 / 15 / 14 | 3 / 2 / 1 |
+| all | 13 / 10 / 9 | 6 / 6 / 5 | 8 / 11 / 11 | 36 / 37 / 45 | 14 / 13 / 8 | 24 / 23 / 21 |
+
+Income chain: collected gems per 100 gem-camp champion-rounds, tributed per collected gem, recall estimate (5 rounds per teleport-to-spawn, % of champion-rounds), recalls per game. us / opponent / top-10.
+| map | collected per 100 gem-camp rounds | tributed per collected | recall % | recalls per game |
+|---|---|---|---|---|
+| ambush | 78 / 66 / 96 | 0.92 / 0.93 / 0.92 | 3.7 / 2.2 / 3.4 | 40.9 / 23.6 / 23.1 |
+| collision | 64 / 80 / 77 | 0.71 / 0.80 / 0.80 | 3.7 / 3.2 / 5.6 | 23.5 / 19.0 / 29.7 |
+| contest | 85 / 53 / 143 | 0.84 / 0.59 / 0.67 | 1.1 / 2.7 / 3.5 | 25.1 / 59.3 / 76.8 |
+| corners | 60 / 69 / 73 | 0.84 / 0.90 / 0.80 | 5.3 / 3.8 / 6.1 | 36.8 / 24.6 / 40.5 |
+| eight | 51 / 55 / 49 | 0.72 / 0.85 / 0.78 | 5.4 / 4.1 / 5.1 | 41.0 / 30.4 / 33.1 |
+| elkring | 59 / 62 / 67 | 0.85 / 0.79 / 0.84 | 2.7 / 3.3 / 5.2 | 21.7 / 25.0 / 32.3 |
+| expanse | 75 / 66 / 91 | 0.97 / 0.95 / 0.95 | 3.0 / 3.8 / 6.2 | 18.1 / 21.3 / 23.9 |
+| fragment | 44 / 68 / 57 | 0.75 / 0.92 / 0.87 | 1.6 / 3.0 / 3.9 | 10.2 / 17.3 / 19.8 |
+| interlock | 63 / 58 / 66 | 0.88 / 0.93 / 0.89 | 4.2 / 3.4 / 5.1 | 30.4 / 23.3 / 29.4 |
+| lanes | 55 / 53 / 72 | 0.92 / 0.93 / 0.95 | 3.6 / 3.0 / 5.0 | 26.0 / 21.2 / 25.8 |
+| monolith | 62 / 57 / 71 | 0.88 / 0.91 / 0.90 | 3.0 / 3.5 / 5.3 | 20.4 / 23.0 / 26.3 |
+| packs | 65 / 79 / 88 | 0.88 / 0.95 / 0.95 | 4.2 / 3.4 / 5.8 | 21.4 / 16.0 / 22.6 |
+| pilgrimage | 99 / 95 / 95 | 0.89 / 0.91 / 0.90 | 1.1 / 1.9 / 2.9 | 15.2 / 23.7 / 23.0 |
+| rows | 70 / 51 / 87 | 0.96 / 0.91 / 0.94 | 5.2 / 3.2 / 5.3 | 24.3 / 14.8 / 19.1 |
+| rushbait_v2 | 45 / 55 / 53 | 0.86 / 0.89 / 0.88 | 2.6 / 2.2 / 4.7 | 25.6 / 19.1 / 28.0 |
+| stampede | 168 / 149 / 80 | 0.70 / 0.89 / 0.92 | 2.3 / 2.3 / 2.8 | 41.2 / 38.4 / 20.8 |
+| swirl | 50 / 90 / 111 | 0.60 / 0.86 / 0.90 | 0.6 / 1.3 / 2.6 | 6.7 / 12.8 / 15.0 |
+| all | 65 / 67 / 74 | 0.85 / 0.89 / 0.89 | 3.1 / 3.0 / 4.6 | 25.9 / 25.2 / 28.0 |
+- Data: over all maps we spend 13% of champion-rounds dead (opponent 10%, top-10 9%) and 36% at gem camps (top-10 45%); we spend 14% at gold camps (top-10 8%).
+- Data, per map (n as in 1): swirl 45% dead (opponent 23%) with 0.60 of collected gems reaching an altar; fragment 31% dead, 0.75 reaching; packs 22% dead; interlock 17% dead; stampede 0.70 reaching (top-10 0.92); collision 0.71 (0.80). Pilgrimage: 10% at gem camps and 49% at gold camps (top-10 25% and 32%) while yield per gem-camp round equals top-10 (99 v 95). Rushbait: 36% at gem camps against 64% for top-10, and 26% of our champion-rounds on spawn against 7% (the opponent is also 30%). Eight: 31% transit against 18%, 41% gem camps against 53%. Stampede: 6% gem camps against 22%.
+- Interpretation: swirl, fragment, packs, interlock lose income to deaths and bag loss; pilgrimage, rushbait, stampede, eight lose it to where champions stand (gold camps, spawn, walking), not to yield per camp-round.
+
+## 3. Who kills us
+- 6,281 of our champion deaths in 515 games (12.2 per game); 5,071 attributed. Our champion types dying: Cassi and Issac bodies 3,196 (51%), Vendetta 1,040 (17%), Varg 676, Ryth 668, Tavi 490, Stellar 201. 869 of our deaths (14%) had a bag of 20 gems or more; 563 opponent deaths had a bag of 20 or more.
+- Killer champion type among the 5,071: Stellar 1,060 (21%), Cassi and Issac 904 (18%), Varg 801 (16%), Ryth 640 (13%), Tavi 573 (11%), Ren 441 (9%). Largest pairs: Stellar kills our Cassi and Issac 452, Cassi and Issac kills Cassi and Issac 368, Varg kills Cassi and Issac 337, Stellar kills Vendetta 227.
+- Opponent champions died 4,393 times against our 6,281: victims Cassi and Issac 1,768, Varg 518, Stellar 461, Ryth 447.
+- By map, our deaths (leading killers): swirl 823 (Cassi and Issac 21%, Stellar 19%, Ryth 16%); contest 1,655 (Stellar 14%, Varg 13%, Ryth 12%); stampede 712 (Stellar 15%, Ryth 12%); fragment 470 (Stellar 21%, Cassi and Issac 18%, Varg 18%); pilgrimage 359 (Tavi 14%, Varg 14%, Ren 12%); interlock 358 (Stellar 18%); eight 346 (Stellar 21%); packs 233 (Stellar 27%, Cassi and Issac 21%); elkring 212 (Varg 27%); collision 252 (Cassi and Issac 22%); monolith 218 (Stellar 20%, Ren 13%).
+- Data: Stellar is the top killer on 7 of the 11 maps with 200 or more of our deaths (contest, eight, fragment, interlock, monolith, packs, stampede). In the first 837 top-10 mutual games Stellar made 3,286 of 8,586 attributed kills (38%), and 1,977 of 2,022 top-10 drafts (98%) contain Stellar against 165 of 515 of ours (32%).
+
+## 4. Three largest shortfalls against the top-10 per map (ratio us / top-10, 1.0 equal; lower-is-better factors inverted)
+| map | n | tributed per round us v top-10 | three largest shortfalls |
+|---|---|---|---|
+| ambush | 29† | 1.06 v 1.63 | dead share 0.62; tributed per round 0.65; collected per round 0.65 |
+| collision | 26† | 0.82 v 1.12 | first tribute 0.69; tributed per round 0.73; dead share 0.80 |
+| contest | 34 | 0.06 v 0.17 | collected per round 0.30; tributed per round 0.37; tributes per game 0.41 |
+| corners | 33 | 1.50 v 1.52 | collected per gem-camp round 0.82; collected per round 0.93; tributed per round 0.99 |
+| eight | 31 | 0.84 v 1.23 | tributed per round 0.68; tributes per game 0.76; collected per round 0.77 |
+| elkring | 21† | 1.41 v 1.63 | dead share 0.76; collected per round 0.84; tributed per round 0.86 |
+| expanse | 36 | 1.27 v 1.95 | collected per round 0.63; first tribute 0.65; tributed per round 0.65 |
+| fragment | 25† | 0.55 v 0.99 | tributed per round 0.56; collected per round 0.65; dead share 0.66 |
+| interlock | 32 | 1.10 v 1.45 | dead share 0.56; tributed per round 0.75; collected per round 0.76 |
+| lanes | 32 | 1.59 v 2.21 | dead share 0.37; tributed per round 0.72; first tribute 0.73 |
+| monolith | 39 | 1.59 v 2.22 | dead share 0.57; tributed per round 0.72; collected per round 0.73 |
+| packs | 22† | 1.01 v 1.78 | dead share 0.46; tributed per round 0.57; collected per round 0.62 |
+| pilgrimage | 39 | 0.51 v 1.29 | tributed per round 0.40; share at gem camps 0.40; collected per round 0.41 |
+| rows | 23† | 2.24 v 2.64 | first tribute 0.61; dead share 0.74; collected per gem-camp round 0.80 |
+| rushbait_v2 | 35 | 0.68 v 1.49 | tributed per round 0.46; collected per round 0.46; share at gem camps 0.56 |
+| stampede | 38 | 0.42 v 0.99 | first tribute 0.25; share at gem camps 0.26; tributed per round 0.43 |
+| swirl | 20† | 0.29 v 1.21 | first tribute 0.12; tributed per round 0.24; collected per round 0.36 |
+- Caveat: top-10 rows come from 18 Oct 13:20Z-22:40Z and ours from later; the top teams may have moved since.
+
+## 5. What the top 10 do (1,011 mutual games; side-rows = 2 per game)
+Rounds to submitted gems (median over team-games that reached it), gems at round 300, tributes per team-game, bag per tribute, first tribute round, deaths and dead champion-rounds per team-game, recalls, altar-lock buys and uses, shards.
+| map | rows | 250 | 500 | 750 | 1000 | g300 | trib | bag | first | deaths | dead | recalls | lock buy/use | shards |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ambush | 124 | 233 | 380 | 485 | 558 | 332 | 10.7 | 89 | 127 | 1.3 | 74 | 23.1 | 2.8 / 0.7 | 19.5 |
+| collision | 100 | 301 | 476 | 638 | 656 | 238 | 18.2 | 22 | 58 | 6.3 | 338 | 29.7 | 3.3 / 1.9 | 43.9 |
+| contest | 98 | 1582 | 1628 | 1565 | 1579 | 0 | 1.5 | 200 | 1454 | 43.2 | 2571 | 76.8 | 4.2 / 2.0 | 82.6 |
+| corners | 112 | 226 | 368 | 470 | 544 | 356 | 18.8 | 36 | 64 | 5.4 | 305 | 40.5 | 3.7 / 2.0 | 44.1 |
+| eight | 112 | 252 | 368 | 460 | 534 | 242 | 11.4 | 44 | 86 | 8.8 | 492 | 33.1 | 2.4 / 1.0 | 28.1 |
+| elkring | 104 | 200 | 337 | 432 | 506 | 396 | 16.9 | 36 | 75 | 5.6 | 305 | 32.3 | 4.7 / 2.5 | 40.4 |
+| expanse | 128 | 202 | 312 | 416 | 484 | 424 | 20.2 | 44 | 50 | 0.1 | 6 | 23.9 | 2.0 / 0.7 | 33.9 |
+| fragment | 136 | 299 | 440 | 568 | 658 | 226 | 15.6 | 44 | 73 | 9.8 | 531 | 19.8 | 2.8 / 1.3 | 35.6 |
+| interlock | 116 | 252 | 408 | 485 | 573 | 336 | 18.3 | 44 | 51 | 4.6 | 257 | 29.4 | 3.5 / 1.8 | 40.3 |
+| lanes | 148 | 170 | 274 | 368 | 428 | 563 | 31.4 | 22 | 63 | 1.1 | 62 | 25.8 | 2.5 / 1.2 | 45.3 |
+| monolith | 104 | 176 | 275 | 362 | 416 | 556 | 16.9 | 44 | 80 | 2.2 | 119 | 26.3 | 2.5 / 1.4 | 45.5 |
+| packs | 144 | 176 | 312 | 418 | 492 | 470 | 18.7 | 44 | 38 | 3.6 | 192 | 22.6 | 2.5 / 0.9 | 26.5 |
+| pilgrimage | 106 | 309 | 472 | 568 | 665 | 228 | 12.4 | 68 | 119 | 4.3 | 248 | 23.0 | 2.1 / 0.5 | 26.4 |
+| rows | 138 | 131 | 230 | 304 | 355 | 726 | 13.6 | 66 | 51 | 0.0 | 2 | 19.1 | 0.7 / 0.1 | 31.4 |
+| rushbait_v2 | 124 | 248 | 408 | 519 | 600 | 308 | 16.9 | 44 | 97 | 2.5 | 140 | 28.0 | 2.9 / 1.2 | 41.5 |
+| stampede | 128 | 224 | 388 | 523 | 540 | 0 | 4.5 | 90 | 213 | 5.4 | 318 | 20.8 | 2.8 / 0.5 | 30.3 |
+| swirl | 100 | 252 | 385 | 506 | 580 | 267 | 12.6 | 44 | 49 | 15.6 | 895 | 15.0 | 3.1 / 1.2 | 27.8 |
+
+Per team (all maps; win v rating-expected, exact to the pre-group ratings in the group JSON):
+| team | rows | win v exp | 250 | 500 | 750 | 1000 | first tribute | deaths | recalls | lock buy/use | shards |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Intercontinental Fish | 253 | 72% v 65% | 212 | 340 | 432 | 499 | 74 | 4.5 | 25.6 | 0.0 / 0.0 | 31.3 |
+| Mite | 250 | 52% v 58% | 190 | 320 | 424 | 501 | 62 | 4.6 | 28.8 | 5.5 / 2.9 | 36.3 |
+| Nyx | 233 | 50% v 52% | 220 | 340 | 417 | 532 | 74 | 6.8 | 33.9 | 0.0 / 0.0 | 47.1 |
+| Univardisty of Shingtonwash | 205 | 44% v 42% | 224 | 357 | 452 | 526 | 81 | 6.4 | 23.5 | 7.0 / 3.2 | 34.5 |
+| procless | 246 | 50% v 52% | 205 | 348 | 443 | 507 | 68 | 8.5 | 28.7 | 0.0 / 0.0 | 39.9 |
+| Sneaky Bush Campers | 203 | 45% v 44% | 229 | 380 | 489 | 610 | 67 | 6.1 | 28.4 | 0.0 / 0.0 | 40.1 |
+| hello | 155 | 45% v 43% | 233 | 375 | 482 | 612 | 68 | 7.1 | 31.1 | 3.6 / 0.2 | 35.8 |
+| Tartarus | 174 | 43% v 42% | 207 | 339 | 451 | 552 | 60 | 6.9 | 29.2 | 3.0 / 0.4 | 40.4 |
+| new team(4) | 218 | 44% v 45% | 216 | 360 | 459 | 567 | 70 | 7.3 | 24.9 | 5.7 / 2.9 | 31.8 |
+| Pantheon | 85 | 41% v 44% | 212 | 344 | 429 | 491 | 57 | 7.3 | 24.7 | 6.0 / 3.0 | 31.7 |
+- Data: Fish wins 72% against 65% expected (+7 points, 253 team-games) and buys no altar locks. Four of the ten (Mite, Univardisty of Shingtonwash, new team(4), Pantheon) buy 5.5 to 7.0 locks per game and place 2.9 to 3.2; Fish, Nyx, procless, Sneaky Bush Campers buy none. Excess of the lock users: -6, +2, -1, -3 points; of the non-users: +7, -2, -2, +1.
+- Data, action log of 117 top-10 games (234 team-sides): 40.7 stun casts per team-game, 7% landing within 1 tile of an enemy carrying 20 or more gems; 93 damaging hits per team-game, 21% on carriers against 27% of enemy champion-rounds being carrier-rounds (no carrier focus); 1.03 lock placements per team-game, 14% (33 of 240) with an enemy holding a bag within 2 tiles of the lock tile. Per team hits on carriers: Fish 34%, Tartarus 26%, procless 25%, Mite 24%, Sneaky Bush Campers 12% (each below 30 games).
+- Ours (141 full-action games): 53.3 stun casts per game, 2% near carriers; 301 damaging hits per game, 7% on carriers against 22% baseline; 0 lock placements.
+
+## 6. Top-team behaviours we do not have
+- Data: **Tavi buys shards in the field**: 78% of Tavi's 4,655 shards (1,674 top-10 team-games) were bought more than 6 tiles from spawn; ours 0% of 2,234 (515 games). Tavi shards per team-game: ours 4.3, top-10 2.8.
+- Data: **draft**: 98% of top-10 drafts contain Stellar (ours 32%); first picks Cassi and Issac 523, Varg 476, Ren 382, Stellar 209 of 1,674. Ours: Vendetta first in 459 of 515 games; our usual five-set is Cassi and Issac + Ryth + Tavi + Varg + Vendetta (263 games, 48% win, -2 points against expected). Rating-adjusted top-10 sets: Cassi and Issac + Ren + Stellar 57% (n=215, +5), Cassi and Issac + Ren + Ryth + Stellar + Varg 52% (376, -1), with Tavi and Varg 39% (100, -8). Our opponents open with Cassi and Issac 250 of 515.
+- Data: **shard choice**: first shards of top-10 champions are power 2,186, jungle 1,931, durability 1,765, bruiser 1,072, treasure 754, monster 316 (stat focus 3,209, strength 2,549, health 2,322); ours are monster 1,340 and power 1,200 only, strength 1,631, focus 571, health 338. Stellar's first shard: power/focus 39% for top-10, 52% ours (plus monster/focus 42%).
+- Data: **earlier income**: first tribute round 69 against our 86; median rounds to 250 gems 213 and 500 gems 349 across the top-10 rows.
+- Data: **staying alive**: top-10 rows spend 9% of champion-rounds dead against our 13%, and lose 1 in 9 collected gems against our 1 in 7 (tributed per collected gem 0.89 against 0.85).
+- Data: **altar locks** are not a common trait: 4 of 10 top teams use them, Fish does not.
+- Not shown by the data: carrier focus, ward use (not decoded), or stuns on carriers; the top-10 hit carriers less than their share of the field.
+
+## 6b. Interpretation (mine, not data)
+- Where income is lost differs by map: deaths and bag loss on swirl, fragment, packs, interlock, collision, stampede; standing at gold camps or spawn on pilgrimage, stampede, rushbait_v2; late first tribute on swirl (404 against 49), stampede (869 against 213), eight (108 against 86). A single pace change will not fix all three families.
+- The Tavi field-buy gap is the one purchase behaviour that is large (78% against 0%) and cheap to copy; the lock gap is not (Fish wins without locks).
+- Our Cassi and Issac bodies take half of our deaths, and Stellar plus Varg kill them most; the top-10 drafts we do not play (Stellar in 98%) are the same champions that kill us most.
+- The top-10 reference and our games are from different days, so a gap of under about 15% on a single map with fewer than 30 games should not drive a change.
+
+## 7. Our win rate by hour (UTC, 18 Oct 22Z to 19 Oct 16Z), wins/games (30 games per hour; align with upload times)
+18Oct 22Z 0/10 | 23Z 7/30 | 19Oct 00Z 14/30 | 01Z 18/30 | 02Z 17/30 | 03Z 13/30 | 04Z 13/30 | 05Z 13/30 | 06Z 10/30 | 07Z 21/30 | 08Z 17/30 | 09Z 12/25 | 10Z 14/30 | 11Z 13/30 | 12Z 19/30 | 13Z 15/30 | 14Z 13/30 | 15Z 13/25 | 16Z 3/5.
+
+## 8. Reproduce and extend
+`py -I tools/v3/fetch_team.py <teamId> <label>`; `py -I tools/v3/fetch_replays.py <ids.txt>` (one download at a time, about 0.2 to 0.4 per second, HTTP 409/429 handled); `decode_loop.py <ids> <dir> --stride 13|1`; `analyze_rounds.py`, `analyze_econ.py`, `aggregate_econ.py`, `killers.py`, `behaviour_extras.py`, `action_extras.py`, `pace_gaps.py`. Tables: `data/v3/decoded/econ_tables.txt`, `tables_s13.txt`, `killers_ours.txt`. Not done: lock cancellations of tributes and tribute interruptions by stun (the channel outcome classifier gave unusable results in a 24-game trial: 5,343 of 9,107 top-10 channel starts ended as unclassified), exact time in recall/tribute channels, per-map action-level comparisons (full-action sample per map is below 30).
+
+
+# APPENDIX C: per-map camp economics
+
+# Map economics (camp groups from decoded replays; GameRules monster table)
+
+Gem rate = sum over gem-bearing groups of gems / (respawn + 5 capture rounds): the most a map can yield per round if every group is taken on cooldown by one team. Side = Chebyshev distance to spawn A minus to spawn B (negative = nearer A).
+
+## ambush: 38 camps in 12 groups; bodies per team 6; spawns A (3, 3) B (96, 96); gem supply 10.91 gems/round; 21.2 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+2gem | 120 | 320 | 5800 | 120 | 60 | (44, 65) | 10 | 62 |
+| 2elk+2gem | 120 | 320 | 5800 | 120 | 60 | (56, 34) | -10 | 52 |
+| 1wolf+1elk+2gem | 106 | 250 | 4750 | 80 | 60 | (78, 56) | 35 | 76 |
+| 1wolf+1elk+2gem | 106 | 250 | 4750 | 80 | 60 | (20, 44) | -35 | 40 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (30, 44) | -24 | 41 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (68, 55) | 24 | 66 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (32, 49) | -18 | 46 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (68, 50) | 18 | 64 |
+| 4gold | 0 | 140 | 2000 | 0 | 50 | (28, 54) | -16 | 52 |
+| 4gold | 0 | 140 | 2000 | 0 | 50 | (70, 44) | 16 | 68 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (41, 48) | -9 | 45 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (58, 51) | 9 | 55 |
+
+## collision: 26 camps in 20 groups; bodies per team 4; spawns A (3, 1) B (3, 39); gem supply 9.45 gems/round; 19.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (38, 3) | -1 | 35 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (38, 37) | 1 | 36 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (21, 3) | -18 | 18 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (21, 37) | 18 | 36 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (29, 3) | -10 | 26 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (29, 37) | 10 | 36 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (10, 5) | -27 | 7 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (10, 35) | 27 | 34 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (15, 9) | -18 | 12 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (15, 31) | 18 | 30 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (19, 13) | -10 | 16 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (19, 27) | 10 | 26 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (24, 18) | 0 | 21 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (24, 22) | 0 | 21 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (12, 7) | -23 | 9 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (12, 33) | 23 | 32 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (17, 11) | -14 | 14 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (17, 29) | 14 | 28 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (22, 16) | -4 | 19 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (22, 24) | 4 | 23 |
+
+## contest: 22 camps in 14 groups; bodies per team 6; spawns A (3, 3) B (46, 46); gem supply 2.58 gems/round; 10.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (17, 31) | -1 | 28 |
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (32, 18) | 1 | 29 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (22, 31) | 4 | 28 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (27, 18) | -4 | 24 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (18, 27) | -4 | 24 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (31, 22) | 4 | 28 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (19, 3) | -27 | 16 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (30, 46) | 27 | 43 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (5, 33) | -11 | 30 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (44, 16) | 11 | 41 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 9) | -4 | 33 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (13, 40) | 4 | 37 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (5, 18) | -26 | 15 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (44, 31) | 26 | 41 |
+
+## corners: 46 camps in 30 groups; bodies per team 6; spawns A (13, 33) B (57, 33); gem supply 17.00 gems/round; 18.3 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+1gem | 96 | 320 | 5300 | 120 | 60 | (25, 60) | -6 | 27 |
+| 2elk+1gem | 96 | 320 | 5300 | 120 | 60 | (45, 60) | 6 | 32 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (12, 66) | -12 | 33 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (58, 66) | 12 | 46 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (34, 32) | -2 | 21 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (36, 32) | 2 | 23 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (34, 36) | -2 | 21 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (36, 36) | 2 | 23 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (12, 16) | -28 | 17 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (58, 16) | 28 | 45 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (18, 22) | -28 | 11 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (52, 22) | 28 | 39 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (10, 53) | -27 | 20 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (60, 53) | 27 | 47 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (17, 49) | -24 | 16 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (53, 49) | 24 | 40 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (10, 41) | -39 | 8 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (60, 41) | 39 | 47 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (28, 13) | -9 | 20 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (42, 13) | 9 | 29 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 7) | -15 | 26 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (54, 7) | 15 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (9, 5) | -20 | 28 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (61, 5) | 20 | 48 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (22, 9) | -12 | 24 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (48, 9) | 12 | 36 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (34, 0) | 0 | 32 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (36, 0) | 0 | 32 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (34, 16) | -2 | 21 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (36, 16) | 2 | 23 |
+
+## eight: 20 camps in 8 groups; bodies per team 6; spawns A (0, 14) B (40, 14); gem supply 9.21 gems/round; 15.8 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 3elk+1gem+1gold | 132 | 515 | 8200 | 180 | 60 | (14, 26) | -13 | 14 |
+| 3elk+1gem+1gold | 132 | 515 | 8200 | 180 | 60 | (26, 26) | 13 | 26 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (13, 4) | -14 | 13 |
+| 2elk | 72 | 320 | 4800 | 120 | 60 | (27, 4) | 14 | 27 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (18, 10) | -4 | 18 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (22, 10) | 4 | 22 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (9, 15) | -22 | 9 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (31, 15) | 22 | 31 |
+
+## elkring: 20 camps in 10 groups; bodies per team 6; spawns A (0, 0) B (29, 29); gem supply 5.54 gems/round; 12.4 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (3, 6) | -20 | 6 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (26, 22) | 20 | 26 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (10, 2) | -18 | 10 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (20, 27) | 18 | 27 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (3, 12) | -14 | 12 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (26, 16) | 14 | 26 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (20, 2) | -8 | 20 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (10, 27) | 8 | 27 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (26, 10) | 6 | 26 |
+| 1elk+1gold | 36 | 195 | 2900 | 60 | 60 | (3, 20) | -6 | 20 |
+
+## expanse: 64 camps in 30 groups; bodies per team 4; spawns A (3, 2) B (76, 77); gem supply 21.20 gems/round; 25.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (71, 20) | 11 | 68 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (8, 59) | -11 | 57 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (71, 13) | 4 | 68 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (8, 66) | -4 | 64 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (8, 74) | 4 | 72 |
+| 1elk+3gem | 108 | 160 | 3900 | 60 | 60 | (71, 5) | -4 | 68 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (6, 35) | -38 | 33 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (74, 44) | 38 | 70 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (12, 18) | -48 | 16 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (68, 61) | 48 | 64 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (26, 4) | -50 | 22 |
+| 2gem | 48 | 0 | 1000 | 0 | 50 | (54, 75) | 50 | 73 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (41, 6) | -34 | 38 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (38, 74) | 34 | 72 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (25, 15) | -40 | 22 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (54, 64) | 40 | 62 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (5, 12) | -61 | 10 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (74, 67) | 61 | 71 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (5, 22) | -51 | 20 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (74, 57) | 51 | 71 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (17, 34) | -27 | 32 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (62, 45) | 27 | 59 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (54, 4) | -22 | 52 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 75) | 22 | 73 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (42, 13) | -26 | 38 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (38, 66) | 26 | 64 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (30, 26) | -24 | 26 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (50, 53) | 24 | 51 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (28, 38) | -12 | 36 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (52, 41) | 12 | 48 |
+
+## fragment: 12 camps in 6 groups; bodies per team 4; spawns A (1, 18) B (28, 11); gem supply 3.38 gems/round; 13.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1wolf+1elk | 58 | 250 | 3750 | 80 | 60 | (12, 16) | -5 | 11 |
+| 1wolf+1elk | 58 | 250 | 3750 | 80 | 60 | (17, 14) | 5 | 16 |
+| 1wolf+1gold | 22 | 125 | 1850 | 20 | 50 | (2, 5) | -14 | 13 |
+| 1wolf+1gold | 22 | 125 | 1850 | 20 | 50 | (28, 24) | 14 | 26 |
+| 1wolf+1gold | 22 | 125 | 1850 | 20 | 50 | (2, 11) | -20 | 7 |
+| 1wolf+1gold | 22 | 125 | 1850 | 20 | 50 | (28, 18) | 20 | 26 |
+
+## interlock: 24 camps in 16 groups; bodies per team 5; spawns A (0, 0) B (39, 39); gem supply 7.77 gems/round; 20.3 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 3gem | 72 | 0 | 1500 | 0 | 50 | (11, 18) | -10 | 18 |
+| 3gem | 72 | 0 | 1500 | 0 | 50 | (28, 21) | 10 | 28 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (31, 10) | 2 | 31 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (8, 29) | -2 | 29 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (28, 3) | -8 | 28 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (11, 36) | 8 | 36 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (5, 8) | -26 | 8 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (34, 31) | 26 | 34 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (5, 14) | -20 | 14 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (34, 25) | 20 | 34 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (5, 21) | -13 | 21 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (34, 18) | 13 | 34 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (19, 2) | -18 | 19 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (20, 36) | 18 | 36 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (36, 2) | 0 | 36 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (3, 36) | 0 | 36 |
+
+## lanes: 42 camps in 42 groups; bodies per team 6; spawns A (2, 12) B (87, 12); gem supply 17.36 gems/round; 20.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (39, 13) | -11 | 37 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (50, 13) | 11 | 48 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (39, 25) | -11 | 37 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (50, 25) | 11 | 48 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (39, 4) | -11 | 37 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (50, 4) | 11 | 48 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 15) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 15) | 17 | 51 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 13) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 13) | 17 | 51 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 11) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 11) | 17 | 51 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 6) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 6) | 17 | 51 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 4) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 4) | 17 | 51 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (36, 2) | -17 | 34 |
+| 1gem | 24 | 0 | 500 | 0 | 50 | (53, 2) | 17 | 51 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 15) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 15) | 3 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 13) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 13) | 3 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 11) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 11) | 3 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (42, 27) | -5 | 40 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (47, 27) | 5 | 45 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (42, 25) | -5 | 40 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (47, 25) | 5 | 45 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (42, 23) | -5 | 40 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (47, 23) | 5 | 45 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 2) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 2) | 3 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 4) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 4) | 3 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (43, 6) | -3 | 41 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 6) | 3 | 44 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 27) | -17 | 34 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (53, 27) | 17 | 51 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 25) | -17 | 34 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (53, 25) | 17 | 51 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 23) | -17 | 34 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (53, 23) | 17 | 51 |
+
+## monolith: 44 camps in 22 groups; bodies per team 6; spawns A (2, 45) B (47, 4); gem supply 14.97 gems/round; 16.2 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 8gem+1monolith | 392 | 300 | 24000 | 200 | 150 | (1, 1) | -2 | 44 |
+| 8gem+1monolith | 392 | 300 | 24000 | 200 | 150 | (48, 48) | 2 | 46 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (20, 2) | 16 | 42 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (29, 46) | -16 | 27 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (40, 25) | 18 | 38 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (8, 24) | -18 | 21 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (4, 9) | -8 | 36 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (46, 40) | 8 | 44 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (36, 11) | 23 | 34 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (13, 38) | -23 | 11 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (34, 3) | 29 | 42 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (15, 46) | -29 | 13 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 10) | 38 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (3, 39) | -38 | 6 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (46, 18) | 30 | 44 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (3, 31) | -30 | 14 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (23, 18) | 3 | 27 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (26, 31) | -3 | 24 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (18, 13) | 3 | 32 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (31, 36) | -3 | 29 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (13, 7) | 4 | 38 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 42) | -4 | 34 |
+
+## packs: 20 camps in 8 groups; bodies per team 4; spawns A (0, 0) B (30, 30); gem supply 7.61 gems/round; 17.8 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2gem+2gold | 48 | 70 | 2000 | 0 | 50 | (12, 18) | -1 | 18 |
+| 2gem+2gold | 48 | 70 | 2000 | 0 | 50 | (18, 12) | 1 | 18 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (8, 2) | -20 | 8 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (22, 28) | 20 | 28 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (16, 2) | -12 | 16 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (14, 28) | 12 | 28 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (24, 2) | -4 | 24 |
+| 2wolf | 44 | 180 | 2700 | 40 | 40 | (6, 28) | 4 | 28 |
+
+## pilgrimage: 46 camps in 23 groups; bodies per team 6; spawns A (1, 1) B (48, 1); gem supply 8.03 gems/round; 17.6 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 4elk+4gold | 144 | 780 | 11600 | 240 | 60 | (24, 58) | 0 | 56 |
+| 2wolf+2gem | 92 | 180 | 3700 | 40 | 50 | (16, 46) | 0 | 44 |
+| 2wolf+2gem | 92 | 180 | 3700 | 40 | 50 | (34, 46) | 0 | 44 |
+| 2wolf+1gem+1gold | 68 | 215 | 3700 | 40 | 50 | (4, 44) | -2 | 42 |
+| 2wolf+1gem+1gold | 68 | 215 | 3700 | 40 | 50 | (46, 44) | 2 | 44 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (15, 37) | 0 | 36 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (34, 37) | 0 | 36 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (16, 26) | -7 | 25 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (33, 26) | 7 | 32 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (5, 13) | -31 | 12 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (44, 13) | 31 | 43 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (3, 22) | -24 | 21 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (46, 22) | 24 | 45 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (5, 31) | -13 | 30 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (44, 31) | 13 | 43 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (16, 16) | -17 | 15 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (33, 16) | 17 | 32 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 11) | 0 | 24 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 3) | 0 | 24 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 26) | 0 | 25 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 43) | 0 | 42 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (14, 8) | -21 | 13 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (35, 8) | 21 | 34 |
+
+## rows: 28 camps in 9 groups; bodies per team 5; spawns A (2, 2) B (47, 47); gem supply 11.69 gems/round; 12.9 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2gem+2monolith | 448 | 600 | 41000 | 400 | 150 | (24, 24) | 0 | 22 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (18, 4) | -27 | 16 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (31, 45) | 27 | 43 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (31, 4) | -14 | 29 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (18, 45) | 14 | 43 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (42, 4) | -3 | 40 |
+| 3wolf | 66 | 270 | 4050 | 60 | 40 | (7, 45) | 3 | 43 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (48, 17) | 16 | 46 |
+| 3gold | 0 | 105 | 1500 | 0 | 50 | (1, 32) | -16 | 30 |
+
+## rushbait-v2: 18 camps in 18 groups; bodies per team 5; spawns A (11, 38) B (18, 41); gem supply 9.32 gems/round; 15.5 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (16, 29) | -3 | 9 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (13, 50) | 3 | 12 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (16, 24) | -3 | 14 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (13, 55) | 3 | 17 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (16, 19) | -3 | 19 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (13, 60) | 3 | 22 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (16, 14) | -3 | 24 |
+| 1elk | 36 | 160 | 2400 | 60 | 60 | (13, 65) | 3 | 27 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (13, 31) | -3 | 7 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 48) | 3 | 10 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (13, 26) | -3 | 12 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 53) | 3 | 15 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (13, 21) | -3 | 17 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 58) | 3 | 20 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (13, 16) | -3 | 22 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 63) | 3 | 25 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (13, 12) | -3 | 26 |
+| 1wolf | 22 | 90 | 1350 | 20 | 40 | (16, 67) | 3 | 29 |
+
+## stampede: 40 camps in 13 groups; bodies per team 6; spawns A (0, 0) B (0, 49); gem supply 5.54 gems/round; 20.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 6elk+6gem | 360 | 960 | 17400 | 360 | 60 | (57, 24) | 0 | 57 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 2) | -24 | 24 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (24, 48) | 24 | 48 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (13, 2) | -34 | 13 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (13, 48) | 34 | 48 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (34, 2) | -14 | 34 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (34, 48) | 14 | 48 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (42, 2) | -6 | 42 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (42, 48) | 6 | 48 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (50, 2) | 0 | 50 |
+| 2gold | 0 | 70 | 1000 | 0 | 50 | (50, 48) | 0 | 50 |
+| 4gold | 0 | 140 | 2000 | 0 | 50 | (2, 24) | 0 | 24 |
+| 4gold | 0 | 140 | 2000 | 0 | 50 | (18, 24) | 0 | 24 |
+
+## swirl: 80 camps in 22 groups; bodies per team 5; spawns A (26, 6) B (18, 23); gem supply 28.40 gems/round; 16.6 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 4elk+2gem | 192 | 640 | 10600 | 240 | 60 | (12, 2) | -8 | 14 |
+| 4elk+2gem | 192 | 640 | 10600 | 240 | 60 | (32, 27) | 8 | 21 |
+| 3wolf+1elk+2gem | 150 | 430 | 7450 | 120 | 60 | (6, 7) | 4 | 20 |
+| 3wolf+1elk+2gem | 150 | 430 | 7450 | 120 | 60 | (38, 22) | -4 | 16 |
+| 2elk+2gem | 120 | 320 | 5800 | 120 | 60 | (18, 0) | -15 | 8 |
+| 2elk+2gem | 120 | 320 | 5800 | 120 | 60 | (26, 28) | 15 | 22 |
+| 2elk+1gem | 96 | 320 | 5300 | 120 | 60 | (31, 1) | -17 | 5 |
+| 2elk+1gem | 96 | 320 | 5300 | 120 | 60 | (13, 28) | 17 | 22 |
+| 4wolf | 88 | 360 | 5400 | 80 | 40 | (14, 12) | 2 | 12 |
+| 4wolf | 88 | 360 | 5400 | 80 | 40 | (30, 16) | -2 | 10 |
+| 2elk+2gold | 72 | 390 | 5800 | 120 | 60 | (8, 24) | 8 | 18 |
+| 2elk+2gold | 72 | 390 | 5800 | 120 | 60 | (36, 6) | -8 | 10 |
+| 3wolf+1gold | 66 | 305 | 4550 | 60 | 50 | (2, 12) | 8 | 24 |
+| 3wolf+1gold | 66 | 305 | 4550 | 60 | 50 | (42, 16) | -8 | 16 |
+| 2wolf+1gold | 44 | 215 | 3200 | 40 | 50 | (1, 19) | 8 | 25 |
+| 2wolf+1gold | 44 | 215 | 3200 | 40 | 50 | (43, 10) | -8 | 17 |
+| 1elk+3gold | 36 | 265 | 3900 | 60 | 60 | (20, 14) | -2 | 8 |
+| 1elk+3gold | 36 | 265 | 3900 | 60 | 60 | (24, 16) | 2 | 10 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (8, 18) | 8 | 18 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (36, 11) | -8 | 10 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (20, 8) | -9 | 6 |
+| 1gold | 0 | 35 | 500 | 0 | 50 | (24, 21) | 9 | 15 |
+
+## Summary
+
+| map | groups | gem groups | gems on map | gem supply / round | bodies |
+|---|---|---|---|---|---|
+| contest | 14 | 2 | 400 | 2.58 | 6 |
+| fragment | 6 | 6 | 204 | 3.38 | 4 |
+| elkring | 10 | 10 | 360 | 5.54 | 6 |
+| stampede | 13 | 1 | 360 | 5.54 | 6 |
+| packs | 8 | 8 | 360 | 7.61 | 4 |
+| interlock | 16 | 12 | 420 | 7.77 | 5 |
+| pilgrimage | 23 | 5 | 464 | 8.03 | 6 |
+| eight | 8 | 8 | 540 | 9.21 | 6 |
+| rushbait-v2 | 18 | 18 | 508 | 9.32 | 5 |
+| collision | 20 | 14 | 536 | 9.45 | 4 |
+| ambush | 12 | 8 | 692 | 10.91 | 6 |
+| rows | 9 | 7 | 844 | 11.69 | 5 |
+| monolith | 22 | 16 | 1252 | 14.97 | 6 |
+| corners | 30 | 24 | 992 | 17.00 | 6 |
+| lanes | 42 | 36 | 900 | 17.36 | 6 |
+| expanse | 30 | 22 | 1228 | 21.20 | 4 |
+| swirl | 22 | 18 | 1728 | 28.40 | 5 |
+
+
+# APPENDIX A: GameRules.md (official, complete)
+
+# CAMBC Game Rules
+
+Event: cambc2026a. Exported from the current handbook, including all published champion specifications. Interactive diagrams are represented as text.
+
+## The game
+
+### Overview
+
+The map is populated with groups of monsters, called camps, that carry 2 valuable resources, gems  and gold
+
+Illustration: Sample map.
+
+In the game, you control a team of “champions” which are a set of combat units you will use to fight the monsters.
+
+Using code, you must clear the monsters away, obtaining their resources.
+
+The gems dropped are the main objective of the game.
+
+By taking gems collected from clearing camps, and tributing/offering them at altars, you obtain victory points.
+
+The most gems tributed by a team wins the game.
+
+Additionally to gems, camps can drop gold. Gold is a resource used to improve the combat power of your “champions” by giving them more damage, or health.
+
+### How to win
+
+The first team to tribute 1,000 gems wins immediately. At the 2,000-round limit, compare tributed gems, then lifetime gold earned, then champion kills. If all tie, Team B wins.
+
+The objective of the game is to tribute as many gems as possible! The game ends after a team tributes 1000 gems or round 2000 passes, whichever comes first.
+
+#### Tiebreak notes
+
+- The gold tiebreak counts all gold earned, not what is left to spend.
+- If tributed gems, gold earned and kills all tie, the team that acted second in round one wins (Team B). The starting team still alternates each round.
+- A local runner may stop before round 2,000.
+
+### Obtaining Resources
+
+Defeat every monster in a camp group, capture its region to receive gold and gems, then tribute carried gems at an altar. Spend gold to improve your champion.
+
+The general flow of the game is to send your champions to defeat camps on the map, collect the gems they drop, then tribute the gems at altars.
+
+Camps can also drop gold, which can be used on the champions' spawn tiles to purchase items making them stronger.
+
+## Drafting
+
+Before the match begins, you must select your team of “champions”.
+
+### Choosing champions
+
+Before the match begins, you must select your team of “champions”.
+
+The map is fully visible in the drafting phase. By looking at the map layout, and where the monsters/camps are, your code can make an informed decision on the best champions to tackle the job.
+
+Depending on the map, each team will select between 3 and 5 champions.
+
+Champions are picked one by one.
+
+For fairness, both teams select champions simultaneously, revealing their picks as they go.
+
+Champions are unique, so you may only pick one of each, though you can select the same champions as your opponent, see the table below:
+
+Selection rules
+
+| Choice | Allowed |
+| --- | --- |
+| Not selected by your team | ✓ |
+| Already selected by your team | ✗ |
+| Selected by the opposing team | ✓ |
+| Cassi & Issac (one selection) | ✓ |
+
+### Shared draft memory
+
+In addition to picking your champions, the drafting phase allows you to think carefully about your strategy and communicate it to your bots (code controlling the champions).
+
+This is achieved by writing your opening plan into the 1024 byte draft memory, which can be read by your champion bots later.
+
+The draft phase has additional fuel (compute) and can see the entire map layout, allowing for extra planning ahead.
+
+### After the draft
+
+After the draft, the selected champions are placed on each team's corresponding spawn tiles at full health.
+
+### Missing a pick
+
+If a draft bot yields, exhausts its fuel, or crashes without making a pick, the remaining selections are randomly selected by the game.
+
+## A champion turn
+
+Each turn a champion has a few options.
+
+Every turn a champion can move one tile, in any 8 directions
+
+Make a basic attack, dealing damage equal to their strength to a target in range
+
+And use one of their two champion abilities, to activate a more powerful effect
+
+If you are a ranged champion, you may NOT move, and basic attack on the same turn. This same rule applies for damaging abilities that are ranged as well.
+
+Melee champions can walk and attack in the same turn. Ranged champions normally choose walking or a basic attack: either consumes the other allowance. Attack-reset abilities can restore the attack allowance.
+
+In addition to the basic combat, a champion has a few other options to interact.
+
+Each champion carries a ward, that grants them persistent vision of an area with a range of 6 tiles. They may leave this ward behind to keep watch of an area anywhere within 2 tiles of them, and is able to relocate them every turn.
+
+When a champion is low on health, or simply needs to travel to their spawn tiles, they can activate a recall. This cancellable action takes 5 turns, and will teleport the champion straight to their spawn tiles.
+
+On the spawn tiles, they may shop for items using gold an unlimited amount.
+
+When carrying the all important gems, and are directly next to an altar, a feature of the map, a champion may tribute gems, a cancellable action that takes a number of turns, equal to the number of gems being tributed divided by 10
+
+Additionally, you can use consumable items without limit (though you can only carry one of each at once).
+
+#### Everything you can do
+
+Each turn normally allows one ordinary move, one basic attack, and one successful ability cast across both slots. Melee attack range is 1 tile; ranged attack range is 3. Movement and attacks share an allowance for ranged champions. Abilities have an 8-turn-end cooldown per slot. Some abilities exclude walking or reset attacks. Wards require their trinket charge; consumables require inventory. Shop on your spawn or while dead (subject to champion exceptions). Starting a channel prevents other actions until it finishes or is cancelled. Recall and tribute each have one start and one cancellation per turn. Priority changes affect the next round.
+
+#### The exact turn order
+
+The game engine runs each round's actions through phases, see the below graphic to understand the order of operations:
+
+At round start: camp respawns, existing spell/ward updates, camp captures, then camp actions. Champion turns follow, alternating teams; the starting team swaps each round. Each champion starts by resolving zero timers: respawn, ward recharge, buff/shield expiry, then channels. At turn end, timers decrement without triggering these effects; spawn recovery still happens at turn end. Recall arrives at turn start, so staying on spawn heals at that same turn's end.
+
+##### Who goes first?
+
+- **Teams alternate**: The team that starts swaps every round.
+- **Priority, then draft order**: Within a team, higher priority acts first.
+- **set_priority**: Takes effect from the next round and persists.
+- **Dead champions still act**: They get a turn to shop.
+
+**Order matters**
+
+A capture can add gems before a tribute completes. Camps attack before your next turn.
+
+## Maps & movement
+
+Find a free tile in range. Do not path onto the target itself.
+
+### Map features
+
+The map is a grid, between 30*30 to 100*100, built from 5 different tiles as shown below:
+
+
+
+| Feature | Description |
+| --- | --- |
+| Wall | Blocks line of sight, cannot be moved onto nor can it be dashed over. TP Crystal can reach walls. |
+| Holes | Can be seen over, cannot be moved onto but can be dashed over. |
+| Bush | Blocks line of sight, can be moved onto. If you are within a bush, you can see out of the bush. |
+| Altar | Cannot be moved onto, used to submit gems. |
+| Spawn Tile | Cannot be moved onto by opponents. Your team's champions spawns onto these tiles. While standing on these tiles you are healed. |
+
+The map also is populated with camps/monsters as outlined in the next section.
+
+### Ways to move
+
+To traverse the map, a champion can move 1 step every turn with their basic move action. Dashes move up to 2 steps, including diagonals, along a legal dash path. Teleport crystals reach up to 3 tiles horizontally and vertically, including diagonals, and ignore terrain between you and the destination.
+
+Ordinary movement reaches an adjacent tile in any of eight directions. Melee champions can also attack; ranged champions ordinarily choose one. Dashes use a legal path of up to 2 steps and may cross holes; teleport crystals have range 3 and ignore intervening terrain. Landing cannot be on a wall, hole, altar, enemy spawn or occupied tile.
+
+Ask the SDK for your movement mask rather than recomputing walking yourself; it already accounts for the units you can see.
+
+An unseen enemy in a bush can block a destination included in your observed movement mask. Attempting the step returns false, reveals that tile for the rest of the round and preserves your movement allowance. Choose another free tile and retry. A known occupied destination raises an error.
+
+**Hidden enemies still block**
+
+If an otherwise legal destination has an unseen occupant, the action returns `false` without throwing. The blocked tile is revealed to your champion for the rest of the round, and the attempt does not consume your movement allowance, ability cooldown or consumable, so you can try another destination. A destination already known to be occupied raises an error (`cambc::error` in C++). A successful action returns `true`. These rules also apply to dashes and teleport crystals; for a crystal, `true` means its channel started successfully.
+
+## Camps & capture
+
+The main way to obtain resources is to defeat camps or monsters, on the map. They can spawn alone or in a group (any monsters that are cardinally connected).
+
+The main way to obtain resources is to defeat camps or monsters, on the map. They can spawn alone or in a group (any monsters that are cardinally connected).
+
+### Pick your target
+
+
+
+| Monster | Health | Strength | Range | Gold | Gems | Respawn |
+| --- | --- | --- | --- | --- | --- | --- |
+| Wolf | 1,350 | 20 | 3 | 90 | 22 | 40 rounds |
+| Elk | 2,400 | 60 | 3 | 160 | 36 | 60 rounds |
+| Gem cluster | 500 | 0 | 0 | 0 | 24 | 50 rounds |
+| Gold cluster | 500 | 0 | 0 | 35 | 0 | 50 rounds |
+| Monolith | 20,000 | 200 | 3 | 300 | 200 | 150 rounds |
+
+The map is populated with a variety of monsters. They vary in health, strength (damage dealt per turn) and the rewards they drop.
+
+The monsters are friendly until they are hit! When a champion strikes a monster, it will awaken attacking the nearest champion every turn, until it either dies or does not take damage for 2 turns.
+
+### After defeating a camp, make sure to capture!
+
+After every monster in a group dies, occupy at least one of its spawn tiles uncontested. At a capture phase your team starts a five-round timer; later capture phases count it down. Leaving the region empty or admitting an enemy resets progress. More allies do not speed it up. Rewards are shared among allies present when it finishes; the lowest ID receives any integer remainder. The group respawns together after rewards are claimed, using the longest cooldown of its members. Any occupied spawn tile delays the entire group.
+
+After defeating an entire group (cardinally connected monsters), you can then capture the rewards by standing on one of the tiles a monster was underneath, and wait 5 turns (the capture timer). This will award the waiting champion the gold and gems from the camp. If there are multiple champions, the reward is split evenly among them.
+
+### What happens next?
+
+After a camp reward is captured, its respawn timer begins. After the timer has finished (ticking down by 1 each round), the camp will respawn in the same location as before, full health, ready to drop rewards again.
+
+#### Capture and monster details
+
+- Rewards combine every monster in the group.
+- Allies on the region split the reward; the lowest ID gets the remainder.
+- Extra allies do not speed capture. Empty or contested regions reset it.
+- All monsters have attack range 3 and vision 8, see through bushes and do not chase.
+- Damage wakes the group; two rounds without an in-range champion let it sleep.
+
+## Gems & altars
+
+The main objective of the game is to obtain gems by capturing camps, or stealing them from enemies. To actually progress towards winning the game however, the gems must first be tributed at altars.
+
+The main objective of the game is to obtain gems by capturing camps, or stealing them from enemies. To actually progress towards winning the game however, the gems must first be tributed at altars.
+
+### Carried or tributed
+
+Carried gems can be stolen on death and do not count towards victory. Tributed gems are permanent team score.
+
+### Tribute at an altar
+
+Tributing requires a channel to secure the gems. The amount of time this takes scales with the number of gems you are carrying, namely the amount divided by 10, rounded up.
+
+Stand within Chebyshev distance 1 of an altar with at least one gem and start a tribute. Duration is max(1, ceil(starting gems / 10)) champion turn ends: 1–10 gems take 1 countdown tick, 11–20 take 2. Timers decrement at turn end, including the starting turn, and complete at the owner's next turn start after reaching zero. Completion tributes the entire current bag. Damage does not interrupt it; stun, death or an altar lock does.
+
+Tribute duration is max(1, ceil(carried gems / 10)) owner turn ends. The starting turn counts; completion waits until your next turn start after zero.
+
+#### Timing details
+
+- The channel ticks at the end of its champion’s turn, including the turn it starts. A timer that reaches zero stays pending until the start of that champion’s next turn. A one-tick tribute therefore completes at your next turn start, not at the end of the turn you start it.
+- Its length uses your bag when you start. Completion tributes your whole bag, including gems gained since.
+- Captures resolve before channels, so gems captured this round are included.
+
+### Altar locks
+
+Altar locks are a consumable you can purchase for 10g, and carry one at a time. You can place them on altars if you are within range, cancelling enemy channels, or simply delaying them by leaving them there. It takes 3 basic attacks to clear the lock, which is also triggered by the tributing action in the engine.
+
+An altar lock blocks opposing tributes but allows its owner's team to tribute. Placing it cancels existing tribute channels at that altar. Three basic attacks remove it.
+
+#### Tributing against a lock
+
+Attempts to tribute against a locked altar are implicitly converted to auto attacks against the altar lock.
+
+## Combat & abilities
+
+Basic attacks use Strength. Spells use their own effects and Focus scaling.
+
+### Basic attacks
+
+Every turn champions can attack using their basic attack, melees can hit targets within 1 tile, and ranged within 3. Depending on whether you are the melee or ranged class will determine whether you can move and attack on the same turn or not:
+
+Basic attacks deal Strength before modifiers and require a visible target. Ranges use Chebyshev distance, so diagonals count as one tile. Melee range is 1; ranged range is 3.
+
+### Abilities scale with focus
+
+Abilities scale with focus by taking the champion's focus value, and multiplying by the ability multiplier.
+
+For example, Stellar starts with 100 focus, and has an ability dealing 2x focus damage. Therefore she can cast the ability on her turn dealing a burst of 200 damage, starting its 8 turn cooldown. After 8 turns, she can cast the ability again.
+
+Each champion has two ability slots but only one successful cast per turn. Casting starts an 8-turn-end cooldown for that slot. Spell effects scale with Focus as specified in the champion's kit.
+
+Ability details such as the range, targeting system, and whether you can cast and move are detailed on each champion's individual page
+
+#### Targets
+
+- Unit spells need a valid visible target. Ground spells affect an area.
+- Self-targeted spells use the self-cast action.
+
+### Channels
+
+Channels are actions that take several turns to complete, such as recall, tribute and teleport. Their timers tick down at your turn end, then execute at your next turn start when the timer is zero. The below table shows the channel actions in the game, and how and when they can be cancelled.
+
+Channels count down at owner turn ends and execute at the next owner turn start once zero. Recall takes 5 countdown ticks (3 with Home) and is interrupted by damage, stun or death. Tribute takes ceil(gems / 10) owner turn ends, at least 1: damage does not stop it, but stun, death or a new altar lock does. Teleport crystals channel for 3 owner turn ends: damage does not stop them; enemy stuns and death do. Recall and tribute can be cancelled manually; teleport cannot.
+
+## Items & gold
+
+Items in the game are purchased on the spawn tiles (or while dead) using gold. You can purchase shards, increasing permanent stats for your champion based on their internal growth values:
+
+### Shards and emblems
+
+Items in the game are purchased on the spawn tiles (or while dead) using gold. You can purchase shards, increasing permanent stats for your champion based on their internal growth values:
+
+- Strength, increasing your basic attack damage
+- Health, increasing your maximum health
+- Focus, increasing the power of your abilities
+
+Shards cost 30 gold and after purchasing 5, combine into an emblem providing a unique bonus based on which shard type you purchased.
+
+Try building an emblem below:
+
+Shards cost 30 gold and add their champion's growth for the chosen stat. Five matching shards automatically combine into the corresponding emblem. Only the completed emblem grants its passive. Families have Strength, Health and Focus variants; use the family table for stat points and passives.
+
+### Emblem families
+
+Every family has Strength, Health and Focus versions. 5 shards automatically combine to an emblem (150 gold total). Shards give stats; only the finished emblem gives the passive.
+
+| Family | Counts as | Passive |
+| --- | --- | --- |
+| Monster | 5 shards of the chosen stat | 10% more damage to camps. |
+| Power | 6 shards of the chosen stat | None; one extra shard’s worth instead. |
+| Durability | 5 shards of the chosen stat | 10% less incoming damage. |
+| Treasure | 5 shards of the chosen stat | 20% more gold gained. |
+| Jungle | 5 shards of the chosen stat | 30% less damage from camps. |
+| Home | 5 shards of the chosen stat | 50% shorter recall: five turn ends become three, rounded up. |
+| Bruiser | 5 of the chosen stat, 1 of each other | None; a spread of stats instead. |
+
+### Consumables
+
+The shop also has some consumable items, each costing 10 gold. You may carry only one of each at the same time, with the same purchase rules as shards/emblems.
+
+10 gold each. Carry at most one of each. Buy them on your spawn or while dead.
+
+| Tool | Use |
+| --- | --- |
+| Altar lock | Place on an altar within two tiles. Blocks enemy tributes until removed by three basic attacks. |
+| Teleport crystal | Teleport crystal allows you to access otherwise unreachable areas by teleporting you 3 tiles, ignoring terrain. However, the teleport only activates after a channel of 3 turns. |
+
+#### Extra item rules
+
+- **Stats stack**: Every shard counts, including those inside duplicate emblems.
+- **Emblem passives don’t**: A second emblem of a family adds no extra passive.
+- **Gold bonuses add**: Treasure with Vesper Vale: 20% + 20% = 40%.
+- **Spawn purchases heal**: Buying Health on your spawn heals the amount gained; Tavi’s field purchases do not.
+- **Only Tavi can sell**: On spawn, for the full purchase value. Refunds are not earned gold.
+
+## Vision & wards
+
+Each champion sees its own patch of the map. Walls and bushes block the view.
+
+### How vision is calculated
+
+Vision in the game is raycast, you can try it with the interactive vision tool below. To be more precise, the system uses symmetric shadow casting based on Albert Ford's algorithm.
+
+[Albert Ford: Symmetric Shadowcasting — explanation and interactive example](https://www.albertford.com/shadowcasting/)
+
+### What you can see
+
+Champions normally see up to 8 tiles using symmetric shadowcasting. Walls and bushes occlude vision; the connected bush cluster you stand in is transparent to your own vision. Your ward adds its vision; teammates' views are not shared.
+
+- You see up to 8 tiles away in every direction, including diagonally, if nothing blocks the line of sight.
+- Walls block sight. So do bushes: from outside, you cannot see into a bush or past it.
+- Standing in a bush, you see across that whole bush and out of it, but not into other bushes.
+- Holes cannot be stood on, but they do not block sight
+
+### Wards
+
+Each champion has a free ward, that can be placed to expand their personal vision. You may freely replace it, once per round, but note that you can/will only ever have one active.
+
+- **One active ward**: A new ward replaces the old one.
+- **Permanent**: Wards do not expire or take damage.
+
+### Vision is not shared among allies
+
+Vision per champion is only their own, plus their own ward. You cannot see what your ally champions see, nor their wards. However, if you spot something of note, you can use the shared memory to try to communicate the information to your team.
+
+## Death, recall & recovery
+
+Recall to heal safely. Die, and you lose your carried gems and sit out 60 rounds.
+
+### When a champion dies
+
+The killer receives all carried gems and 50 base gold; assists award no gold. Camp kills destroy carried gems. Dead champions retain shopping turns and respawn at their next turn start after 60 owner turn-end ticks, when a spawn tile is available, with full health and abilities reset.
+
+When a champion dies they respawn on their spawn tiles after 60 rounds, awarding their killer all the gems they were carrying in addition to 50 gold.
+
+If a camp kills you, the carried gems are lost.
+
+Cassi and Issac die together, awarding the killer 50 gold, and all the gems that both of them were carrying.
+
+### Recalling
+
+Recalling is a channeled action taking 5 turns, that returns your champion to the spawn from anywhere on the map. Spawn tiles allow you to shop, and also will heal you to full health so recalling when you are low, or have a lot of gold is usually a good idea.
+
+Recall takes 5 owner turn ends, or 3 with Home; the starting turn counts. Completion happens at the next owner turn start after zero. Damage or stun interrupts it. You retain carried gems. After arriving at turn start, remain on spawn until that turn ends to heal fully.
+
+- Recall arrives at turn start. Stay on spawn until the end of that turn to heal to full.
+- Any damage cancels it, and so does a stun. Start it somewhere safe.
+- You keep your carried gems.
+
+## Fuel
+
+Bots have a computation limit enforced via Wasmtime fuel. Fuel roughly corresponds to CPU instructions, though it isn't perfectly 1:1. Using fuel rather than time means that execution is deterministic and machine-independent. Since some languages are more instruction efficient than others, there are different fuel limits for different languages.
+
+Bots have a computation limit enforced via Wasmtime fuel. Fuel roughly corresponds to CPU instructions, though it isn't perfectly 1:1. Using fuel rather than time means that execution is deterministic and machine-independent. Since some languages are more instruction efficient than others, there are different fuel limits for different languages.
+
+By default, a C++ or Rust bot gets 100k fuel per turn. OCaml gets 5 times the C++ limit, and Python gets 25 times the C++ limit.
+
+When a bot runs out of fuel, its execution is suspended and the next bot in the turn order gets to go. The next round, this bot's turn will resume from the point of suspension and continues.
+
+We provide bots with 10x fuel for the first turn of draft, to facilitate precomputation, and 2x fuel for the first turn of play, giving bots room to initialise and precompute. Unused fuel at the end of a turn is not added to the next turn's fuel budget.
+
+## Shared memory
+
+Your team’s two scratchpads: 1,024 bytes saved in the draft, and 8 bytes shared all match.
+
+Each champion has its own bot instance, but there is a team memory buffer that is shared by your team, which cannot be read by the opponent.
+
+Each team has 8 bytes of shared memory, that is readable and writable throughout the match.
+
+In addition, there is the 1024 bytes of draft memory, that is writable during the draft phase, that becomes read-only for your champions during the match itself.
+
+## Champion roster
+
+### Choose a champion
+
+
+
+### Compare starting stats
+
+Before equipment and passives. Strength powers basic attacks, Focus powers spells and Health is your maximum health. Growth is what each matching shard adds.
+
+### Shared by every champion
+
+- **Vision 8**: Every champion sees 8 tiles around itself.
+- **Walk 1**: One tile per turn, in any direction.
+- **8-round cooldowns**: On both ability slots.
+- **One cast per turn**: Shared by both slots. “Excludes walking” spells can’t share a turn with a walk.
+
+## Cassi & Issac
+
+One draft choice creates a ranged spellcaster and a melee fighter. They act separately, but if either dies, both die.
+
+### Two bodies, one linked fate
+
+Cassi and Issac have separate positions, bags, abilities and bot instances. Each receives its own turn.
+
+**Shared passive**
+
+If either Cassi or Issac dies, the other dies too. Both lose their carried gems and together grant one kill reward.
+
+### Cassi · ranged
+
+**Cassi**
+
+#### Slot 0: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Stun
+
+One-round stun with no direct damage.
+
+Target / range: Enemy or camp · 4. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 71.25 |
+| Strength | 30 | 3.5 |
+| Focus | 70 | 15 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+### Issac · melee
+
+**Issac**
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 95 |
+| Strength | 40 | 4.75 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Ryth
+
+A melee champion with an area stun and an attack reset. Health also adds Strength.
+
+### Kit
+
+**Ryth**
+
+**Passive:** Ryth gains Strength equal to 1% of bonus health.
+
+#### Slot 0: Area stun
+
+1 × Focus damage and a one-round stun in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1200 | 100 |
+| Strength | 50 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Vesper Vale
+
+A ranged champion with strong basic attacks, bonus gold and a short dash.
+
+### Kit
+
+**Vesper Vale**
+
+**Passive:** Vesper Vale gains 20% more gold. A Treasure emblem adds another 20 percentage points, for a combined 40% bonus.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 100 |
+| Strength | 45 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Prism
+
+A ranged spellcaster who gains Focus from carried gems, trading safe tributes for temporary strength.
+
+### Kit
+
+**Prism**
+
+**Passive:** Prism gains 0.2 Focus per carried gem. Ten carried gems add 2 Focus. Tributing or losing those gems removes that bonus.
+
+#### Slot 0: Damage and stun
+
+1.5 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Area damage
+
+1 × Focus damage in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 75 |
+| Strength | 35 | 3.5 |
+| Focus | 80 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Stellar
+
+A ranged spellcaster who chooses between concentrated damage and an area hit.
+
+### Kit
+
+**Stellar**
+
+#### Slot 0: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Area damage
+
+1.4 × Focus damage in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 750 | 75 |
+| Strength | 35 | 3.5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Vendetta
+
+A melee attacker whose kills refresh spell cooldowns, with a reset and dash for follow-up plays.
+
+### Kit
+
+**Vendetta**
+
+**Passive:** When Vendetta gets a kill, she resets all her ability cooldowns. This applies to killing camp monsters too.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 800 | 100 |
+| Strength | 70 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Marcella
+
+A melee champion immune to stuns, with a stunning enhanced attack and a ranged damage spell.
+
+### Kit
+
+**Marcella**
+
+**Passive:** Immune to stuns
+
+#### Slot 0: Enhanced attack reset
+
+Resets your basic attack cooldown; the next enhanced attack stuns for one round.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1200 | 100 |
+| Strength | 45 | 5 |
+| Focus | 50 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Tavi
+
+A ranged champion who can buy equipment in the field and threaten a target with a powerful stunning spell.
+
+### Kit
+
+**Tavi**
+
+**Passive:** Tavi can buy shards from anywhere on the map, note he cannot buy consumables unless he is on his spawn tiles (or dead). Additionally, Tavi can sell equipment at spawn for its full purchase value. Note, Health bought away from spawn raises maximum health without healing.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Damage and stun
+
+2.2 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 750 | 75 |
+| Strength | 35 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Willow
+
+A ranged champion who can heal an ally or reset a basic attack, with modest stat growth.
+
+### Kit
+
+**Willow**
+
+#### Slot 0: Ally heal
+
+Restores up to 3 × Focus health to another allied champion.
+
+Target / range: Ally · 4. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 50 |
+| Strength | 45 | 3 |
+| Focus | 105 | 5 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Ren
+
+A melee champion with retaliation damage, a targeted stun and a short dash.
+
+### Kit
+
+**Ren**
+
+**Passive:** Retaliates against an attacker for 0.2 × Focus damage when damaged. Ren can still trigger retaliation as he dies.
+
+#### Slot 0: Damage and stun
+
+1.25 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 100 |
+| Strength | 40 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Varg
+
+A melee champion with splash basic attacks, an attack reset and a temporary self-shield.
+
+### Kit
+
+**Varg**
+
+**Passive:** Basic attacks splash damage equal to Strength onto other valid enemies and camps within radius one of the target. The primary target is not hit twice by the splash.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Self-shield
+
+Grants a 2.5 × Focus shield lasting five turns.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1000 | 100 |
+| Strength | 50 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+
+---
+
+# APPENDIX D: CAMBC Bot API (C++) — signature index generated from BotAPICpp.md (18 Oct)
+
+## cambc
+- `class ability { };` — A champion ability slot; actions require the owning champion to be self.
+- `struct ability_aoe_damage : ability_properties { static constexpr ability_kind kind; float range, modifier, radius; std::int32_t duration; };` — Cached area-damage metadata, including effect radius and duration.
+- `struct ability_attack_reset : ability_properties { static constexpr ability_kind kind; bool enhanced_attack; };` — Attack-reset metadata; this payload has no targeting range.
+- `struct ability_cc : ability_properties { static constexpr ability_kind kind; float range, modifier; std::int32_t duration; };` — Cached crowd-control ability metadata.
+- `struct ability_damage : ability_properties { static constexpr ability_kind kind; float range, modifier; };` — Cached direct-damage ability metadata.
+- `struct ability_dash : ability_properties { static constexpr ability_kind kind; float range; };` — Cached dash ability metadata.
+- `struct ability_heal : ability_properties { static constexpr ability_kind kind; float range, modifier; };` — Cached healing ability metadata.
+- `using ability_info = std::variant<ability_attack_reset, ability_damage, ability_aoe_damage, ability_cc, ability_heal, ability_dash, ability_shield>;` — Owned, tagged ability metadata; use ability_types tags to select a typed payload.
+- `enum class ability_kind : std::uint32_t { attack_reset = 1, damage, aoe_damage, cc, heal, dash, shield };` — Ability payload types reported by the engine.
+- `struct ability_properties { std::int32_t max_cooldown; ability_target_mask valid_targets; bool exclusive_with_movement; };` — Properties shared by every ability payload.
+- `struct ability_shield : ability_properties { static constexpr ability_kind kind; float range, modifier; std::int32_t duration; };` — Cached shield ability metadata.
+- `class ability_target_mask { public: static const ability_target_mask camps, enemies, allies, self, ground; };` — Allowed ability target categories, not a geometric range mask.
+- `class altar_lock { };` — An immutable observation of a visible altar lock.
+- `class bitboard { };` — Aligned tile mask, empty by default. Raw buffers are engine-chunked; linear buffers are row-major, least-significant bit first.
+- `class buff_collection { };` — Buff values captured at construction. Call unit::buffs() for fresh values.
+- `struct buff_enhanced_attack { static constexpr buff_types kind; std::int32_t duration; };` — Owned enhanced-attack snapshot with remaining duration.
+- `class buff_restrictions { public: static const buff_restrictions move, attack, cast, shop, consumable, ward; };` — Prohibited actions; contains(buff_restrictions::ward) checks ward placement.
+- `struct buff_shield { static constexpr buff_types kind; std::int32_t duration; float value; };` — Owned shield snapshot with remaining duration and shield value.
+- `struct buff_stun { static constexpr buff_types kind; std::int32_t duration; };` — Buff timers are remaining engine rounds, including any application-round extension.
+- `using buff_t = std::variant<buff_shield, buff_stun, buff_enhanced_attack>;` — Owned, tagged active-buff snapshot; each alternative includes its remaining duration.
+- `enum class buff_types : std::uint32_t { shield, stun, enhanced_attack, count };` — Supported active buff kinds; count is an inventory-size sentinel.
+- `class camp : public unit { };` — A runtime camp, with public spawn metadata and visibility-checked combat queries.
+- `class camp_state { public: enum class enum_type : std::uint32_t { dead = 0, alive = 1, asleep = 2 }; static const camp_state dead; static const camp_state alive; static const camp_state asleep; };` — An individual camp's captured lifecycle. States are mutually exclusive, not flags.
+- `struct camp_stats { float vision_radius; std::int32_t base_move_speed, base_attack_range; float base_health, health_growth, base_strength, strength_growth; float base_focus, focus_growth; };` — Camp design stats and growth parameters; layout matches Game_CampStats.
+- `enum class camp_type : std::int32_t { wolf, elk, gem_cluster, gold_cluster, monolith };` — Physical camp types.
+- `class champion : public unit { };` — Champion handle with live queries and self-only actions.
+- `enum class champion_draft : std::int32_t { ryth = 0, vesper_vale, vendetta, cassi_and_issac, stellar, prism, marcella, willow, ren, varg, tavi, };` — Draft choices; Cassi and Issac share one pick.
+- `class champion_state { public: static const champion_state alive, recalling, submitting_gems, can_move, can_attack, completed_turn, recall_started, submit_gems_started, recall_cancelled, submit_gems_cancelled, can_cast, ` — Current life, channel and action flags; contains(champion_state::alive) checks the life bit.
+- `struct champion_stats { std::int32_t vision_radius, base_move_speed, base_attack_range; float base_health, health_growth, base_strength, strength_growth; float base_focus, focus_growth, camp_damage_multiplier; };` — Champion design stats and growth values.
+- `enum class champion_type : std::int32_t { ryth = 0, vesper_vale, vendetta, cassi, issac, stellar, prism, marcella, willow, ren, varg, tavi, };` — Physical champion types; Cassi and Issac are separate champions.
+- `std::vector<cambc::champion> champions()` — Get allied and enemy champion handles, including champions outside vision.
+- `std::vector<cambc::champion> champions(team side)` — Get all champion handles on one side, including champions outside vision. @param side Team to include.
+- `class consumable { };` — A consumable inventory entry belonging to a champion.
+- `struct consumable_info { std::uint32_t cost, carry_limit; };` — Engine-provided consumable price and inventory carry limit.
+- `class consumable_type { public: enum class enum_type : std::uint32_t { tp_crystal, altar_lock, count }; static const consumable_type tp_crystal; static const consumable_type altar_lock; static const consumable_type count` — Consumable inventory keys.
+- `debug_block(...)` — Run the statements without spending fuel when the bot is built in debug mode (`cambc run`, the default); skipped entirely in release mode (`--release`, and alwa
+- `class distance_field { };` — Tile distances stored in engine-chunked order. Linear buffers contain row-major uint16 values.
+- `class draft_memory_buffer { };` — Fixed-size team draft bytes captured at startup; assignment submits bytes without changing the snapshot.
+- `void end_turn()` — Yield the authenticated bot's current turn to the host.
+- `template <class T, class Value = std::uint32_t> requires (std::is_enum_v<T> || requires { typename T::enum_type; requires std::is_enum_v<typename T::enum_type>; }) class enum_map { };` — Contiguous, zero-initialised values indexed by an enum or enum wrapper with a count sentinel.
+- `class error : public std::runtime_error { };` — Engine failure with its error code and a copied diagnostic.
+- `enum class error_code : std::int32_t { success = 0, invalid_handle = 1, out_of_memory = 2, file_not_found = 3, null_pointer = 4, invalid_argument = 5, map_parse_error = 6, invalid_map_file = 7, invalid_map_version = 8, r` — Engine error codes; numeric values mirror EngineC/Errors.h.
+- `std::uint64_t fuel_remaining()` — Get the fuel left in the current turn's budget; the first draft turn gets 10x and each champion's first turn gets 2x.
+- `std::uint32_t global_submitted_gems(team side)` — Get the total gems submitted by a team. @param side Team to count.
+- `enum class handle_camp_group_t : std::uint32_t { };` — Strong identity of an engine-defined physical camp group.
+- `enum class handle_camp_t : std::uint32_t { };` — Strong camp identity; convert to an integer only at the host ABI boundary.
+- `enum class handle_champion_t : std::uint32_t { };` — Strong champion identity; convert to an integer only at the host ABI boundary.
+- `bool is_draft() noexcept` — Whether this guest has a draft perspective, without querying the host.
+- `using item = item_type;` — Item-kind alias used by inventory entries.
+- `struct item_info { std::uint32_t cost, combine_count; std::optional<item_type> result; std::int32_t health_points, strength_points, focus_points; std::optional<item_passive> passive; float passive_magnitude; bool purchas` — Owned item metadata queried from the engine; combinations consume ingredients.
+- `enum class item_passive : std::uint32_t { monster = 1, durability, treasure, jungle, home };` — Optional item passive tags; no passive is represented by an empty optional.
+- `class item_type { public: enum class enum_type : std::uint32_t { monster_shard_of_strength, monster_emblem_of_strength, monster_shard_of_focus, monster_emblem_of_focus, monster_shard_of_health, monster_emblem_of_health, ` — Purchasable item types.
+- `constexpr team opponent(team side) noexcept` — Get the other team. @param side Team to flip.
+- `enum class passive_type : std::uint8_t { none, bonus_gold, remote_shop, gem_focus, splash_attack, health_strength, reset_cooldowns_on_kill, retaliation, stun_immunity, };` — Champion passive effect tags from the engine definition.
+- `void resign()` — Resign the game. A successful resign never returns, so buffered output is flushed first.
+- `std::uint32_t round_number()` — Get the current round number.
+- `cambc::champion& self()` — Return this guest's authenticated champion; throws std::bad_optional_access during drafting.
+- `class shared_memory_buffer { };` — Bounds-checked access to this team's shared bytes; reads and writes always reach the host.
+- `enum class symmetry : std::int32_t { horizontal, vertical, rotational180 };` — Map symmetry used to reflect tiles.
+- `enum class team { ally, enemy };` — Teams relative to the bot.
+- `class teleport { };` — A visible teleport reservation snapshot, including the observer's own channel.
+- `std::string to_string(ability_kind value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(buff_types value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(camp_type value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(champion_draft value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(champion_type value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(consumable_type value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(error_code value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(item_passive value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(item_type value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(passive_type value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(symmetry value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(team value)` — Get the enumerator name. @param value Value to format.
+- `std::string to_string(vec2 value)` — Format as "(x, y)". @param value Value to format.
+- `template <class T> struct type_tag_t { using type = T; };` — Select a typed ability or buff payload without constructing a payload value.
+- `struct uninitialized_t { };` — Tag for constructing a bitboard without initialising its contents.
+- `class unit { };` — Common live combat queries for champions and camps.
+- `class vec2 { public: std::int32_t x, y; static const vec2 north, north_east, east, south_east, south, south_west, west, north_west; };` — Integer tile position or displacement.
+- `class ward { };` — Immutable snapshot of a visible ward.
+
+## cambc::ability
+- `explicit ability(const detail::ability_props& props, std::uint32_t slot)` — Copy immutable design metadata.
+- `bool can_target_allies() const` — Check the allowed-target mask for allied champions.
+- `bool can_target_camps() const` — Check target categories, not cast readiness, range or visibility; allies/enemies exclude self.
+- `bool can_target_enemies() const` — Check the allowed-target mask for enemy champions.
+- `bool can_target_ground() const` — Check the allowed-target mask for a tile destination.
+- `bool can_target_self() const` — Check the allowed-target mask for the casting champion.
+- `std::int32_t cooldown() const` — Get the remaining owner turn-end ticks; zero means ready.
+- `float damage_amount() const` — Query damage before absorption/health limits; includes caster items and passives.
+- `float damage_amount(const champion& target) const` — Predict health lost after mitigation and shields, capped at current health. Target must be visible. @param target Visible champion that would be hit.
+- `template <class T> T get() const` — Extract a payload; throws std::bad_optional_access if absent, std::bad_variant_access for a different kind.
+- `float heal_amount() const` — Query heal before absorption/health limits; includes caster items and passives.
+- `float heal_amount(const champion& target) const` — Cap healing at the visible target's missing health. Does not cast or consume resources. @param target Visible champion that would be healed.
+- `const ability_info& info(ability_kind kind) const` — Get selected metadata; unavailable or mismatched payloads throw. @param kind Ability kind the slot must hold.
+- `const std::optional<ability_info>& info() const` — Get constructor-cached ability properties; empty for an unused slot. Rethrow the cached visibility error if the owner could not be inspected at construction.
+- `bool is(ability_kind kind) const noexcept` — Check the kind of constructor-cached ability metadata without querying the host. @param kind Ability kind to test for.
+- `template <class T> bool is(type_tag_t<T>) const noexcept` — Check whether constructor-cached metadata holds the selected payload type.
+- `bool is_aoe_damage() const noexcept` — Check whether this is an area-damage ability.
+- `bool is_attack_reset() const noexcept` — Check whether this is an attack-reset ability.
+- `bool is_cc() const noexcept` — Check whether this is a crowd-control ability.
+- `bool is_damage() const noexcept` — Check whether this is a damage ability.
+- `bool is_dash() const noexcept` — Check whether this is a dash ability.
+- `bool is_heal() const noexcept` — Check whether this is a healing ability.
+- `bool is_on_cooldown() const` — Query whether the live ability has a positive remaining cooldown.
+- `bool is_ready() const` — Check whether this ability is ready to cast.
+- `bool is_shield() const noexcept` — Check whether this is a shield ability.
+- `void mask_into(bitboard& out) const` — Like `valid_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `float shield_amount() const` — Query shield before absorption/health limits; includes caster items and passives.
+- `float shield_amount(const champion& target) const` — Query full shield strength for a visible target. Does not cast or consume resources. @param target Visible champion that would be shielded.
+- `std::uint32_t slot() const noexcept` — Return this ability's fixed champion slot index.
+- `bool use() const` — Cast without a target or destination. Returns false for a newly revealed hidden obstruction; known invalid destinations throw.
+- `bool use(const camp& target) const` — Cast on a camp; the cast lands on the target's tile. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param target Camp
+- `bool use(const champion& target) const` — Cast on a champion; unit casts land on the target's tile. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param target
+- `bool use(vec2 destination) const` — Cast at a ground tile. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param destination Ground tile to cast at.
+- `ability_target_mask valid_targets() const` — Query the engine's live target-category flags.
+- `bitboard valid_tiles() const` — Casting range only; does not filter visibility, occupancy or target categories. Throws for range-less or unused slots, hidden owners, and design-only abilities.
+
+## cambc::ability_aoe_damage
+- `friend bool operator==(const ability_aoe_damage&, const ability_aoe_damage&) = default` — Compare every field.
+
+## cambc::ability_attack_reset
+- `friend bool operator==(const ability_attack_reset&, const ability_attack_reset&) = default` — Compare every field.
+
+## cambc::ability_cc
+- `friend bool operator==(const ability_cc&, const ability_cc&) = default` — Compare every field.
+
+## cambc::ability_damage
+- `friend bool operator==(const ability_damage&, const ability_damage&) = default` — Compare every field.
+
+## cambc::ability_dash
+- `friend bool operator==(const ability_dash&, const ability_dash&) = default` — Compare every field.
+
+## cambc::ability_heal
+- `friend bool operator==(const ability_heal&, const ability_heal&) = default` — Compare every field.
+
+## cambc::ability_properties
+- `friend bool operator==(const ability_properties&, const ability_properties&) = default` — Compare every field.
+
+## cambc::ability_shield
+- `friend bool operator==(const ability_shield&, const ability_shield&) = default` — Compare every field.
+
+## cambc::ability_target_mask
+- `constexpr ability_target_mask() noexcept = default` — Construct a mask with no target categories.
+- `static constexpr ability_target_mask all() noexcept` — Construct a mask with every known flag set.
+- `constexpr iterator begin() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `constexpr std::uint32_t bits() const noexcept` — Return the underlying engine bit pattern, including unknown flags.
+- `constexpr bool contains(ability_target_mask flags) const noexcept` — Check that all selected bits are present; an empty mask is always contained. @param flags Flags to test.
+- `static constexpr ability_target_mask empty() noexcept` — Construct an empty mask.
+- `constexpr iterator end() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `static constexpr std::optional<ability_target_mask> from_bits(std::uint32_t bits) noexcept` — Decode raw engine bits, or return nullopt if any bit is not a known flag. @param bits Raw flag bits.
+- `static constexpr ability_target_mask from_bits_retain(std::uint32_t bits) noexcept` — Decode raw engine bits without discarding unknown future flags. @param bits Raw flag bits, kept as is including unnamed bits.
+- `static constexpr ability_target_mask from_bits_truncate(std::uint32_t bits) noexcept` — Decode raw engine bits, discarding unknown flags. @param bits Raw flag bits; unnamed bits are dropped.
+- `constexpr void insert(ability_target_mask flags) noexcept` — Set selected flags. @param flags Flags to set.
+- `constexpr bool intersects(ability_target_mask flags) const noexcept` — Check whether any selected bit is present. @param flags Flags to test.
+- `constexpr bool is_all() const noexcept` — Check whether every known flag is set.
+- `constexpr bool is_empty() const noexcept` — Check whether no bits, known or unknown, are set.
+- `friend constexpr ability_target_mask operator-(ability_target_mask a, ability_target_mask b) noexcept` — Return the flags in a that are not in b.
+- `constexpr ability_target_mask& operator-=(ability_target_mask flags) noexcept` — Remove selected flags.
+- `friend constexpr ability_target_mask operator&(ability_target_mask a, ability_target_mask b) noexcept` — Intersect bitmasks.
+- `constexpr ability_target_mask& operator&=(ability_target_mask flags) noexcept` — Retain only selected flags.
+- `friend constexpr ability_target_mask operator^(ability_target_mask a, ability_target_mask b) noexcept` — Toggle selected bits.
+- `constexpr ability_target_mask& operator^=(ability_target_mask flags) noexcept` — Toggle selected flags.
+- `friend constexpr bool operator==(ability_target_mask a, ability_target_mask b) noexcept` — Compare every bit, including unknown flags.
+- `friend constexpr ability_target_mask operator|(ability_target_mask a, ability_target_mask b) noexcept` — Compose bitmasks without discarding unknown flags.
+- `constexpr ability_target_mask& operator|=(ability_target_mask flags) noexcept` — Insert selected flags.
+- `friend constexpr ability_target_mask operator~(ability_target_mask value) noexcept` — Complement known flags; unknown flags are discarded.
+- `constexpr void remove(ability_target_mask flags) noexcept` — Clear selected flags. @param flags Flags to clear.
+- `constexpr void set(ability_target_mask flags, bool value) noexcept` — Insert selected flags when value is true, otherwise remove them. @param flags Flags to update. @param value `true` to set the flags, `false` to clear them.
+- `constexpr void toggle(ability_target_mask flags) noexcept` — Toggle selected flags. @param flags Flags to flip.
+
+## cambc::altar_lock
+- `explicit altar_lock(detail::altar_lock_info value)` — Copy a visible altar-lock observation; its fields remain a snapshot.
+- `std::uint32_t hits_remaining() const noexcept` — Get the remaining hits from the captured altar-lock observation.
+- `bool is_ally() const` — Check whether this altar lock belongs to the observing team.
+- `bool is_enemy() const` — Check whether this altar lock belongs to the opposing team.
+- `friend bool operator==(const altar_lock&, const altar_lock&) = default` — Compare every captured field.
+- `vec2 position() const noexcept` — Get the tile captured in this altar-lock observation.
+- `team team() const` — Get the owning team relative to the authenticated bot.
+
+## cambc::bitboard
+- `bitboard()` — Allocate an empty mask.
+- `bitboard(bitboard&&) noexcept = default` — Transfer board storage without querying the host.
+- `bitboard(const bitboard& other)` — Copy the raw buffer, including padding.
+- `explicit bitboard(uninitialized_t)` — Allocate aligned storage without initialising it.
+- `void clear()` — Clear all storage, including padding bits.
+- `std::uint32_t count() const` — Count set map tiles.
+- `void draw_chebyshev(vec2 center, float radius)` — Add tiles within a Chebyshev radius. @param center Centre tile. @param radius Chebyshev radius in tiles.
+- `void draw_circle(vec2 center, float radius)` — Add tiles within a Euclidean radius. @param center Centre tile. @param radius Euclidean radius in tiles.
+- `std::vector<std::uint8_t> export_linear_buffer() const` — Return a packed row-major copy.
+- `void export_linear_buffer(std::span<std::uint8_t> bytes) const` — Export to a caller-provided row-major buffer. @param bytes Destination with one byte per tile in row-major order, exactly `linear_buffer_size()` long.
+- `std::vector<std::uint8_t> export_raw_buffer() const` — Return a copy of raw storage.
+- `void export_raw_buffer(std::span<std::uint8_t> bytes) const` — Copy raw storage to a caller-provided buffer. @param bytes Destination, exactly `raw_buffer_size()` long.
+- `void fill()` — Set every in-bounds tile bit; padding is handled by the engine.
+- `std::int32_t height() const` — Get the map height in tiles.
+- `void import_linear_buffer(std::span<const std::uint8_t> bytes)` — Import a packed row-major buffer. @param bytes One byte per tile in row-major order, exactly `linear_buffer_size()` long; nonzero sets the tile.
+- `void import_raw_buffer(std::span<const std::uint8_t> bytes)` — Copy an engine-chunked buffer into this object. @param bytes Engine-chunked bytes, exactly `raw_buffer_size()` long.
+- `bool is_empty() const` — Check whether all map tiles are clear.
+- `bool is_set(vec2 p) const` — Read a tile; throws if it is outside the map. @param p Tile to query.
+- `static std::size_t linear_buffer_size()` — Get the size of the packed row-major buffer in bytes.
+- `friend bitboard operator&(bitboard&& a, const bitboard& b)` — Tiles set in both masks, reusing a's storage.
+- `friend bitboard operator&(const bitboard& a, const bitboard& b)` — Tiles set in both masks.
+- `bitboard& operator&=(const bitboard& b)` — Keep only tiles also set in b.
+- `friend bitboard operator^(bitboard&& a, const bitboard& b)` — Tiles set in exactly one mask, reusing a's storage.
+- `friend bitboard operator^(const bitboard& a, const bitboard& b)` — Tiles set in exactly one mask.
+- `bitboard& operator^=(const bitboard& b)` — Toggle every tile set in b.
+- `bitboard& operator=(bitboard&&) noexcept = default` — Take over another mask's storage.
+- `bitboard& operator=(const bitboard& other)` — Copy another mask's tiles.
+- `friend bool operator==(const bitboard& a, const bitboard& b)` — Check whether both masks contain the same map tiles.
+- `friend bitboard operator|(bitboard&& a, const bitboard& b)` — (bitboard&& a|Tiles set in either mask, reusing a's storage.
+- `friend bitboard operator|(const bitboard& a, const bitboard& b)` — (const bitboard& a|Tiles set in either mask.
+- `bitboard& operator|=(const bitboard& b)` — Combine map tiles in place.
+- `bitboard operator~() const` — Return the complement of the map tiles.
+- `std::vector<vec2> positions() const` — Get the positions of all set map tiles.
+- `std::uint32_t positions_into(std::span<vec2> out) const` — Write the positions of set map tiles into `out` and return how many were written. @param out Destination buffer; at most `out.size()` positions are written.
+- `void print() const` — Print the buffer through the engine.
+- `const std::uint64_t* ptr() const noexcept` — Access contiguous backing storage; preserve its layout when passing it to the host.
+- `std::uint64_t* ptr() noexcept` — Access aligned raw storage for SDK imports.
+- `static std::size_t raw_buffer_size()` — Get the size of the engine-chunked buffer in bytes.
+- `bitboard reachable_tiles(vec2 origin, std::uint16_t distance, bitboard& frontier, bitboard& scratch) const` — Get reachable tiles using caller-provided working buffers. @param origin Start tile. @param distance Maximum number of 8-directional steps from `origin`. @param
+- `bitboard reachable_tiles(vec2 origin, std::uint16_t distance) const` — Get reachable tiles using this board as walls. @param origin Start tile. @param distance Maximum number of 8-directional steps from `origin`.
+- `void reachable_tiles_into(vec2 origin, std::uint16_t distance, bitboard& frontier, bitboard& scratch, bitboard& out) const` — Like `reachable_tiles`, but writes into `out` instead of returning a new board. @param origin Start tile. @param distance Maximum number of 8-directional steps 
+- `void reachable_tiles_into(vec2 origin, std::uint16_t distance, bitboard& out) const` — Like `reachable_tiles`, but writes into `out` instead of returning a new board. @param origin Start tile. @param distance Maximum number of 8-directional steps 
+- `bitboard reflect(symmetry value) const` — Return a reflected copy using the requested map symmetry. @param value Map symmetry to apply.
+- `bitboard reflect_horizontal() const` — Reflect across the map horizontally, reversing tile x coordinates.
+- `void reflect_horizontal_into(bitboard& out) const` — Like `reflect_horizontal`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `void reflect_into(symmetry value, bitboard& out) const` — Like `reflect`, but writes into `out` instead of returning a new board. @param value Map symmetry to apply. @param out Destination; its previous contents are ov
+- `bitboard reflect_vertical() const` — Reflect across the map vertically, reversing tile y coordinates.
+- `void reflect_vertical_into(bitboard& out) const` — Like `reflect_vertical`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `bitboard rotate_180() const` — Rotate tiles 180 degrees within the map dimensions.
+- `void rotate_180_into(bitboard& out) const` — Like `rotate_180`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `void set(vec2 p, bool value = true)` — Set or clear a tile; throws if it is outside the map. @param p Tile to update. @param value `true` to set the tile, `false` to clear it.
+- `bitboard shadow_cast(vec2 origin, std::uint16_t distance) const` — Get visible tiles using this board as opaque walls. @param origin Viewer tile. @param distance Maximum sight radius in tiles.
+- `void shadow_cast_into(vec2 origin, std::uint16_t distance, bitboard& out) const` — Like `shadow_cast`, but writes into `out` instead of returning a new board. @param origin Viewer tile. @param distance Maximum sight radius in tiles. @param out
+- `bitboard shift_right(std::int32_t count) const` — Shift tiles horizontally; negative counts shift left. @param count Columns to shift; negative values shift left.
+- `void shift_right_into(std::int32_t count, bitboard& out) const` — Like `shift_right`, but writes into `out` instead of returning a new board. @param count Columns to shift; negative values shift left. @param out Destination; i
+- `bitboard shift_up(std::int32_t count) const` — Shift tiles vertically; negative counts shift down. @param count Rows to shift; negative values shift down.
+- `void shift_up_into(std::int32_t count, bitboard& out) const` — Like `shift_up`, but writes into `out` instead of returning a new board. @param count Rows to shift; negative values shift down. @param out Destination; its pre
+- `void swap(bitboard& other) noexcept` — Exchange ownership of raw board storage without querying the host. @param other Bitboard to exchange contents with.
+- `void toggle(vec2 p)` — Invert a tile; throws if it is outside the map. @param p Tile to flip.
+- `std::int32_t width() const` — Get the map dimensions in tiles.
+
+## cambc::buff_collection
+- `const_iterator begin() const` — Iterate captured buffs without refreshing; the collection must outlive the iterator.
+- `class const_iterator { public: using value_type = buff_t; using difference_type = std::ptrdiff_t; using iterator_category = std::forward_iterator_tag; using iterator_concept = std::forward_iterator_tag; using reference =` — Forward iterator over captured buffs; references remain valid while the collection lives.
+- `std::default_sentinel_t end() const noexcept` — Get the past-the-end iterator for the stored values or owning snapshot.
+- `buff_t get(buff_types kind) const` — Get the requested buff snapshot; absent buffs throw std::out_of_range. @param kind Buff kind to look up.
+- `template <class T> T get() const` — Get the requested buff snapshot; absent buffs throw std::out_of_range.
+- `bool has(buff_types kind) const` — Check the captured collection for this buff kind without querying the host. @param kind Buff kind to test for.
+- `template <class T> bool has() const` — Check the captured collection for the selected buff payload type.
+- `bool has_enhanced_attack() const` — Check whether the captured collection has an enhanced-attack buff.
+- `bool has_shield() const` — Check whether the captured collection has a shield buff.
+- `bool has_stun() const` — Check whether the captured collection has a stun buff.
+- `bool is_empty() const` — Check whether the captured collection has no active buffs.
+- `friend bool operator==(const buff_collection&, const buff_collection&) = default` — Compare every captured buff.
+- `std::size_t size() const` — Get the number of entries in this container.
+
+## cambc::buff_collection::const_iterator
+- `const_iterator() = default` — Construct an iterator that compares equal to the end sentinel.
+- `explicit const_iterator(const storage_type& values)` — Iterate the captured buffs in values.
+- `using difference_type = std::ptrdiff_t;` — Iterator distance type.
+- `using iterator_category = std::forward_iterator_tag;` — Standard iterator category.
+- `using iterator_concept = std::forward_iterator_tag;` — C++20 iterator concept.
+- `pointer operator->() const` — Access the current buff.
+- `reference operator*() const` — Access the current buff.
+- `const_iterator operator++(int)` — Advance to the next captured buff, returning the previous position.
+- `const_iterator& operator++()` — Advance to the next captured buff.
+- `bool operator==(const const_iterator&) const = default` — Compare iterator positions.
+- `bool operator==(std::default_sentinel_t) const` — Check whether every captured buff has been visited.
+- `using pointer = const buff_t*;` — Pointer to a captured buff.
+- `using reference = const buff_t&;` — Reference to a captured buff.
+- `using value_type = buff_t;` — Iterated buff snapshot type.
+
+## cambc::buff_enhanced_attack
+- `friend bool operator==(const buff_enhanced_attack&, const buff_enhanced_attack&) = default` — Compare every field.
+
+## cambc::buff_restrictions
+- `static constexpr buff_restrictions all() noexcept` — Construct a mask with every known flag set.
+- `constexpr iterator begin() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `constexpr std::uint8_t bits() const noexcept` — Return the underlying engine bit pattern, including unknown flags.
+- `constexpr buff_restrictions() noexcept = default` — Construct a mask with no restrictions.
+- `constexpr bool contains(buff_restrictions flags) const noexcept` — Check that all selected bits are present; an empty mask is always contained. @param flags Flags to test.
+- `static constexpr buff_restrictions empty() noexcept` — Construct an empty mask.
+- `constexpr iterator end() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `static constexpr std::optional<buff_restrictions> from_bits(std::uint8_t bits) noexcept` — Decode raw engine bits, or return nullopt if any bit is not a known flag. @param bits Raw flag bits.
+- `static constexpr buff_restrictions from_bits_retain(std::uint8_t bits) noexcept` — Decode raw engine bits without discarding unknown future flags. @param bits Raw flag bits, kept as is including unnamed bits.
+- `static constexpr buff_restrictions from_bits_truncate(std::uint8_t bits) noexcept` — Decode raw engine bits, discarding unknown flags. @param bits Raw flag bits; unnamed bits are dropped.
+- `constexpr void insert(buff_restrictions flags) noexcept` — Set selected flags. @param flags Flags to set.
+- `constexpr bool intersects(buff_restrictions flags) const noexcept` — Check whether any selected bit is present. @param flags Flags to test.
+- `constexpr bool is_all() const noexcept` — Check whether every known flag is set.
+- `constexpr bool is_empty() const noexcept` — Check whether no bits, known or unknown, are set.
+- `friend constexpr buff_restrictions operator-(buff_restrictions a, buff_restrictions b) noexcept` — Return the flags in a that are not in b.
+- `constexpr buff_restrictions& operator-=(buff_restrictions flags) noexcept` — Remove selected flags.
+- `friend constexpr buff_restrictions operator&(buff_restrictions a, buff_restrictions b) noexcept` — Intersect bitmasks.
+- `constexpr buff_restrictions& operator&=(buff_restrictions flags) noexcept` — Retain only selected flags.
+- `friend constexpr buff_restrictions operator^(buff_restrictions a, buff_restrictions b) noexcept` — Toggle selected bits.
+- `constexpr buff_restrictions& operator^=(buff_restrictions flags) noexcept` — Toggle selected flags.
+- `friend constexpr bool operator==(buff_restrictions a, buff_restrictions b) noexcept` — Compare every bit, including unknown flags.
+- `friend constexpr buff_restrictions operator|(buff_restrictions a, buff_restrictions b) noexcept` — Compose bitmasks without discarding unknown flags.
+- `constexpr buff_restrictions& operator|=(buff_restrictions flags) noexcept` — Insert selected flags.
+- `friend constexpr buff_restrictions operator~(buff_restrictions value) noexcept` — Complement known flags; unknown flags are discarded.
+- `constexpr void remove(buff_restrictions flags) noexcept` — Clear selected flags. @param flags Flags to clear.
+- `constexpr void set(buff_restrictions flags, bool value) noexcept` — Insert selected flags when value is true, otherwise remove them. @param flags Flags to update. @param value `true` to set the flags, `false` to clear them.
+- `constexpr void toggle(buff_restrictions flags) noexcept` — Toggle selected flags. @param flags Flags to flip.
+
+## cambc::buff_shield
+- `friend bool operator==(const buff_shield&, const buff_shield&) = default` — Compare every field.
+
+## cambc::buff_stun
+- `friend bool operator==(const buff_stun&, const buff_stun&) = default` — Compare every field.
+
+## cambc::camp
+- `std::int32_t attack_range() const override` — Get attack range from this camp's design; melee camps have range 1.
+- `camp_stats base_stats() const` — Get an owning snapshot of the camp's engine-provided design stats.
+- `map::camp_group camp_group() const` — Query this camp's group from the engine on every call; invalid identities throw.
+- `float focus() const override` — Query current focus for this visible unit.
+- `float health() const override` — Query current health; live state requires a visible runtime identity.
+- `bool is_alive() const` — Query whether this camp is living (awake or asleep); uses the same visibility checks as state().
+- `bool is_asleep() const` — Query whether this camp is living but dormant; uses the same visibility checks as state().
+- `bool is_awake() const` — Query whether this camp is awake; uses the same visibility checks as state().
+- `bool is_dead() const` — Query whether this camp is dead; uses the same visibility checks as state().
+- `bool is_elk() const noexcept` — Check whether this camp is an elk.
+- `bool is_gem_cluster() const noexcept` — Check whether this camp is a gem cluster.
+- `bool is_gold_cluster() const noexcept` — Check whether this camp is a gold cluster.
+- `bool is_monolith() const noexcept` — Check whether this camp is a monolith.
+- `bool is_visible() const override` — Check whether live state is available; hidden units and design-only views return false.
+- `bool is_wolf() const noexcept` — Check whether this camp is a wolf.
+- `camp_type kind() const noexcept` — Get the entity or inventory entry kind.
+- `float max_health() const override` — Query current maximum health; live state requires a visible runtime identity.
+- `operator handle_camp_t() const noexcept` — Convert to the strong camp identity.
+- `friend bool operator==(const camp& a, const camp& b) noexcept` — Compare camp identities.
+- `vec2 position() const override` — Get the tile position; live entity views query current engine state.
+- `vec2 spawn_position() const noexcept` — Get the camp's original spawn tile, not its current live position.
+- `camp_state state() const` — Query dead, alive (awake), or asleep. The current tile, or last occupied tile when dead, must be in vision; hidden camps throw api_not_in_vision. This is separa
+- `float strength() const override` — Query current strength for this visible unit.
+
+## cambc::camp_state
+- `constexpr camp_state() noexcept = default` — Construct the dead state.
+- `constexpr camp_state(enum_type state) noexcept` — Wrap an underlying enum value without changing its identity.
+- `enum class enum_type : std::uint32_t { dead = 0, alive = 1, asleep = 2 };` — Underlying mutually exclusive engine values; alive means awake.
+- `constexpr bool is_alive() const noexcept` — Check whether the captured state is living, including asleep camps.
+- `constexpr bool is_asleep() const noexcept` — Check whether the captured state is living but dormant.
+- `constexpr bool is_awake() const noexcept` — Check whether the captured state is awake (the alive enum value).
+- `constexpr bool is_dead() const noexcept` — Check whether the captured state is dead.
+- `constexpr operator enum_type() const noexcept` — Convert to the underlying engine enum.
+- `template <class T> requires std::is_integral_v<T> constexpr explicit operator T() const noexcept` — Explicit integer conversion for host ABI values.
+
+## cambc::champion
+- `std::array<ability, 2> abilities() const` — Return a copy of the two champion-bound ability views with immutable cached metadata.
+- `void attack(const altar_lock& target) const` — Attack an altar lock; requires the authenticated self and host-validated action availability. @param target Visible altar lock within attack range.
+- `void attack(const unit& target) const` — Attack a champion or camp view; requires the authenticated self and host-validated action availability. @param target Visible champion or camp within attack ran
+- `std::int32_t attack_range() const override` — Get the unit's attack range in tiles; champion state is queried live.
+- `champion_stats base_stats() const` — Get the champion design base stats.
+- `void buy(consumable_type type) const` — Buy a consumable for self. @param type Consumable to buy.
+- `void buy(item_type type, std::uint32_t count = 1) const` — Buy items for self. @param type Item to buy. @param count Number of copies to buy.
+- `bool can_attack() const` — Check whether this champion can attack.
+- `bool can_buy(consumable_type consumable) const` — Check whether a consumable can be bought in the current state. @param consumable Consumable to buy.
+- `bool can_buy(item_type item, std::uint32_t count = 1) const` — Check whether an item can be bought in the current state. @param item Item to buy. @param count Number of copies to buy.
+- `bool can_cast() const` — Check whether this champion can cast.
+- `bool can_move() const` — Check whether this champion can move.
+- `bool can_sell() const` — Check whether the authenticated self currently has permission to sell.
+- `void cancel_recall() const` — Cancel an active recall.
+- `void cancel_submit_gems() const` — Cancel an active gem submission.
+- `explicit champion(champion_type type)` — A design-only champion: immutable properties are available, live queries require vision.
+- `champion_type champion_name() const` — Get the entity or inventory entry kind; live champions read it without vision.
+- `const enum_map<consumable_type, consumable>& consumables() const noexcept` — Action wrappers by consumable type; each count is queried live.
+- `void end_turn() const` — Yield the current champion turn.
+- `float focus() const override` — Query current focus for this visible unit.
+- `std::uint32_t gem_count() const` — Get carried gems.
+- `std::uint32_t gold_count() const` — Get gold; this query requires self.
+- `bool has_completed_turn() const` — Check whether this champion has completed its turn.
+- `float health() const override` — Get current and maximum health.
+- `bool is_alive() const` — Check whether the champion is alive.
+- `bool is_ally() const` — Check whether this champion belongs to the observing team.
+- `bool is_enemy() const` — Check whether this champion belongs to the opposing team.
+- `bool is_recalling() const` — Check whether this champion is recalling.
+- `bool is_submitting_gems() const` — Check whether this champion is submitting gems.
+- `bool is_teleporting() const` — Check whether this champion is teleporting.
+- `bool is_visible() const override` — Check whether the champion can be inspected from this perspective.
+- `enum_map<item_type> item_count() const` — Get item counts indexed by item type.
+- `float max_health() const override` — Query current maximum health; live state requires a visible runtime identity.
+- `bool move(vec2 delta) const` — Attempt to move by a delta from the current position. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param delta Disp
+- `bool move_absolute(vec2 destination) const` — Attempt to move to an absolute destination tile. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param destination Map
+- `bool move_towards(vec2 target) const` — Move to the reachable tile on a shortest path to `target`, avoiding walls, holes, altars, the enemy spawn and visible units. Returns false without moving when a
+- `operator handle_champion_t() const noexcept` — Access the underlying engine handle.
+- `friend bool operator==(const champion& a, const champion& b) noexcept` — Compare champion identities.
+- `passive_type passive() const` — Get the passive effect tag from the champion's immutable design.
+- `bool place_ward(vec2 destination) const` — Place a ward at a destination tile. Returns false for a newly revealed hidden obstruction; known invalid destinations throw. @param destination Tile to place th
+- `vec2 position() const override` — Get the tile position; live entity views query current engine state.
+- `std::int32_t prev_priority() const` — Get the scheduling priority used for the current round.
+- `std::int32_t priority() const` — Get the scheduling priority for the next round.
+- `void recall() const` — Start recalling to spawn.
+- `std::int32_t remaining_channel_time() const` — Query the visible champion's remaining channel rounds; no active channel throws.
+- `buff_restrictions restrictions() const` — Union of active buff restrictions; requires visibility.
+- `void sell(item_type type, std::uint32_t count = 1) const` — Sell items for self; the engine validates champion and shop restrictions. @param type Item to sell. @param count Number of copies to sell.
+- `void set_priority(std::int32_t priority) const` — Set the scheduling priority for the next round. @param priority New scheduling priority; takes effect from the next round and persists.
+- `champion_state state() const` — Get current state and action availability.
+- `float strength() const override` — Query current strength for this visible unit.
+- `void submit_gems(vec2 altar) const` — Start submitting gems at an altar. @param altar Altar tile to tribute at.
+- `team team() const` — Get the owning team relative to the authenticated bot; live champions read it without vision.
+- `bitboard visible_tiles() const` — Get tiles visible to this champion.
+- `bitboard visible_tiles_from(vec2 position) const` — Vision at a hypothetical position, using this champion's design. @param position Hypothetical tile to see from.
+- `void visible_tiles_from_into(vec2 position, bitboard& out) const` — Like `visible_tiles_from`, but writes into `out` instead of returning a new board. @param position Hypothetical tile to see from. @param out Destination; its pr
+- `void visible_tiles_into(bitboard& out) const` — Like `visible_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `std::int32_t ward_cooldown() const` — Query the authenticated champion's remaining ward recharge rounds.
+- `bitboard ward_placement_tiles() const` — Compute self-only ward placement range from current position and engine settings.
+- `void ward_placement_tiles_into(bitboard& out) const` — Like `ward_placement_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `std::vector<vec2> ward_positions() const` — Query an owning list of wards placed by the authenticated self champion.
+
+## cambc::champion_state
+- `static constexpr champion_state all() noexcept` — Construct a mask with every known flag set.
+- `constexpr iterator begin() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `constexpr std::uint32_t bits() const noexcept` — Return the underlying engine bit pattern, including unknown flags.
+- `constexpr champion_state() noexcept = default` — Construct a state with no flags set.
+- `constexpr bool contains(champion_state flags) const noexcept` — Check that all selected bits are present; an empty mask is always contained. @param flags Flags to test.
+- `static constexpr champion_state empty() noexcept` — Construct an empty mask.
+- `constexpr iterator end() const noexcept` — Combine or inspect flags before deciding which actions or targets are allowed.
+- `static constexpr std::optional<champion_state> from_bits(std::uint32_t bits) noexcept` — Decode raw engine bits, or return nullopt if any bit is not a known flag. @param bits Raw flag bits.
+- `static constexpr champion_state from_bits_retain(std::uint32_t bits) noexcept` — Decode raw engine bits without discarding unknown future flags. @param bits Raw flag bits, kept as is including unnamed bits.
+- `static constexpr champion_state from_bits_truncate(std::uint32_t bits) noexcept` — Decode raw engine bits, discarding unknown flags. @param bits Raw flag bits; unnamed bits are dropped.
+- `constexpr void insert(champion_state flags) noexcept` — Set selected flags. @param flags Flags to set.
+- `constexpr bool intersects(champion_state flags) const noexcept` — Check whether any selected bit is present. @param flags Flags to test.
+- `constexpr bool is_all() const noexcept` — Check whether every known flag is set.
+- `constexpr bool is_dead() const noexcept` — Check whether the alive flag is clear.
+- `constexpr bool is_empty() const noexcept` — Check whether no bits, known or unknown, are set.
+- `friend constexpr champion_state operator-(champion_state a, champion_state b) noexcept` — Return the flags in a that are not in b.
+- `constexpr champion_state& operator-=(champion_state flags) noexcept` — Remove selected flags.
+- `friend constexpr champion_state operator&(champion_state a, champion_state b) noexcept` — Intersect bitmasks.
+- `constexpr champion_state& operator&=(champion_state flags) noexcept` — Retain only selected flags.
+- `friend constexpr champion_state operator^(champion_state a, champion_state b) noexcept` — Toggle selected bits.
+- `constexpr champion_state& operator^=(champion_state flags) noexcept` — Toggle selected flags.
+- `friend constexpr bool operator==(champion_state a, champion_state b) noexcept` — Compare every bit, including unknown flags.
+- `friend constexpr champion_state operator|(champion_state a, champion_state b) noexcept` — Compose bitmasks without discarding unknown flags.
+- `constexpr champion_state& operator|=(champion_state flags) noexcept` — Insert selected flags.
+- `friend constexpr champion_state operator~(champion_state value) noexcept` — Complement known flags; unknown flags are discarded.
+- `constexpr void remove(champion_state flags) noexcept` — Clear selected flags. @param flags Flags to clear.
+- `constexpr void set(champion_state flags, bool value) noexcept` — Insert selected flags when value is true, otherwise remove them. @param flags Flags to update. @param value `true` to set the flags, `false` to clear them.
+- `constexpr void toggle(champion_state flags) noexcept` — Toggle selected flags. @param flags Flags to flip.
+
+## cambc::consumable
+- `consumable() = default` — Create an inventory entry; live queries require a champion-bound entry.
+- `std::uint32_t count() const` — Get the number currently owned.
+- `consumable_type kind() const noexcept` — Get the entity or inventory entry kind.
+- `bool use() const` — Use the entry on a target or tile, if required; the host validates the self-only action. Returns false for a newly revealed hidden obstruction; known invalid de
+- `bool use(vec2 destination) const` — Use the entry on a target or tile, if required; the host validates the self-only action. Returns false for a newly revealed hidden obstruction; known invalid de
+
+## cambc::consumable_info
+- `friend bool operator==(const consumable_info&, const consumable_info&) = default` — Compare every field.
+
+## cambc::consumable_type
+- `std::uint32_t carry_limit() const` — Get the maximum carried inventory count.
+- `constexpr consumable_type() noexcept = default` — Construct the first enum value.
+- `constexpr consumable_type(enum_type value) noexcept` — Wrap an underlying enum value without changing its identity.
+- `explicit constexpr consumable_type(std::uint32_t value) noexcept` — Explicitly decode an ABI integer; metadata queries reject invalid values.
+- `std::uint32_t cost() const` — Get the purchase cost in gold.
+- `enum class enum_type : std::uint32_t { tp_crystal, altar_lock, count };` — Underlying engine enum; wrapper values convert to it implicitly.
+- `consumable_info info() const` — Get an owning metadata value; invalid kinds and host failures throw.
+- `constexpr operator enum_type() const noexcept` — Preserve compatibility with functions expecting the underlying enum.
+- `template <class T> requires std::is_integral_v<T> constexpr explicit operator T() const noexcept` — Explicit integer conversion for indexing and host ABI calls.
+
+## cambc::debug
+- `void draw_dot(vec2 position, std::uint32_t rgb)` — Emit a debug dot on a tile using a packed 0xRRGGBB colour. @param position Tile to mark. @param rgb Packed `0xRRGGBB` colour.
+- `void draw_line(vec2 from, vec2 to, std::uint32_t rgb)` — Emit a debug line between tiles using a packed 0xRRGGBB colour. @param from Start tile. @param to End tile. @param rgb Packed `0xRRGGBB` colour.
+
+## cambc::distance_field
+- `void compute(const bitboard& walls, const bitboard& roots, bitboard& visited, std::uint16_t max_distance = unreachable)` — Compute distances from roots, reusing the visited buffer. @param walls Impassable tiles. @param roots Tiles at distance zero. @param visited Receives the tiles 
+- `void compute_to(const bitboard& walls, const bitboard& roots, const bitboard& destinations, bitboard& visited, std::uint16_t max_distance = unreachable)` — Compute distances until destinations are reached or the search is exhausted. @param walls Impassable tiles. @param roots Tiles at distance zero. @param destinat
+- `std::uint16_t compute_to_with_expansion_count(const bitboard& walls, const bitboard& roots, const bitboard& destinations, bitboard& visited, std::uint16_t max_distance = unreachable)` — Compute towards destinations and return the number of expansion steps. @param walls Impassable tiles. @param roots Tiles at distance zero. @param destinations T
+- `std::uint16_t compute_with_expansion_count(const bitboard& walls, const bitboard& roots, bitboard& visited, std::uint16_t max_distance = unreachable)` — Compute distances and return the number of expansion steps. @param walls Impassable tiles. @param roots Tiles at distance zero. @param visited Receives the tile
+- `distance_field()` — Allocate a distance buffer that reads as zero until written.
+- `distance_field(const distance_field& other)` — Copy another field's distances.
+- `distance_field(distance_field&&) noexcept = default` — Take over another field's storage.
+- `std::vector<std::uint16_t> export_linear_buffer() const` — Return a row-major copy of the distances.
+- `void export_linear_buffer(std::span<std::uint16_t> values) const` — Export to a caller-provided row-major buffer. @param values Destination with one distance per tile in row-major order.
+- `std::vector<std::uint8_t> export_raw_buffer() const` — Return a copy of raw storage.
+- `void export_raw_buffer(std::span<std::uint8_t> bytes) const` — Copy raw storage to a caller-provided buffer. @param bytes Destination, exactly `raw_buffer_size()` long.
+- `std::uint16_t get(vec2 p) const` — Read a tile distance; throws if it is outside the map. @param p Tile to query.
+- `std::int32_t height() const` — Get the map height in tiles.
+- `void import_linear_buffer(std::span<const std::uint16_t> values)` — Import a packed row-major buffer. @param values One distance per tile in row-major order.
+- `void import_raw_buffer(std::span<const std::uint8_t> bytes)` — Copy an engine-chunked buffer into this object. @param bytes Engine-chunked bytes, exactly `raw_buffer_size()` long.
+- `static std::size_t linear_buffer_size()` — Get the size of the packed row-major buffer in bytes.
+- `std::optional<vec2> next_move_from(vec2 from) const` — First optimal step from `from` towards a root, as a direction delta in compass order from north. Returns nullopt at a root or unreached tile; throws if `from` i
+- `std::vector<vec2> next_moves_from(vec2 from) const` — Every optimal step from `from` towards a root, as direction deltas in compass order from north. @param from Tile to step from.
+- `distance_field& operator=(const distance_field& other)` — Copy another field's distances.
+- `distance_field& operator=(distance_field&&) noexcept = default` — Take over another field's storage.
+- `void print() const` — Print the buffer through the engine.
+- `const std::uint16_t* ptr() const noexcept` — Access contiguous backing storage; preserve its layout when passing it to the host.
+- `std::uint16_t* ptr() noexcept` — Access raw distance storage for SDK imports.
+- `static std::size_t raw_buffer_size()` — Get the size of the engine-chunked buffer in bytes.
+- `void set(vec2 p, std::uint16_t value)` — Write a tile distance; throws if it is outside the map. @param p Tile to update. @param value Distance to store.
+- `std::int32_t width() const` — Get the map dimensions in tiles.
+
+## cambc::draft
+- `std::vector<champion_draft> current_draft(team side)` — Get an owning list of completed draft picks, recomputed each call. @param side Team whose picks to return.
+- `void pick(champion_draft pick)` — Submit a champion pick for the current draft round. @param pick Champion to pick.
+- `std::uint32_t team_size()` — Query the number of champions per team; gameplay perspectives propagate engine errors.
+
+## cambc::draft_memory_buffer
+- `auto begin() const` — Iterate over read-only captured bytes without querying the host.
+- `const std::byte* data() const` — Borrow bytes captured at startup; assignment does not change this snapshot.
+- `draft_memory_buffer()` — Load the current draft bytes into owning, read-only storage.
+- `draft_memory_buffer(const draft_memory_buffer&) = default` — Copy the captured bytes without querying or submitting to the engine.
+- `auto end() const` — Get the end of the read-only captured bytes.
+- `bool is_empty() const` — Check whether the captured buffer is empty.
+- `const std::byte& operator[](std::size_t offset) const` — Read one startup-snapshot byte; an out-of-range offset throws std::out_of_range.
+- `draft_memory_buffer& operator=(const draft_memory_buffer& other)` — Submit another buffer's captured bytes, including self-assignment.
+- `draft_memory_buffer& operator=(std::initializer_list<std::byte> bytes)` — Submit byte initialiser lists; an empty list submits no data.
+- `draft_memory_buffer& operator=(std::span<const std::byte> bytes)` — Submit bytes immediately; errors throw and leave captured bytes unchanged. Oversized input is truncated to capacity; shorter input leaves the remaining engine b
+- `template <std::ranges::contiguous_range Range> requires (std::ranges::sized_range<Range> && std::is_trivially_copyable_v<std::ranges::range_value_t<Range>>) draft_memory_buffer& operator=(Range&& values)` — Submit contiguous arrays, vectors or spans of trivially copyable values using native layout.
+- `std::size_t size() const` — Get the captured byte count without querying the host.
+
+## cambc::enum_map
+- `auto begin() const noexcept` — Get a const iterator to the first enum-indexed value.
+- `auto begin() noexcept` — Get an iterator to the first enum-indexed value.
+- `auto end() const noexcept` — Get the const past-the-end iterator for enum-indexed values.
+- `auto end() noexcept` — Get the past-the-end iterator for enum-indexed values.
+- `const Value& operator[](T key) const` — Access the value for key; throws std::out_of_range for an invalid key.
+- `Value& operator[](T key)` — Access the value for key; throws std::out_of_range for an invalid key.
+- `friend bool operator==(const enum_map&, const enum_map&) = default` — Compare every value.
+- `const Value* ptr() const noexcept` — Access contiguous backing storage; preserve its layout when passing it to the host.
+- `Value* ptr() noexcept` — Access contiguous backing storage; preserve its layout when passing it to the host.
+- `constexpr std::size_t size() const noexcept` — Get the number of entries in this container.
+
+## cambc::error
+- `error_code code() const noexcept` — Get the engine error code.
+- `error(error_code code, std::string message)` — Construct an error with an explicit code and message.
+- `explicit error(error_code code)` — Construct an engine error with its code and diagnostic message.
+- `explicit error(std::int32_t code)` — Capture the engine diagnostic before another SDK call changes it.
+- `const std::string& message() const noexcept` — Get the engine diagnostic captured when this error was created.
+
+## cambc::item_info
+- `friend bool operator==(const item_info&, const item_info&) = default` — Compare every field.
+
+## cambc::item_type
+- `std::uint32_t combine_count() const` — Get the ingredient count needed to create the result item.
+- `std::uint32_t cost() const` — Get the full value in gold: the purchase price, refunded in full when sold.
+- `enum class enum_type : std::uint32_t { monster_shard_of_strength, monster_emblem_of_strength, monster_shard_of_focus, monster_emblem_of_focus, monster_shard_of_health, monster_emblem_of_health, power_shard_of_strength, p` — Underlying engine enum; wrapper values convert to it implicitly.
+- `std::int32_t focus_points() const` — Get the focus bonus.
+- `std::int32_t health_points() const` — Get the health bonus.
+- `item_info info() const` — Get an owning metadata value; invalid kinds and host failures throw.
+- `bool is_purchasable() const` — Whether the item can be bought directly; emblems must be combined.
+- `constexpr item_type() noexcept = default` — Construct the first enum value.
+- `constexpr item_type(enum_type value) noexcept` — Wrap an underlying enum value without changing its identity.
+- `explicit constexpr item_type(std::uint32_t value) noexcept` — Explicitly decode an ABI integer; metadata queries reject invalid values.
+- `constexpr operator enum_type() const noexcept` — Preserve compatibility with functions expecting the underlying enum.
+- `template <class T> requires std::is_integral_v<T> constexpr explicit operator T() const noexcept` — Explicit integer conversion for indexing and host ABI calls.
+- `std::optional<item_passive> passive() const` — Get the optional passive effect.
+- `float passive_magnitude() const` — Get the passive magnitude.
+- `std::optional<item_type> result() const` — Get the combination result, if this item can be combined.
+- `std::int32_t strength_points() const` — Get the strength bonus.
+
+## cambc::map
+- `const bitboard& altars()` — Get the immutable altar mask; the reference lasts for the bot lifetime.
+- `const bitboard& bushes()` — Get the immutable bush mask; the reference lasts for the bot lifetime.
+- `cambc::camp camp(vec2 position)` — Find a camp by spawn tile, querying the engine on every call; throws if there is no camp. @param position Spawn tile of the camp.
+- `class camp_group { };` — A physical camp cluster and its rewards.
+- `struct camp_group_alive {};` — The group still contains living camps; this state has no respawn countdown.
+- `struct camp_group_respawning { std::int32_t timer; };` — The group is waiting to respawn. The timer is the remaining round countdown; zero means respawning is currently blocked by occupied spawn tiles.
+- `struct camp_group_reward_available {};` — All camps are defeated and the reward is available. The respawn countdown begins after the reward is captured.
+- `using camp_group_state = std::variant<camp_group_alive, camp_group_reward_available, camp_group_respawning>;` — Returned by camp_group.state(). Inspect camp_group_respawning.timer when the variant is respawning. Reading state requires at least one original camp spawn tile
+- `std::vector<camp_group> camp_groups()` — Query physical camp groups from the engine on every call; also available in draft.
+- `std::int32_t height()` — Get the map height in tiles.
+- `const bitboard& holes()` — Get the immutable hole mask; the reference lasts for the bot lifetime.
+- `bool is_in_bounds(vec2 position)` — Check whether a tile is within the map dimensions. @param position Position to check.
+- `vec2 reflect_horizontal(vec2 p)` — Reflect across the map horizontally, reversing tile x coordinates. @param p Map position to reflect.
+- `vec2 reflect_vertical(vec2 p)` — Reflect across the map vertically, reversing tile y coordinates. @param p Map position to reflect.
+- `vec2 rotate_180(vec2 p)` — Rotate tiles 180 degrees within the map dimensions. @param p Map position to rotate.
+- `const bitboard& spawn_region(team value)` — Get the cached spawn mask for a team. @param value Team whose spawn region to return.
+- `symmetry symmetry()` — Get the map symmetry.
+- `const bitboard& walls()` — Get cached terrain masks; references remain valid for the bot lifetime.
+- `std::int32_t width()` — Get the map width in tiles.
+
+## cambc::map::camp_group
+- `auto begin() const noexcept` — Iterate immutable camp members stored in this physical group.
+- `std::span<const camp> camps() const noexcept` — Get the camp members stored in this physical group.
+- `auto end() const noexcept` — Get the past-the-end iterator for this group's camp members.
+- `std::uint32_t gem_value() const noexcept` — Get the gem reward for capturing this camp group.
+- `std::uint32_t gold_value() const noexcept` — Get the gold reward for capturing this camp group.
+- `std::int32_t max_respawn_timer() const noexcept` — Get the configured camp-group respawn duration in rounds.
+- `operator handle_camp_group_t() const noexcept` — Convert to the strong camp-group identity.
+- `friend bool operator==(const camp_group& a, const camp_group& b) noexcept` — Compare camp-group identities.
+- `bitboard spawn_tiles() const` — Build the mask of original camp spawn tiles in this group; computed on every call.
+- `void spawn_tiles_into(bitboard& out) const` — Like `spawn_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `camp_group_state state() const` — Current lifecycle state; remembered state outside current vision is not exposed.
+
+## cambc::shared_memory_buffer
+- `reference operator[](std::size_t offset) const` — Access one byte; throws if the offset is outside the buffer.
+- `template <class T, std::size_t Extent> requires (std::is_trivially_copyable_v<T> && !std::is_const_v<T>) void read(std::size_t offset, std::span<T, Extent> values) const` — Read a checked byte range into trivially copyable values. @param offset Byte offset into shared memory. @param values Receives the values; its size sets how man
+- `void read(std::size_t offset, std::span<std::byte> bytes) const` — Read a checked byte range into caller-owned storage. @param offset Byte offset into shared memory. @param bytes Receives the bytes; its size sets how many are r
+- `class reference { };` — Byte proxy that reads and writes through SDK imports.
+- `static std::size_t size()` — Get the shared-memory capacity in bytes.
+- `template <class T, std::size_t Extent> requires std::is_trivially_copyable_v<T> void write(std::size_t offset, std::span<T, Extent> values) const` — Write the object representations of trivially copyable values to a checked byte range.
+- `void write(std::size_t offset, std::span<const std::byte> bytes) const` — Write bytes at an offset; the entire range must fit. @param offset Byte offset into shared memory. @param bytes Bytes to write.
+
+## cambc::shared_memory_buffer::reference
+- `operator std::uint8_t() const` — Read the current byte at this proxy's checked offset.
+- `reference& operator=(const reference& other)`
+- `reference& operator=(std::byte value)`
+- `reference& operator=(std::uint8_t value)` — Write one byte at this proxy's checked offset.
+- `reference(const reference&) = default` — Share an objective using your team's agreed memory layout.
+
+## cambc::teleport
+- `cambc::champion champion() const` — Construct a live view of the champion in the teleport reservation.
+- `bool is_ally() const` — Check whether this teleport belongs to the observing team.
+- `bool is_enemy() const` — Check whether this teleport belongs to the opposing team.
+- `friend bool operator==(const teleport&, const teleport&) = default` — Compare every captured field.
+- `vec2 position() const noexcept` — Get the destination tile captured in this teleport reservation.
+- `std::int32_t remaining_time() const noexcept` — Get the remaining round count captured in this observation.
+- `team team() const` — Get the owning team relative to the authenticated bot.
+- `explicit teleport(detail::teleport_info value)` — Copy a visible teleport reservation; its metadata remains a snapshot.
+- `bitboard visible_tiles() const` — Hypothetical caster vision after arriving at the reserved destination, not current visibility.
+- `void visible_tiles_into(bitboard& out) const` — Like `visible_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+
+## cambc::type_tag_t
+- `using type = T;` — The tagged type.
+
+## cambc::uninitialized_t
+- `explicit uninitialized_t() = default` — Explicit so that `{}` cannot select the tag by accident.
+
+## cambc::unit
+- `virtual ~unit() = default` — Destroy a derived unit view through the shared interface.
+- `virtual std::int32_t attack_range() const = 0` — Attack range in Chebyshev tiles; melee units have range 1.
+- `bitboard attack_tiles() const` — Build the live unit's Chebyshev attack-range mask; does not filter targets or attack availability. Hidden units and design-only champions propagate position/ran
+- `void attack_tiles_into(bitboard& out) const` — Like `attack_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `buff_collection buffs() const` — Construct a fresh owning buff collection; previous collections retain their captured values.
+- `virtual float focus() const = 0` — Query current focus for this visible unit.
+- `virtual float health() const = 0` — Query current health; live state requires a visible runtime identity.
+- `virtual bool is_visible() const = 0` — Check whether live state is available; hidden units and design-only views return false.
+- `virtual float max_health() const = 0` — Query current maximum health; live state requires a visible runtime identity.
+- `virtual vec2 position() const = 0` — Get the tile position; live entity views query current engine state.
+- `virtual float strength() const = 0` — Query current strength for this visible unit.
+
+## cambc::vec2
+- `constexpr std::int64_t chebyshev_distance(vec2 b) const` — Get the largest absolute coordinate difference. @param b Other vector.
+- `constexpr std::int64_t cross(vec2 b) const` — Get the signed two-dimensional cross product with a 64-bit result. @param b Other vector.
+- `constexpr std::int64_t dot(vec2 b) const` — Dot and cross products use 64-bit arithmetic. @param b Other vector.
+- `constexpr std::int64_t length_squared() const` — Get the squared Euclidean length.
+- `constexpr vec2 operator-() const` — Negate both components.
+- `friend constexpr vec2 operator-(vec2 a, vec2 b)` — Subtract b from a.
+- `constexpr vec2& operator-=(vec2 b)` — Subtract a displacement in place.
+- `friend constexpr vec2 operator*(std::int32_t n, vec2 a)` — Scale a vector by an integer.
+- `friend constexpr vec2 operator*(vec2 a, std::int32_t n)` — Scale a vector by an integer.
+- `constexpr vec2& operator*=(std::int32_t n)` — Scale both components in place.
+- `friend constexpr vec2 operator/(vec2 a, std::int32_t n)` — Divide both components, truncating towards zero. Throws std::invalid_argument when n is zero.
+- `constexpr vec2& operator/=(std::int32_t n)` — Divide both components in place, truncating towards zero. Throws std::invalid_argument when n is zero.
+- `constexpr vec2 operator+() const` — Return the vector unchanged.
+- `friend constexpr vec2 operator+(vec2 a, vec2 b)` — Add two vectors.
+- `constexpr vec2& operator+=(vec2 b)` — Add a displacement in place.
+- `constexpr auto operator<=>(const vec2&) const = default` — Compare by x, then by y.
+- `constexpr vec2 reflect_horizontal() const` — Reflect the vector horizontally across the origin.
+- `constexpr vec2 reflect_vertical() const` — Reflect the vector vertically across the origin.
+- `constexpr vec2 rotate_180() const` — Rotate the vector 180 degrees about the origin.
+- `constexpr vec2 rotate_ccw() const` — Rotate the vector 90 degrees counterclockwise about the origin.
+- `constexpr vec2 rotate_cw() const` — Rotate a displacement by a quarter turn.
+- `constexpr vec2() = default` — Construct an integer tile vector; the default value is the origin.
+- `constexpr vec2(std::int32_t x, std::int32_t y)` — Construct an integer tile vector; the default value is the origin.
+
+## cambc::vision
+- `cambc::altar_lock altar_lock_at(vec2 position)` — Prefer the allied lock if both teams have a lock on this altar. @param position Tile to query.
+- `bitboard altar_lock_tiles()` — Query current altar-lock occupancy for the selected team or both teams.
+- `bitboard altar_lock_tiles(team side)` — Query current altar-lock occupancy for the selected team or both teams. @param side Team to include.
+- `void altar_lock_tiles_into(bitboard& out)` — Like `altar_lock_tiles()`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `void altar_lock_tiles_into(team side, bitboard& out)` — Like `altar_lock_tiles`, but writes into `out` instead of returning a new board. @param side Team to include. @param out Destination; its previous contents are 
+- `std::vector<cambc::altar_lock> altar_locks()` — Get fresh, owning visible altar-lock snapshots, optionally filtered by team.
+- `std::vector<cambc::altar_lock> altar_locks(team side)` — Get fresh, owning visible altar-lock snapshots, optionally filtered by team. @param side Team to include.
+- `bitboard asleep_camp_tiles()` — Get the tiles of visible asleep camps. Dead camps are excluded.
+- `void asleep_camp_tiles_into(bitboard& out)` — Like `asleep_camp_tiles`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `bitboard awake_camp_tiles()` — Get the tiles of visible awake camps. Dead camps are excluded.
+- `void awake_camp_tiles_into(bitboard& out)` — Like `awake_camp_tiles`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `cambc::camp camp_at(vec2 position)` — Find a currently visible camp. @param position Current tile of the camp.
+- `std::vector<map::camp_group> camp_groups()` — A group is currently visible when any original spawn tile is in effective vision, even if empty.
+- `bitboard camp_tiles()` — Get camp occupancy from the current perspective.
+- `void camp_tiles_into(bitboard& out)` — Like `camp_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `std::vector<cambc::camp> camps()` — Get an owning list of currently visible camps, recomputed each call.
+- `cambc::champion champion_at(vec2 position)` — Create a fresh view of the currently visible champion at a position. @param position Tile to query.
+- `bitboard champion_tiles()` — Get visible champion occupancy for both sides.
+- `bitboard champion_tiles(team side)` — Get visible champion occupancy for one side. @param side Team to include.
+- `void champion_tiles_into(bitboard& out)` — Like `champion_tiles()`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `void champion_tiles_into(team side, bitboard& out)` — Like `champion_tiles`, but writes into `out` instead of returning a new board. @param side Team to include. @param out Destination; its previous contents are ov
+- `std::vector<cambc::champion> champions()` — Get a fresh champion list for the current view and optional team filter.
+- `std::vector<cambc::champion> champions(team side)` — Get an owning list of currently visible champions, recomputed each call. @param side Team to include.
+- `bool has_altar_lock(vec2 position)` — Check for a visible altar lock for either team; missing or hidden locks return false. @param position Tile to query.
+- `bool has_camp(vec2 position)` — False on hidden or empty tiles; invalid positions retain the engine's error. @param position Tile to query.
+- `bool has_champion(vec2 position)` — Check visible champion occupancy at a tile; invalid positions retain engine errors. @param position Tile to query.
+- `bool has_teleport(vec2 position)` — Check whether a tile is occupied by a visible teleport reservation. @param position Tile to query.
+- `bool has_ward(vec2 position, team side)` — Check ward occupancy for `side`; hidden or absent wards return false. @param position Tile to query. @param side Team the ward must belong to.
+- `bool has_ward(vec2 position)` — Check ward occupancy at a tile; hidden or absent wards return false. @param position Tile to query.
+- `teleport teleport_at(vec2 position)` — Get the visible teleport reservation on a tile. @param position Tile to query.
+- `bitboard teleport_tiles()` — Query current visible teleport-reservation occupancy.
+- `void teleport_tiles_into(bitboard& out)` — Like `teleport_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `std::vector<teleport> teleports()` — Get fresh, owning visible teleport-reservation snapshots.
+- `bitboard visible_tiles()` — Query current visible tiles.
+- `void visible_tiles_into(bitboard& out)` — Like `visible_tiles`, but writes into `out` instead of returning a new board. @param out Destination; its previous contents are overwritten.
+- `cambc::ward ward_at(vec2 position, team side)` — Get the ordinary ward at a tile for one team. @param position Tile to query. @param side Team the ward must belong to.
+- `cambc::ward ward_at(vec2 position)` — Get the ordinary ward at a tile. @param position Tile to query.
+- `bitboard ward_tiles()` — Query visible ordinary-ward occupancy for both teams.
+- `bitboard ward_tiles(team side)` — Query visible ordinary-ward occupancy for one team. @param side Team to include.
+- `void ward_tiles_into(bitboard& out)` — Like `ward_tiles()`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+- `void ward_tiles_into(team side, bitboard& out)` — Like `ward_tiles`, but writes into `out` instead of returning a new board. @param side Team to include. @param out Destination; its previous contents are overwr
+- `std::vector<cambc::ward> wards()` — Fresh visible ordinary-ward observations; overlapping records remain distinct.
+- `std::vector<cambc::ward> wards(team side)` — Get fresh ordinary-ward observations filtered by team. @param side Team to include.
+
+## cambc::ward
+- `bool is_ally() const noexcept` — Check whether this ward belongs to the observing team.
+- `bool is_enemy() const noexcept` — Check whether this ward belongs to the opposing team.
+- `friend bool operator==(const ward&, const ward&) = default` — Compare every captured field.
+- `cambc::champion owner() const` — Return the owning champion captured when this ward was visible, even if the owner is hidden. Live champion state still requires the champion to be in vision.
+- `vec2 position() const noexcept` — Get the ward's tile.
+- `std::optional<std::int32_t> remaining_time() const noexcept` — Get the remaining lifetime in rounds; empty for an unlimited lifetime.
+- `cambc::team team() const noexcept` — Get the owning team relative to the authenticated bot.
+- `bitboard visible_tiles() const` — Hypothetical vision from this ward's position, ignoring current team visibility.
+- `static bitboard visible_tiles_from(vec2 position)` — Query the mask for ordinary-ward vision at a placement tile. @param position Hypothetical ward tile.
+- `static void visible_tiles_from_into(vec2 position, bitboard& out)` — Like `visible_tiles_from`, but writes into `out` instead of returning a new board. @param position Hypothetical ward tile. @param out Destination; its previous 
+- `void visible_tiles_into(bitboard& out) const` — Like `visible_tiles`, but writes into `out`. @param out Destination; its previous contents are overwritten.
+
+## std
+- `std::size_t operator()(cambc::vec2 v) const noexcept` — Hash a tile position.
+- `std::size_t operator()(const cambc::camp& c) const noexcept` — Hash a camp identity.
+- `std::size_t operator()(const cambc::champion& c) const noexcept` — Hash a champion identity.
+- `std::size_t operator()(const cambc::map::camp_group& g) const noexcept` — Hash a camp-group identity.

@@ -1,0 +1,2064 @@
+TEAM XANARCHY, CAMBRIDGE BATTLECODE 2026: CONTEXT PACK v5 (20 Oct 2026)
+Contents: SITUATION AND FACTS (header); OUR PLAN (PLAN-v4, draft 2); FACT SHEET; ENGINE 1.0 CHANGES (from the engine tables; the public rules doc lags); TOP-10 TEAMS ON ENGINE 1.0 (decoded games); OUR LIVE BOT vs 8 REAL TEAMS (160 games); INTERNAL CRITIC REVIEW OF THE PLAN; THE 21 MAPS; PER-MAP ECONOMICS (engine 1.0 values); APPENDIX: PUBLIC GAME RULES (20 Oct; superseded where ENGINE 1.0 differs)
+
+
+==============================================================================
+## SITUATION AND FACTS (header)  [consult/pack/header-v5.md]
+==============================================================================
+# Team Xanarchy, Cambridge Battlecode 2026: context for an outside reviewer (v5, 20 Oct 2026, engine 1.0.0)
+
+Supersedes header-v4 for game facts. facts verified 20 Oct against the SDK 3.0.1 and the engine tables (docs/rules/ENGINE-1.0.md, FACTS.md). The site rules page lags the engine; where they differ the engine and SDK are right. Appendices A to C of v4 describe the 17-map, engine 0.0.3 world and are out of date on maps, rewards and base stats.
+
+## 1. Situation
+
+- Cambridge Battlecode 2026: each team writes a bot (ours is C++ compiled to WebAssembly). Ranked ladder plus tournaments. Sprint 2 submission lock: Sat 24 Oct 23:59 BST. Team Xanarchy = one player (Xans) with AI agents; consultants (DeepSeek, Copilot) are run by Xans.
+- Engine 1.0.0 went live overnight 19-20 Oct (CLI 3.0.1, SDK 3.0.1). Our live bot is v3b (uploaded 06:05 BST 20 Oct as platform "bot version 2"). v3c (engine-1.0 fixes) is being built.
+- The map pool is 21 maps (was 17): kept ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith; new big_world, boss_battle, broken_curve, concentrated_wealth, corridors, elk_arena, fracture, gold_rush, hooks, islands; retired packs, pilgrimage, rows, rushbait-v2, stampede, swirl. Champions per side: 3 on broken_curve, collision, fragment, gold_rush; 4 on hooks, interlock; 5 on the other 15. Nine kept maps had only camps added (more gem and gold clusters); no map has a golem. Overview: notes/maps-21.md, data/maps-21.png.
+
+## 2. Game facts that changed in engine 1.0 (details in docs/rules/ENGINE-1.0.md)
+
+- 12 draftable champions (Heart of Ruin added; Cassi and Issac remain one pick, two bodies). Heart of Ruin: melee, 1000 HP (+100), strength 40, Focus 100 (+15); passive up to +50% to all damage by missing health; slot 0 self shield 1.5 x Focus for 5 turns; slot 1 dash range 2 with landing damage 1.75 x Focus in radius 1 and a 1-turn stun (first dash with landing effects); all cooldowns 8.
+- Prism gains 1.0 Focus per carried gem (was 0.2). Vesper Vale gold bonus 33% (was 20%). Marcella gains 2 gold per gem tributed. Tavi's stun 1.4 x Focus (was 2.2).
+- Base stats were rebalanced for 11 of the 12 champions (examples: Ryth strength 50 to 45, Vesper 45 to 50, Varg 50 to 40, Willow strength 45 to 55 and Focus 105 to 120, Cassi health 700 to 600, Stellar Focus 100 to 85, Tavi strength 35 to 45).
+- Camps: gem and gold clusters 120 HP (were 500); elk range 4 and monolith range 5 (were 3); a golem camp type exists (5,000 HP, strength 120, range 4) but is on no map. Per-camp rewards read from the map group data: wolf 4 gems / 40 gold, elk 15 / 90, gem cluster 7 gems, gold cluster 20 gold, monolith 200 / 300 (the site table still shows 22/90, 36/160, 24 gems, 35 gold); some map groups carry a x2 multiplier.
+- Unchanged: 1,000 gem win or round 2,000 (tiebreaks gems, lifetime gold, kills, Team B); tribute max(1, ceil(gems/10)) turns, interrupted by stun, death or a new altar lock; recall 5 turns (3 with Home); death 60 rounds, killer takes carried gems plus 50 gold; shards 30 gold, emblem at 5; vision 8; fuel 100k per turn (10x first draft turn, 2x first play turn); 8 bytes shared memory, 1,024 bytes draft memory.
+
+## 3. Our bot
+
+v3b = v3a plus the per-champion micro table from the duel lab (no 45%-health walk-home in a fight, spells from full range, Varg shield at engage, dashes in fights). Local results (17-map set, engine 0.0.3, 3 salts): head-to-head vs v3a 63/102, vs v2 60/102; panel 168.0 of 204 (v2 152.3); gem margin up on 14 of 17 maps; elkring -1.00, monolith -0.67, pilgrimage -0.33. Starter 34/34, 0 faults (VERSIONS.md). Not tested on the 10 new maps or on engine 1.0 before upload; a safety run on the new maps is in results/newmaps-safety.md. Earlier (v4 header) our v2 sat at 1,417 rating after 515 games (46% wins).
+
+## 4. What the measurements do not cover
+
+Every local test, duel table, draft table, ladder yardstick (intel/) and map-economics figure before 20 Oct was measured on engine 0.0.3 and the 17-map pool. Prism, Marcella, Vesper, Willow, Tavi and Heart of Ruin figures and the cluster HP and reward figures are the most affected. Treat those results as hypotheses with stated test conditions.
+
+
+==============================================================================
+## OUR PLAN (PLAN-v4, draft 2)  [PLAN-v4.md]
+==============================================================================
+# PLAN-v4: from rank ~500 to the top 20 by Sat 24 Oct 23:59 BST
+
+Draft 2, 06:55 BST Tue 20 Oct (draft 1 06:35; critic review `notes/critic-plan-v4.md`, verdict "proceed with named changes", applied below). Next: consultants; Xans decides. Supersedes PLAN-v3.md (kept as history).
+Versions: integer only from now on (Xans, 20 Oct). v4 = the first release on engine 1.0; later releases v5, v6.
+Deadlines (platform Tournaments page, checked 20 Oct 06:50): **Sprint 2 lock Sat 24 Oct 23:59 BST** (single elimination, 15 games per pairing, locked submission); Sprint 3 lock Sat 31 Oct; qualifiers 4 Nov (international) and 11 Nov (UK); finals 18 Nov.
+Xans's standing approvals (20 Oct 06:48): upload any candidate that passes `gate.py` and the critic, for real-team testing; up to 10 game jobs 00:00-07:00; upload v4 base once it passes the gate.
+
+## 0. Target and arithmetic
+
+| Mark | Rating (06:30 Tue) |
+|---|---|
+| Rank 1 | 2,231 (Intercontinental Fish) |
+| Rank 10 | 1,975 (AlphaSlop) |
+| **Rank 20** | **1,888** (Trzy Kwaterki) |
+| Rank 25 | 1,862 |
+| Us | about 1,420, rank about 500 (preflight will record the exact figure) |
+
+- Rating is not the bottleneck; bot strength is. Teams play about 6 ranked series an hour (project notes), so a bot that really is top-20 strength climbs 470 points within a day.
+- Strength today: live v3b went **29-131** against 8 real teams rated 1,453-1,771 (`notes/unranked-v3b.md`); v2 went 27-109. To sit at rank 20 a bot must win about half its games against ranks 10-30 and nearly all against teams below 1,700.
+- Milestones, each measured against real teams in unranked games (the only yardstick that has matched the ladder). Ratings recomputed per the critic (a 50 % record is worth about the panel's average rating):
+  - **M1, Wed 22:00:** at least 50 % against the 8-team panel (1,453-1,771, average about 1,600). Implies about 1,600.
+  - **M2, Thu 22:00:** at least 50 % against a ranks 50-100 panel (about 1,670-1,750). Implies about 1,710.
+  - **M3, Fri 22:00 (main release):** at least 40 % against a top-20 sample, plus at least 60 % against ranks 20-50. Implies about rank 20. The top-20 sample (about 400 games) runs Friday night.
+- The Sprint 2 tournament uses the locked submission; the ladder top 20 needs the main release live by Fri 22:00 so Saturday's ranked series can climb. Saturday is for bug fixes only.
+- **Plan-level kill rule:** if v4 base (bugs fixed) still wins under 30 % against the 8-team panel, the gap is structural: module A+B+F goes first and micro work waits.
+- Honest odds (lead's estimate): M1 likely if the gear and economy modules work; M2 possible; M3 a stretch from 18 % today.
+
+## 1. Why we keep making simple errors, and the remedy
+
+| Error (last 3 days) | Root cause |
+|---|---|
+| Six local maps were old layouts for days | No check of local files against the platform |
+| Map pool changed overnight (10 new, 6 retired); v3b uploaded untested on it | Same |
+| All local tests ran on engine 0.0.3 while the ladder ran 1.0.0 (new champion, golem, dash, Prism/Vesper/Marcella) | No engine or version check; the site's download page still says 2.2.5 |
+| v3b +15.7 wins locally, 29-131 against real teams | Local panel = our own old bots; local wins were treated as evidence |
+| Lanes "fuel bug" reported, then retracted (salt-copy artifact) | Lead read a number without its test conditions |
+| An agent killed every cambc.exe and cut two runs | Brief did not forbid it |
+| Replay decoder silently rejects engine 1.0.0 | No version check in tools |
+| Lead context overloaded; stale facts (17 maps, 11 champions) copied into briefs | Facts lived in the lead's memory, not in a checked file |
+
+Remedy (all mandatory from today):
+1. **Ground truth is automated.** `scripts/preflight.py` checks CLI, SDK, ladder engine, map pool (byte-compare with the official files), rules doc and SDK hashes, champion ids seen on the ladder, our rating, and the live version. It writes `STATE.md`. It runs at the start of every work block, before every test wave and before every upload. A FAIL blocks all three.
+2. **One fact sheet.** `FACTS.md` (at most 70 lines, every fact with its source line and verification date) plus `STATE.md` head every agent brief. No fact enters a brief from memory.
+3. **Automated upload gate.** `scripts/gate.py <bot>` reads the pool from STATE: starter games on every pool map, both sides; 0 faults; no turn over 100,000 fuel; no fuel exhaustion after round 1; turn-1 `mapid=` print checked for every map. Then the critic reviews, then Xans approves.
+4. **Real teams are the yardstick.** Local games only filter candidates; admission needs a real-team panel. This needs uploads, because unranked games use the live bot (see §8, a question for Xans).
+5. **Every result carries its conditions:** engine version, map-set hash, opponents and number of games. Mapgate writes them; results without them are not quoted.
+6. **Lead context discipline.** The lead holds only PLAN-v4, STATE, FACTS and agent reports of at most 250 words. Agents own the depth and write it to files. NEXT.md is rewritten, not appended, at the end of each block (at most 60 lines).
+7. **In-bot self-checks:** a map-hash table for identification (no shape guessing), a `static_assert` on champion and camp enum sizes, and turn-1 `mapid=` and fuel prints in debug builds.
+8. **Fresh-context critic** on every plan, brief template and release; consultants on the plan and on each big module.
+9. **Timestamps come from `date`**, never from estimates (twice now the log ran ahead of the clock).
+
+## 2. The gap (real-team data, 20 Oct, engine 1.0)
+
+| Measure | v3b | Comparison | Source |
+|---|---|---|---|
+| Tributes per game | 19.3 | 37.5 (its panel opponents) | `notes/unranked-v3b.md` |
+| Deaths per game | 38 | 21 (its panel opponents) | same |
+| New maps (10) | 10-66 | – | same |
+| **Engine 1.0 only (live since 03:00Z 20 Oct):** | | | `notes/top10-2026-10-20.md` (126 top-10 sides decoded, 2,055 listed) |
+| Deaths per game | 33-45 | 17 (top 10) | same |
+| Fights opened with an ability | 35-43 % | 85 % (top 10) | same |
+| Gear points per champion at round 200 | 1.7 | 3.8 (top 10) | same |
+| Gems per tribute | 24-30 | 41 (top 10); tributes per game: no gap | same |
+| Altar-lock buys per game | 0 | 6.4 (top 10); lockers beat non-lockers 16 of 31 (no clear edge) | same |
+| Enemy champion-rounds near our spawn | 8-9 | 0.8 | same |
+| Top-10 gems per round, engine 0.0.3 → 1.0 | – | 1.10 → 0.57 (camp rewards cut) | same |
+| Drafts | Vendetta, Tavi sets | Stellar in 96 % of top-10 drafts; core Ryth, C&I, Stellar, Ren, Varg; Tavi sets −10.8 pts; Prism −14 pts (55 sides); Heart of Ruin 0 of 2,055 | same |
+| Fight outcome predicted by (engine 0.0.3) | HP fraction, lowest-HP unit, gear (AUC 0.86) | | `notes/matchups.md` |
+
+Three levers, in order of size: **income** (gems captured per round), **conversion** (tributes, gems lost on death) and **survival** (fights taken and won). Gear feeds all three.
+
+## 3. Architecture: eight modules, each tied to cambc rules
+
+Rule quotes come from `docs/rules/GameRules.md` unless marked SDK (engine 1.0, `docs/rules/ENGINE-1.0.md`).
+
+**Build order after the critic review:**
+- A, B and F are one module (plan compiler, economy and claims); they share data and are tested together.
+- C and the cheap part of D (ability-first opening, fight gate) come first; they are the fastest large levers.
+- E becomes a lookup table from the S3 simulations.
+- G is only a respawn-blockade experiment, run after M2. The rule is verified: GameRules.md l.134, "Any occupied spawn tile delays the entire group." The critic misread it as missing.
+- H moves to Sprint 3.
+- No current map has a golem (ENGINE-1.0.md), so golems get enum safety only.
+
+**A. Map compiler (draft phase).** Rules: the drafter "can see the entirety of the map layout" and has extra fuel; 1,024 bytes of draft memory.
+- Compute at draft time:
+  - BFS distance fields from each altar and spawn;
+  - camp groups with value (gems, gold, HP, strength, respawn);
+  - clear time for each candidate composition (damage model);
+  - side and contested classes from our distance minus the enemy's distance;
+  - chokepoints (narrow cuts between regions);
+  - monolith and golem positions.
+- Output a plan in draft memory, about 200 bytes:
+  - map class;
+  - for each champion slot, an ordered route of camp-group ids;
+  - bank thresholds and altar choice;
+  - composition class;
+  - denial targets.
+- Champions rebuild only the fields they need, spread over turns 1-5 so no turn exceeds the fuel limit.
+- Generic first, per-map overrides second. It is tested held-out: plans for kept maps are scored before any per-map tuning.
+
+**B. Economy engine (macro: orienteering with time windows).** Rules:
+- camp respawn times (wolf 40, elk 60, gem cluster 50, monolith 150 rounds after the claim; golem per SDK);
+- "Extra allies do not speed capture";
+- capture takes 5 rounds uncontested;
+- tribute takes max(1, ceil(gems/10)) turns;
+- the killer takes all carried gems.
+
+Behaviour:
+- Each champion follows a route that maximises expected banked gems per round: travel + clear + capture, respawn windows, and risk (gems at death are lost).
+- One capturer per group; the others move on (a camp conveyor).
+- The bank size b* is chosen per map class to minimise round cost per banked gem, (travel + ceil(b/10)) / b, discounted by death risk on the route.
+- Target (revised after the top-10 study): top-10 gems per round under engine 1.0 (0.57) with bigger bags (about 40 gems per tribute, as top-10 teams bank) rather than more tributes; deaths at or below 20 a game, because gems carried at death are lost and camp kills destroy carried gems (GameRules l.315).
+
+**C. Gear engine (gold to stats).** Rules: shards cost 30 gold; five matching shards combine; buying happens on spawn tiles or while dead; Tavi buys anywhere; Prism gains 1.0 Focus per carried gem (SDK 1.0); Vesper earns +33 % gold; Marcella gets 2 gold per gem tributed.
+- A per-champion purchase curve: damage first; Focus for casters; Prism Focus combined with its gem stack.
+- Gold-driven recall when gold ≥ k × 30 and no fight is near (MOBA recall timing).
+- Target: 10 or more shard-points by round 300.
+
+**D. Fight engine (micro).**
+- Engage gate from the fight-outcome model, refitted on engine-1.0 fights: enter at p ≥ 0.55 and disengage before melee contact (melee walks and hits in one turn).
+- Open with an ability, then focus the lowest effective HP.
+- A per-champion micro table, re-measured in the duel lab on engine 1.0, including Heart of Ruin and the new dash.
+- Carriers at 30 or more gems avoid fights and bank.
+- Pick off enemy carriers when p is high (the killer takes all gems).
+- Stun visible enemy channels.
+- Fight at camp edges so monsters hit the enemy: monsters have range 3, never chase, and attack the nearest champion.
+
+**E. Draft engine (game theory).** Rules: picks are simultaneous each round; revealed picks are visible to later rounds.
+- Per map class, a payoff matrix from local simulations (our compositions × common enemy compositions, both sides, 3 salts) and top-team draft data.
+- Pick by minimax or a mixed strategy each round, conditioned on revealed picks.
+- Composition roles (farmer, carry, stunner, tank) chosen to enable modules B and G.
+- Re-evaluate Heart of Ruin and Prism under engine 1.0.
+- Pair counter tables are dead (1 of 55 cells survived; none after map effects). Composition-level only.
+
+**F. Team coordination (8 shared bytes).**
+- Byte layout:
+  - camp-group claims (who captures what);
+  - one danger flag with its region;
+  - a focus target id;
+  - a plan phase;
+  - a regroup tile.
+- Writes are rate-limited and versioned so stale claims expire.
+
+**G. Map control and denial (MOBA).**
+- Respawn blockade: "Any occupied spawn tile delays the entire group". Used on enemy-side camps when a champion would otherwise idle; dropped if the blocker dies more than it denies.
+- Altar locks on enemy altars that lie on our routes.
+- Wards at chokepoints.
+- Objective trading: when they contest our camp, take theirs.
+
+**H. Opponent model (in-match adaptation).**
+- Per visible enemy champion:
+  - observed damage per hit or cast (which reveals its gear);
+  - aggression (fights it starts);
+  - where it is seen.
+- Updates the fight-gate threshold and route risk.
+- The prior comes from the enemy draft, written into draft memory by the drafter.
+
+## 4. Simulation stack, built for cambc
+
+| Sim | What it answers | Built from | Validated by |
+|---|---|---|---|
+| S1 duel and team-fight lab (engine 1.0) | micro table; fight-model calibration; Heart of Ruin | `tools/micro/` arena maps (MapBuilder), 1v1 all pairs at 0/5/10/15 shard-points, 2v2, 3v3 | known-outcome duels; ladder fight data |
+| S2 macro simulator (Python, no combat) | routes, bank thresholds, conveyor vs. group farming per map | map files, camp table, BFS, capture and tribute rules | v4 vs. an idle bot in the engine: gems per round within ±10 % |
+| S3 draft matrix | composition payoffs per map class | forced-draft engine games | stability across salts and halves |
+| S4 real-team panels | admission of every module | unranked groups (50 an hour): 8 mid teams, a top-50 panel, a top-20 sample; each map once per team | ladder rating after upload |
+| S5 top-team data | behaviours to copy (gear curve, cadence, openings) | decoder or `cambc matches summary` on engine 1.0 | – |
+
+## 5. Schedule
+
+| When | Work | Gate |
+|---|---|---|
+| Tue 08-11:30 | Remedy tooling: preflight, STATE, FACTS, gate, mapgate tags, decoder for 1.0 | preflight PASS |
+| Tue by 18:00 (critic's estimate) | **v4 base**: engine-1.0 fixes (map identification for 21 maps, fuel, Heart of Ruin safety, dash, contest 0-gem collapse, islands stall, gold_rush feeding) | gate PASS; h2h vs v3b on engine 1.0 ≥ 50 %; critic; upload (approved); 160-game panel |
+| Tue 13:00 | Plan to 4 consultants (ChatGPT, DeepSeek, Copilot, and a fourth independent reviewer) | – |
+| Tue pm | S2 macro simulator; S1 lab on engine 1.0; top-10 study → behaviours; fight model refit | – |
+| Tue night (10 jobs) | S1 duel/team-fight matrix; S3 draft matrix starts | – |
+| Wed | **v5** = v4 base + C (gear curve, recall) + D1 (ability-first opening, refitted fight gate, carrier safety) | gate; 160-game panel; **M1** |
+| Wed-Thu | **v6** = v5 + A+B+F (plan compiler, economy routing, conveyor, claims) | gate; 160-game panel; ranks 50-100 panel; **M2** |
+| Fri | E lookup from S3; weakest-map fixes from panel data; G blockade experiment if M2 passed; **main release by 22:00**; top-20 sample overnight | **M3** |
+| Sat | Bug fixes only; final gate; last upload by 20:00; hard stop 23:30 | – |
+
+## 6. Admission rules (fixed before any test)
+
+- **Safety:** `gate.py` PASS, otherwise nothing ships.
+- **A module is admitted** when the real-team panel shows **either**:
+  - win rate up at least 8 points; **or**
+  - tributed gems per round up at least 15 % with deaths per game not up more than 10 %.
+- **Panel design:**
+  - 160 games: 8 teams × 20 maps, each map once per team.
+  - Paired by team and map against the previous live bot's panel on the same teams and maps, measured the same day.
+  - Only one bot can be live, so the baseline panel runs just before the upload and the candidate's right after.
+- **Per-map floor:** no map more than 3 games (of 8) worse than the previous live bot.
+- **Confidence intervals** in every panel table. With 160 games, a true +8 points is detected about 80 % of the time; with 80 games, only 55 % (critic).
+- **Local h2h** only filters: below 45 % against the live build means it is not uploaded for a panel.
+- **Kill rule:** two panels without gain means the module is dropped or redesigned. No re-tuning loops.
+
+## 7. Compute and tokens
+
+- Daytime: at most 4 game jobs at Idle priority (laptop stays usable). 00:00-07:00: up to 10 (Xans approved).
+- At most 3 agents at once; reports of at most 250 words; data stays in files.
+
+## 8. Decisions by Xans (20 Oct 06:48)
+
+1. Standing approval: upload any candidate that passes `gate.py` and the critic, for real-team testing. Each upload is reported to Xans and logged in VERSIONS.md.
+2. Overnight: up to 10 game jobs 00:00-07:00.
+3. Upload v4 base today once it passes the gate.
+
+
+==============================================================================
+## FACT SHEET  [FACTS.md]
+==============================================================================
+# FACTS (verified 20 Oct): one fact per line, source in brackets. No opinions.
+Site doc = docs/rules/GameRules.md (20 Oct copy, lags engine). ENG = engine tables read with tools/maps21/designs.mjs (data/designs-1.0.0.json). Full diff: docs/rules/ENGINE-1.0.md.
+## Versions
+- Engine 1.0.0 = ladder engine; CLI cambc 3.0.1 (%APPDATA%\Python\Python314\Scripts\cambc.exe); SDK 3.0.1 in sdk/ [`cambc --version`, ladder champion id 11 seen]
+- Old: engine 0.0.3, CLI 2.2.5, SDK in archive/sdk-0.0.3/ [archive/]. Site doc lags SDK: Prism 0.2, Vesper 20%, no Heart of Ruin/golem, old base stats [diff]
+## Maps (21; champions per side; w x h) [data/maps21.json from maps/*.map26a via MapBuilder_FromFileBytes]
+- 5 per side: ambush 100x100, big_world 100x100, boss_battle 50x41, concentrated_wealth 61x61, contest 50x50, corners 71x71, corridors 51x40, eight 41x30, elk_arena 50x50, elkring 30x30, expanse 80x80, fracture 61x71, islands 60x60, lanes 90x30, monolith 50x50 (no golem camp on any map)
+- 4 per side: hooks 31x31, interlock 40x40
+- 3 per side: broken_curve 40x40, collision 41x41, fragment 30x30, gold_rush 31x31
+- Kept maps ambush, collision, contest, corners, eight, elkring, fragment, interlock, lanes: terrain identical to maps-engine0/, only camps changed (more gem/gold clusters) [notes/maps-21.md]
+## Camps (engine 1.0 per-camp base reward read from map group data, data/maps21.json; site doc l.147-155 shows older rewards) [verified 20 Oct]
+- Wolf: 1350 HP, str 20, 40 gold, 4 gems (doc 90/22), respawn 40, range 3
+- Elk: 2400 HP, str 60, 90 gold, 15 gems (doc 160/36), respawn 60, range 4 (was 3) [ENG]
+- Gem cluster: 120 HP (doc 500), str 0, 0 gold, 7 gems (doc 24), respawn 50 [ENG, SDK camp_type comment]
+- Gold cluster: 120 HP (doc 500), str 0, 20 gold (doc 35), 0 gems, respawn 50 [ENG, SDK]
+- Monolith: 20000 HP, str 200, 300 gold, 200 gems, respawn 150, range 5 (was 3) [ENG, SDK]
+- Golem (camp_type 5): 5000 HP, str 120, range 4 [SDK, ENG]; rewards/respawn unknown; absent from all 21 maps
+- Some map groups carry a x2 reward multiplier (group totals in notes/map-economics.md) [data/maps21.json info]
+- Monsters: vision 8, see through bushes, do not chase; damage wakes group; 2 rounds with no champion in range and they sleep [doc l.164-166]
+- Group = camps the map defines together (engine group data; not always cardinally connected); rewards combine; respawn at the longest member timer; an occupied spawn tile delays the group [doc l.133,139]
+## Capture
+- After every monster in the group is dead, occupy a spawn tile of the group uncontested; first capture phase starts a 5-round timer; empty region or enemy present resets; more allies do not speed it; reward split among allies present, lowest ID gets remainder [doc l.139]
+## Death, recall, tribute
+- Death: respawn on spawn tiles after 60 owner turn-end ticks, full health, abilities reset; dead champions keep shopping turns [doc l.320]
+- Kill reward: killer gets all carried gems + 50 base gold; assists no gold; camp kills destroy carried gems [doc l.320]
+- Cassi and Issac: if one dies the other dies; both lose gems; one kill reward [doc l.387]
+- Recall: channel 5 owner turn ends (3 with Home emblem), interrupted by damage, stun, death; carried gems kept; arrival at turn start, heal needs staying to turn end [doc l.229,332]
+- Tribute: within Chebyshev 1 of altar; length max(1, ceil(bag/10)) owner turn ends; start turn counts; completes at next turn start; tributes entire bag at completion; damage does not interrupt; stun, death or a new altar lock does [doc l.181-188,229]
+- Win: first to 1000 tributed gems, or round 2000: tributed gems, then lifetime gold, then kills, then Team B wins [doc l.14]
+- Altar lock (consumable): within 2 tiles of altar, blocks enemy tributes, 3 basic attacks remove it, cancels tributes at that altar [doc l.195-199,271]
+## Shop
+- Buy on own spawn tiles or while dead; Tavi buys shards anywhere (not consumables), only Tavi sells (full value) [doc l.233,279,635]
+- Shard 30 gold (adds champion growth in one stat); 5 matching shards auto-combine to an emblem (150 gold total) [doc l.241-247]
+- Emblems: Monster +10% camp damage; Power counts as 6 shards; Durability -10% damage taken; Treasure +20% gold; Jungle -30% camp damage; Home recall 3; Bruiser 5+1+1 [doc l.253-261]
+- Consumables 10 gold, one of each carried [doc l.265]; spawn purchase of Health heals the amount; Tavi field purchases do not [doc l.279]
+## Vision, memory, fuel
+- Vision 8, symmetric shadowcasting; walls and bushes occlude; own bush cluster transparent; one free ward per champion; vision not shared [doc l.294-312]
+- Fuel: 100k/turn C++/Rust (OCaml 5x, Python 25x); draft first turn 10x; first play turn 2x; unused fuel not carried; out of fuel suspends and resumes next round [doc l.344-348]
+- Shared memory 8 bytes read/write all match; draft memory 1,024 bytes written in draft, read-only in match [doc l.352-358]
+- Draft: 3 to 5 picks per team by map; A submits then B submits, both revealed together each round (B does not see A's pick of that round); no duplicate in own team, duplicates across teams allowed; draft bot sees full map and opponent picks so far; no pick/crash = random pick [doc l.58-85]
+## Champions (12 drafts; base health/str/focus at engine 1.0; all abilities cooldown 8; move 1; vision 8) [ENG]
+- Ryth melee 1200/45/100: aoe 1.0xFocus r4 rad1 stun1; attack reset; passive health adds strength (str 50->45 in 1.0)
+- Vesper Vale ranged(3) 900/50/100: attack reset; dash 2; passive +33% gold (was 20); str 45->50
+- Vendetta melee 800/70/100: reset; dash 2; passive kills (incl. camps) reset cooldowns; str growth 5->6
+- Cassi ranged 600/30/70 (was 700) + Issac melee 900/40/100 (growth 95->80), one pick, shared fate; Cassi damage 2.0xFocus r4 + stun1; Issac reset + dash 2
+- Stellar ranged 750/30/85 (was 35/100): damage 2.0xFocus r4; aoe 1.4xFocus r4 rad1
+- Prism ranged 700/35/80: stun+damage 1.5xFocus r4; aoe 1.0xFocus rad1; passive +1.0 Focus per carried gem (was 0.2); growth cut (hp 60, str 2.5, foc 8)
+- Marcella melee 1200/45/60 (was 50): reset; damage 2.0xFocus r4; stun immune; +2 gold per gem tributed (new); foc growth 15
+- Willow ranged 700/55/120 (was 45/105): heal ally 3.0xFocus r4; reset
+- Ren melee 900/35/100 (was 40): stun 1.25xFocus r4; dash 2; retaliation passive
+- Varg melee 1000/40/100 (was 50): reset; self shield 2.5xFocus 5 turns; splash basic attack
+- Tavi ranged 750/45/100 (was 35): reset; stun 1.4xFocus (was 2.2) r4; field shopping passive
+- Heart of Ruin (new, draft id 11) melee 1000/40/100, growth 100/5/15: shield 1.5xFocus 5 turns; dash 2 landing rad1 1.75xFocus stun1; passive up to +50% all damage by missing health [SDK constants, ENG]
+- Ranged attack range 3, melee 1; one move, one attack, one ability cast per turn [doc l.50]
+
+
+==============================================================================
+## ENGINE 1.0 CHANGES (from the engine tables; the public rules doc lags)  [docs/rules/ENGINE-1.0.md]
+==============================================================================
+# Engine 1.0.0 (20 Oct): differences from engine 0.0.3 (SDK 2.2.5)
+
+Sources: SDK diff (`archive/sdk-0.0.3/sdk/{cpp,rust}` vs `sdk/`), plus the engine's own design tables read from the cached engine WASMs (v0_0_3 vs v1_0_0) with `tools/maps21/designs.mjs` -> `data/designs-0.0.3.json`, `data/designs-1.0.0.json` (`node tools/maps21/showdesigns.js` prints them). The site doc (`GameRules.md`, 20 Oct) LAGS the engine: it still has every OLD number below and no Heart of Ruin or golem. Tag: [SDK] = in SDK headers/constants; [ENG] = read from the engine design table only (not stated in the SDK text or the site doc); [SITE] = site doc already agrees.
+
+## 1. Constants (SDK, C++ and Rust identical)
+
+| Constant | 0.0.3 | 1.0.0 | Site doc |
+|---|---|---|---|
+| prism_focus_per_gem | 0.2 | 1.0 | still 0.2 |
+| vesper_vale_bonus_gold_percent | 20 | 33 | still 20 (Treasure emblem 20 + 20 = 40 in doc) |
+| marcella_tribute_gold_per_gem (new) | - | 2 | absent |
+| heart_of_ruin_missing_health_damage_max_bonus (new) | - | 0.5 | absent |
+
+Gem cluster and gold cluster comments: 500 -> 120 health [SDK, ENG confirms]. All other constants (item costs, respawn, tribute, etc.) are unchanged.
+
+## 2. Base stats rebalance [ENG only; the SDK text does not mention it, site doc has the old values]
+
+Format base (growth per shard). Only changed fields are listed; unchanged champions/fields omitted.
+
+| Champion | Change 0.0.3 -> 1.0.0 |
+|---|---|
+| Ryth | Strength 50 -> 45 |
+| Vesper Vale | Strength 45 -> 50 |
+| Vendetta | Strength growth 5 -> 6 |
+| Cassi | Health 700 -> 600 (growth 71.25 -> 65); Strength growth 3.5 -> 3; Focus growth 15 -> 13 |
+| Issac | Health growth 95 -> 80; Strength growth 4.75 -> 3 |
+| Stellar | Strength 35 -> 30; Focus 100 -> 85 (growth 10 -> 9) |
+| Prism | Health growth 75 -> 60; Strength growth 3.5 -> 2.5; Focus growth 10 -> 8 |
+| Marcella | Focus 50 -> 60 (growth 10 -> 15) |
+| Willow | Strength 45 -> 55; Focus 105 -> 120 |
+| Ren | Strength 40 -> 35; Focus growth 10 -> 9 |
+| Varg | Strength 50 -> 40 |
+| Tavi | Strength 35 -> 45; Slot 1 stun modifier 2.2 -> 1.4 x Focus |
+
+Ranged/melee flags, vision 8, move 1, camp damage multiplier 1.0 and all other cooldowns (8 for every ability): unchanged.
+
+## 3. Heart of Ruin (champion_draft id 11, champion_type id 12) [SDK enums; kit numbers ENG; passive max SDK]
+
+Melee (range 1, move 1, vision 8). Health 1000 (+100 per shard), Strength 40 (+5), Focus 100 (+15), camp damage multiplier 1.0.
+- Passive `missing_health_damage` (passive id 10): up to +50% to ALL damage, linear with missing health (0% at full health, 50% at 0). Counted in `ability damage` queries (outgoing bonus). The legacy id 9 (omnivamp) stays reserved.
+- Slot 0 (shield, self): range 4 field (self-target), modifier 1.5 x Focus, 5 turns, cooldown 8 (the visualiser tooltip reuses Varg's shield text; 150 at Focus 100, versus Varg's 2.5 x Focus).
+- Slot 1 (dash with landing effect): range 2 (diagonal counts one, may cross holes along a legal dash path), landing radius 1 (Chebyshev, all 8 neighbours), damage 1.75 x Focus (before bonuses and mitigation), stun 1 turn, cooldown 8. Landing effects hit enemies and camps only after a successful dash.
+- Basic attack: melee, normal. No attack reset.
+The 0.0.3 engine table returned an unreleased placeholder for id 12 (aoe 0.9 x Focus, stun 1.0 x Focus, passive id 9); it was not selectable.
+
+## 4. Dash structure change [SDK]
+
+`ability_dash` gains `radius`, `modifier`, `duration` (was range only). Existing dashes (Vesper, Vendetta, Issac, Ren) have radius 0, modifier 0, duration 0 in the engine table: no landing damage or stun. Only Heart of Ruin uses the landing effect. `champion::ability_damage` now includes dash landing damage. Implication for the duel lab: a dash is a gap-closer plus a 1.75 x Focus area stun for HoR only.
+
+## 5. Golem camp (camp_type id 5) [SDK enum; stats ENG]
+
+5,000 health, strength 120, attack range 4, vision 8, move 1, no growth. Rewards (gold, gems, respawn) are not exposed in the SDK; they are not in the site doc. No bundled map contains a golem (all 21 maps scanned), so golems are not on the ladder pool today. `camp::is_golem()` added.
+
+## 6. Other camp changes [SDK + ENG]
+
+| Camp | 0.0.3 | 1.0.0 |
+|---|---|---|
+| Gem cluster | 500 HP | 120 HP |
+| Gold cluster | 500 HP | 120 HP |
+| Elk | range 3 | range 4 (HP 2400, strength 60 same) |
+| Monolith | range 3 | range 5 (20,000 HP, strength 200 same) |
+| Wolf | 1350 HP, strength 20, range 3 | unchanged |
+
+Gem and gold clusters die in about a quarter of the old time. `notes/map-economics.md` per-group HP and the "gems per 1,000 HP" columns use the old 500.
+
+Per-camp rewards [ENG: read from the group data in the official map files, `data/maps21.json`; the site table is stale]:
+
+| Camp | Gems | Gold | Respawn | Site doc says |
+|---|---|---|---|---|
+| Wolf | 4 | 40 | 40 | 22 gems, 90 gold |
+| Elk | 15 | 90 | 60 | 36 gems, 160 gold |
+| Gem cluster | 7 | 0 | 50 | 24 gems |
+| Gold cluster | 0 | 20 | 50 | 35 gold |
+| Monolith | 200 | 300 | 150 | same |
+
+Some groups on the maps carry a x2 reward multiplier (group totals in `notes/map-economics.md`). Verify with a replay (tribute or capture event) before relying on single figures.
+
+## 7. API additions [SDK]
+
+- `awake_camp_tiles()`, `asleep_camp_tiles()` (+ `_into(bitboard&)` forms): bitboards of visible awake/asleep camps; dead camps excluded.
+- `in_vision(vec2)`: current self-vision (including ward vision) whether or not the tile is occupied; out-of-bounds throws `api_bad_position`.
+- `ward::owner()`: owning champion captured while the ward was visible.
+- Pathing helper (`move toward` / bitboard path code): the target is now always treated as free for pathfinding (line ~5202: `blocked.set(target,false)` replaces `if blocked.is_set(target) return false`). Entering a known blocked target now throws instead of returning false. Audit any code calling the SDK path-move on a possibly-blocked tile.
+- Doc-only: `attributes`/dash metadata comments clarified; `champion_designs` array is 13 long (index = champion_type).
+
+## 8. Enums [SDK]
+
+- `champion_draft`: heart_of_ruin = 11 (12 champions; Cassi and Issac share one draft slot 3). `champion_type`: heart_of_ruin = 12 (13 bodies).
+- `camp_type`: golem = 5 (map size 6).
+- `passive_type`: missing_health_damage = 10; stun_immunity now also "gains gold per gem tributed" (Marcella).
+
+## 9. Marcella and Vesper behaviour [SDK]
+
+Marcella: stun immunity plus 2 gold per gem tributed (new). Vesper: 33% bonus gold (was 20%).
+
+## 10. Not interpretable from the SDK
+
+Golem rewards, respawn and behaviour (aggro/leash); whether the 1.0 engine changed round limits, tribute or combat formulas beyond the constants (the diff shows none); items and consumables (the SDK item table text is unchanged, but a numeric diff of item stats was not run).
+
+
+==============================================================================
+## TOP-10 TEAMS ON ENGINE 1.0 (decoded games)  [notes/top10-2026-10-20.md]
+==============================================================================
+# What the top 10 do (20 Oct 2026, written ~07:30 BST)
+
+Sample: top-10 ranked games after the pool change (22:01Z 19 Oct). Drafts and W-L use all 2,055 team-sides listed (`data/top10/all_games.tsv`). Behaviour numbers use 158 decoded games (126 top-10 sides, 50 of ours; `data/top10/games.tsv`, `games2.tsv`, `sides.json`, 316 sides; decoder gems equal platform score in all 316). Tools: `tools/top10/{analyze,agg,drafts}.py`.
+
+**Read first (data):** engine 1.0.0 went live at 03:00Z (04:00 BST). Under it top-10 gems per round fell from 1.10 to 0.57 and median rounds to 1,000 gems in wins rose from 516 to 1,189 (0.0.3 n=45 sides, 1.0.0 n=63; all games are top-10 v top-10). Gem clusters now have 120 HP, not 500 (`docs/rules/ENGINE-1.0.md`). All of our decoded games are 1.0.0, so every comparison below is 1.0.0 only. Fish and Sneaky Bush Campers (SBC) have played no ranked game since 02:50Z, so they have no 1.0.0 data; their rows are 0.0.3 and their ratings are frozen.
+
+## 1. Per team (1.0.0 sides unless marked; † = fewer than 30 sides)
+| team (rating) | W-L since 22:01Z (all games) | sides n | med rounds to 1,000 (wins, n) | gems/rnd | tributes/g | gems/tribute | deaths/g | pts/champ @200 / @400 | spell-opened fights | lock buys/g | recalls/g |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Fish (2231) | 107-43 | 12† (0.0.3) | 523 (7) | 1.16 | 10.8 | 98.7 | 7.8 | 6.7 / 13.9 | 82% | 0 | 34 |
+| Nyx (2152) | 138-82 | 15† | 1059 (9) | 0.66 | 24.4 | 37.1 | 18.0 | 5.1 / 13.6 | 80% | 0 | 64 |
+| UoSW (2098) | 133-87 | 18† | 1347 (7) | 0.51 | 23.7 | 55.4 | 28.2 | 3.5 / 9.4 | 90% | 7.4 | 53 |
+| Mite (2047) | 104-116 | 14† | 1326 (9) | 0.59 | 32.4 | 29.3 | 16.2 | 3.1 / 8.0 | 86% | 11.5 | 74 |
+| procless (2023) | 114-101 | 20† | 1153 (7) | 0.63 | 25.6 | 42.8 | 12.8 | 4.3 / 11.2 | 76% | 0 | 64 |
+| Pantheon (2015) | 107-113 | 18† | 1060 (10) | 0.64 | 37.7 | 24.8 | 11.9 | 3.1 / 7.9 | 83% | 11.8 | 56 |
+| Tartarus (2012) | 108-112 | 15† | 1488 (6) | 0.54 | 20.3 | 69.9 | 15.9 | 4.4 / 11.7 | 88% | 0 | 74 |
+| SBC (1977) | 61-89 | 13† (0.0.3) | 635 (3) | 0.97 | 10.2 | 57.6 | 8.8 | 6.3 / 14.9 | 92% | 0 | 24 |
+| new4 (1976) | 116-104 | 13† | 1358 (4) | 0.46 | 17.2 | 40.7 | 15.5 | 4.3 / 8.9 | 88% | 12.0 | 53 |
+| AlphaSlop (1975) | 98-122 | 13† | 1206 (5) | 0.52 | 30.3 | 28.2 | 19.3 | 2.9 / 7.9 | 80% | 11.5 | 65 |
+| **top-10, 1.0.0** | | 126 | 1189 (57) | 0.57 | 26.7 | 41.5 | 17.2 | 3.8 / 9.9 | 85% (2,415 fights) | 6.4 | 62 |
+| us, 04:30-05:05Z (v2, presumed) | | 35 | 1502 (12) | 0.30 | 24.5 | 30.2 | 32.8 | 1.7 / 4.4 | 35% (380) | 0 | 43 |
+| us, 05:10Z on (v3b presumed; platform records no version) | | 15† | 1412 (4) | 0.29 | 24.3 | 24.2 | 44.7 | 1.5 / 4.0 | 43% (270) | 0 | 37 |
+
+Team size: all ten field 6 bodies on 5-pick maps (Cassi and Issac count 2), 4 on 3-pick maps. Picks per map: 3 on collision, fragment, broken_curve, gold_rush; 4 on interlock, hooks; 5 on the other 15 maps.
+More columns (1.0.0): first tribute round (median) Nyx 132, UoSW 102, Mite 84, procless 158, Pantheon 62, Tartarus 127, new4 98, AlphaSlop 72, us 109/164, top-10 97. Camp groups captured by round 300: top-10 15.0, Nyx 22.6, us 11.1/9.7. Kills by round 200: top-10 0.4, us 0.5/0.7. Own-deaths carrying gems: top-10 29%, us 9%/12%. Gems lost on enemy deaths per game (opponents differ, so weak evidence): Tartarus 514, new4 449, AlphaSlop 328, Nyx 300, UoSW 211, Mite 211, procless 78, Pantheon 65, us 53.
+
+## 2. Gap to us (1.0.0; us n=35 and 15†; opponents of ours are weaker on average, so true gaps are larger)
+| measure | top-10 | us (v2 / v3b) | gap |
+|---|---|---|---|
+| gems per round | 0.57 | 0.30 / 0.29 | 1.9x |
+| tributes per game | 26.7 | 24.5 / 24.3 | none |
+| gems per tribute | 41.5 | 30.2 / 24.2 | 1.4x to 1.7x |
+| deaths per game | 17.2 | 32.8 / 44.7 | 1.9x to 2.6x |
+| gear points per champion at round 200 / 400 | 3.8 / 9.9 | 1.7 / 4.4 (v3b 1.5 / 4.0) | 2.3x |
+| fights opened with an ability | 85% | 35% / 43% | 2x (NEXT.md, 0.0.3: 84% v 32%, same shape) |
+| altar-lock buys per game | 6.4 (0 for Nyx, procless, Tartarus) | 0 | 6.4 |
+| enemy champion-rounds within 5 tiles of our spawn, rounds 100-400 | 0.8 | 8.9 / 7.3 | 9x |
+| camp groups captured by round 300 | 15.0 | 11.1 / 9.7 | 1.4x |
+| spread of own champions, rounds 100-400 (mean pairwise tiles) | 12.6 | 12.5 / 14.7 | none |
+| kills by round 200 | 0.4 | 0.5 / 0.7 | none |
+Data: v3b is no better than v2 on any row except spell-open share (35% to 43%, 270 fights) and is worse on deaths (44.7 v 32.8, n=15†).
+Interpretation: income is equal in tribute count but our bags are smaller and our champions die twice as often, so the gap is survival and gear, not route or early aggression.
+
+## 3. Drafts (listing level, 22:01Z on; rating-adjusted excess = wins minus 400-point expectation, top-10 v top-10 only)
+Champion usage, top-10 sides: Stellar 96%, Cassi and Issac 95%, Ren 72%, Varg 70%, Ryth 67%, Tavi 33%, Prism 10%, Willow 2%, Vendetta 3%, Vesper 0.5%, Marcella 0.3%, **Heart of Ruin 0 of 2,055**. Ours: Vendetta + Cassi and Issac + Ryth + Varg + Tavi (no Stellar, no Ren).
+Champion presence, 1.0.0 only (n sides; counts are of sides, not independent of team skill): Tavi -10.8 pt (121), Prism -14.1 pt (55), Ryth +4.6 (254), Ren +1.6 (288), Varg +1.4 (271), Stellar 0.0 (380). Over both patches: Tavi -4.3 (497), Prism -2.7 (160).
+| map (id key = name here; full ids in `all_games.tsv`) | picks | dominant set (n sides, win%) | other sets | Prism sides |
+|---|---|---|---|---|
+| 5-pick: ambush, contest, corners, eight, elkring, expanse, lanes, monolith, big_world, boss_battle, concentrated_wealth, corridors, elk_arena, fracture, islands | 5 | Ryth+CI+Stellar+Ren+Varg: 26 to 76 per map, 46% to 68% | Tavi swaps for Ren: 21-37 per map, 21% to 33% on ambush, expanse, big_world, concentrated_wealth (adj -18 to -24 pt, n 16-29); exceptions eight/elkring/lanes (Varg+Tavi set 67% to 95%, n 9-18†) | contest 46, elk_arena 36, elkring 17, lanes 15, eight 13, boss_battle 13 |
+| 4-pick: interlock, hooks | 4 | Ryth+CI+Stellar+Ren (44, 75% interlock; 46, 63% hooks) | +Varg instead of Ren (37, 49%; 40, 58%) | hooks 18 |
+| 3-pick: collision, fragment, broken_curve, gold_rush | 3 | CI+Stellar+Ren (52 to 65 per map; 65% collision, 60% fragment, 47% broken_curve, 52% gold_rush) | CI+Stellar+Varg (16-30; broken_curve 100%, n=16†) | gold_rush 3 |
+Team habits: Fish, Nyx, Pantheon, Tartarus, procless, Mite play Ryth+CI+Stellar+Ren+Varg in 35% to 72% of their games; AlphaSlop and new4 prefer Ryth+CI+Stellar+Varg+Tavi (38% and 53%); UoSW plays CI+Stellar+Prism+Ren+Tavi (30%).
+Counter-draft evidence (top-10 v top-10, 1.0.0, win of first set; n small):
+| set A vs set B | A wins/n | adj |
+|---|---|---|
+| Ryth+CI+Stel+Ren+Varg v CI+Stel+Ren+Varg+Tavi | 15/18† | +28 pt |
+| Ryth+CI+Stel+Ren+Varg v CI+Stel+Pris+Ren+Tavi | 13/22† | +11 pt |
+| Ryth+CI+Stel+Ren+Varg v Ryth+CI+Stel+Varg+Tavi | 11/18† | +6 pt |
+| CI+Stel+Ren v CI+Stel+Varg (3-pick) | 7/10† | +14 pt |
+Only 8 of 36 set pairs have 6 or more games; no pair has 30. Data supports "Ren+Varg+Ryth beats the Tavi sets"; it does not support any finer counter.
+Heart of Ruin: no top-10 team has drafted it on any map (0 of 2,055 sides; 0 of 316 decoded). Prism with the 1.0 focus per gem buff: 160 sides, below expectation in 1.0.0 (-14 pt, n=55). Interpretation: top-10 bots are not tuned for either; HoR is untested, not disproved.
+
+## 4. Replays worth watching (`cambc view` on the bundle for each match id)
+| match id | map | round | what to look for |
+|---|---|---|---|
+| 306f8027-5708-4c08-88d4-384fd78175a6 | 01elk_arena | 31-260 | Mite buys altar locks at rounds 31, 64, 95 and uses one at 35; procless makes zero tributes in 1,197 rounds. Watch where Mite parks the lock carrier and whether procless stalls on the lock. Compare 792b8236-5b2d-4839-92eb-2df5d16956e8 (our loss, same map, 1 tribute, two deaths at round 127). |
+| 00c7d730-230e-4570-95c8-82fcbb1a5731 | 00corners | 80-230 | Mite: 56 tributes, 1 death, 13 locks, 817 rounds; procless first tribute at 158. Look at the lock timing (84, 99, 105) against procless's first trips and Mite's small tributes from round 70. |
+| 1f0d049b-ffac-4240-873a-606a01e7055e | 00monolith | 160-210 and 370-380 | Nyx v Tartarus, no locks, 8.0 gear points per champion at round 200 (top-10 mean 3.8), 26 of 29 fights opened with a spell, 90 recalls. Look at the recall-and-shop loop before round 200; Nyx loses two champions at 376 and still wins, Tartarus loses two at 705. |
+Fish and SBC games on the new maps do not exist; their 0.0.3 style (few tributes, 99-gem bags) is not what the ladder rewards now.
+
+## 5. Copyable behaviours, ranked (interpretation unless marked Data)
+1. **Do not die: 17 deaths a game v our 33-45.** Data: gap 1.9x to 2.6x; gear points and fights follow it. Rule: death drops carried gems and costs respawn time (GameRules.md, Death, recall and recovery); recalls cost 5 ticks (3 with Home) and are cancelled by damage, so top-10 recall 62 times a game (ours 37-43). Copy: recall earlier, before the fight, not mid-fight.
+2. **Open every fight with an ability (85% v 35-43%).** Data. Rule: one successful ability cast a turn, 8-turn cooldown per slot, damage scales with Focus (GameRules.md, Abilities). v3b raised our share 35% to 43%, still half.
+3. **Shop earlier and more (3.8 v 1.7 gear points per champion at round 200; 9.9 v 4.4 at 400).** Data. Rule: shards cost 30 gold, five combine to an emblem, bought on spawn tiles or while dead. Recalls double as shopping trips. Gear points are the strongest fight predictor in `notes/matchups.md`.
+4. **Tribute bigger bags (41 v 24-30 gems) at the same tribute count.** Data. Rule: tribute takes ceil(gems/10) turn ends; damage does not stop it but stun, death, or a new lock does. Bag size is the difference between us and them; do not stop at a fixed small bag.
+5. **Draft Stellar and Ren (96% and 72% v our 0).** Data for usage and for Ren+Varg+Ryth beating Tavi sets (n=18-22†). We play Vendetta (3% of top-10 sides) and Tavi (-10.8 pt in 1.0.0, n=121). A counter-draft test belongs in mapgate before it drives a decision.
+6. **Altar locks: 5 of 8 teams with 1.0.0 data buy 7-12 a game; ours 0.** Data for usage. Rule: lock costs 10 gold, blocks enemy tributes, three basic attacks remove it, cancels existing channels. Evidence of benefit is weak: lockers v non-lockers in top-10 games won 16 of 31† (52%), tributes 30.7 v 24.3. Nyx, the strongest 1.0.0 team, buys none. Cheap to try on Mite-style maps (elk_arena, corners).
+7. **Protect our spawn.** Data: enemy champions spend 8.9 / 7.3 champion-rounds near our spawn in rounds 100-400 against 0.8 for top-10 teams, so we are being camped and they are not. Rule: respawn at spawn tiles and shopping happen there. Interpretation: this feeds deaths in item 1.
+8. **Claim camps early (15 groups by round 300 v 10-11); Nyx claims 22.6.** Data. Rule: capturing a camp group gives gold and gems. With 120-HP gem clusters under 1.0.0 this is cheap.
+9. **Not a differentiator (Data):** early kills (0.4 v 0.5-0.7), team spread (12.6 v 12.5-14.7), fights near the enemy spawn (2% v 1%). Do not copy early aggression or splitting.
+10. **Boss_battle and contest are won on the tiebreak:** boss_battle 74 of 122 top-10 games end on lifetime gold, 22 on gems, 26 on 1,000 gems; contest 24 gold, 27 gems, 38 gems-win (rule: gems, then lifetime gold, then kills). Gold income matters more there than tributes.
+
+## 6. Limits
+- Per team 12-20 sides (all †); only the all-top-10 row passes 30. Rating adjustment uses the 06:20 ratings, not game-time ones.
+- Our v3b rows are presumed by time (games created from 05:10Z); the platform records no bot version.
+- Recall count is a heuristic (a move of 8+ tiles ending within 3 of spawn); lock use is read from consumable bit 2. Gear points use the 0.0.3 item table; 1.0.0 stat changes do not alter the shard count.
+- Locks, tributes and gems are per game and mix map sizes (2,000-round maps raise counts); the map mix is similar between top-10 and ours.
+- Raw replay zips were sent to the Recycle Bin; kept: `data/top10/{s13,full,sides.json,games*.tsv,all_games.tsv,agg_*.txt,drafts_*.txt,engine}` and `tools/top10/`.
+
+
+==============================================================================
+## OUR LIVE BOT vs 8 REAL TEAMS (160 games)  [notes/unranked-v3b.md]
+==============================================================================
+# v3b real-team panel, unranked (160 games, 8 teams x 20 maps; queued 20 Oct 06:12-06:16 BST, finished before 06:30)
+
+Source: `data/unranked/groups.csv` (32 groups labelled v3b-*), `data/unranked/games_v3b.tsv` (per game), decode by `cambc matches summary --json` (`data/unranked/sumj/`) read by `tools/v3/analyze_v3b_panel.py` and `tools/v3/note_v3b_panel.py` (tables in `data/unranked/v3b_tables.txt`). Engine 1.0.0: `tools/v3/decode.mjs` rejects it (no WASM), so the platform summary replaces the round-level decode. Each team-map pair is played once (no repeats). Every cell below is n<=20 per team or n<=8 per map: all flagged †. Cells are us / them. Tributed per round = tributed gems / rounds played. Deaths = champion deaths per game.
+
+## 0. Live check
+v3b is live: on 00eight the draft is 3.4.10.0.8 or 3.4.9.0.8 (Cassi & Issac, Stellar, Tavi/Varg, Ryth, Ren) against v2's 2.3.9.0.10 (Vendetta, C&I, Varg, Ryth, Tavi); the 00eight game of group v3b-micron-A (17a34c9c) shows it, engine 1.0.0. Quota used 32 of 50 (the 00eight probe counted as group A of Micron). No wait needed.
+
+## 1. Overall and per team (data)
+| group | games | W-L | gems us / them | median rounds | tributed per round us / them | tributes us / them | deaths us / them |
+|---|---|---|---|---|---|---|---|
+| all | 160 | 29-131 | 383 / 781 | 1663 | 0.24 / 0.48 | 19.3 / 37.5 | 37.9 / 21.4 |
+| Micron (1524.5) | 20† | 2-18 | 329 / 758 | 1467 | 0.21 / 0.49 | 17.1 / 51.2 | 37.8 / 22.7 |
+| Deer Park (1510.5) | 20† | 3-17 | 384 / 812 | 1535 | 0.25 / 0.52 | 20.0 / 47.4 | 35.6 / 17.4 |
+| tvojtatko (1483.0) | 20† | 5-15 | 446 / 722 | 2000 | 0.24 / 0.40 | 22.8 / 57.0 | 42.2 / 25.2 |
+| 777 (1453.0) | 20† | 13-7 | 611 / 524 | 2000 | 0.34 / 0.29 | 29.4 / 38.2 | 33.6 / 32.6 |
+| Snowman Workshop (1563.8) | 20† | 2-18 | 400 / 850 | 1712 | 0.24 / 0.52 | 18.1 / 26.1 | 40.9 / 28.6 |
+| hackingnoises (1600.3) | 20† | 2-18 | 428 / 792 | 1639 | 0.26 / 0.48 | 20.8 / 19.1 | 34.0 / 27.1 |
+| Tozo's Disciples (1686.0) | 20† | 1-19 | 309 / 900 | 1554 | 0.20 / 0.59 | 15.4 / 25.1 | 43.2 / 9.3 |
+| umamusume (1771.4) | 20† | 1-19 | 161 / 888 | 1382 | 0.11 / 0.63 | 10.7 / 36.1 | 36.0 / 8.1 |
+
+Total 29-131. Ratings are the 18:00 ladder values in panel.csv. Expected wins from the 400-point logistic over the 160 games: 55 / 65 / 75 if v3b were rated 1,450 / 1,500 / 1,550 (our rating at this time is not in the data; 1,500 is an assumption). Actual 29, so v3b is below its rating band on this panel (n=160). Gems per tribute are equal (19.9 us, 20.8 them); the gap is the number of tributes (19.3 vs 37.5 per game) and 38 vs 21 deaths per game.
+
+## 2. Per map (data)
+| group | games | W-L | gems us / them | median rounds | tributed per round us / them | tributes us / them | deaths us / them |
+|---|---|---|---|---|---|---|---|
+| 00ambush | 7† | 1-6 | 711 / 946 | 1687 | 0.42 / 0.56 | 17.7 / 26.3 | 14.0 / 17.1 |
+| 00collision | 8† | 2-6 | 442 / 890 | 1234 | 0.33 / 0.66 | 17.0 / 44.8 | 19.6 / 16.4 |
+| 00contest | 8† | 0-8 | 0 / 325 | 2000 | 0.00 / 0.17 | 0.0 / 1.6 | 119.6 / 32.5 |
+| 00corners | 8† | 3-5 | 680 / 868 | 1126 | 0.57 / 0.72 | 46.0 / 44.0 | 11.0 / 14.2 |
+| 00eight | 7† | 1-6 | 444 / 889 | 1265 | 0.36 / 0.72 | 16.3 / 39.3 | 26.1 / 28.4 |
+| 00elkring | 7† | 0-7 | 526 / 1010 | 807 | 0.60 / 1.14 | 14.7 / 44.0 | 19.6 / 10.4 |
+| 00expanse | 8† | 5-3 | 859 / 752 | 1388 | 0.62 / 0.54 | 56.9 / 60.2 | 4.4 / 8.0 |
+| 00fragment | 8† | 1-7 | 213 / 900 | 1831 | 0.12 / 0.51 | 16.2 / 61.4 | 64.9 / 16.8 |
+| 00interlock | 8† | 3-5 | 649 / 880 | 1512 | 0.45 / 0.60 | 26.2 / 43.1 | 29.2 / 16.5 |
+| 00lanes | 8† | 1-7 | 770 / 952 | 1230 | 0.62 / 0.77 | 48.1 / 59.9 | 11.6 / 9.8 |
+| 00monolith | 7† | 2-5 | 720 / 944 | 1333 | 0.52 / 0.68 | 49.3 / 50.1 | 17.7 / 13.6 |
+| 01big_world | 7† | 3-4 | 743 / 750 | 1936 | 0.40 / 0.41 | 36.3 / 31.0 | 10.6 / 4.4 |
+| 01boss_battle | 8† | 3-5 | 0 / 0 | 2000 | 0.00 / 0.00 | 0.0 / 0.0 | 21.1 / 51.0 |
+| 01broken_curve | 8† | 1-7 | 149 / 779 | 2000 | 0.08 / 0.42 | 5.9 / 44.6 | 76.8 / 29.2 |
+| 01concentrated_wealth | 8† | 1-7 | 344 / 738 | 2000 | 0.18 / 0.39 | 21.9 / 31.0 | 34.2 / 18.5 |
+| 01corridors | 7† | 1-6 | 190 / 707 | 2000 | 0.10 / 0.36 | 7.4 / 19.6 | 94.3 / 52.7 |
+| 01elk_arena | 7† | 0-7 | 144 / 896 | 1773 | 0.09 / 0.54 | 2.1 / 29.9 | 27.0 / 18.6 |
+| 01fracture | 8† | 0-8 | 216 / 740 | 2000 | 0.12 / 0.40 | 8.8 / 25.5 | 49.9 / 16.2 |
+| 01gold_rush | 8† | 0-8 | 67 / 823 | 2000 | 0.03 / 0.42 | 5.0 / 55.0 | 73.9 / 25.2 |
+| 01hooks | 8† | 1-7 | 175 / 968 | 1282 | 0.12 / 0.68 | 5.9 / 45.6 | 58.6 / 24.6 |
+| 01islands | 7† | 0-7 | 70 / 717 | 2000 | 0.04 / 0.38 | 2.0 / 27.1 | 0.4 / 24.1 |
+
+00 maps: 19-65 (n=84). 01 maps: 10-66 (n=76), of which 9 draws (01boss_battle, 0-0 gems, ended by tiebreak: 3 platform wins, 5 losses; 01islands 1 draw 0-0). Map ids are the current ids from the match listing (first 8 hex in games_v3b.tsv).
+
+## 3. v3b vs v2 on the 11 kept maps, paired by team and map (data)
+v2 = `data/unranked/games.tsv` (19 Oct 18:12 BST, engine 0.0.3); v3b = engine 1.0.0. Same 8 opponents, so rating adjustment cancels in the pairs. Pairs exist where v2 played that team on that map once (84 of 88).
+| map | pairs | v2 W-L | v3b W-L | v2 gems us-them | v3b gems us-them | v2 tribute/rd | v3b tribute/rd | v2 deaths us | v3b deaths us |
+|---|---|---|---|---|---|---|---|---|---|
+| 00ambush | 7† | 3-4 | 1-6 | -79 | -234 | 1.10 | 0.41 | 2.3 | 14.0 |
+| 00collision | 8† | 0-8 | 2-6 | -797 | -449 | 0.38 | 0.29 | 8.9 | 19.6 |
+| 00contest | 8† | 1-7 | 0-8 | -225 | -325 | 0.03 | 0.00 | 59.6 | 119.6 |
+| 00corners | 8† | 1-7 | 3-5 | -294 | -187 | 1.36 | 0.56 | 4.1 | 11.0 |
+| 00eight | 7† | 0-7 | 1-6 | -850 | -445 | 0.39 | 0.34 | 9.3 | 26.1 |
+| 00elkring | 7† | 0-7 | 0-7 | -455 | -483 | 0.99 | 0.58 | 10.9 | 19.6 |
+| 00expanse | 8† | 4-4 | 5-3 | -26 | 106 | 1.29 | 0.61 | 0.0 | 4.4 |
+| 00fragment | 8† | 0-8 | 1-7 | -712 | -687 | 0.40 | 0.11 | 21.6 | 64.9 |
+| 00interlock | 8† | 1-7 | 3-5 | -352 | -231 | 0.95 | 0.44 | 8.5 | 29.2 |
+| 00lanes | 8† | 2-6 | 1-7 | -160 | -182 | 1.64 | 0.62 | 3.5 | 11.6 |
+| 00monolith | 7† | 1-6 | 2-5 | -325 | -224 | 1.43 | 0.51 | 5.1 | 17.7 |
+| all 11 | 84 | 13-71 | 19-65 | -387 | -302 | 0.90 | 0.40 | 12.4 | 31.2 |
+Per team (pairs, v2 wins, v3b wins): Micron 11, 1, 1; Deer Park 11, 2, 1; tvojtatko 10, 3, 3; 777 10, 3, 9; Snowman 10, 2, 2; hackingnoises 11, 2, 2; Tozo 11, 0, 1; umamusume 10, 0, 0. 777 accounts for 6 of the net 6 extra wins; excluding 777 v3b is 10-64 vs v2 10-64 (equal).
+Caveat (data): the 11 maps carry new map ids since the v2 panel (e.g. ambush 699c96a0 -> 1efbe907) and a new engine. Rounds per game doubled for everyone (opponent tributed per round fell from 1.52 to 0.48), so per-round rates are not comparable across the two panels; only W-L, gem margin and deaths are shown as pairs. Deaths per game rose 12.4 -> 31.2 on these maps.
+Interpretation: no measurable gain from v2 to v3b on the kept maps (19 vs 13 wins of 84 comes from one opponent, 777, and the engine/map change is a confound).
+
+## 4. Three biggest failure patterns
+| # | pattern | evidence | replay id (round) |
+|---|---|---|---|
+| 1 | New maps are not identified. v3b logs `map unknown` on 6 of 10 new maps (boss_battle, concentrated_wealth, corridors, elk_arena, fracture, islands) and a wrong old-map plan on 4 (big_world as ambush, broken_curve as interlock_old, gold_rush as packs_old, hooks as packs_v2). 0 of 10 correct. On 01islands v3b tributes 0 gems in 6 of 7 games, with 0-2 deaths: the team neither fights nor farms. | 01 maps 10-66 (n=76) vs 00 maps 19-65 (n=84); 01islands 0-7, 70 vs 717 gems | 325a86d9-fad6-4bd5-9859-984707146712 (01islands vs Micron: 0 tributes, 0 deaths by round 1715, they win 1014-0 at round 1715) |
+| 2 | Early wipe then feeding. Four of six champions are dead by round 68 in 01gold_rush and 5-6 by round 56 in 00contest, and they keep dying: 01gold_rush 74 deaths per game (all 8 games have 5-8 deaths before round 200); 00contest 120 deaths per game and 0 tributes; 00fragment 65; 01corridors 94; 01broken_curve 77. Killers collect carried gems and 50 gold per kill. | 00contest 0-8, gems 0 vs 325; 01gold_rush 0-8, 67 vs 823 | d010981e-8c50-4018-abdb-2eae3d6a9451 (01gold_rush vs Micron: deaths at rounds 62, 62, 63, 68, then 166-174, 260; 74 total; 99 vs 695 gems); 5f070dad-dcc3-426a-b4dd-8cf96cd15c1f (00contest vs Micron: first deaths 41, 48, 52, 56, 56; 125 total; 0 gems vs 200) |
+| 3 | Low tribute count on identified maps, even with fewer deaths. 00elkring 0-7: 14.7 tributes vs 44.0, 526 vs 1010 gems; 00eight 1-6: 16.3 vs 39.3; 00collision 17.0 vs 44.8. Our first tribute is on time (round 69-70) but the second wave is late: at round 300 we hold 56-93 gems against their 53-153, at round 500 56-297 against 224-495. | 00elkring Micron: 17 vs 61 tributes, 605 vs 1016 gems | 33e36682-75cf-4818-bf1e-f0ecd543cd41 (00elkring vs Micron, ends round 946: 88 vs 209 at 300, 220 vs 400 at 500); a0ab9698-6354-4497-8aaa-f7601c3ecf5d (00eight vs tvojtatko: 56 gems at round 500 vs 256) |
+
+## 5. Interpretation (labelled)
+- Pattern 1 is the cheapest fix: ten new maps are 48% of the pool (10 of 21) and v3b scores 10-66 on them against 19-65 on the 11 old ones; wrong-map plans (packs_old, interlock_old) look worse than the unknown fallback only where deaths are high (gold_rush 74, broken_curve 77), which suggests a safe default plan beats a wrong specific one. Not tested.
+- Pattern 2 looks like fighting a stronger team at their camps; the 00contest result (0 tributes, 120 deaths) matches the v2 baseline (0-8 there too, 60 deaths), so v3b did not change contest behaviour except more deaths.
+- 777 is the only team v3b beats (13-7, n=20); the other seven take 2-18 or worse at the same time (Tozo and uma 1-19).
+- Draws: 10 games ended with equal gems; the platform tiebreak (gold, then kills) decides them. In 01boss_battle our three wins come from that tiebreak with no gems.
+
+
+==============================================================================
+## INTERNAL CRITIC REVIEW OF THE PLAN  [notes/critic-plan-v4.md]
+==============================================================================
+# Critic review of PLAN-v4.md (fresh context, Tue 20 Oct)
+
+Checked: GameRules.md, ENGINE-1.0.md, notes/unranked-v3b.md, notes/matchups.md, consult/2010-gamechanger.md. Not read: RESULTS.md (no claim in the plan depends on it that I could find), cambc.h.
+
+## 1. Fact checks
+
+| Claim (PLAN-v4 line) | Result |
+|---|---|
+| Respawns wolf 40, elk 60, gem cluster 50, monolith 150 (l.82) | Correct (GameRules.md l.149-153). Timer starts after the reward is claimed. |
+| "Extra allies do not speed capture"; capture 5 rounds (l.83-84) | Correct (l.139, l.163). |
+| Tribute max(1, ceil(gems/10)) (l.85) | Correct (l.181). |
+| Killer takes all carried gems (l.86) | Correct (l.320). Also 50 base gold; the plan omits that, and it is a real lever for picking off carriers. |
+| Shards 30 gold, five combine (l.94) | Correct (l.243). |
+| Prism 1.0 Focus per gem, Vesper 33 %, Marcella 2 gold per gem (l.94) | Correct (ENGINE-1.0.md l.9-11). But l.9-10 says the site doc "still" says 0.2 / 20: the rules doc and the SDK disagree. Say which one wins in FACTS.md. |
+| Draft memory 1,024 bytes, drafter sees the whole map, extra fuel (l.64) | Correct (GameRules.md l.77). The extra fuel is never quantified; module A's whole budget depends on it. Measure it before designing A. |
+| "Any occupied spawn tile delays the entire group" (l.126, quoted as a rule) | **Not in GameRules.md** (grep for "entire group" and "occupied spawn" returns nothing). It appears only as a quote in the ChatGPT and DeepSeek answers (consult/2010-gamechanger.md rows 7 and 10). The plan labels rule quotes as from GameRules.md (l.62). Module G's blockade rests on an unverified quote. Test it in the engine before building G. |
+| Monsters "range 3, never chase, attack nearest champion" (l.106) | Range 3 and no chase correct (l.164). "Nearest champion" not verified. Elk range 4 and monolith range 5 on engine 1.0 (ENGINE-1.0.md l.1), so "range 3" is stale for those. |
+| "golem positions" (A, l.71) and "golem per SDK" (B) | ENGINE-1.0.md l.52: no bundled map contains a golem, rewards unknown. Dead code on today's pool. Drop it. |
+| Section 2 table header "Opponents / top-10" | Wrong label. 19.3 vs 37.5 tributes and 38 vs 21 deaths are v3b versus its 8 opponents (unranked-v3b.md l.11), not top-10. The 12.8 vs 5.0 shard-points and 84 % vs 32 % are top-10 vs our games, on engine 0.0.3, cross-population (matchups.md l.61 says not rating-adjustable). The table mixes two comparisons under one header. |
+| 10-66 on new maps (l.53) | Matches unranked-v3b.md l.48, but 9 of those 76 are draws counted as losses (0-0 boss_battle, islands). Wins 10 of 76 is 13 %; do not over-read. |
+| Fight AUC 0.86 (l.56) | Matches (matchups.md l.19-21), but fit on engine 0.0.3 and the same note says composition adds nothing. Plan l.113 and l.79 are consistent with that. |
+| "Rating is not the bottleneck... climbs 470 points within a day" (l.15) | Unsupported. project notes gives +16 for a 5-0 series near 1,500 and 6.1 series an hour. 470 points needs about 20-30 series (3-5 hours) at near-perfect results. Plausible only for a bot already at 1,900 strength. Hours of climbing must be scheduled after the freeze or the final upload cannot reach rank 20. See section 6. |
+| Milestone ratings (l.19-21) | Internally inconsistent. Panel 1,453-1,771 averages about 1,600, so 50 % there is about 1,600, not 1,650. A top-50 panel starts at 1,746 and likely averages near 1,900, so 50 % is about 1,900, not 1,800. A top-20 panel averages about 2,000, so 45 % is about 1,960, which is rank 10, not rank 20. The milestones are harder than labelled (M3 would be a rank-10 result). Either recompute or relabel. |
+| Sprint 1 lock (project notes) 18 Oct 23:59 vs "Sat 24 Oct 23:59" (title) | The plan's deadline has no source I can find in the files read. project notes says the lock was 18 Oct. Put the source (tournament rules, date, whether lock means rating or a bracket) in FACTS.md, because the freeze time drives the whole schedule. |
+
+## 2. Lenses on the plan as a whole
+
+- **Creativity.** Mostly the safe consensus list (map compiler, conveyor, gear curve, fight gate); the ideas are from the 20 Oct consultation, not new. Bolder variant: skip G and H, and spend that time on a "copy the top-10 opening" bot: decode 50 top-10 games per map, replay their first 300 rounds' routes and purchase order as a lookup. Safer variant: ship only the v4 base plus an ability-opening rule and a fight gate (DeepSeek ranks those cheapest, 2-3 h).
+- **Restriction.** The framing excludes: (a) a fixed per-map scripted opening taken from top teams' games (cheaper than a generic compiler); (b) a "do no harm" default for unknown maps; v3b's finding (unranked-v3b.md l.78) that a safe default beats a wrong specific plan is not carried into the modules; (c) not playing: the 9 draws on boss_battle and islands show a 0-0 tiebreak is worth something (3 wins, 5 losses); (d) dropping 5-champion drafts on some maps. Everything assumes the bot should be generic.
+- **Causation.** Chain: more tributes → more gems banked → more gold and rating. The plan asserts income is the biggest lever, but tributes per game (19.3 vs 37.5) and deaths (38 vs 21) are correlated with losing itself; a team ahead tributes more and dies less. The shard-points gap (5.0 vs 12.8) is the same: richer teams buy more. The direction is untested. The only causal evidence is the 01islands case (0 tributes, 0 deaths: a clear bug), which the base fixes already cover. Link resting on correlation: "raise tributes to 30 raises win rate".
+- **Limitations.** Panels of 80 games: at a 25 % win rate one arm has SE about 4.8 points, the paired difference about 6.8, so the 8-point admission bar is 1.2 sigma (false admit about 12 %, power to detect a true +8 about 55 %). Opponents change bots during the week (not stationary) and the paired test is sequential, not simultaneous. Per-map results at 80 games are about 4 games a map: no per-map regression detection. Engine date of the fight model is 0.0.3. Fuel and crash risk for A (BFS in draft plus champion rebuild) are not budgeted.
+- **Feasibility.** See section 5.
+- **Falsification.** The plan has kill rules per module but none for the plan: nothing says what result drops the whole premise. Add: if v4 base after the identification and bug fixes still wins under 30 % against the 8-team panel (it won 18 % with 0 of 10 new maps identified), the gap is micro and economy-by-design, and A is the wrong first build.
+
+## 3. Modules
+
+| Module | Verdict | Reason |
+|---|---|---|
+| A map compiler | Proceed, narrowed | Highest value (the 10 new maps are 48 % of the pool and 13 % wins). Cut scope to: map hash identification, camp-group value table, BFS fields, route order. Drop clear-time damage model and chokepoints from the first cut. |
+| B economy | Proceed, merge with A | Route planning is A's output; two modules would fight over the same file and the same 200 bytes. One module "A+B". |
+| C gear | Proceed | Cheap (purchase curve, gold-driven recall), and gear predicts fights (matchups.md). Check first what v3b already does. |
+| D fight | Proceed, split | The ability-opening rule and disengage-before-contact are 2-3 h each and should ship in the base. The refit fight gate (6-8 h) waits for engine-1.0 data. |
+| E draft | Drop to a lookup | Own data: pair tables dead (1 of 55 cells), composition adds nothing to fight outcomes (AUC 0.864 vs 0.86). A minimax matrix over 3 salts is the highest compute cost for the weakest signal. Keep Stellar-first and the existing 3-pick finding (+10.5 pp, n=300). |
+| F coordination | Merge into A+B | 8 bytes: claims + focus target. Build with the route planner or not at all. |
+| G denial | Cut (revisit Fri only if M2 passes) | Quoted rule unverified (section 1), requires walking into enemy territory, DeepSeek ranked it 10th of 13. |
+| H opponent model | Cut | Vision is not shared (GameRules.md l.310), and a champion sees few enemies; the draft prior is the same information E would use. Little to learn in 2,000 rounds. |
+
+## 4. Admission rules and the 50 groups an hour
+
+- Throughput is fine. The v3b panel (160 games, 32 groups, 5 games per group) was queued 06:12-06:16 and finished before 06:30, so 80 games is about 16 groups, about 20 minutes. The constraint is not volume.
+- The constraint is that every test needs an upload, because unranked games use the live bot (l.41). Each admission test is: upload candidate, wait for its panel, upload the live bot again? No: the paired baseline must be measured at the same time, which is impossible with one live slot. The plan has a candidate and a baseline measured sequentially, against opponents who may have changed. Fix: keep the baseline panel from the same hour (run baseline first, then candidate, then baseline again, and require the two baselines to agree), or use a second team account if the rules allow.
+- 80 games gives power about 55 for +8 points (section 2). Two-panel kill rule (l.169) will drop real gains about 20 % of the time and keep noise 12 %. Use 160 games (32 groups, about 40 minutes) for any module claimed above +5, and pool the three weeks' data.
+- Uploads cost rating on ranked play for the duration, and perhaps an upload limit. Unknown; ask. The standing approval question (l.178) is therefore on the critical path: without it, every night is lost.
+- The top-20 panel (M3) needs about 400 games (20 teams x 21 maps) for per-map signal, about 8 hours of groups; it cannot happen on Saturday afternoon. The M3 panel has to be sampled Friday night.
+
+## 5. Schedule
+
+Time left: Tue 08:10 to Sat 20:00 upload is about 108 hours elapsed, about 55 productive for one human plus 3 agents, and 4 game jobs in the daytime on 14 cores.
+
+- **Tue 08:00-12:45 is overbooked.** It holds preflight, STATE, FACTS, gate.py, mapgate tags, a 1.0 decoder, plus a v4 base with seven engine-1.0 fixes, gate pass, h2h and a critic review. That is two days of work for one person; the base needs a builder and the tooling another. The gate alone is 21 maps x 2 sides = 42 starter games; add time per game (not stated in the plan) and 4 jobs. Realistic: base uploaded Tue 18:00, not 12:45. Do the base first (it stops 10-66), tooling second, and cut `FACTS.md` and `STATE.md` to the minimum that preflight needs.
+- **Wed:** A, B, C in one day each module 6-12 h by the consultants' own estimates (A 6-8 h plus tests, B 6-10 h, C 4-6 h) is 16-30 builder hours. With 3 agents it is possible only if they do not share files, but a single human reviewing three modules and critic passes is the limit. Expect A+B Wed, C Thu.
+- **Thu D+F+E:** after the cuts, Thu holds C and the fight gate refit. S3 draft matrix is not needed.
+- **Fri G+H:** cut. Friday becomes panel runs, weakest-map fixes, and the top-20 sample.
+- **Sat:** freeze 18:00, upload 20:00 leaves 4 hours of ladder at 6 series an hour = 24 series, about +9.6 per 4-1 series from 1,500 but less above 1,700. A bot that is 1,700 at upload cannot reach 1,888 in 4 hours. The real freeze for a rank-20 result is Fri night; Saturday is for a safe patch only.
+- Compute: S3 and the overnight 10-job request are only valuable if E survives; drop it.
+
+## 6. Missing
+
+1. A per-map regression gate for new releases: aggregate +8 points can hide a map at 0-8. Require no map worse than the live bot by more than 3 games in the 8-team panel.
+2. A rollback rule and a named "last known good" upload. v3b was uploaded untested; there is no one-command revert.
+3. Top-team behaviour study is S5 but never scheduled (it sits in a table). A decoded study of the top-10's first 300 rounds per map is the cheapest source of routes and purchase order, and it is what rank 1-20 teams actually run.
+4. Unknown-map default plan (fall back to safe-nearest-camp) and a map-hash miss counter, since the pool changed overnight once and can again.
+5. Fuel accounting for the draft bot and for rebuild on turns 1-5 (80,000 limit per project notes; each `std::endl` 3,500).
+6. Ladder cost of test uploads, upload rate limits, and whether the Sprint 1 standing counts the final upload only or a rating at lock. project notes says to record this in PLAN.md.
+7. Statistical honesty: confidence intervals in every panel table, paired by team-and-map, not just win counts.
+8. Fallback if Xans does not answer the three questions: act on a default (case-by-case approval, 4 jobs, no overnight).
+
+## Verdict: proceed with named changes (rework the schedule and cut four modules)
+
+The diagnosis (identification, economy, deaths) is supported by the data; the build list and timeline are not.
+
+Five changes first:
+1. Move the v4 base to Tue 18:00 and put it first; identification of all 21 maps plus the safe-default fallback is the only change with direct evidence (0 of 10 new maps identified, 10-66).
+2. Merge A, B and F into one "route planner" module; cut G and H; reduce E to a lookup; split D so the ability-opening and disengage rules ship in the base.
+3. Fix the admission test: 160 games for claims above +5, baseline measured immediately before and after the candidate, per-map floor; write down the sequence in section 6 of the plan.
+4. Move the real freeze to Fri 22:00 (rating takes hours to climb) and recompute milestones M1-M3 with the correct panel-average ratings.
+5. Verify before building: the spawn-tile blockade rule (not in GameRules.md), draft-bot fuel, the golem (not on any map), and the Sprint 1 deadline source; correct the section 2 table header.
+
+
+==============================================================================
+## THE 21 MAPS  [notes/maps-21.md]
+==============================================================================
+# The 21 current maps (engine 1.0.0, 20 Oct)
+
+Image: `data/maps-21.png` (walls, holes, bushes, camps by type, altars, spawns; map name, size and champions per side on each tile). Source: official files in `maps/`, read through the engine's `MapBuilder_FromFileBytes` (`tools/maps21/dump.mjs` -> `data/maps21.json`; `tools/maps21/econ21.py` builds the image, this table and `notes/map-economics.md`). The file stores camps and camp groups for team A's half only; the engine mirrors them by the map symmetry, and the counts below include both halves. Terrain is stored in full. No map has a golem camp. Camp counts are per map (both halves).
+
+Kept maps: ambush, collision, contest, corners, eight, elkring, expanse, fragment, interlock, lanes, monolith. New: big_world, boss_battle, broken_curve, concentrated_wealth, corridors, elk_arena, fracture, gold_rush, hooks, islands. Retired (in `maps-retired/`): packs, pilgrimage, rows, rushbait-v2, stampede, swirl.
+
+## Table
+
+| map | size | sym | champs/side | camps wolf/elk/gem/gold/monolith/golem | groups | altars | change vs engine 0 |
+|---|---|---|---|---|---|---|---|
+| ambush | 100x100 | rot180 | 5 | 2/10/16/18/0/0 | 12 | 4 | terrain identical; camps 2/10/12/14/0/0 -> 2/10/16/18/0/0 |
+| big_world | 100x100 | rot180 | 5 | 22/8/32/28/2/0 | 24 | 6 | new map (differs from maps-engine0 copy) |
+| boss_battle | 50x41 | vertical | 5 | 30/44/0/82/2/0 | 31 | 1 | new map (differs from maps-engine0 copy) |
+| broken_curve | 40x40 | rot180 | 3 | 10/12/18/22/2/0 | 22 | 4 | new map (differs from maps-engine0 copy) |
+| collision | 41x41 | vertical | 3 | 8/10/14/24/0/0 | 20 | 2 | terrain identical; camps 8/10/0/6/0/0 -> 8/10/14/24/0/0 |
+| concentrated_wealth | 61x61 | rot180 | 5 | 12/4/12/18/0/0 | 12 | 2 | new map (differs from maps-engine0 copy) |
+| contest | 50x50 | rot180 | 5 | 0/0/0/32/2/0 | 14 | 2 | terrain identical; camps 0/0/0/20/2/0 -> 0/0/0/32/2/0 |
+| corners | 71x71 | horizontal | 5 | 14/18/10/32/0/0 | 30 | 5 | terrain identical; camps 10/18/2/12/0/0 -> 14/18/10/32/0/0 |
+| corridors | 51x40 | vertical | 5 | 22/12/12/20/2/0 | 24 | 2 | new map (differs from maps-engine0 copy) |
+| eight | 41x30 | horizontal | 5 | 6/10/8/8/0/0 | 8 | 1 | terrain identical; camps 6/10/2/2/0/0 -> 6/10/8/8/0/0 |
+| elk_arena | 50x50 | rot180 | 5 | 0/2/6/54/0/0 | 30 | 2 | new map (differs from maps-engine0 copy) |
+| elkring | 30x30 | rot180 | 5 | 0/10/10/10/0/0 | 10 | 2 | terrain identical; camps 0/10/0/10/0/0 -> 0/10/10/10/0/0 |
+| expanse | 80x80 | rot180 | 5 | 10/14/16/34/0/0 | 24 | 10 | identical |
+| fracture | 61x71 | rot180 | 5 | 16/16/20/32/2/0 | 28 | 3 | new map (differs from maps-engine0 copy) |
+| fragment | 30x30 | rot180 | 3 | 6/2/2/6/0/0 | 6 | 2 | terrain identical; camps 6/2/0/4/0/0 -> 6/2/2/6/0/0 |
+| gold_rush | 31x31 | rot180 | 3 | 6/0/6/28/2/0 | 16 | 4 | new map (differs from maps-engine0 copy) |
+| hooks | 31x31 | rot180 | 4 | 0/4/4/20/0/0 | 12 | 1 | new map (differs from maps-engine0 copy) |
+| interlock | 40x40 | rot180 | 4 | 6/8/8/12/0/0 | 14 | 4 | terrain identical; camps 6/8/0/8/0/0 -> 6/8/8/12/0/0 |
+| islands | 60x60 | rot180 | 5 | 24/22/26/46/0/0 | 46 | 10 | new map (differs from maps-engine0 copy) |
+| lanes | 90x30 | horizontal | 5 | 30/6/12/36/0/0 | 42 | 18 | terrain identical; camps 30/6/0/6/0/0 -> 30/6/12/36/0/0 |
+| monolith | 50x50 | rot180 | 5 | 18/2/24/22/2/0 | 20 | 6 | identical |
+
+Altars: count per map. Sym: rot180 maps mirror (x,y) to (w-1-x,h-1-y); horizontal flips x; vertical flips y.
+
+## What changed on the kept maps (byte-compared against `maps-engine0/`, then decoded)
+
+Nine of the eleven kept maps differ as files: ambush, collision, contest, corners, eight, elkring, fragment, interlock, lanes (expanse and monolith are byte-identical). In all nine the terrain (walls, holes, bushes, altars, spawn area, champions per side) is identical; camps were added, almost all gem and gold clusters (corners also gained wolves, 10 -> 14 over both halves, and lost one camp position per the file compare), per the table's last column. Example: lanes gem clusters 0 -> 12 and gold clusters 6 -> 36; collision gem 0 -> 14.
+
+## Per-group rewards in engine 1.0 (read from the map's group data, see notes/map-economics.md)
+
+Per camp base rewards differ from the site doc table: wolf 4 gems / 40 gold (doc 22 / 90), elk 15 gems / 90 gold (doc 36 / 160), gem cluster 7 gems (doc 24), gold cluster 20 gold (doc 35), monolith 200 gems / 300 gold (same). Some groups carry a x2 reward multiplier set by the map (for example 1 wolf + 2 elk + gold group giving 400 gold). These are derived from engine data, not the site doc; recheck with a replay before relying on a single figure.
+
+
+==============================================================================
+## PER-MAP ECONOMICS (engine 1.0 values)  [notes/map-economics.md]
+==============================================================================
+# Map economics, 21 current maps (engine 1.0.0)
+
+Regenerated 20 Oct by tools/maps21/econ21.py from the official map files (data/maps21.json). Group gems, gold and respawn are the engine's own per-group figures (they include any per-group reward multiplier the map sets); HP and strength use engine-1.0 camp designs (gem and gold clusters 120 HP). Spawn B is the mirror of spawn A (approximate); side = Chebyshev distance to A minus to B (negative = nearer A). The previous 17-map tables (engine 0.0.3, site-doc rewards) are in notes/map-economics-engine0.md.
+
+Gem rate = sum over gem-bearing groups of gems / (respawn + 5 capture rounds).
+
+## ambush: 46 camps in 12 groups; bodies per team 5; spawn A area (3, 3, 7, 7); gem supply 4.23 gems/round; 9.3 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+3gem | 51 | 180 | 5160 | 120 | 60 | (46, 59) | 6 | 54 |
+| 2elk+3gem | 51 | 180 | 5160 | 120 | 60 | (53, 40) | -6 | 48 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (31, 44) | -24 | 39 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (68, 55) | 24 | 63 |
+| 1wolf+1elk+2gem+1gold | 33 | 150 | 4110 | 80 | 60 | (67, 53) | 21 | 62 |
+| 1wolf+1elk+2gem+1gold | 33 | 150 | 4110 | 80 | 60 | (32, 46) | -21 | 41 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (32, 49) | -18 | 44 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (68, 50) | 18 | 62 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (60, 47) | 8 | 55 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (39, 52) | -8 | 47 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (41, 48) | -9 | 43 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (58, 51) | 9 | 53 |
+
+## big_world: 92 camps in 24 groups; bodies per team 5; spawn A area (78, 11, 82, 15); gem supply 9.26 gems/round; 8.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 4gem+1monolith | 228 | 300 | 20480 | 200 | 150 | (49, 49) | -2 | 36 |
+| 4gem+1monolith | 228 | 300 | 20480 | 200 | 150 | (50, 50) | 2 | 37 |
+| 1wolf+2elk+1gem+2gold | 41 | 260 | 6510 | 140 | 60 | (60, 10) | -56 | 20 |
+| 1wolf+2elk+1gem+2gold | 41 | 260 | 6510 | 140 | 60 | (39, 88) | 56 | 76 |
+| 2wolf+1elk+2gem+1gold | 37 | 190 | 5460 | 100 | 60 | (18, 36) | 12 | 62 |
+| 2wolf+1elk+2gem+1gold | 37 | 190 | 5460 | 100 | 60 | (82, 63) | -12 | 50 |
+| 4wolf+2gem+2gold | 30 | 200 | 5880 | 80 | 50 | (34, 6) | -34 | 46 |
+| 4wolf+2gem+2gold | 30 | 200 | 5880 | 80 | 50 | (65, 93) | 34 | 80 |
+| 3gem | 21 | 0 | 360 | 0 | 50 | (52, 28) | -31 | 28 |
+| 3gem | 21 | 0 | 360 | 0 | 50 | (47, 71) | 31 | 58 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (42, 53) | 6 | 40 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (57, 46) | -6 | 33 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (88, 3) | -73 | 10 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (11, 96) | 73 | 83 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (14, 15) | -4 | 66 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (86, 84) | 4 | 71 |
+| 1gem+2gold | 7 | 40 | 360 | 0 | 50 | (27, 22) | -12 | 53 |
+| 1gem+2gold | 7 | 40 | 360 | 0 | 50 | (72, 77) | 12 | 64 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (6, 1) | -12 | 74 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (92, 98) | 12 | 85 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (74, 24) | -51 | 11 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (26, 75) | 51 | 62 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (40, 34) | -12 | 40 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (59, 66) | 12 | 52 |
+
+## boss_battle: 158 camps in 31 groups; bodies per team 5; spawn A area (22, 0, 27, 2); gem supply 14.63 gems/round; 6.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2monolith | 400 | 600 | 40000 | 400 | 150 | (24, 20) | 0 | 19 |
+| 1wolf+3elk+3gold | 49 | 370 | 8910 | 200 | 60 | (43, 2) | -19 | 18 |
+| 1wolf+3elk+3gold | 49 | 370 | 8910 | 200 | 60 | (43, 38) | 19 | 37 |
+| 1wolf+3elk+3gold | 49 | 370 | 8910 | 200 | 60 | (8, 1) | -22 | 16 |
+| 1wolf+3elk+3gold | 49 | 370 | 8910 | 200 | 60 | (8, 39) | 22 | 38 |
+| 3elk+4gold | 45 | 350 | 7680 | 180 | 60 | (37, 1) | -26 | 12 |
+| 3elk+4gold | 45 | 350 | 7680 | 180 | 60 | (37, 39) | 26 | 38 |
+| 2wolf+2elk+4gold | 38 | 340 | 7980 | 160 | 60 | (4, 14) | -4 | 20 |
+| 2wolf+2elk+4gold | 38 | 340 | 7980 | 160 | 60 | (4, 26) | 4 | 25 |
+| 1wolf+2elk+2gold | 34 | 260 | 6390 | 140 | 60 | (8, 6) | -16 | 17 |
+| 1wolf+2elk+2gold | 34 | 260 | 6390 | 140 | 60 | (8, 34) | 16 | 33 |
+| 4wolf+1elk+5gold | 31 | 350 | 8400 | 140 | 60 | (48, 15) | 0 | 23 |
+| 4wolf+1elk+5gold | 31 | 350 | 8400 | 140 | 60 | (48, 25) | 0 | 24 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (28, 12) | -15 | 12 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (28, 28) | 15 | 26 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (28, 16) | -7 | 16 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (28, 24) | 7 | 22 |
+| 2wolf+1elk+3gold | 23 | 230 | 5460 | 100 | 60 | (38, 9) | -16 | 14 |
+| 2wolf+1elk+3gold | 23 | 230 | 5460 | 100 | 60 | (38, 31) | 17 | 30 |
+| 1wolf+1elk+2gold | 19 | 170 | 3990 | 80 | 60 | (46, 6) | -10 | 22 |
+| 1wolf+1elk+2gold | 19 | 170 | 3990 | 80 | 60 | (46, 34) | 10 | 32 |
+| 1wolf+1elk+2gold | 19 | 170 | 3990 | 80 | 60 | (16, 12) | -15 | 12 |
+| 1wolf+1elk+2gold | 19 | 170 | 3990 | 80 | 60 | (16, 28) | 15 | 26 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (37, 15) | -9 | 14 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (37, 25) | 9 | 24 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (8, 18) | -5 | 16 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (8, 22) | 5 | 22 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (0, 2) | -12 | 24 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (0, 38) | 12 | 36 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (44, 17) | -2 | 20 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (44, 23) | 2 | 22 |
+
+## broken_curve: 64 camps in 22 groups; bodies per team 3; spawn A area (26, 5, 29, 8); gem supply 8.11 gems/round; 8.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (11, 17) | 1 | 16 |
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (28, 22) | -1 | 16 |
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (18, 10) | -12 | 10 |
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (22, 28) | 12 | 22 |
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (20, 19) | -1 | 12 |
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (20, 20) | 1 | 14 |
+| 1wolf+1elk+1gem+2gold | 26 | 170 | 4110 | 80 | 60 | (9, 29) | 19 | 22 |
+| 1wolf+1elk+1gem+2gold | 26 | 170 | 4110 | 80 | 60 | (30, 10) | -19 | 4 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (6, 13) | 2 | 22 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (33, 26) | -2 | 20 |
+| 2wolf+1gem+2gold | 15 | 120 | 3060 | 40 | 50 | (30, 14) | -11 | 8 |
+| 2wolf+1gem+2gold | 15 | 120 | 3060 | 40 | 50 | (9, 25) | 11 | 19 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (18, 18) | -4 | 11 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (21, 22) | 4 | 15 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (22, 17) | -5 | 10 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (16, 22) | 5 | 16 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (13, 12) | -6 | 14 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (26, 26) | 6 | 20 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (22, 5) | -22 | 6 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (18, 34) | 22 | 28 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (20, 18) | -4 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (19, 22) | 4 | 15 |
+
+## collision: 56 camps in 20 groups; bodies per team 3; spawn A area (3, 1, 6, 4); gem supply 4.51 gems/round; 7.4 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 3elk+3gem | 66 | 270 | 7560 | 180 | 60 | (36, 3) | -2 | 32 |
+| 3elk+3gem | 66 | 270 | 7560 | 180 | 60 | (36, 37) | 2 | 34 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (29, 3) | -10 | 24 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (29, 37) | 10 | 34 |
+| 1wolf+2gem | 18 | 40 | 1590 | 20 | 50 | (24, 18) | 0 | 20 |
+| 1wolf+2gem | 18 | 40 | 1590 | 20 | 50 | (24, 22) | 0 | 20 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (22, 3) | -18 | 17 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (22, 37) | 18 | 34 |
+| 1wolf+1gem+1gold | 11 | 60 | 1590 | 20 | 50 | (19, 13) | -9 | 15 |
+| 1wolf+1gem+1gold | 11 | 60 | 1590 | 20 | 50 | (19, 27) | 9 | 24 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (10, 4) | -28 | 6 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (10, 36) | 28 | 33 |
+| 1wolf+2gold | 4 | 80 | 1590 | 20 | 50 | (15, 9) | -18 | 10 |
+| 1wolf+2gold | 4 | 80 | 1590 | 20 | 50 | (15, 31) | 18 | 28 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (12, 8) | -22 | 8 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (12, 32) | 22 | 30 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (17, 10) | -14 | 12 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (17, 30) | 14 | 27 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (22, 16) | -4 | 18 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (22, 24) | 4 | 22 |
+
+## concentrated_wealth: 46 camps in 12 groups; bodies per team 5; spawn A area (1, 29, 4, 32); gem supply 4.02 gems/round; 8.4 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+4gem+6gold | 71 | 330 | 3600 | 60 | 60 | (30, 29) | 1 | 28 |
+| 1elk+4gem+6gold | 71 | 330 | 3600 | 60 | 60 | (30, 31) | -1 | 27 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (1, 1) | -27 | 29 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (59, 59) | 27 | 56 |
+| 2wolf+1gem | 15 | 80 | 2820 | 40 | 50 | (59, 1) | 28 | 56 |
+| 2wolf+1gem | 15 | 80 | 2820 | 40 | 50 | (1, 59) | -28 | 28 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (29, 13) | -1 | 27 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (31, 47) | 1 | 28 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (26, 30) | -9 | 23 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (34, 30) | 9 | 32 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (43, 17) | 26 | 40 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (17, 43) | -26 | 14 |
+
+## contest: 34 camps in 14 groups; bodies per team 5; spawn A area (3, 3, 6, 6); gem supply 2.58 gems/round; 10.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (17, 31) | -1 | 26 |
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (32, 18) | 1 | 28 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (23, 28) | 2 | 23 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (26, 21) | -2 | 22 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (21, 26) | -2 | 22 |
+| 4gold | 0 | 80 | 480 | 0 | 50 | (28, 23) | 2 | 23 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (19, 4) | -26 | 14 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 46) | 26 | 41 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | 0 | 20 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 25) | 0 | 20 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (36, 9) | -4 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (12, 40) | 4 | 36 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (6, 18) | -26 | 14 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (44, 31) | 26 | 39 |
+
+## corners: 74 camps in 30 groups; bodies per team 5; spawn A area (13, 33, 16, 36); gem supply 6.26 gems/round; 6.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1wolf+2elk+2gem | 48 | 220 | 6390 | 140 | 60 | (33, 60) | 0 | 25 |
+| 1wolf+2elk+2gem | 48 | 220 | 6390 | 140 | 60 | (37, 60) | 0 | 25 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (35, 66) | 0 | 32 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (35, 66) | 0 | 32 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (18, 22) | -26 | 12 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (52, 22) | 26 | 38 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (33, 32) | -3 | 19 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (37, 32) | 3 | 22 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (12, 16) | -26 | 18 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (58, 16) | 26 | 44 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (35, 54) | 0 | 20 |
+| 1elk+1gold | 15 | 110 | 2520 | 60 | 60 | (35, 54) | 0 | 20 |
+| 1elk | 15 | 90 | 2400 | 60 | 60 | (17, 49) | -24 | 14 |
+| 1elk | 15 | 90 | 2400 | 60 | 60 | (53, 49) | 24 | 38 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (33, 36) | -3 | 19 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (37, 36) | 3 | 22 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (36, 41) | 1 | 21 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (34, 41) | -1 | 20 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (28, 13) | -6 | 22 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (42, 13) | 6 | 28 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (16, 7) | -12 | 28 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (54, 7) | 12 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (10, 5) | -16 | 30 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (60, 5) | 16 | 46 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (34, 15) | -3 | 19 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (36, 15) | 3 | 22 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (22, 9) | -8 | 26 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (48, 9) | 8 | 34 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (34, 0) | 0 | 34 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (36, 0) | 0 | 34 |
+
+## corridors: 68 camps in 24 groups; bodies per team 5; spawn A area (24, 0, 27, 3); gem supply 15.94 gems/round; 14.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2gem+1monolith | 428 | 600 | 20240 | 200 | 150 | (25, 20) | 0 | 18 |
+| 2gem+1monolith | 428 | 600 | 20240 | 200 | 150 | (25, 19) | 0 | 18 |
+| 2elk+1gold | 60 | 400 | 4920 | 120 | 60 | (33, 19) | -1 | 18 |
+| 2elk+1gold | 60 | 400 | 4920 | 120 | 60 | (33, 20) | 1 | 18 |
+| 1elk+2gem | 58 | 180 | 2640 | 60 | 60 | (21, 19) | -1 | 18 |
+| 1elk+2gem | 58 | 180 | 2640 | 60 | 60 | (21, 20) | 1 | 18 |
+| 1wolf+1elk+1gem | 52 | 260 | 3870 | 80 | 60 | (37, 19) | -1 | 18 |
+| 1wolf+1elk+1gem | 52 | 260 | 3870 | 80 | 60 | (37, 20) | 1 | 18 |
+| 1elk+1gem+1gold | 44 | 220 | 2640 | 60 | 60 | (1, 20) | 0 | 24 |
+| 1elk+1gem+1gold | 44 | 220 | 2640 | 60 | 60 | (1, 19) | 0 | 24 |
+| 1elk+2gold | 30 | 260 | 2640 | 60 | 60 | (41, 19) | -1 | 18 |
+| 1elk+2gold | 30 | 260 | 2640 | 60 | 60 | (41, 20) | 1 | 18 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (49, 19) | 0 | 24 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (49, 20) | 0 | 24 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (5, 19) | 0 | 20 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (5, 20) | 0 | 20 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (17, 19) | -1 | 18 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (17, 20) | 1 | 18 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (29, 19) | -1 | 18 |
+| 2wolf+1gold | 16 | 200 | 2820 | 40 | 50 | (29, 20) | 1 | 18 |
+| 1wolf+1gold | 8 | 120 | 1470 | 20 | 50 | (8, 20) | 0 | 18 |
+| 1wolf+1gold | 8 | 120 | 1470 | 20 | 50 | (8, 20) | 0 | 18 |
+| 1wolf+1gold | 8 | 120 | 1470 | 20 | 50 | (44, 19) | 0 | 19 |
+| 1wolf+1gold | 8 | 120 | 1470 | 20 | 50 | (44, 20) | 0 | 19 |
+
+## eight: 32 camps in 8 groups; bodies per team 5; spawn A area (0, 14, 3, 17); gem supply 3.64 gems/round; 6.8 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 3elk+2gem+1gold | 59 | 290 | 7560 | 180 | 60 | (16, 26) | -8 | 14 |
+| 3elk+2gem+1gold | 59 | 290 | 7560 | 180 | 60 | (24, 26) | 8 | 22 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (12, 4) | -14 | 12 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (28, 4) | 14 | 26 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (20, 15) | -1 | 18 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (20, 15) | 1 | 19 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (18, 10) | -5 | 16 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (22, 10) | 5 | 21 |
+
+## elk_arena: 62 camps in 30 groups; bodies per team 5; spawn A area (12, 23, 16, 27); gem supply 2.22 gems/round; 26.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+3gem | 72 | 180 | 2760 | 60 | 60 | (24, 24) | 0 | 10 |
+| 1elk+3gem | 72 | 180 | 2760 | 60 | 60 | (24, 25) | 0 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (22, 27) | -4 | 8 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (26, 22) | 4 | 12 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (20, 24) | -8 | 6 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (28, 25) | 8 | 14 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (7, 16) | -20 | 8 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (42, 32) | 20 | 28 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (30, 14) | 6 | 16 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (19, 35) | -6 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 25) | 0 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | 0 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (18, 13) | -6 | 12 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (32, 36) | 6 | 18 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 24) | -1 | 10 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (25, 24) | 1 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (0, 22) | -21 | 14 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (49, 28) | 21 | 35 |
+
+## elkring: 30 camps in 10 groups; bodies per team 5; spawn A area (0, 0, 3, 3); gem supply 3.38 gems/round; 8.3 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (10, 12) | -7 | 10 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (19, 17) | 7 | 17 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (9, 2) | -17 | 8 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (20, 27) | 17 | 25 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (11, 14) | -4 | 13 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (18, 15) | 4 | 17 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (20, 2) | -7 | 18 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (9, 27) | 7 | 25 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (26, 9) | 6 | 24 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (3, 20) | -6 | 18 |
+
+## expanse: 74 camps in 24 groups; bodies per team 5; spawn A area (3, 2, 7, 6); gem supply 5.79 gems/round; 7.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (59, 19) | -2 | 54 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (20, 60) | 2 | 56 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (59, 24) | 2 | 54 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (20, 55) | -2 | 51 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (59, 28) | 7 | 54 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (20, 51) | -7 | 47 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (25, 15) | -39 | 20 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (54, 64) | 39 | 60 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (40, 6) | -34 | 36 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (38, 74) | 34 | 70 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (40, 40) | 1 | 36 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (40, 39) | -1 | 35 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (4, 22) | -52 | 18 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (74, 57) | 52 | 70 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (5, 12) | -61 | 8 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (74, 67) | 61 | 69 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (55, 4) | -21 | 50 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (24, 75) | 21 | 71 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (42, 13) | -26 | 36 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (38, 66) | 26 | 62 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 26) | -24 | 24 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (50, 53) | 24 | 49 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (36, 39) | -3 | 35 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (43, 40) | 3 | 38 |
+
+## fracture: 86 camps in 28 groups; bodies per team 5; spawn A area (1, 1, 5, 5); gem supply 9.70 gems/round; 8.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (42, 31) | 3 | 39 |
+| 1monolith | 200 | 300 | 20000 | 200 | 150 | (18, 39) | -3 | 36 |
+| 3elk+2gem+3gold | 59 | 330 | 7800 | 180 | 60 | (31, 34) | -2 | 31 |
+| 3elk+2gem+3gold | 59 | 330 | 7800 | 180 | 60 | (29, 36) | 2 | 33 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (29, 34) | -2 | 31 |
+| 2elk+2gem+1gold | 44 | 200 | 5160 | 120 | 60 | (31, 36) | 2 | 33 |
+| 2wolf+1elk+1gem+2gold | 30 | 210 | 5460 | 100 | 60 | (30, 35) | -1 | 32 |
+| 2wolf+1elk+1gem+2gold | 30 | 210 | 5460 | 100 | 60 | (30, 35) | 1 | 32 |
+| 2wolf+2gem | 22 | 80 | 2940 | 40 | 50 | (30, 34) | -1 | 32 |
+| 2wolf+2gem | 22 | 80 | 2940 | 40 | 50 | (30, 36) | 1 | 32 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (40, 24) | -7 | 37 |
+| 1elk+1gem+1gold | 22 | 110 | 2640 | 60 | 60 | (20, 46) | 7 | 43 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (25, 44) | 9 | 41 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (35, 26) | -9 | 32 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (13, 32) | -14 | 30 |
+| 2gem | 14 | 0 | 240 | 0 | 50 | (47, 38) | 14 | 44 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 35) | 0 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (26, 36) | 2 | 34 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (34, 34) | -2 | 31 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (48, 28) | 6 | 45 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (12, 42) | -6 | 39 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 34) | -1 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 36) | 1 | 32 |
+
+## fragment: 16 camps in 6 groups; bodies per team 3; spawn A area (1, 18, 4, 21); gem supply 1.09 gems/round; 4.9 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1wolf+1elk+1gem+1gold | 26 | 150 | 3990 | 80 | 60 | (12, 16) | -5 | 10 |
+| 1wolf+1elk+1gem+1gold | 26 | 150 | 3990 | 80 | 60 | (17, 14) | 5 | 14 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (2, 5) | -10 | 14 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (28, 24) | 10 | 25 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (2, 11) | -16 | 8 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (28, 18) | 16 | 25 |
+
+## gold_rush: 42 camps in 16 groups; bodies per team 3; spawn A area (1, 16, 4, 19); gem supply 3.78 gems/round; 9.5 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2gold+1monolith | 200 | 380 | 20240 | 200 | 150 | (15, 15) | -1 | 12 |
+| 2gold+1monolith | 200 | 380 | 20240 | 200 | 150 | (15, 15) | 1 | 13 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (26, 5) | 16 | 23 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (4, 25) | -16 | 8 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (14, 3) | 2 | 14 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (16, 27) | -2 | 13 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (4, 8) | -14 | 10 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (26, 22) | 14 | 24 |
+| 5gold | 0 | 100 | 600 | 0 | 50 | (13, 14) | -3 | 11 |
+| 5gold | 0 | 100 | 600 | 0 | 50 | (17, 16) | 3 | 14 |
+| 5gold | 0 | 100 | 600 | 0 | 50 | (16, 14) | 2 | 13 |
+| 5gold | 0 | 100 | 600 | 0 | 50 | (14, 16) | -2 | 12 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (15, 18) | 0 | 12 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (15, 12) | 0 | 12 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (12, 15) | -6 | 10 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (18, 15) | 6 | 16 |
+
+## hooks: 28 camps in 12 groups; bodies per team 4; spawn A area (1, 1, 4, 4); gem supply 1.35 gems/round; 8.7 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (15, 14) | -2 | 12 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (15, 16) | 2 | 14 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (16, 10) | -4 | 14 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (14, 20) | 4 | 18 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (23, 4) | -3 | 20 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (7, 26) | 3 | 23 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (13, 16) | 0 | 14 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (17, 14) | 0 | 14 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (13, 9) | -8 | 10 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (17, 21) | 8 | 18 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (13, 14) | -4 | 11 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (17, 16) | 4 | 14 |
+
+## interlock: 34 camps in 14 groups; bodies per team 4; spawn A area (0, 0, 3, 3); gem supply 3.22 gems/round; 7.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (32, 10) | 3 | 30 |
+| 2elk+2gem | 44 | 180 | 5040 | 120 | 60 | (7, 29) | -3 | 28 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (29, 3) | -7 | 27 |
+| 2elk+1gem+1gold | 37 | 200 | 5040 | 120 | 60 | (10, 36) | 7 | 34 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (4, 14) | -20 | 12 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (34, 25) | 20 | 33 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (4, 21) | -14 | 20 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (34, 18) | 14 | 33 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (5, 8) | -26 | 6 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (34, 31) | 26 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (19, 2) | -18 | 18 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (20, 36) | 18 | 35 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (36, 2) | 0 | 34 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (3, 36) | 0 | 35 |
+
+## islands: 118 camps in 46 groups; bodies per team 5; spawn A area (28, 3, 32, 6); gem supply 9.76 gems/round; 6.6 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 2elk+4gem | 58 | 180 | 5280 | 120 | 60 | (4, 30) | 1 | 26 |
+| 2elk+4gem | 58 | 180 | 5280 | 120 | 60 | (54, 29) | -1 | 24 |
+| 1wolf+2elk+1gem | 41 | 220 | 6270 | 140 | 60 | (26, 28) | -4 | 23 |
+| 1wolf+2elk+1gem | 41 | 220 | 6270 | 140 | 60 | (34, 32) | 4 | 27 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (30, 29) | -1 | 24 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (30, 30) | 1 | 26 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (8, 50) | 24 | 45 |
+| 2elk+2gold | 30 | 220 | 5040 | 120 | 60 | (52, 10) | -24 | 22 |
+| 1elk+2gem | 29 | 90 | 2640 | 60 | 60 | (15, 22) | -15 | 18 |
+| 1elk+2gem | 29 | 90 | 2640 | 60 | 60 | (44, 37) | 15 | 32 |
+| 1elk+2gem | 29 | 90 | 2640 | 60 | 60 | (25, 29) | 0 | 25 |
+| 1elk+2gem | 29 | 90 | 2640 | 60 | 60 | (34, 30) | 0 | 25 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (26, 21) | -16 | 17 |
+| 1elk+2gold | 15 | 130 | 2640 | 60 | 60 | (33, 38) | 16 | 33 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (12, 26) | -6 | 22 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (47, 32) | 6 | 28 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (31, 22) | -16 | 17 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (28, 38) | 16 | 33 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (22, 25) | -9 | 20 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (38, 34) | 9 | 30 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (30, 27) | -5 | 22 |
+| 2wolf+1gold | 8 | 100 | 2820 | 40 | 50 | (29, 32) | 5 | 28 |
+| 1gem | 7 | 0 | 120 | 0 | 50 | (34, 24) | -11 | 20 |
+| 1gem | 7 | 0 | 120 | 0 | 50 | (25, 35) | 11 | 30 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 30) | 1 | 26 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 29) | -1 | 24 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (29, 30) | 0 | 25 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (30, 30) | 0 | 25 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (24, 17) | -25 | 12 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (36, 42) | 25 | 38 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (48, 20) | -17 | 18 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (12, 39) | 17 | 34 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (40, 14) | -30 | 10 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (19, 44) | 30 | 40 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (40, 24) | -10 | 20 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (19, 34) | 10 | 30 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (20, 31) | 3 | 26 |
+| 1gold | 0 | 20 | 120 | 0 | 50 | (39, 28) | -3 | 24 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (33, 12) | -35 | 8 |
+| 3gold | 0 | 60 | 360 | 0 | 50 | (26, 47) | 35 | 42 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 30) | 0 | 25 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (29, 30) | 0 | 25 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 30) | 1 | 26 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 29) | -1 | 24 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 7) | -45 | 2 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 52) | 45 | 48 |
+
+## lanes: 84 camps in 42 groups; bodies per team 5; spawn A area (2, 12, 5, 15); gem supply 4.98 gems/round; 5.0 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (40, 13) | -10 | 36 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (50, 13) | 10 | 46 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (40, 4) | -10 | 36 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (50, 4) | 10 | 46 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (40, 25) | -10 | 36 |
+| 1elk+1gem | 22 | 90 | 2520 | 60 | 60 | (50, 25) | 10 | 46 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (36, 6) | -18 | 32 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (54, 6) | 18 | 50 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (36, 4) | -18 | 32 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (54, 4) | 18 | 50 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (36, 2) | -18 | 32 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (54, 2) | 18 | 50 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 15) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 15) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 13) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 13) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 11) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 11) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 6) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 6) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 4) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 4) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 27) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 27) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 25) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 25) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 23) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 23) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (42, 2) | -4 | 39 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 2) | 4 | 43 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (36, 13) | -18 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (54, 13) | 18 | 50 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (36, 15) | -18 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (54, 15) | 18 | 50 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (36, 11) | -18 | 32 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (54, 11) | 18 | 50 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (36, 27) | -18 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (54, 27) | 18 | 50 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (36, 25) | -18 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (54, 25) | 18 | 50 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (36, 23) | -18 | 32 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (54, 23) | 18 | 50 |
+
+## monolith: 68 camps in 20 groups; bodies per team 5; spawn A area (2, 45, 5, 48); gem supply 6.09 gems/round; 9.1 gems per 1,000 HP of gem-bearing camps
+
+| group | gems | gold | HP | strength | respawn | centre | side | dist A |
+|---|---|---|---|---|---|---|---|---|
+| 8gem+1monolith | 256 | 300 | 20960 | 200 | 150 | (1, 1) | 1 | 46 |
+| 8gem+1monolith | 256 | 300 | 20960 | 200 | 150 | (48, 48) | -1 | 44 |
+| 1elk+1gem+2gold | 22 | 130 | 2760 | 60 | 60 | (36, 12) | 25 | 35 |
+| 1elk+1gem+2gold | 22 | 130 | 2760 | 60 | 60 | (14, 38) | -25 | 10 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (20, 2) | 18 | 44 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (30, 46) | -18 | 26 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (40, 25) | 14 | 36 |
+| 2wolf+1gem+1gold | 15 | 100 | 2940 | 40 | 50 | (9, 24) | -14 | 22 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (34, 4) | 32 | 43 |
+| 1wolf+1gem | 11 | 40 | 1470 | 20 | 50 | (15, 46) | -32 | 12 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (4, 10) | -5 | 37 |
+| 2wolf+2gold | 8 | 120 | 2940 | 40 | 50 | (46, 40) | 5 | 42 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (46, 10) | 35 | 42 |
+| 1wolf | 4 | 40 | 1350 | 20 | 40 | (3, 39) | -35 | 8 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (46, 18) | 26 | 42 |
+| 1wolf+1gold | 4 | 60 | 1470 | 20 | 50 | (4, 31) | -26 | 16 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (24, 18) | 6 | 28 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (26, 31) | -6 | 22 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (18, 13) | 6 | 34 |
+| 2gold | 0 | 40 | 240 | 0 | 50 | (30, 36) | -6 | 27 |
+
+## Summary
+
+| map | groups | gem groups | gems on map | gold on map | gem supply / round | bodies |
+|---|---|---|---|---|---|---|
+| fragment | 6 | 6 | 68 | 540 | 1.09 | 3 |
+| hooks | 12 | 4 | 88 | 760 | 1.35 | 4 |
+| elk_arena | 30 | 2 | 144 | 1440 | 2.22 | 5 |
+| contest | 14 | 2 | 400 | 1240 | 2.58 | 5 |
+| interlock | 14 | 10 | 200 | 1200 | 3.22 | 4 |
+| elkring | 10 | 10 | 220 | 1100 | 3.38 | 5 |
+| eight | 8 | 8 | 230 | 1300 | 3.64 | 5 |
+| gold_rush | 16 | 8 | 466 | 1480 | 3.78 | 3 |
+| concentrated_wealth | 12 | 12 | 248 | 1440 | 4.02 | 5 |
+| ambush | 12 | 8 | 270 | 1340 | 4.23 | 5 |
+| collision | 20 | 14 | 280 | 1700 | 4.51 | 3 |
+| lanes | 42 | 36 | 294 | 2460 | 4.98 | 5 |
+| expanse | 24 | 16 | 362 | 2340 | 5.79 | 5 |
+| monolith | 20 | 16 | 670 | 1940 | 6.09 | 5 |
+| corners | 30 | 24 | 396 | 2820 | 6.26 | 5 |
+| broken_curve | 22 | 18 | 746 | 2520 | 8.11 | 3 |
+| big_world | 24 | 22 | 832 | 2760 | 9.26 | 5 |
+| fracture | 28 | 24 | 844 | 3320 | 9.70 | 5 |
+| islands | 46 | 36 | 608 | 3860 | 9.76 | 5 |
+| boss_battle | 31 | 27 | 1180 | 7400 | 14.63 | 5 |
+| corridors | 24 | 24 | 1504 | 5920 | 15.94 | 5 |
+
+
+==============================================================================
+## APPENDIX: PUBLIC GAME RULES (20 Oct; superseded where ENGINE 1.0 differs)  [docs/rules/GameRules.md]
+==============================================================================
+> Engine 1.0 (20 Oct): the SDK supersedes this file where they differ (Prism 1.0 Focus per gem, Vesper 33%, Marcella +2 gold per gem, base stats, gem/gold cluster 120 HP, elk range 4, monolith range 5, Heart of Ruin, golem).
+> See ENGINE-1.0.md for the full list. This file is the site copy of 20 Oct and lags the engine.
+> Older copy: GameRules-2026-10-18.md. Site copy: GameRules-site-2026-10-20.md.
+> Base-stat tables below are also stale for Ryth, Vesper, Cassi, Issac, Stellar, Prism, Marcella, Willow, Ren, Varg, Tavi.
+
+# CAMBC Game Rules
+
+Event: cambc2026a. Exported from the current handbook, including all published champion specifications. Interactive diagrams are represented as text.
+
+## The game
+
+### How to win
+
+The first team to tribute 1,000 gems wins immediately. At the 2,000-round limit, compare tributed gems, then lifetime gold earned, then champion kills. If all tie, Team B wins.
+
+The objective of the game is to tribute as many gems as possible! The game ends after a team tributes 1000 gems or round 2000 passes, whichever comes first.
+
+#### Tiebreak notes
+
+- The gold tiebreak counts all gold earned, not what is left to spend.
+- If tributed gems, gold earned and kills all tie, the team that acted second in round one wins (Team B). The starting team still alternates each round.
+- A local runner may stop before round 2,000.
+
+### Obtaining Resources
+
+Defeat every monster in a camp group, capture its region to receive gold and gems, then tribute carried gems at an altar. Spend gold to improve your champion.
+
+The general flow of the game is to send your champions to defeat camps on the map, collect the gems they drop, then tribute the gems at altars.
+
+Camps can also drop gold, which can be used on the champions' spawn tiles to purchase items making them stronger.
+
+- **Gold**: Buy equipment and consumables to grow stronger.
+- **Carried gems**: Valuable but at risk: an enemy that kills you takes them.
+- **Tributed gems**: Permanent team score that nobody can take back.
+
+### Your code controls all your actions
+
+- **Draft your champions**: Pick your team before the match starts.
+- **One bot per champion**: Each champion runs its own copy of your program.
+- **Every round**: Observe, choose actions, then end the turn.
+
+The supported languages for this battlecode are C++, Python, Rust and OCaml
+
+## Understand a turn
+
+### Everything you can do
+
+In general, a champion can attack and/or walk (based on whether they are melee or ranged), use one ability, ward, shop or use consumables, and begin/continue a channel.
+
+Each turn normally allows one ordinary move, one basic attack, and one successful ability cast across both slots. Melee attack range is 1 tile; ranged attack range is 3. Movement and attacks share an allowance for ranged champions. Abilities have an 8-turn-end cooldown per slot. Some abilities exclude walking or reset attacks. Wards require their trinket charge; consumables require inventory. Shop on your spawn or while dead (subject to champion exceptions). Starting a channel prevents other actions until it finishes or is cancelled. Recall and tribute each have one start and one cancellation per turn. Priority changes affect the next round.
+
+The above table lays out the action space of a champion on one of its turns.
+
+## Drafting
+
+Build your team's roster before gameplay begins. Each draft round adds one selection per team; both picks are revealed together.
+
+### Choosing champions
+
+Depending on the map, each team will select between 3 and 5 champions. First, Team A submits one pick, then Team B submits one pick. Then the picks are revealed simultaneously. This process repeats until both champion rosters are complete. Note SDK draft-round indices start at 0.
+
+- **Team A picks**: A valid selection ends A's draft turn and hands control to B.
+- **Team B picks**: B selects without seeing A's pick for this round. Both picks then become public.
+- **Repeat or start**: Begin the next draft round, or create the champions when the final pair of picks is complete.
+
+Selection rules
+
+| Choice | Allowed |
+| --- | --- |
+| Not selected by your team | ✓ |
+| Already selected by your team | ✗ |
+| Selected by the opposing team | ✓ |
+| Cassi & Issac (one selection) | ✓ |
+
+### Shared draft memory
+
+The code/bot used to draft is a separate instance to the bots used for gameplay. The draft bot has additional fuel and can see the entirety of the map layout, and what champions the opponent has drafted so far. Take this opportunity to precompute some information for your bots and write your opening plan into the 1024 byte draft memory, which can be read by your champion bots later.
+
+### After the draft
+
+After the draft, the selected champions are placed on each team's corresponding spawn tiles at full health.
+
+### Missing a pick
+
+If a draft bot yields, exhausts its fuel, or crashes without making a pick, the remaining selections are randomly selected by the game.
+
+## Rounds & turn order
+
+The world updates, then champions take their turns.
+
+### A round at a glance
+
+The game engine runs each round's actions through phases, see the below graphic to understand the order of operations:
+
+At round start: camp respawns, existing spell/ward updates, camp captures, then camp actions. Champion turns follow, alternating teams; the starting team swaps each round. Each champion starts by resolving zero timers: respawn, ward recharge, buff/shield expiry, then channels. At turn end, timers decrement without triggering these effects; spawn recovery still happens at turn end. Recall arrives at turn start, so staying on spawn heals at that same turn's end.
+
+### Who goes first?
+
+- **Teams alternate**: The team that starts swaps every round.
+- **Priority, then draft order**: Within a team, higher priority acts first.
+- **set_priority**: Takes effect from the next round and persists.
+- **Dead champions still act**: They get a turn to shop.
+
+**Order matters**
+
+A capture can add gems before a tribute completes. Camps attack before your next turn.
+
+### Game time ≠ compute time
+
+- **Game timers**: World updates happen once a round. Each champion’s timers advance at the end of that champion’s turn.
+- **Fuel**: Limits how much your program can compute.
+
+## Maps & movement
+
+Find a free tile in range. Do not path onto the target itself.
+
+### Ways to move
+
+A champion can move 1 step every turn with their basic move action. Dashes move up to 2 steps, including diagonals, along a legal dash path. Teleport crystals reach up to 3 tiles horizontally and vertically, including diagonals, and ignore terrain between you and the destination.
+
+Ordinary movement reaches an adjacent tile in any of eight directions. Melee champions can also attack; ranged champions ordinarily choose one. Dashes use a legal path of up to 2 steps and may cross holes; teleport crystals have range 3 and ignore intervening terrain. Landing cannot be on a wall, hole, altar, enemy spawn or occupied tile.
+
+Ask the SDK for your movement mask rather than recomputing walking yourself; it already accounts for the units you can see.
+
+An unseen enemy in a bush can block a destination included in your observed movement mask. Attempting the step returns false, reveals that tile for the rest of the round and preserves your movement allowance. Choose another free tile and retry. A known occupied destination raises an error.
+
+**Hidden enemies still block**
+
+If an otherwise legal destination has an unseen occupant, the action returns `false` without throwing. The blocked tile is revealed to your champion for the rest of the round, and the attempt does not consume your movement allowance, ability cooldown or consumable, so you can try another destination. A destination already known to be occupied raises an error (`cambc::error` in C++). A successful action returns `true`. These rules also apply to dashes and teleport crystals; for a crystal, `true` means its channel started successfully.
+
+## Camps & capture
+
+The main way to obtain resources is to defeat camps or monsters, on the map. They can spawn alone or in a group (any monsters that are cardinally connected).
+
+The main way to obtain resources is to defeat camps or monsters, on the map. They can spawn alone or in a group (any monsters that are cardinally connected).
+
+### After defeating a camp, make sure to capture!
+
+After every monster in a group dies, occupy at least one of its spawn tiles uncontested. At a capture phase your team starts a five-round timer; later capture phases count it down. Leaving the region empty or admitting an enemy resets progress. More allies do not speed it up. Rewards are shared among allies present when it finishes; the lowest ID receives any integer remainder. The group respawns together after rewards are claimed, using the longest cooldown of its members. Any occupied spawn tile delays the entire group.
+
+After defeating an entire group, you can then capture the rewards by standing on one of the tiles a monster was underneath, and wait 5 turns (the capture timer). This will award the waiting champion the gold and gems from the camp. If there are multiple champions, the reward is split evenly among them.
+
+### Pick your target
+
+Base values per monster, before champion bonuses. Respawn timers begin after the reward is claimed.
+
+| Monster | Health | Strength | Gold | Gems | Respawn |
+| --- | --- | --- | --- | --- | --- |
+| Wolf | 1,350 | 20 | 90 | 22 | 40 rounds |
+| Elk | 2,400 | 60 | 160 | 36 | 60 rounds |
+| Gem cluster | 500 | 0 | 0 | 24 | 50 rounds |
+| Gold cluster | 500 | 0 | 35 | 0 | 50 rounds |
+| Monolith | 20,000 | 200 | 300 | 200 | 150 rounds |
+
+### What happens next?
+
+After a camp is defeated, its respawn timer begins. After the timer has finished (ticking down by 1 each round), the camp will respawn in the same location as before, full health, ready to drop rewards again.
+
+#### Capture and monster details
+
+- Rewards combine every monster in the group.
+- Allies on the region split the reward; the lowest ID gets the remainder.
+- Extra allies do not speed capture. Empty or contested regions reset it.
+- All monsters have attack range 3 and vision 8, see through bushes and do not chase.
+- Damage wakes the group; two rounds without an in-range champion let it sleep.
+
+## Gems & altars
+
+The main objective of the game is to obtain gems by capturing camps, or stealing them from enemies. To actually progress towards winning the game however, the gems must first be tributed at altars.
+
+The main objective of the game is to obtain gems by capturing camps, or stealing them from enemies. To actually progress towards winning the game however, the gems must first be tributed at altars.
+
+### Carried or tributed
+
+Carried gems can be stolen on death and do not count towards victory. Tributed gems are permanent team score.
+
+### Tribute at an altar
+
+Tributing requires a channel to secure the gems. The amount of time this takes scales with the number of gems you are carrying, namely the amount divided by 10, rounded up.
+
+Stand within Chebyshev distance 1 of an altar with at least one gem and start a tribute. Duration is max(1, ceil(starting gems / 10)) champion turn ends: 1–10 gems take 1 countdown tick, 11–20 take 2. Timers decrement at turn end, including the starting turn, and complete at the owner's next turn start after reaching zero. Completion tributes the entire current bag. Damage does not interrupt it; stun, death or an altar lock does.
+
+Tribute duration is max(1, ceil(carried gems / 10)) owner turn ends. The starting turn counts; completion waits until your next turn start after zero.
+
+#### Timing details
+
+- The channel ticks at the end of its champion’s turn, including the turn it starts. A timer that reaches zero stays pending until the start of that champion’s next turn. A one-tick tribute therefore completes at your next turn start, not at the end of the turn you start it.
+- Its length uses your bag when you start. Completion tributes your whole bag, including gems gained since.
+- Captures resolve before channels, so gems captured this round are included.
+
+### Altar locks
+
+Altar locks are a consumable you can purchase for 10g, and carry one at a time. You can place them on altars if you are within range, cancelling enemy channels, or simply delaying them by leaving them there. It takes 3 basic attacks to clear the lock, which is also triggered by the tributing action in the engine.
+
+An altar lock blocks opposing tributes but allows its owner's team to tribute. Placing it cancels existing tribute channels at that altar. Three basic attacks remove it.
+
+#### Tributing against a lock
+
+Attempts to tribute against a locked altar are implicitly converted to auto attacks against the altar lock.
+
+## Combat & abilities
+
+Basic attacks use Strength. Spells use their own effects and Focus scaling.
+
+### Basic attacks
+
+Every turn champions can attack using their basic attack, melees can hit targets within 1 tile, and ranged within 3. Depending on whether you are the melee or ranged class will determine whether you can move and attack on the same turn or not:
+
+Basic attacks deal Strength before modifiers and require a visible target. Ranges use Chebyshev distance, so diagonals count as one tile. Melee range is 1; ranged range is 3.
+
+### Abilities scale with focus
+
+Abilities scale with focus by taking the champion's focus value, and multiplying by the ability multiplier.
+
+Each champion has two ability slots but only one successful cast per turn. Casting starts an 8-turn-end cooldown for that slot. Spell effects scale with Focus as specified in the champion's kit.
+
+Ability details such as the range, targeting system, and whether you can cast and move are detailed on each champion's individual page
+
+#### Targets and charges
+
+- Unit spells need a valid visible target. Ground spells affect an area.
+- Zero maximum charges means the spell is not charge-limited.
+- Self-targeted spells use the self-cast action.
+
+### Channels
+
+Channels are actions that take several turns to complete, such as recall, tribute and teleport. Their timers tick down at your turn end, then execute at your next turn start when the timer is zero. The below table shows the channel actions in the game, and how and when they can be cancelled.
+
+Channels count down at owner turn ends and execute at the next owner turn start once zero. Recall takes 5 countdown ticks (3 with Home) and is interrupted by damage, stun or death. Tribute takes ceil(gems / 10) owner turn ends, at least 1: damage does not stop it, but stun, death or a new altar lock does. Teleport crystals channel for 3 owner turn ends: damage does not stop them; enemy stuns and death do. Recall and tribute can be cancelled manually; teleport cannot.
+
+## Items & gold
+
+Items in the game are purchased on the spawn tiles (or while dead) using gold. You can purchase shards, increasing permanent stats for your champion based on their internal growth values:
+
+### Shards and emblems
+
+Items in the game are purchased on the spawn tiles (or while dead) using gold. You can purchase shards, increasing permanent stats for your champion based on their internal growth values:
+
+- Strength, increasing your basic attack damage
+- Health, increasing your maximum health
+- Focus, increasing the power of your abilities
+
+Shards cost 30 gold and after purchasing 5, combine into an emblem providing a unique bonus based on which shard type you purchased.
+
+Try building an emblem below:
+
+Shards cost 30 gold and add their champion's growth for the chosen stat. Five matching shards automatically combine into the corresponding emblem. Only the completed emblem grants its passive. Families have Strength, Health and Focus variants; use the family table for stat points and passives.
+
+### Emblem families
+
+Every family has Strength, Health and Focus versions. 5 shards automatically combine to an emblem (150 gold total). Shards give stats; only the finished emblem gives the passive.
+
+| Family | Counts as | Passive |
+| --- | --- | --- |
+| Monster | 5 shards of the chosen stat | 10% more damage to camps. |
+| Power | 6 shards of the chosen stat | None; one extra shard’s worth instead. |
+| Durability | 5 shards of the chosen stat | 10% less incoming damage. |
+| Treasure | 5 shards of the chosen stat | 20% more gold gained. |
+| Jungle | 5 shards of the chosen stat | 30% less damage from camps. |
+| Home | 5 shards of the chosen stat | 50% shorter recall: five turn ends become three, rounded up. |
+| Bruiser | 5 of the chosen stat, 1 of each other | None; a spread of stats instead. |
+
+### Consumables
+
+The shop also has some consumable items, each costing 10 gold. You may carry only one of each at the same time, with the same purchase rules as shards/emblems.
+
+10 gold each. Carry at most one of each. Buy them on your spawn or while dead.
+
+| Tool | Use |
+| --- | --- |
+| Altar lock | Place on an altar within two tiles. Blocks enemy tributes until removed by three basic attacks. |
+| Teleport crystal | Range: 3 tiles, including diagonals. Channel for three of your turn ends, including this turn. Reserves a legal free destination, then flashes there at your next turn start after the timer reaches zero, ignoring terrain in between. |
+
+### You should know:
+
+- **Stats stack**: Every shard counts, including those inside duplicate emblems.
+- **Emblem passives don’t**: A second emblem of a family adds no extra passive.
+- **Gold bonuses add**: Treasure with Vesper Vale: 20% + 20% = 40%.
+- **Spawn purchases heal**: Buying Health on your spawn heals the amount gained; Tavi’s field purchases do not.
+- **Only Tavi can sell**: On spawn, for the full purchase value. Refunds are not earned gold.
+
+## Vision & wards
+
+Each champion sees its own patch of the map. Walls and bushes block the view.
+
+### How vision is calculated
+
+Vision in the game is raycast, you can try it with the interactive vision tool below. To be more precise, the system uses symmetric shadow casting based on Albert Ford's algorithm.
+
+[Albert Ford: Symmetric Shadowcasting — explanation and interactive example](https://www.albertford.com/shadowcasting/)
+
+### What you can see
+
+Champions normally see up to 8 tiles using symmetric shadowcasting. Walls and bushes occlude vision; the connected bush cluster you stand in is transparent to your own vision. Your ward adds its vision; teammates' views are not shared.
+
+- You see up to 8 tiles away in every direction, including diagonally, if nothing blocks the line of sight.
+- Walls block sight. So do bushes: from outside, you cannot see into a bush or past it.
+- Standing in a bush, you see across that whole bush and out of it, but not into other bushes.
+- Holes cannot be stood on, but they do not block sight
+
+### Wards
+
+Each champion has a free ward, that can be placed to expand their personal vision. You may freely replace it, once per round, but note that you can/will only ever have one active.
+
+- **Free ward**: One charge, recharging one round after use.
+- **Within 2 tiles**: It sees 6 tiles, with the same line-of-sight rules.
+- **One active ward**: A new ward replaces the old one.
+- **Permanent**: Wards do not expire or take damage.
+
+### Vision is not shared
+
+Vision per champion is only their own, plus their own ward. You cannot see what your ally champions see, nor their wards. However, if you spot something of note, you can use the shared memory to try to communicate the information to your team.
+
+## Death, recall & recovery
+
+Recall to heal safely. Die, and you lose your carried gems and sit out 60 rounds.
+
+### When a champion dies
+
+The killer receives all carried gems and 50 base gold; assists award no gold. Camp kills destroy carried gems. Dead champions retain shopping turns and respawn at their next turn start after 60 owner turn-end ticks, when a spawn tile is available, with full health and abilities reset.
+
+When a champion dies they respawn on their spawn tiles after 60 rounds, awarding their killer all the gems they were carrying in addition to 50 gold.
+
+If a camp kills you, the carried gems are lost.
+
+Cassi and Issac die together, awarding the killer 50 gold, and all the gems that both of them were carrying.
+
+### Recalling
+
+Recalling is a channeled action taking 5 turns, that returns your champion to the spawn from anywhere on the map. Spawn tiles allow you to shop, and also will heal you to full health so recalling when you are low, or have a lot of gold is usually a good idea.
+
+Recall takes 5 owner turn ends, or 3 with Home; the starting turn counts. Completion happens at the next owner turn start after zero. Damage or stun interrupts it. You retain carried gems. After arriving at turn start, remain on spawn until that turn ends to heal fully.
+
+- Recall arrives at turn start. Stay on spawn until the end of that turn to heal to full.
+- Any damage cancels it, and so does a stun. Start it somewhere safe.
+- You keep your carried gems.
+
+## Fuel
+
+Bots have a computation limit enforced via Wasmtime fuel. Fuel roughly corresponds to CPU instructions, though it isn't perfectly 1:1. Using fuel rather than time means that execution is deterministic and machine-independent. Since some languages are more instruction efficient than others, there are different fuel limits for different languages.
+
+Bots have a computation limit enforced via Wasmtime fuel. Fuel roughly corresponds to CPU instructions, though it isn't perfectly 1:1. Using fuel rather than time means that execution is deterministic and machine-independent. Since some languages are more instruction efficient than others, there are different fuel limits for different languages.
+
+By default, a C++ or Rust bot gets 100k fuel per turn. OCaml gets 5 times the C++ limit, and Python gets 25 times the C++ limit.
+
+When a bot runs out of fuel, its execution is suspended and the next bot in the turn order gets to go. The next round, this bot's turn will resume from the point of suspension and continues.
+
+We provide bots with 10x fuel for the first turn of draft, to facilitate precomputation, and 2x fuel for the first turn of play, giving bots room to initialise and precompute. Unused fuel at the end of a turn is not added to the next turn's fuel budget.
+
+## Shared memory
+
+Your team’s two scratchpads: 1,024 bytes saved in the draft, and 8 bytes shared all match.
+
+Each champion has its own bot instance, but there is a team memory buffer that is shared by your team, which cannot be read by the opponent.
+
+Each team has 8 bytes of shared memory, that is readable and writable throughout the match.
+
+In addition, there is the 1024 bytes of draft memory, that is writable during the draft phase, that becomes read-only for your champions during the match itself.
+
+## Champion roster
+
+### Choose a champion
+
+
+
+### Compare starting stats
+
+Before equipment and passives. Strength powers basic attacks, Focus powers spells and Health is your maximum health. Growth is what each matching shard adds.
+
+### Shared by every champion
+
+- **Vision 8**: Every champion sees 8 tiles around itself.
+- **Walk 1**: One tile per turn, in any direction.
+- **8-round cooldowns**: On both ability slots.
+- **One cast per turn**: Shared by both slots. “Excludes walking” spells can’t share a turn with a walk.
+
+## Cassi & Issac
+
+One draft choice creates a ranged spellcaster and a melee fighter. They act separately, but if either dies, both die.
+
+### Two bodies, one linked fate
+
+Cassi and Issac have separate positions, bags, abilities and bot instances. Each receives its own turn.
+
+**Shared passive**
+
+If either Cassi or Issac dies, the other dies too. Both lose their carried gems and together grant one kill reward.
+
+### Cassi · ranged
+
+**Cassi**
+
+#### Slot 0: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Stun
+
+One-round stun with no direct damage.
+
+Target / range: Enemy or camp · 4. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 71.25 |
+| Strength | 30 | 3.5 |
+| Focus | 70 | 15 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+### Issac · melee
+
+**Issac**
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 95 |
+| Strength | 40 | 4.75 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Ryth
+
+A melee champion with an area stun and an attack reset. Health also adds Strength.
+
+### Kit
+
+**Ryth**
+
+**Passive:** Ryth gains Strength equal to 1% of bonus health.
+
+#### Slot 0: Area stun
+
+1 × Focus damage and a one-round stun in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1200 | 100 |
+| Strength | 50 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Vesper Vale
+
+A ranged champion with strong basic attacks, bonus gold and a short dash.
+
+### Kit
+
+**Vesper Vale**
+
+**Passive:** Vesper Vale gains 20% more gold. A Treasure emblem adds another 20 percentage points, for a combined 40% bonus.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 100 |
+| Strength | 45 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Prism
+
+A ranged spellcaster who gains Focus from carried gems, trading safe tributes for temporary strength.
+
+### Kit
+
+**Prism**
+
+**Passive:** Prism gains 0.2 Focus per carried gem. Ten carried gems add 2 Focus. Tributing or losing those gems removes that bonus.
+
+#### Slot 0: Damage and stun
+
+1.5 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Area damage
+
+1 × Focus damage in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 75 |
+| Strength | 35 | 3.5 |
+| Focus | 80 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Stellar
+
+A ranged spellcaster who chooses between concentrated damage and an area hit.
+
+### Kit
+
+**Stellar**
+
+#### Slot 0: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Area damage
+
+1.4 × Focus damage in radius one.
+
+Target / range: Ground · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 750 | 75 |
+| Strength | 35 | 3.5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Vendetta
+
+A melee attacker whose kills refresh spell cooldowns, with a reset and dash for follow-up plays.
+
+### Kit
+
+**Vendetta**
+
+**Passive:** When Vendetta gets a kill, she resets all her ability cooldowns. This applies to killing camp monsters too.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 800 | 100 |
+| Strength | 70 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Marcella
+
+A melee champion immune to stuns, with a stunning enhanced attack and a ranged damage spell.
+
+### Kit
+
+**Marcella**
+
+**Passive:** Immune to stuns
+
+#### Slot 0: Enhanced attack reset
+
+Resets your basic attack cooldown; the next enhanced attack stuns for one round.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Single-target damage
+
+2 × Focus damage.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1200 | 100 |
+| Strength | 45 | 5 |
+| Focus | 50 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Tavi
+
+A ranged champion who can buy equipment in the field and threaten a target with a powerful stunning spell.
+
+### Kit
+
+**Tavi**
+
+**Passive:** Tavi can buy shards from anywhere on the map, note he cannot buy consumables unless he is on his spawn tiles (or dead). Additionally, Tavi can sell equipment at spawn for its full purchase value. Note, Health bought away from spawn raises maximum health without healing.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Damage and stun
+
+2.2 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 750 | 75 |
+| Strength | 35 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Willow
+
+A ranged champion who can heal an ally or reset a basic attack, with modest stat growth.
+
+### Kit
+
+**Willow**
+
+#### Slot 0: Ally heal
+
+Restores up to 3 × Focus health to another allied champion.
+
+Target / range: Ally · 4. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 700 | 50 |
+| Strength | 45 | 3 |
+| Focus | 105 | 5 |
+
+Attack type: Ranged. Basic attack range: 3 tiles.
+
+## Ren
+
+A melee champion with retaliation damage, a targeted stun and a short dash.
+
+### Kit
+
+**Ren**
+
+**Passive:** Retaliates against an attacker for 0.2 × Focus damage when damaged. Ren can still trigger retaliation as he dies.
+
+#### Slot 0: Damage and stun
+
+1.25 × Focus damage and a one-round stun.
+
+Target / range: Enemy or camp · 4. Walking: Excludes walking. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Dash
+
+Move up to 2 steps, including diagonals.
+
+Target / range: Ground · 2 tiles. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 900 | 100 |
+| Strength | 40 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.
+
+## Varg
+
+A melee champion with splash basic attacks, an attack reset and a temporary self-shield.
+
+### Kit
+
+**Varg**
+
+**Passive:** Basic attacks splash damage equal to Strength onto other valid enemies and camps within radius one of the target. The primary target is not hit twice by the splash.
+
+#### Slot 0: Attack reset
+
+Resets your basic attack cooldown.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+#### Slot 1: Self-shield
+
+Grants a 2.5 × Focus shield lasting five turns.
+
+Target / range: Self. Walking: Compatible. Cooldown: 8 owner turn ends.
+
+### Starting stats
+
+| Stat | Base | Growth per matching shard |
+| --- | --- | --- |
+| Health | 1000 | 100 |
+| Strength | 50 | 5 |
+| Focus | 100 | 10 |
+
+Attack type: Melee. Basic attack range: 1 tiles.

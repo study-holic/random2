@@ -1,0 +1,137 @@
+{
+ "bot": "w7d",
+ "salts": [
+  0
+ ],
+ "panel": [
+  "x-foundry-v16"
+ ],
+ "strong": [
+  "x-foundry-v16"
+ ],
+ "maps": [
+  "corners",
+  "stampede"
+ ],
+ "games": 4,
+ "seconds": 19.1,
+ "jobs": 1,
+ "rc": 0,
+ "work": "C:\\cambc-solo\\matches\\w7d-013300",
+ "per_map": {
+  "corners": {
+   "wins": 0.0,
+   "games": 2,
+   "strong_wins": 0.0,
+   "strong_games": 2,
+   "salts": [
+    0
+   ],
+   "median_win_round": null,
+   "deaths": 2.0,
+   "gem_margin": -636.0,
+   "faults": 0,
+   "fuel_late": 0,
+   "fuel_init": 20,
+   "pass": null
+  },
+  "stampede": {
+   "wins": 2.0,
+   "games": 2,
+   "strong_wins": 2.0,
+   "strong_games": 2,
+   "salts": [
+    0
+   ],
+   "median_win_round": 2000,
+   "deaths": 20.0,
+   "gem_margin": 720.0,
+   "faults": 0,
+   "fuel_late": 0,
+   "fuel_init": 8,
+   "pass": null
+  }
+ },
+ "results": [
+  {
+   "map": "corners",
+   "opp": "x-foundry-v16",
+   "side": "A",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\w7d-013300\\corners__x-foundry-v16__A__s0.repl26a",
+   "win": false,
+   "round": 415,
+   "gems": 372,
+   "gems_opp": 1000,
+   "kills": 4,
+   "deaths": 1,
+   "gold": 2480,
+   "gold_opp": 410,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 10,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "corners",
+   "opp": "x-foundry-v16",
+   "side": "B",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\w7d-013300\\corners__x-foundry-v16__B__s0.repl26a",
+   "win": false,
+   "round": 410,
+   "gems": 356,
+   "gems_opp": 1000,
+   "kills": 4,
+   "deaths": 3,
+   "gold": 2180,
+   "gold_opp": 510,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 10,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "stampede",
+   "opp": "x-foundry-v16",
+   "side": "A",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\w7d-013300\\stampede__x-foundry-v16__A__s0.repl26a",
+   "win": true,
+   "round": 2000,
+   "gems": 720,
+   "gems_opp": 360,
+   "kills": 24,
+   "deaths": 29,
+   "gold": 12410,
+   "gold_opp": 10730,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 4,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "stampede",
+   "opp": "x-foundry-v16",
+   "side": "B",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\w7d-013300\\stampede__x-foundry-v16__B__s0.repl26a",
+   "win": true,
+   "round": 1349,
+   "gems": 1080,
+   "gems_opp": 0,
+   "kills": 27,
+   "deaths": 11,
+   "gold": 10810,
+   "gold_opp": 6420,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 4,
+   "fuel_late": 0,
+   "codes": []
+  }
+ ]
+}

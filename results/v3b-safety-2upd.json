@@ -1,0 +1,135 @@
+{
+ "bot": "v3b",
+ "salts": [
+  0
+ ],
+ "panel": [
+  "starter-cpp"
+ ],
+ "strong": [],
+ "maps": [
+  "expanse",
+  "monolith"
+ ],
+ "games": 4,
+ "seconds": 4.2,
+ "jobs": 4,
+ "rc": 0,
+ "work": "C:\\cambc-solo\\matches\\v3b-062851",
+ "per_map": {
+  "expanse": {
+   "wins": 2.0,
+   "games": 2,
+   "strong_wins": 0.0,
+   "strong_games": 0,
+   "salts": [
+    0
+   ],
+   "median_win_round": 626,
+   "deaths": 0.0,
+   "gem_margin": 466.0,
+   "faults": 0,
+   "fuel_late": 0,
+   "fuel_init": 24,
+   "pass": null
+  },
+  "monolith": {
+   "wins": 2.0,
+   "games": 2,
+   "strong_wins": 0.0,
+   "strong_games": 0,
+   "salts": [
+    0
+   ],
+   "median_win_round": 477,
+   "deaths": 0.0,
+   "gem_margin": 814.5,
+   "faults": 0,
+   "fuel_late": 0,
+   "fuel_init": 12,
+   "pass": null
+  }
+ },
+ "results": [
+  {
+   "map": "expanse",
+   "opp": "starter-cpp",
+   "side": "A",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\v3b-062851\\expanse__starter-cpp__A__s0.repl26a",
+   "win": true,
+   "round": 520,
+   "gems": 1026,
+   "gems_opp": 584,
+   "kills": 0,
+   "deaths": 0,
+   "gold": 5080,
+   "gold_opp": 2310,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 12,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "expanse",
+   "opp": "starter-cpp",
+   "side": "B",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\v3b-062851\\expanse__starter-cpp__B__s0.repl26a",
+   "win": true,
+   "round": 626,
+   "gems": 1116,
+   "gems_opp": 626,
+   "kills": 0,
+   "deaths": 0,
+   "gold": 5805,
+   "gold_opp": 2385,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 12,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "monolith",
+   "opp": "starter-cpp",
+   "side": "A",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\v3b-062851\\monolith__starter-cpp__A__s0.repl26a",
+   "win": true,
+   "round": 400,
+   "gems": 1014,
+   "gems_opp": 207,
+   "kills": 5,
+   "deaths": 0,
+   "gold": 4530,
+   "gold_opp": 1780,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 6,
+   "fuel_late": 0,
+   "codes": []
+  },
+  {
+   "map": "monolith",
+   "opp": "starter-cpp",
+   "side": "B",
+   "salt": 0,
+   "replay": "C:\\cambc-solo\\matches\\v3b-062851\\monolith__starter-cpp__B__s0.repl26a",
+   "win": true,
+   "round": 477,
+   "gems": 1036,
+   "gems_opp": 214,
+   "kills": 5,
+   "deaths": 0,
+   "gold": 4765,
+   "gold_opp": 1635,
+   "faults": 0,
+   "faults_opp": 0,
+   "fuel_init": 6,
+   "fuel_late": 0,
+   "codes": []
+  }
+ ]
+}

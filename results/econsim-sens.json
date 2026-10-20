@@ -1,0 +1,4580 @@
+{
+ "ambush": {
+  "base": {
+   "greedy": [
+    0.7011111111111111,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.68,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.68,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.68,
+    "conveyor/all",
+    30
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.25666666666666665,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.29333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.29333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.29333333333333333,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.29333333333333333,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.7011111111111111,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.68,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.68,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.68,
+    "conveyor/all",
+    30
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.25666666666666665,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.33,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.33,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.33,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.33,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.7011111111111111,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.68,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.68,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.68,
+    "conveyor/all",
+    40
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7011111111111111,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.8344444444444444,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.8666666666666667,
+    "orient/pairs",
+    40
+   ],
+   "conveyor": [
+    0.7777777777777778,
+    "conveyor/half",
+    20
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.5444444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.68,
+    "value/all",
+    40
+   ],
+   "orient": [
+    0.68,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.68,
+    "conveyor/all",
+    40
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.7011111111111111,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.68,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.68,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.68,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.68,
+    "conveyor/all",
+    30
+   ]
+  }
+ },
+ "big_world": {
+  "base": {
+   "greedy": [
+    0.44222222222222224,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.38666666666666666,
+    "team/all",
+    80
+   ],
+   "value": [
+    0.42,
+    "value/pairs",
+    60
+   ],
+   "orient": [
+    0.5033333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.5322222222222223,
+    "conveyor/all",
+    80
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.12666666666666668,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.25,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.34444444444444444,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    0.3322222222222222,
+    "orient/solo",
+    30
+   ],
+   "conveyor": [
+    0.3422222222222222,
+    "conveyor/pairs",
+    30
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.5822222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.52,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.52,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.6066666666666667,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5677777777777778,
+    "conveyor/all",
+    80
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.19,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.2,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.40444444444444444,
+    "value/half",
+    80
+   ],
+   "orient": [
+    0.34444444444444444,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.40444444444444444,
+    "conveyor/half",
+    80
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.4666666666666667,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.43333333333333335,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.4911111111111111,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.5488888888888889,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.5566666666666666,
+    "conveyor/all",
+    80
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7688888888888888,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.52,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.52,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.52,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.8511111111111112,
+    "conveyor/all",
+    10
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.32666666666666666,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.38666666666666666,
+    "team/all",
+    80
+   ],
+   "value": [
+    0.4266666666666667,
+    "value/pairs",
+    60
+   ],
+   "orient": [
+    0.5033333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.4255555555555556,
+    "conveyor/all",
+    60
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.44222222222222224,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.38666666666666666,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.38666666666666666,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.52,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.5322222222222223,
+    "conveyor/all",
+    80
+   ]
+  }
+ },
+ "boss_battle": {
+  "base": {
+   "greedy": [
+    0.7633333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.8,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.8,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5066666666666667,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.27,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.38,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.38,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.38,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.26666666666666666,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.9922222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.0666666666666667,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.0666666666666667,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.0666666666666667,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.0666666666666667,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.36,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.46444444444444444,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.46444444444444444,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.46444444444444444,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.19333333333333333,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.7922222222222223,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8266666666666667,
+    "team/all",
+    80
+   ],
+   "value": [
+    0.8266666666666667,
+    "value/all",
+    80
+   ],
+   "orient": [
+    0.8,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.8,
+    "conveyor/all",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7922222222222223,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8266666666666667,
+    "team/all",
+    80
+   ],
+   "value": [
+    0.9888888888888889,
+    "value/half",
+    80
+   ],
+   "orient": [
+    0.9677777777777777,
+    "orient/half",
+    80
+   ],
+   "conveyor": [
+    0.9666666666666667,
+    "conveyor/pairs",
+    20
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.7633333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.8,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.8,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.4711111111111111,
+    "conveyor/all",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.7633333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.8,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.8,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5066666666666667,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "broken_curve": {
+  "base": {
+   "greedy": [
+    0.5044444444444445,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.5,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.5,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.5911111111111111,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.47555555555555556,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.43555555555555553,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.4666666666666667,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.4666666666666667,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.5088888888888888,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.4666666666666667,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.54,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.56,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.72,
+    "value/half",
+    30
+   ],
+   "orient": [
+    0.7644444444444445,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.7333333333333333,
+    "conveyor/all",
+    40
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.5044444444444445,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.4666666666666667,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.4666666666666667,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.5511111111111111,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.4666666666666667,
+    "conveyor/all",
+    30
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.5788888888888889,
+    "greedy/all",
+    40
+   ],
+   "team": [
+    0.7688888888888888,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7688888888888888,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.7688888888888888,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.65,
+    "conveyor/all",
+    80
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.5788888888888889,
+    "greedy/all",
+    40
+   ],
+   "team": [
+    0.7688888888888888,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.94,
+    "value/half",
+    30
+   ],
+   "orient": [
+    0.94,
+    "orient/half",
+    30
+   ],
+   "conveyor": [
+    0.8111111111111111,
+    "conveyor/half",
+    20
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.46444444444444444,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.4255555555555556,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.6011111111111112,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.5766666666666667,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.5344444444444445,
+    "conveyor/half",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.5044444444444445,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.5,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.5,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.5911111111111111,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.47555555555555556,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "collision": {
+  "base": {
+   "greedy": [
+    0.48,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6266666666666667,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.6477777777777778,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.6766666666666666,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.6444444444444445,
+    "conveyor/half",
+    40
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.3333333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.48,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.48,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.51,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.48,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.5255555555555556,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.7311111111111112,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.8222222222222222,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.8155555555555556,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.7411111111111112,
+    "conveyor/half",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.48,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6266666666666667,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.6266666666666667,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.6588888888888889,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.6266666666666667,
+    "conveyor/all",
+    30
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.48,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6266666666666667,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.6688888888888889,
+    "value/half",
+    30
+   ],
+   "orient": [
+    0.6977777777777778,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.6444444444444445,
+    "conveyor/half",
+    40
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.48,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6533333333333333,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.7222222222222222,
+    "value/solo",
+    40
+   ],
+   "orient": [
+    0.7666666666666667,
+    "orient/solo",
+    30
+   ],
+   "conveyor": [
+    0.7111111111111111,
+    "conveyor/half",
+    60
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.4922222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6466666666666666,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.6844444444444444,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.6588888888888889,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.6544444444444445,
+    "conveyor/half",
+    30
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.48,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6266666666666667,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.6477777777777778,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.6766666666666666,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.6444444444444445,
+    "conveyor/half",
+    40
+   ]
+  }
+ },
+ "concentrated_wealth": {
+  "base": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.8833333333333333,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    1.0866666666666667,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.42,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.42,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.42,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.59,
+    "conveyor/all",
+    20
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    1.4466666666666668,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.7355555555555555,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.7355555555555555,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.78,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.528888888888889,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.47444444444444445,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    1.3288888888888888,
+    "conveyor/half",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    1.3211111111111111,
+    "conveyor/all",
+    10
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.9088888888888889,
+    "conveyor/half",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    1.49,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.6488888888888888,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.8833333333333333,
+    "conveyor/half",
+    10
+   ]
+  }
+ },
+ "contest": {
+  "base": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    1.5555555555555556,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.5555555555555556,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5555555555555556,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.5555555555555556,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.5555555555555556,
+    "conveyor/all",
+    10
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "corners": {
+  "base": {
+   "greedy": [
+    0.6255555555555555,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7644444444444445,
+    "value/half",
+    20
+   ],
+   "orient": [
+    0.7644444444444445,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.7288888888888889,
+    "conveyor/half",
+    30
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.5044444444444445,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.5866666666666667,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.5866666666666667,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.5777777777777777,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5511111111111111,
+    "conveyor/all",
+    20
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.7933333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8566666666666667,
+    "team/all",
+    30
+   ],
+   "value": [
+    1.0666666666666667,
+    "value/pairs",
+    20
+   ],
+   "orient": [
+    1.0666666666666667,
+    "orient/pairs",
+    20
+   ],
+   "conveyor": [
+    1.0822222222222222,
+    "conveyor/half",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.6255555555555555,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.7333333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.6933333333333334,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.6988888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8288888888888889,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.9111111111111111,
+    "value/pairs",
+    10
+   ],
+   "orient": [
+    0.8633333333333333,
+    "orient/pairs",
+    80
+   ],
+   "conveyor": [
+    0.9111111111111111,
+    "conveyor/pairs",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.6988888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8288888888888889,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.9811111111111112,
+    "value/pairs",
+    40
+   ],
+   "orient": [
+    1.0266666666666666,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.9788888888888889,
+    "conveyor/all",
+    80
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.6255555555555555,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7122222222222222,
+    "team/all",
+    80
+   ],
+   "value": [
+    0.7644444444444445,
+    "value/half",
+    20
+   ],
+   "orient": [
+    0.7222222222222222,
+    "orient/half",
+    30
+   ],
+   "conveyor": [
+    0.7111111111111111,
+    "conveyor/half",
+    30
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.6255555555555555,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7644444444444445,
+    "value/half",
+    20
+   ],
+   "orient": [
+    0.7644444444444445,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.7288888888888889,
+    "conveyor/half",
+    30
+   ]
+  }
+ },
+ "corridors": {
+  "base": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.208888888888889,
+    "value/half",
+    80
+   ],
+   "orient": [
+    1.208888888888889,
+    "orient/half",
+    80
+   ],
+   "conveyor": [
+    1.2377777777777779,
+    "conveyor/all",
+    80
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.7577777777777778,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.16,
+    "value/all",
+    80
+   ],
+   "orient": [
+    1.16,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    1.1355555555555557,
+    "conveyor/all",
+    80
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.3533333333333333,
+    "value/half",
+    80
+   ],
+   "orient": [
+    1.3711111111111112,
+    "orient/pairs",
+    80
+   ],
+   "conveyor": [
+    1.3533333333333333,
+    "conveyor/half",
+    80
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.16,
+    "value/all",
+    80
+   ],
+   "orient": [
+    1.16,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    1.058888888888889,
+    "conveyor/all",
+    40
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.3022222222222222,
+    "value/pairs",
+    60
+   ],
+   "orient": [
+    1.3022222222222222,
+    "orient/pairs",
+    60
+   ],
+   "conveyor": [
+    1.3022222222222222,
+    "conveyor/pairs",
+    60
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    1.7555555555555555,
+    "greedy/all",
+    40
+   ],
+   "team": [
+    2.3777777777777778,
+    "team/all",
+    10
+   ],
+   "value": [
+    2.3777777777777778,
+    "value/all",
+    10
+   ],
+   "orient": [
+    2.3777777777777778,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.96,
+    "conveyor/all",
+    30
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.031111111111111,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.208888888888889,
+    "value/half",
+    80
+   ],
+   "orient": [
+    1.208888888888889,
+    "orient/half",
+    80
+   ],
+   "conveyor": [
+    1.2377777777777779,
+    "conveyor/all",
+    80
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.9511111111111111,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.16,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.251111111111111,
+    "value/half",
+    60
+   ],
+   "orient": [
+    1.251111111111111,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    1.251111111111111,
+    "conveyor/half",
+    60
+   ]
+  }
+ },
+ "eight": {
+  "base": {
+   "greedy": [
+    0.6011111111111112,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    0.74,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.74,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.74,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.3511111111111111,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.24555555555555555,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.25666666666666665,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.31222222222222223,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.33,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.27555555555555555,
+    "conveyor/half",
+    30
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.62,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    1.18,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.18,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.18,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.4822222222222222,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.3422222222222222,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.29333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.4,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.4,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.29333333333333333,
+    "conveyor/pairs",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.6011111111111112,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    1.048888888888889,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.048888888888889,
+    "value/all",
+    60
+   ],
+   "orient": [
+    1.048888888888889,
+    "orient/all",
+    60
+   ],
+   "conveyor": [
+    0.45,
+    "conveyor/all",
+    20
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.6011111111111112,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    1.048888888888889,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.0666666666666667,
+    "value/half",
+    30
+   ],
+   "orient": [
+    1.0666666666666667,
+    "orient/half",
+    30
+   ],
+   "conveyor": [
+    0.7833333333333333,
+    "conveyor/all",
+    30
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.6011111111111112,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    0.74,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.74,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.7111111111111111,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.45666666666666667,
+    "conveyor/all",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.6011111111111112,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    0.74,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.74,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.74,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.3511111111111111,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "elk_arena": {
+  "base": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.92,
+    "conveyor/all",
+    20
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    1.68,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.68,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.68,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.68,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.68,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.92,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.92,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.92,
+    "conveyor/all",
+    20
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.76,
+    "conveyor/all",
+    10
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    1.76,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.44,
+    "conveyor/half",
+    20
+   ]
+  },
+  "recall": {
+   "greedy": [
+    1.92,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.92,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.92,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.92,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.92,
+    "conveyor/all",
+    20
+   ]
+  }
+ },
+ "elkring": {
+  "base": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.7333333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.7577777777777778,
+    "conveyor/all",
+    60
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.6111111111111112,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.6111111111111112,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.6111111111111112,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.6111111111111112,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.5577777777777778,
+    "conveyor/all",
+    30
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.9777777777777777,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.9777777777777777,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.3688888888888888,
+    "value/half",
+    60
+   ],
+   "orient": [
+    1.3688888888888888,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    1.18,
+    "conveyor/half",
+    60
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.7333333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.7577777777777778,
+    "conveyor/all",
+    60
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.0266666666666666,
+    "value/half",
+    20
+   ],
+   "orient": [
+    1.0266666666666666,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.9722222222222222,
+    "conveyor/half",
+    60
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.2222222222222223,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    1.2222222222222223,
+    "orient/solo",
+    30
+   ],
+   "conveyor": [
+    1.2222222222222223,
+    "conveyor/pairs",
+    40
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.7333333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.7644444444444445,
+    "conveyor/all",
+    60
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.7333333333333333,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.7333333333333333,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.7577777777777778,
+    "conveyor/all",
+    60
+   ]
+  }
+ },
+ "expanse": {
+  "base": {
+   "greedy": [
+    0.2877777777777778,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7822222222222223,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.7822222222222223,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.7822222222222223,
+    "conveyor/all",
+    20
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.23444444444444446,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.26666666666666666,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.35555555555555557,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.3622222222222222,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.32222222222222224,
+    "conveyor/half",
+    60
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.3211111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.0266666666666666,
+    "team/all",
+    80
+   ],
+   "value": [
+    1.0266666666666666,
+    "value/all",
+    80
+   ],
+   "orient": [
+    1.0266666666666666,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.9777777777777777,
+    "conveyor/all",
+    30
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.2877777777777778,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.35,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.35,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.4022222222222222,
+    "orient/half",
+    80
+   ],
+   "conveyor": [
+    0.25222222222222224,
+    "conveyor/half",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.2877777777777778,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7822222222222223,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.8533333333333334,
+    "value/half",
+    60
+   ],
+   "orient": [
+    0.8533333333333334,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.7944444444444444,
+    "conveyor/all",
+    40
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.2877777777777778,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7822222222222223,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.9322222222222222,
+    "value/pairs",
+    40
+   ],
+   "orient": [
+    0.8822222222222222,
+    "orient/pairs",
+    80
+   ],
+   "conveyor": [
+    0.9322222222222222,
+    "conveyor/pairs",
+    40
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.2833333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7988888888888889,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.7988888888888889,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.7988888888888889,
+    "conveyor/all",
+    20
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.2877777777777778,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7988888888888889,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.7988888888888889,
+    "value/all",
+    40
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.7988888888888889,
+    "conveyor/all",
+    40
+   ]
+  }
+ },
+ "fracture": {
+  "base": {
+   "greedy": [
+    0.7188888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.9288888888888889,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9288888888888889,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.9288888888888889,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.44222222222222224,
+    "conveyor/half",
+    80
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.1922222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.32,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.32,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.32,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.28444444444444444,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.8788888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.9777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9777777777777777,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.0177777777777777,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5122222222222222,
+    "conveyor/half",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.21777777777777776,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.37777777777777777,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.37777777777777777,
+    "value/all",
+    40
+   ],
+   "orient": [
+    0.37777777777777777,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.3055555555555556,
+    "conveyor/all",
+    60
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.7655555555555555,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.98,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.98,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.98,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.5066666666666667,
+    "conveyor/half",
+    20
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.9433333333333334,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    1.5555555555555556,
+    "team/all",
+    10
+   ],
+   "value": [
+    1.5555555555555556,
+    "value/all",
+    10
+   ],
+   "orient": [
+    1.48,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.1777777777777778,
+    "conveyor/all",
+    80
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.5766666666666667,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.9288888888888889,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9288888888888889,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.9066666666666666,
+    "orient/all",
+    80
+   ],
+   "conveyor": [
+    0.39111111111111113,
+    "conveyor/half",
+    40
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.7188888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.9288888888888889,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9288888888888889,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.9288888888888889,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.37777777777777777,
+    "conveyor/half",
+    20
+   ]
+  }
+ },
+ "fragment": {
+  "base": {
+   "greedy": [
+    0.1111111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.1111111111111111,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.16,
+    "value/solo",
+    10
+   ],
+   "orient": [
+    0.16,
+    "orient/solo",
+    10
+   ],
+   "conveyor": [
+    0.16,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.08888888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.08888888888888889,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.09666666666666666,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.09666666666666666,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.09777777777777778,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.5866666666666667,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6355555555555555,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.6355555555555555,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.6355555555555555,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.27111111111111114,
+    "conveyor/all",
+    40
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.1111111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.1111111111111111,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.1111111111111111,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.1111111111111111,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.10888888888888888,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.4711111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.52,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.52,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.52,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.21555555555555556,
+    "conveyor/all",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.4711111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.52,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.52,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.52,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.27111111111111114,
+    "conveyor/half",
+    20
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.1111111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.1111111111111111,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.16,
+    "value/solo",
+    10
+   ],
+   "orient": [
+    0.16,
+    "orient/solo",
+    10
+   ],
+   "conveyor": [
+    0.16,
+    "conveyor/all",
+    10
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.1111111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.1111111111111111,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.16,
+    "value/solo",
+    10
+   ],
+   "orient": [
+    0.16,
+    "orient/solo",
+    10
+   ],
+   "conveyor": [
+    0.16,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "gold_rush": {
+  "base": {
+   "greedy": [
+    0.31777777777777777,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.3422222222222222,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.5133333333333333,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    0.46444444444444444,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.55,
+    "conveyor/half",
+    30
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.2688888888888889,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.29333333333333333,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.29333333333333333,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.29333333333333333,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.29888888888888887,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.39111111111111113,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    0.39111111111111113,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.66,
+    "value/solo",
+    60
+   ],
+   "orient": [
+    0.66,
+    "orient/solo",
+    60
+   ],
+   "conveyor": [
+    0.66,
+    "conveyor/all",
+    60
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.31777777777777777,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.3422222222222222,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.3422222222222222,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.3422222222222222,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.3477777777777778,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.31777777777777777,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.3422222222222222,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.5133333333333333,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    0.46444444444444444,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.55,
+    "conveyor/half",
+    30
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.31777777777777777,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.3422222222222222,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.5133333333333333,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    0.46444444444444444,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.55,
+    "conveyor/half",
+    30
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.024444444444444446,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.31777777777777777,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.39111111111111113,
+    "value/solo",
+    80
+   ],
+   "orient": [
+    0.31777777777777777,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.3422222222222222,
+    "conveyor/all",
+    40
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.3422222222222222,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.3422222222222222,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.5133333333333333,
+    "value/solo",
+    30
+   ],
+   "orient": [
+    0.4888888888888889,
+    "orient/solo",
+    80
+   ],
+   "conveyor": [
+    0.4888888888888889,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "hooks": {
+  "base": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.88,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.88,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.88,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.6844444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6844444444444444,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.6844444444444444,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.6844444444444444,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.6844444444444444,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    1.1733333333333333,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    1.1,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.1,
+    "value/all",
+    20
+   ],
+   "orient": [
+    1.1733333333333333,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    1.0755555555555556,
+    "conveyor/half",
+    10
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.88,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.88,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.88,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9288888888888889,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.9288888888888889,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.9288888888888889,
+    "conveyor/half",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.9288888888888889,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.9288888888888889,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.7333333333333333,
+    "conveyor/all",
+    10
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.6111111111111112,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.88,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.88,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.7255555555555555,
+    "conveyor/all",
+    20
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.88,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.88,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.88,
+    "conveyor/all",
+    10
+   ]
+  }
+ },
+ "interlock": {
+  "base": {
+   "greedy": [
+    0.2644444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.24444444444444444,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.3422222222222222,
+    "value/half",
+    80
+   ],
+   "orient": [
+    0.37444444444444447,
+    "orient/solo",
+    80
+   ],
+   "conveyor": [
+    0.36,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.22666666666666666,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.22,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.24444444444444444,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.3333333333333333,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.24444444444444444,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.8844444444444445,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.9,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.9,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.99,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    0.9,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.2644444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.24444444444444444,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.3422222222222222,
+    "value/half",
+    80
+   ],
+   "orient": [
+    0.3322222222222222,
+    "orient/half",
+    10
+   ],
+   "conveyor": [
+    0.3422222222222222,
+    "conveyor/half",
+    80
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.6888888888888889,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.81,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.81,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.81,
+    "orient/all",
+    60
+   ],
+   "conveyor": [
+    0.8133333333333334,
+    "conveyor/all",
+    40
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.6888888888888889,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.81,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.08,
+    "value/half",
+    60
+   ],
+   "orient": [
+    1.08,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.7477777777777778,
+    "conveyor/all",
+    80
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.2644444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.2311111111111111,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.39111111111111113,
+    "value/solo",
+    40
+   ],
+   "orient": [
+    0.3877777777777778,
+    "orient/half",
+    30
+   ],
+   "conveyor": [
+    0.39111111111111113,
+    "conveyor/half",
+    40
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.2644444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.24444444444444444,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.3422222222222222,
+    "value/half",
+    80
+   ],
+   "orient": [
+    0.37444444444444447,
+    "orient/solo",
+    80
+   ],
+   "conveyor": [
+    0.36,
+    "conveyor/half",
+    10
+   ]
+  }
+ },
+ "islands": {
+  "base": {
+   "greedy": [
+    0.7822222222222223,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.6844444444444444,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.6844444444444444,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.6844444444444444,
+    "conveyor/all",
+    20
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.88,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.88,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.88,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.88,
+    "orient/all",
+    60
+   ],
+   "conveyor": [
+    0.8111111111111111,
+    "conveyor/all",
+    20
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.0,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.0,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.0,
+    "value/all",
+    10
+   ],
+   "orient": [
+    0.0,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.0,
+    "conveyor/all",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.7822222222222223,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.6844444444444444,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.6844444444444444,
+    "value/all",
+    20
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    40
+   ],
+   "conveyor": [
+    0.6844444444444444,
+    "conveyor/half",
+    10
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7822222222222223,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.6844444444444444,
+    "team/all",
+    20
+   ],
+   "value": [
+    0.9666666666666667,
+    "value/half",
+    20
+   ],
+   "orient": [
+    1.0733333333333333,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.9788888888888889,
+    "conveyor/half",
+    20
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.7822222222222223,
+    "greedy/all",
+    80
+   ],
+   "team": [
+    0.7822222222222223,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7822222222222223,
+    "value/all",
+    30
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    30
+   ],
+   "conveyor": [
+    0.7822222222222223,
+    "conveyor/all",
+    30
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.7822222222222223,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.78,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.78,
+    "value/all",
+    40
+   ],
+   "orient": [
+    0.7822222222222223,
+    "orient/all",
+    10
+   ],
+   "conveyor": [
+    0.78,
+    "conveyor/all",
+    40
+   ]
+  }
+ },
+ "lanes": {
+  "base": {
+   "greedy": [
+    0.5722222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.9533333333333334,
+    "value/half",
+    30
+   ],
+   "orient": [
+    0.9288888888888889,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    1.0266666666666666,
+    "conveyor/all",
+    60
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.55,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.6111111111111112,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.7088888888888889,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.6844444444444444,
+    "orient/half",
+    30
+   ],
+   "conveyor": [
+    0.7088888888888889,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.6744444444444444,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.8555555555555555,
+    "team/all",
+    20
+   ],
+   "value": [
+    1.3933333333333333,
+    "value/pairs",
+    80
+   ],
+   "orient": [
+    1.3933333333333333,
+    "orient/pairs",
+    80
+   ],
+   "conveyor": [
+    1.271111111111111,
+    "conveyor/pairs",
+    40
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.5722222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.7333333333333333,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.7688888888888888,
+    "orient/pairs",
+    60
+   ],
+   "conveyor": [
+    0.7533333333333333,
+    "conveyor/all",
+    60
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.5722222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.0633333333333332,
+    "value/pairs",
+    60
+   ],
+   "orient": [
+    1.0877777777777777,
+    "orient/pairs",
+    60
+   ],
+   "conveyor": [
+    0.9777777777777777,
+    "conveyor/all",
+    40
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.5722222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    1.1488888888888888,
+    "value/solo",
+    60
+   ],
+   "orient": [
+    1.1,
+    "orient/solo",
+    40
+   ],
+   "conveyor": [
+    1.1611111111111112,
+    "conveyor/all",
+    60
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.5722222222222222,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7455555555555555,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.9533333333333334,
+    "value/half",
+    60
+   ],
+   "orient": [
+    0.9455555555555556,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.99,
+    "conveyor/half",
+    60
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.5111111111111111,
+    "greedy/all",
+    10
+   ],
+   "team": [
+    0.7333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.9533333333333334,
+    "value/half",
+    60
+   ],
+   "orient": [
+    0.9166666666666666,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    1.0266666666666666,
+    "conveyor/all",
+    60
+   ]
+  }
+ },
+ "monolith": {
+  "base": {
+   "greedy": [
+    0.37333333333333335,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.5333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.6577777777777778,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.6666666666666666,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.6211111111111111,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr30": {
+   "greedy": [
+    0.37333333333333335,
+    "greedy/all",
+    60
+   ],
+   "team": [
+    0.3933333333333333,
+    "team/all",
+    30
+   ],
+   "value": [
+    0.44,
+    "value/half",
+    10
+   ],
+   "orient": [
+    0.46444444444444444,
+    "orient/half",
+    20
+   ],
+   "conveyor": [
+    0.44,
+    "conveyor/half",
+    10
+   ]
+  },
+  "dpr80": {
+   "greedy": [
+    0.49777777777777776,
+    "greedy/all",
+    40
+   ],
+   "team": [
+    0.5533333333333333,
+    "team/all",
+    40
+   ],
+   "value": [
+    0.8566666666666667,
+    "value/pairs",
+    30
+   ],
+   "orient": [
+    0.9622222222222222,
+    "orient/pairs",
+    40
+   ],
+   "conveyor": [
+    0.8566666666666667,
+    "conveyor/pairs",
+    30
+   ]
+  },
+  "budget300": {
+   "greedy": [
+    0.37333333333333335,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.5333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.5333333333333333,
+    "value/all",
+    60
+   ],
+   "orient": [
+    0.5333333333333333,
+    "orient/all",
+    60
+   ],
+   "conveyor": [
+    0.44222222222222224,
+    "conveyor/half",
+    10
+   ]
+  },
+  "budget1500": {
+   "greedy": [
+    0.37333333333333335,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.5333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.72,
+    "value/pairs",
+    10
+   ],
+   "orient": [
+    0.7566666666666667,
+    "orient/pairs",
+    40
+   ],
+   "conveyor": [
+    0.7288888888888889,
+    "conveyor/half",
+    30
+   ]
+  },
+  "mono_ok": {
+   "greedy": [
+    0.7622222222222222,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    1.4222222222222223,
+    "team/all",
+    30
+   ],
+   "value": [
+    1.4222222222222223,
+    "value/all",
+    30
+   ],
+   "orient": [
+    1.4222222222222223,
+    "orient/all",
+    20
+   ],
+   "conveyor": [
+    1.3555555555555556,
+    "conveyor/all",
+    40
+   ]
+  },
+  "gold0.1": {
+   "greedy": [
+    0.43444444444444447,
+    "greedy/all",
+    30
+   ],
+   "team": [
+    0.44666666666666666,
+    "team/all",
+    10
+   ],
+   "value": [
+    0.6288888888888889,
+    "value/half",
+    20
+   ],
+   "orient": [
+    0.6555555555555556,
+    "orient/half",
+    60
+   ],
+   "conveyor": [
+    0.5411111111111111,
+    "conveyor/half",
+    20
+   ]
+  },
+  "recall": {
+   "greedy": [
+    0.37333333333333335,
+    "greedy/all",
+    20
+   ],
+   "team": [
+    0.5333333333333333,
+    "team/all",
+    60
+   ],
+   "value": [
+    0.6577777777777778,
+    "value/half",
+    40
+   ],
+   "orient": [
+    0.6666666666666666,
+    "orient/half",
+    40
+   ],
+   "conveyor": [
+    0.6211111111111111,
+    "conveyor/half",
+    10
+   ]
+  }
+ }
+}

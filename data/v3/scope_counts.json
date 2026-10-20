@@ -1,0 +1,149 @@
+{
+ "listed_groups": 22848,
+ "finished_groups": 22774,
+ "error_groups": 74,
+ "team_group_sum": 32187,
+ "distinct_groups": 22774,
+ "both_top50": 9413,
+ "both_top10": 1702,
+ "any_top10": 5197,
+ "games_distinct": 113870,
+ "by_day": {
+  "2026-10-13": 1447,
+  "2026-10-14": 3805,
+  "2026-10-15": 4559,
+  "2026-10-16": 4125,
+  "2026-10-17": 4623,
+  "2026-10-18": 4215
+ },
+ "detail_groups": 6761,
+ "detail_games": 33805,
+ "maps": {
+  "25d81311-e304-4cec-b9f5-f0c25d169f99": [
+   "rows",
+   2285
+  ],
+  "3991a8b3-ffb8-435a-a53d-32bcaa27d266": [
+   "monolith",
+   2182
+  ],
+  "bb12893c-ce47-40ee-b0b0-61614ab8576f": [
+   "elkring",
+   2154
+  ],
+  "f930f43f-f800-4ec5-9308-2904825b4752": [
+   "swirl",
+   1743
+  ],
+  "df22386f-447f-40ba-998c-20e51e425962": [
+   "rushbait_v2",
+   1730
+  ],
+  "f2b6903f-758e-40e7-aeb0-df4133b451c9": [
+   "stampede",
+   1723
+  ],
+  "b135e0fc-08eb-4a8c-9ec2-02753a26db22": [
+   "packs",
+   1722
+  ],
+  "9925f416-97ed-4b4f-9ca3-4f3171559e79": [
+   "fragment",
+   1719
+  ],
+  "699c96a0-7eba-4bd4-81d4-6968fee04b16": [
+   "ambush",
+   1719
+  ],
+  "2e9820ee-c2aa-4003-b6c5-c1ea9b521716": [
+   "collision",
+   1714
+  ],
+  "e3c29b68-6db3-4d53-ba4f-ebcc06af9086": [
+   "corners",
+   1713
+  ],
+  "7bfc2edd-ce30-41cd-810f-e6b621ff7d33": [
+   "pilgrimage",
+   1711
+  ],
+  "3a5c2468-58ee-489e-8806-6cae53353e7e": [
+   "contest",
+   1702
+  ],
+  "b777c8c8-4f6c-4d07-a4ac-d106b1d2512b": [
+   "interlock",
+   1701
+  ],
+  "93852276-1cbb-4a85-9190-ef7005b2e512": [
+   "lanes",
+   1690
+  ],
+  "3e2df5be-13ff-49ec-8c1e-2e5176b4dcc5": [
+   "eight",
+   1685
+  ],
+  "81929320-e211-42ac-8de0-3c72d2ab9a72": [
+   "expanse",
+   1662
+  ],
+  "3bf50c50-7d65-4962-81e0-eec0592790e3": [
+   "collision",
+   561
+  ],
+  "81824dd7-dd52-4e7b-8fbd-ddd2b98fbe15": [
+   "packs",
+   557
+  ],
+  "df106d8d-d4ee-4cf8-b8f9-fa28cffcf02e": [
+   "lanes",
+   556
+  ],
+  "49a6f0b9-eb7d-40d5-aa68-494b93d19bdb": [
+   "interlock",
+   538
+  ],
+  "4705f2c8-114b-47e5-ae59-6b94c315a8de": [
+   "expanse",
+   523
+  ],
+  "8b48383d-7eaf-420f-b4c5-109ff05eac38": [
+   "corners",
+   512
+  ],
+  "8d448d85-48bf-4531-9f26-4f7197234806": [
+   "corners_old2",
+   2
+  ],
+  "9dd69963-9dfd-4daf-ba9f-fbf2a1b61bc6": [
+   "monolith",
+   1
+  ]
+ },
+ "patches": {
+  "0.0.3": [
+   "2026-10-16T22:20:06.089Z",
+   "2026-10-18T22:40:11.668Z",
+   27400
+  ],
+  "0.0.2": [
+   "2026-10-16T08:00:03.750Z",
+   "2026-10-16T22:10:04.627Z",
+   1580
+  ],
+  "none": [
+   "2026-10-13T11:51:25.435Z",
+   "2026-10-16T07:00:02.765Z",
+   4825
+  ]
+ },
+ "endReason": {
+  "gems": 21755,
+  "null": 11230,
+  "tiebreak_gold": 361,
+  "tiebreak_gems": 455,
+  "tiebreak_second_team": 4
+ },
+ "rounds_median": 590,
+ "rounds_mean": 681.752817630528
+}

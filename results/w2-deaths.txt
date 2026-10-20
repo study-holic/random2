@@ -1,0 +1,4 @@
+w2: 36 games in 93 s (23.2/min, jobs 4), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+swirl        8.0/12  1.33/4    1249  36.7  305.2   0     0 fail
+total 8.0/12 (mean over salts [0, 1, 2]); maps passing 0/1; out results/w2-deaths.json

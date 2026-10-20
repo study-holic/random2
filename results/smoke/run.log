@@ -1,0 +1,19 @@
+v1 is up to date
+x-foundry-v16 is up to date
+v1 vs x-foundry-v16 on maps/rows.map26a
+drafting: round 0/2000
+running: round 0/2000
+running: round 100/2000
+running: round 200/2000
+running: round 300/2000
+running: round 400/2000
+running: round 500/2000
+running: round 600/2000
+running: round 700/2000
+finished: round 762/2000 — teamA
+Team A (v1) wins: reached 1000 gems in round 762
+  team bot            gems kills deaths gold earned  crashes  draft
+  A    v1             1023     6      1        4770        0  Vendetta, Cassi & Issac, Varg, Ryth
+  B    x-foundry-v16   858     1      7        3830        0  Cassi & Issac, Varg, Stellar, Vendetta
+replay bundle: results/smoke\v1-vs-x-foundry-v16-1792356511716.repl26a
+match summary: results/smoke/rows.json

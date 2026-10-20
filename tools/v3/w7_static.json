@@ -1,0 +1,109 @@
+{
+"ambush": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"collision": [
+"Vendetta",
+"CassiIssac",
+"Stellar"
+],
+"contest": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"corners": [
+"CassiIssac",
+"Stellar",
+"Varg",
+"Ryth",
+"Ren"
+],
+"eight": [
+"CassiIssac",
+"Stellar",
+"Tavi",
+"Ryth",
+"Ren"
+],
+"elkring": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"expanse": [
+"Vendetta",
+"CassiIssac",
+"Stellar"
+],
+"fragment": [
+"Vendetta",
+"CassiIssac",
+"Stellar"
+],
+"packs": [
+"Vendetta",
+"CassiIssac",
+"Stellar"
+],
+"interlock": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth"
+],
+"lanes": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"monolith": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"pilgrimage": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth",
+"Tavi"
+],
+"rows": [
+"CassiIssac",
+"Varg",
+"Tavi",
+"Stellar"
+],
+"rushbait_v2": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth"
+],
+"stampede": [
+"Tavi",
+"Stellar",
+"Ryth",
+"Varg",
+"Ren"
+],
+"swirl": [
+"Vendetta",
+"CassiIssac",
+"Varg",
+"Ryth"
+]
+}

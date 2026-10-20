@@ -1,0 +1,20 @@
+salts: base 3, cand 3; admit when dW >= 1.5, dGem > 0, dStrong >= 0
+map           base  cand    dW dStrong    dGem admit
+ambush       10.67 11.00 +0.33   +0.33    +147 -
+collision     9.00  5.67 -3.33   -1.33   -2987 -
+contest      10.00 10.00 +0.00   +0.00      +0 -
+corners       6.00  5.00 -1.00   +0.67    -657 -
+eight         8.00  8.00 +0.00   +0.00      +0 -
+elkring       9.33  9.33 +0.00   +0.00      +0 -
+expanse      11.00 10.33 -0.67   -0.33    -127 -
+fragment      9.00  9.00 +0.00   +0.00      +0 -
+interlock     6.67  7.67 +1.00   +0.33    +671 -
+lanes         7.33  7.33 +0.00   +0.00     +75 -
+monolith     11.00 11.00 +0.00   +0.00    +820 -
+packs        10.00 10.00 +0.00   +0.00      +0 -
+pilgrimage   10.00  9.00 -1.00   -1.67     +29 -
+rows         11.67 11.67 +0.00   +0.00      +0 -
+rushbait-v2   4.33  5.00 +0.67   +0.33    +539 -
+stampede      9.67 10.33 +0.67   +0.67   -3000 -
+swirl         8.00  8.33 +0.33   +0.00    -300 -
+total dW -3.00; admitted: none

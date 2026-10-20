@@ -1,0 +1,20 @@
+b-v418d-salt: 612 games in 699 s (52.5/min, jobs 8), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+ambush       11.0/12  3.0/4     939   3.0  840.8   0     0 PASS
+collision    7.67/12  1.33/4     750   4.4  122.7   0     0 fail
+contest      10.0/12  2.0/4    2000  19.4    0.0   0     0 PASS
+corners      5.33/12  1.33/4     480   2.7  -45.7   0     1 fail
+eight        9.0/12  1.0/4     682   6.8  308.2   0     0 fail
+elkring      8.33/12  1.33/4     640   5.1  246.0   0     0 fail
+expanse      11.67/12  4.0/4     427   0.9  334.9   0    48 PASS
+fragment     8.0/12  1.0/4     739  13.1  375.8   0     0 fail
+interlock    7.0/12  1.67/4     618   1.8  -58.7   0     0 fail
+lanes        8.67/12  1.67/4     442   2.2  197.8   0     0 fail
+monolith     11.0/12  3.0/4     583   3.9  426.7   0     0 PASS
+packs        10.0/12  2.0/4     529   2.0  409.8   0     0 PASS
+pilgrimage   10.33/12  3.33/4    1291  11.2  268.2   0     0 PASS
+rows         12.0/12  4.0/4     493   0.6  641.1   0     0 PASS
+rushbait-v2  6.33/12  1.33/4    1076   3.3   26.3   0     0 fail
+stampede     9.33/12  2.0/4    1760  14.4  515.0   0     0 PASS
+swirl        7.33/12  1.67/4    1707  51.0  103.2   0     0 fail
+total 152.99/204 (mean over salts [0, 1, 2]); maps passing 8/17; out results/v3sim-b-v418d-salt.json
