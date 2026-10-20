@@ -5,7 +5,7 @@ rows=[]  # (set,map,match,deathdict)
 games=collections.defaultdict(dict)
 # v3b panel
 for r in csv.DictReader(open(R+"data/unranked/games_v3b.tsv"),delimiter="\t"):
-    p=R+"data/unranked/decoded/s13/"+r["match"]+".json"
+    p=R+"data/unranked/v3b_s13/"+r["match"]+".json"
     if not os.path.exists(p): continue
     ev,d=analyse(p,r["map"],0)
     # sanity: final sg vs g_us
