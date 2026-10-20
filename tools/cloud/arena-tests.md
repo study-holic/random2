@@ -8,4 +8,6 @@ GOAL: engine-1.0 arena tests that PLAN-v4 depends on, so we build on measured ru
 4. Capture rules: does an enemy within the group's region reset our capture timer; are rewards split among allies present at completion?
 5. Prism with 0, 20 and 40 carried gems in a 1v1 against Stellar, Ren and Varg (100 duels each, both orders): win rate and damage per cast.
 6. Heart of Ruin: 1v1 against each of the 11 other champions (50 duels each), and 2v2 HoR+Stellar vs Ren+Varg (50 runs).
-Output: results/arena-1020.md (tables first) and the raw JSON. Commit them on a new branch `cloud/arena` and push it. Do not push to main.
+Output: results/arena-1020.md (tables first) and the raw JSON. Commit them on this session's own branch and push it. Do not push to main.
+
+Cloud notes (lead, 20 Oct): run `bash tools/cloud/setup.sh` first (toolchain fetch through the proxy; if it fails, follow results/cloud-parity.md and fix the script). Push results to this session's own branch (claude/...); the lead merges them.

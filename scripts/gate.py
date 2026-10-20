@@ -4,7 +4,7 @@ python scripts/gate.py <bot> [--jobs N] [--skip-build]
 
 PASS only if: release build ok; every game won; 0 faults; no turn over 100,000 fuel; no fuelExhausted after round 1;
 if the bot prints mapid=<name> then every pool map maps to its own name; local maps/ match the recorded pool and the engine
-played matches the recorded engine. Writes results/gate-<bot>-<HHMM>.json (+ the mapgate JSON beside it). Exit 1 on FAIL.
+played matches the recorded engine. Writes results/gate-<bot>-<UTC stamp>-<host>.json (+ the mapgate JSON beside it). Exit 1 on FAIL.
 """
 import argparse, json, os, subprocess, sys, time
 
@@ -21,7 +21,7 @@ def main():
     a = ap.parse_args()
     gt = json.load(open(os.path.join(ROOT, "state", "ground-truth.json")))
     pool = gt["pool"]
-    hm = time.strftime("%H%M")
+    hm = time.strftime("%Y%m%d-%H%M%SZ", time.gmtime()) + ("-win" if os.name == "nt" else "-linux")  # UTC + host: cloud and laptop never clash
     base = os.path.join(ROOT, "results", f"gate-{a.bot}-{hm}")
     why = []
 
