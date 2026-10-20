@@ -135,7 +135,7 @@ Probe: `bots/fuelprobe` (drafts like bots/idle) vs bots/idle on elkring, `cambc 
 | 101,000 (r50) | 100,000 | ~1k | kept (the step shows in the next snapshot) | – | 11 | round 61 | rounds 50-60 |
 | 110,000 (r50) | 100,000 | ~10k | kept | 12 per champion, rounds 50-61 | 12 | round 62 | rounds 50-61 |
 | 150,000 (r50) | 100,000 | ~50k | kept | – | 16 | round 66 | rounds 50-65 |
-| 175,000 (r1; 21k already used by init) | 200,000 | ~-4k + init | – | – | ≥ 9 of 10 played | not by round 10 | yes |
+| 175,000 (r1) | 200,000 | small: 178,868 left after init; the print, burn and step exceed it | – | – | ≥ 9 of the 10 played | not by round 10 (run stopped there) | yes |
 
 **Result.**
 - **The turn is not cut short with its actions lost.** Actions taken before the limit are applied.
