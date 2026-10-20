@@ -137,7 +137,7 @@ int Bot::choose_target(const TurnView& v, int exclude) {
                 if (claim_ok && i != my_claim) continue;
             } else {
                 bool taken = false;
-                for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && mem[k] == i + 1) taken = true;
+                for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) taken = true;
                 if (taken) continue;
             }
             const int d = min_distance(v.pos, g.tiles);
@@ -206,7 +206,7 @@ int Bot::fallback_group(const TurnView& v) {
         if (g.squad_target && P_SQUAD_FALLBACK < 2) continue;
         if (contested(i, v.round)) continue;
         bool taken = false;
-        for (int k = 0; k < 8; ++k) if (k != ally_index && mem[k] == i + 1) taken = true;
+        for (int k = 0; k < 8; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) taken = true;
         if (taken) continue;
         const int d = min_distance(v.pos, g.tiles);
         if (g.ready_round > v.round + d + 10 || d > 30) continue;

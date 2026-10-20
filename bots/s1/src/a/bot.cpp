@@ -497,6 +497,27 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
     return true;
 }
 
+// P_S1_NO_SELF_BLOCK: a champion ending its turn on a spawn tile of a group that is respawning (its capture is paid)
+// steps off it: at timer 0 an occupied tile holds the whole group (arena test 3). Rule: on tile of group g, g not held
+// for a capture, state(g) = respawning, can move -> step to the nearest tile that is no spawn tile.
+void Bot::step_off_respawn() {
+    auto& me = cambc::self();
+    if (!initialised || !me.is_alive() || !me.can_move() || me.is_submitting_gems() || me.is_recalling() || me.is_teleporting()) return;
+    const vec2 p = me.position();
+    if (!camp_static.is_set(p)) return;
+    for (std::size_t i = 0; i < groups.size(); ++i) {
+        if (!groups[i].mask.is_set(p)) continue;
+        if (static_cast<int>(i) == holding && groups[i].ready_round <= static_cast<int>(cambc::round_number())) return;
+        try {
+            const auto st = groups[i].group.state();
+            if (!std::holds_alternative<cambc::map::camp_group_respawning>(st)) return;
+        } catch (...) { return; }
+        cambc::bitboard out = tiles_around(p, 3) & ~camp_static & ~static_block;
+        move_towards_closest(static_block, camp_static, out);
+        return;
+    }
+}
+
 #if P_S1_DIAG
 // S1 diagnostics (v5-s1-economy.md step 1): champion-rounds on a spawn tile of a group whose respawn timer is 0 (the
 // occupant alone holds the respawn: arena test 3), and champion-rounds sharing a group's tiles with another ally.
@@ -504,6 +525,7 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
 void Bot::s1_diag() {
     auto& me = cambc::self();
     const int rnd = static_cast<int>(cambc::round_number());
+    diag_sb_grp = -1;
     if (me.is_alive() && initialised) {
         const vec2 p = me.position();
         for (std::size_t i = 0; i < groups.size(); ++i) {
@@ -511,7 +533,7 @@ void Bot::s1_diag() {
             ++diag_on;
             try {
                 const auto st = groups[i].group.state();
-                if (auto r = std::get_if<cambc::map::camp_group_respawning>(&st)) { if (r->timer <= 0) ++diag_selfblock; else ++diag_resp; }
+                if (auto r = std::get_if<cambc::map::camp_group_respawning>(&st)) { if (r->timer <= 0) { ++diag_selfblock; diag_sb_grp = static_cast<int>(i); } else ++diag_resp; }
                 else if (std::holds_alternative<cambc::map::camp_group_reward_available>(st)) ++diag_capt;
             } catch (...) {}
             try { if ((cambc::vision::champion_tiles(team::ally) & groups[i].mask).count() >= 2) ++diag_dup; } catch (...) {}
@@ -523,7 +545,9 @@ void Bot::s1_diag() {
         const vec2 p = me.position();
         std::cout << "S1T r" << rnd << " a" << ally_index << " ch" << int(me.champion_name()) << " p" << p.x << "," << p.y << " hp" << int(me.is_alive() ? me.health() : -1)
                   << " g" << me.gem_count() << " au" << me.gold_count() << " tg" << target << " hd" << holding << " rt" << retreating << " bk" << banking << " sub" << me.is_submitting_gems() << " rc" << me.is_recalling()
-                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << std::endl;
+                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << " sbg" << diag_sb_grp << " wt" << wait_rounds;
+        if (diag_sb_grp >= 0) for (auto t : groups[diag_sb_grp].tiles) std::cout << " " << t.x << "," << t.y;
+        std::cout << std::endl;
     }
 #endif
     if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << std::endl;
@@ -577,6 +601,7 @@ void Bot::play_turn() {
     play_turn_inner();
 #endif
     attacked = could_attack && me.is_alive() && !me.can_attack();
+    if (P_S1_NO_SELF_BLOCK && P_S1_NSB_STEP) step_off_respawn();
 #if P_S1_DIAG
     s1_diag();
 #endif

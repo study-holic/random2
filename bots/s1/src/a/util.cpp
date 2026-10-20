@@ -144,6 +144,13 @@ bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitb
                           cambc::bitboard goals) {
     bool zone_used = false;
     if (move_towards_closest_impl(static_block, camp_static, goals, zone_used)) return true;
+    if (P_S1_NO_SELF_BLOCK && P_S1_NSB_WALK && camp_static.is_set(cambc::self().position())) {
+        // P_S1_NO_SELF_BLOCK: standing inside a block of spawn tiles (concentrated_wealth group 0 is 5x5), every
+        // neighbour is a spawn tile and so a wall: the champion froze there and held the respawn (902 rounds in one
+        // game). Walk out over the dead camps' tiles (live camps stay blocked through vision::camp_tiles).
+        cambc::bitboard none; none.clear();
+        if (move_towards_closest_impl(static_block, none, goals, zone_used)) return true;
+    }
     if (!zone_used) return false;
     {   // goals that lie inside a zone stay unwanted: only retry when some goal outside every zone could not be reached
         cambc::bitboard z; z.clear();

@@ -10,7 +10,7 @@ for r in d["results"]:
     m = rows.setdefault(r["map"], {"r1000": [], "gems": [], "deaths": [], "on": [], "sb": [], "dup": [], "cp": [], "dupc": []})
     g = r.get("gems", 0)
     m["gems"].append(g); m["deaths"].append(r.get("deaths", 0))
-    m["r1000"].append(r["round"] if g >= 1000 else (2000 * 1000 / g if g else float("inf")))
+    m["r1000"].append(g / max(1, r["round"]))   # gem rate per game; round to 1,000 = 1000 / mean rate
     try:
         with zipfile.ZipFile(r["replay"]) as z:
             txt = z.read("team-%s.stdout" % r["side"].lower()).decode("utf8", "replace")
@@ -27,11 +27,11 @@ def mean(x): return sum(x) / len(x) if x else float("nan")
 out = []
 for mp in sorted(rows):
     m = rows[mp]
-    r = mean(m["r1000"])
+    rt = mean(m["r1000"]); r = 1000 / rt if rt > 0 else float("inf")
     out.append((mp, r, mean(m["gems"]), mean(m["deaths"]), mean(m["on"]), mean(m["sb"]), mean(m["dup"]), mean(m["cp"]), mean(m["dupc"])))
 fmt = "| {} | {} | {:.0f} | {:.1f} | {:.0f} | {:.0f} | {:.0f} | {:.0f} | {:.0f} |" if md else "{:<20} {:>6} {:>6.0f} {:>5.1f} {:>6.0f} {:>5.0f} {:>5.0f} {:>5.0f} {:>5.0f}"
 print(("| map | round to 1,000 (proj.) | gems | deaths | on-tile | self-block | shared | capt | shared-capt |\n|---|---|---|---|---|---|---|---|---|") if md else "map                    r1000   gems death     on    sb   dup    cp  dupc")
 for o in out:
     print(fmt.format(o[0], ("%.0f" % o[1]) if o[1] != float("inf") else "inf", *o[2:]))
 rs = [o[1] for o in out]
-print("median round to 1,000 over %d maps: %.0f; reached on %d maps" % (len(rs), statistics.median(rs), sum(1 for o in out if all(x <= 2000 for x in rows[o[0]]["r1000"]))))
+print("median round to 1,000 over %d maps: %.0f; reached on %d maps" % (len(rs), statistics.median(rs), sum(1 for o in out if o[1] <= 2000)))

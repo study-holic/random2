@@ -64,7 +64,7 @@ int Bot::choose_cluster(const TurnView& v, int exclude, const std::uint8_t* mem)
         if (contested(i, round)) continue;   // contested-group avoidance kept
         if (P_THREAT_LAYER && leashed(i, round)) continue;   // EXP-071 hard leash
         bool taken = false;
-        for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && mem[k] == i + 1) taken = true;
+        for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) taken = true;
         if (taken) continue;
         const int d = min_distance(v.pos, g.tiles);
         if (d > kClusterReach || g.ready_round > round + d + kClusterWait) continue;   // alive by arrival (or within P_CLUSTER_WAIT after)
@@ -116,7 +116,7 @@ int Bot::assigned_group(const TurnView& v, int exclude, const std::uint8_t* mem)
     const auto& g = groups[i];
     if (g.excluded_until > v.round || contested(i, v.round)) return -1;
     if (P_THREAT_LAYER && leashed(i, v.round)) return -1;
-    for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && mem[k] == i + 1) return -1;
+    for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && (mem[k] & 0x3F) == i + 1) return -1;
     if (g.ready_round > v.round + min_distance(v.pos, g.tiles) + kClusterWait) return -1;
     return i;
 }

@@ -274,7 +274,7 @@ bool mid(Bot& b, const TurnView& v, std::vector<cambc::champion>& enemies, std::
         const int d = tile_distance(v.pos, m.pos);
         if (g.ready_round > v.round + d) continue;   // respawning beyond our arrival
         int mates = 0;
-        for (int s = 0; s < kSquadClaimByte; ++s) if (s != b.ally_index && mem[s] == m.group + 1) ++mates;
+        for (int s = 0; s < kSquadClaimByte; ++s) if (s != b.ally_index && (mem[s] & 0x3F) == m.group + 1) ++mates;
         double score = d + 20.0 * (m.hp / 20000.0) - 25.0 * mates + (k == g_cur ? -8.0 : 0.0);
         if (score < best_score) { best_score = score; best = k; }
     }

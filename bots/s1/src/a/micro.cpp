@@ -94,7 +94,7 @@ bool Bot::wait_for_squad(const TurnView& v, const std::vector<cambc::champion>& 
     bool behind = false;
     for (const auto& a : allies) {
         const int idx = roster_index(a);
-        if (idx < 0 || a == me || roster_squad[idx] != squad || mem[std::min(idx, kSquadClaimByte - 1)] != target + 1) continue;
+        if (idx < 0 || a == me || roster_squad[idx] != squad || (mem[std::min(idx, kSquadClaimByte - 1)] & 0x3F) != target + 1) continue;
         const int gap = tile_distance(v.pos, a.position());
         if (gap >= 4 && gap <= 12 && min_distance(a.position(), groups[target].tiles) > mine + 2) { behind = true; break; }
     }
