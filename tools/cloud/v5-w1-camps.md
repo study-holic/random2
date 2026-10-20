@@ -1,3 +1,5 @@
+**SUPERSEDED (11:30 BST 20 Oct) by tools/cloud/v5-s1-economy.md, v5-s2-quickwins.md and v5-s3-diag-contest.md (PLAN-v4 Draft 4). If you are a session working from this file: commit what you have to your branch, write a one-paragraph status in results/, and stop.**
+
 Read tools/cloud/v5-common.md first and follow it. Your copy: bots/w1. Module: CAMP SAFETY (monster deaths) and v4's three lost maps.
 
 Why: in v3b's 160 real-team games, 48 % of our deaths (2,897, 18 a game) were to monsters near camps or altars, against 22 % for top-10 teams (notes/step0-deaths.md); they cost time more than gems (23 gems destroyed a game). Measured rules (results/arena-1020.md): first-damage range wolf 3, elk 4, monolith 5; a monster hits the NEAREST champion of either team; asleep camps never attack; monsters see and hit through bushes.

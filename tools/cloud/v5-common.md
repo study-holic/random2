@@ -12,12 +12,14 @@ Rules of work:
 - Tests use `--jobs 3`; commands over 2 minutes run in the background. Head-to-head: `python3 scripts/mapgate.py <copy> all --jobs 3 --salts 0,1,2 --panel <opp> --out results/<copy>-vs-<opp>.json` (126 games: 21 maps x 2 sides x 3 salts).
 - Token use low: small outputs, never print whole files or logs.
 
-Admission rule for a module (fixed before testing; report each line as PASS/FAIL):
+Admission rule for a module (fixed before testing; report each line as PASS/FAIL; a module brief may replace it):
 1. `python3 scripts/gate.py <copy>` PASS (42/42 vs starter-cpp, 0 faults, mapid correct).
-2. Head-to-head vs v4: >= 70/126 (55.6 %), OR deaths per game down >= 15 % with >= 63/126.
-3. Head-to-head vs v3b-e1: >= 80/126 (v4 scored 86).
-4. No map at 0/6 vs v4.
-Self-play is a proxy; the real-team panel decides the release, so report deaths per game, gem margin per game, and per-map wins beside the win rate.
+2. Head-to-head vs v4 >= 57/126 (45 %): a REJECTION gate only. Self-play misled us: 68 % locally became 23 % against real teams.
+3. Deaths per game vs v4 not up more than 10 %.
+4. The module's own mechanism metric moves as predicted (named in the module brief).
+The live top-10 panel, run by the lead (A-B-A against v4's panel on the same teams and map sets), decides the release. Report deaths per game, gem margin per game and per-map wins beside the win rate.
+
+Style (Xans): state every mechanism you build as a model: the objective, the constraints, and the decision rule as a formula. Cite the source domain (operations research, robotics, game theory, MOBA play) and map each term onto a cambc rule or SDK limit.
 
 Output: results/v5-<copy>.md (cause traces with rounds and positions; each switch and file:line; ablation of each switch you add; the admission table; what still fails). Commit your bot copy (source only), result JSONs and the report to this session's own branch and push it. Do not push to main. Final summary under 250 words.
 

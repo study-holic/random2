@@ -265,3 +265,52 @@ Claim checks:
 | Self-play is a rejection gate only, not an estimator | agrees with our data | the 68 % self-play vs 23 % real gap |
 | Elo effects per option | opinion | unverifiable estimates |
 
+### DeepSeek (DeepThink; consult/answers/1029-deepseek.md)
+Ranking: B > A (narrow) > C > G (altar locks, channel safety, recall thresholds) > F > D > E > H. C and G are quick wins in the first 6 h. Outside idea: MOBA creep-aggro pulling (rule 1). Game-changer: spawn-tile freezing of high-value camps. Follow-up: B stays first, G rises, D drops (monster damage no longer interrupts a tribute).
+
+### Claude (Opus; consult/answers/1029-claude.md)
+Ranking: B > C > G (altar control) > F > A > D > E > H, unchanged after the correction.
+- Release C, G and the gold-spending half of F first.
+- Bound: v4 cut 14.9 deaths and gained 116 gems, at most 8 gems per death avoided. So matching top-10 deaths still leaves about 350 vs 880, and the remaining gap is farming rate.
+- Diagnostics before session 1: (a) v4's monster/champion death split vs the top 10 (if about 80 % champion, A moves to third); (b) v4 unopposed, the round at which it reaches 1,000 gems, vs the top-10 finishing round.
+- Never wait on a spawn tile (rule 2 holds our own respawns).
+- Tank swap (WoW raids) on nearest targeting.
+- Contest: the top 10 tribute monoliths as 200-gem bags (822 gems / 4.1 tributes); a 20-turn channel is cancelled by a lock, a stun or a kill.
+- Release each passing build at once; the last substantive build should be live by Fri 04:00.
+- Rank 20 is out of reach; about 1,600 is realistic.
+
+### ChatGPT (High reasoning; consult/answers/1029-chatgpt.md, condensed copy)
+Ranking: B > G (stateful objective controller, commitment hysteresis) > E > C > A > F > D > H. After the correction, A moves above C.
+- Outside idea: multi-robot task allocation with time windows by auctions (Nunes and Gini, AAAI 2015). Champions are heterogeneous robots and camps are jobs with availability windows; bids come from travel, capability, risk and availability; greedy award with marginal team value recomputed after each award.
+- Audit the 499 gems first: acquired vs banked funnel.
+- Fuel headroom is only about 9k, so the planner must replace work, with offline tables.
+- Testing: a funnel per game, scripted adversaries, one integrated candidate vs v4 (A-B-A).
+
+## Synthesis (lead, 11:20)
+| Point | DeepSeek | Claude | ChatGPT | Copilot |
+|---|---|---|---|---|
+| First build | B | B | B+G controller | G package (B core) |
+| Pre-registered rule (economy first) | honour | honour (with a bound) | reasonable heuristic | correct |
+| Draft core (C) early | quick win | release first | cheap, test substitutions | in package |
+| Altar locks / tribute gate | G, rises | G, third | channel-threat evaluator | carrier safety |
+| Fights (A) | narrow, second | fifth | rises above C | narrow subset |
+| Denial (D) | experiment | monolith tile only | narrow test | late |
+| Contact-map plans (E) | low | low | third | low |
+| Top 20 by Friday | unlikely | out of reach (about 1,600) | extremely ambitious | – |
+
+**Contradicts the lead:** at 10:10 the lead overrode the pre-registered rule and kept fights first. All four consultants say economy first, with fights narrow and later. The lead reverses that decision (PLAN-v4).
+
+Claim checks:
+| Claim | Class | Check |
+|---|---|---|
+| Monster damage interrupts tribute (DeepSeek main answer) | contradicts rules | FALSE (GameRules l.181/229); DeepSeek corrected it in the follow-up |
+| Locks cancel tribute channels; 3 basic attacks remove them; 10 gold | agrees | TRUE (GameRules l.193-199) |
+| Rule 2: waiting on our own spawn tile holds our respawn | new | TRUE by arena test 3 (own occupation holds it) |
+| Contest: top-10 822 gems from 4.1 tributes, about 200 per tribute | new | arithmetic TRUE from our table; 20-turn channel = ceil(200/10) TRUE (l.181) |
+| A rank-20 bot takes 35-40 % from ranks 2-10 | new | about 30-40 % by Elo (1,897 vs 1,970-2,096): roughly TRUE |
+| 55 series (about 9 h) to close a 500-point gap | new | plausible with K=32 per series and 6.1 series/h (CLAUDE.md); not verified |
+| At most 8 gems per avoided death | new | arithmetic on our numbers (116/14.9 = 7.8) TRUE; causal bound is an assumption |
+| Nunes and Gini 2015, AAAI, auctions with temporal constraints | new | real paper (TeSSI); not re-read |
+| Fuel headroom about 9k at peak | agrees | TRUE (90,697 of 100,000; 186,807 of 200,000) |
+| Allies split the reward; 4 allies x 50 gems on a monolith | new | split TRUE (arena 4), but contest's monolith group has ONE spawn tile (data/maps21.json), so no split there; possible on monolith (9 tiles), gold_rush (3), corridors (3), big_world (5), boss_battle (2 monoliths) |
+

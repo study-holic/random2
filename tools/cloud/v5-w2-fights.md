@@ -1,3 +1,5 @@
+**SUPERSEDED (11:30 BST 20 Oct) by tools/cloud/v5-s1-economy.md, v5-s2-quickwins.md and v5-s3-diag-contest.md (PLAN-v4 Draft 4). If you are a session working from this file: commit what you have to your branch, write a one-paragraph status in results/, and stop.**
+
 Read tools/cloud/v5-common.md first and follow it. Your copy: bots/w2. Module: FIGHTS AT ALTARS AND CARRIER PROTECTION.
 
 Why: in v3b's real-team games 43 % of our deaths were within 8 tiles of an altar (1,595 champion kills there), and we lost 69.5 gems a game to champion kills while taking only 31.7 from theirs (net -37.8 a game; notes/step0-deaths.md). Top-10 teams open 85 % of fights with an ability against our 35-43 % (notes/top10-2026-10-20.md). Rules: Cassi and Issac die together (one kill, both bags); recall is interrupted by damage or stun, but a TRIBUTE is NOT interrupted by damage: only a stun, death or a newly placed altar lock cancels it (GameRules l.181, l.229; FACTS.md); the killer takes all carried gems.
