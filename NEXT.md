@@ -4,6 +4,21 @@ Read this first, then `PLAN-v3.md` (root causes, workstreams) and the tail of `R
 No agents are running; every agent stopped at about 21:00 on the session limit. Their files are saved and listed below.
 Standing rules from Xans: unranked matches may be run freely (`cambc match-groups create`, 50 groups an hour); **ask him before every upload**.
 
+
+## Resume here (19:42 BST 20 Oct)
+- **Map pool is now 35** (preflight --fix installed 14 maps; committed). Ranked games already use them. Live bot is still v4 (ranked drafts open with Vendetta, id 2).
+- **v5 must NOT be uploaded:** 35-map gate FAIL: shortcut lost to starter-cpp 0-0 gems (gold tiebreak), mapid unknown on the 14 new maps. bots/s1 wins shortcut, so S1's BANK_REACH fix is needed.
+- Next candidate **v5r** = v5 + S1 BANK_REACH + NSB walk-out + 14 map ids: brief tools/cloud/v5r-release.md for the "v5 s1 economy" session. Then critic, laptop gate, Xans submits, top-10 panel.
+- S1 report reviewed (results/v5-s1.md): controller not admitted (median -1.3 %, corners +15 %); the two fixes are the keepers.
+- v6 (v5 + S3 contest) integration check still in the "parity" session; rebuild v6 on v5r afterwards.
+
+## Resume here (16:09 BST 20 Oct)
+- **v5 = S2 build B** (bots/v5, frozen copy of nice-cray 25ec32b): gate PASS on laptop and cloud (42/42, max 93,816), 70/126 vs v4, deaths 17.0 vs 22.9, gem margin +132, gear 2.71 (FAIL vs 3.0, waived in PLAN-v4.md). Upload blocked for Claude by the permission classifier: Xans runs `cambc submit bots/v5`. After that: VERSIONS.md entry, then `python tools/v3/queue_panel.py v5top --sets ABCD` (check top10.csv is current) and judge by PLAN-v4.md "Waiver and panel thresholds".
+- **v6 = v5 + S3 contest module** (heisenberg's, 13.7 deaths vs 35.4 for archimedes's): bots/v6, compiles, brief tools/cloud/v6-integrate.md for the idle "parity" cloud session.
+- **Null for self-play:** v4 vs v4 = 73/126 in mapgate (S3 session). w1's 73/126 equals it: per-map N2 shows no gain, not integrated.
+- Build A (sleepy-clarke) kept as bots/s2a, not uploaded (no gate cap, latching lock flag). S3 "archimedes" module stays on main as bots/s3 (data).
+- Sessions: S1 economy still running (nifty-cray).
+
 ## Where we stand
 
 - Live bot: v2 (platform "v1"), uploaded 23:33 BST 18 Oct. Ladder at 18:00 Mon: rating 1,417, rank 499; 515 ranked games, 46 % wins.

@@ -26,6 +26,9 @@ Site doc = docs/rules/GameRules.md (20 Oct copy, lags engine). ENG = engine tabl
 - Capture region = the group's spawn tiles only: an adjacent enemy does not contest; an adjacent ally gets no share; allies on tiles split (21 -> 11 + 10, remainder to the lower id) [arena 3-4]
 - Prism Focus 80/101/122 at 0/21/42 gems (+1.0 per gem); stun 1.5x, area 1.0x Focus. Duels: beats Stellar 80-95 % with 21-42 gems, loses to Ren and Varg at every gem level [arena 5; duel bots only, no items]
 - Heart of Ruin duels: beats Prism, Stellar, Willow, Tavi, Vesper (100 %), Vendetta 83 %, Ren 67 %; loses to Ryth 33 %, Varg 30 %, C&I 0 %, Marcella 0 %; HoR+Stellar vs Ren+Varg 41 % [arena 6; duel bots only]
+- Monolith damage never regenerates: 380 rounds after one hit, its HP was unchanged, so hit-and-run sessions add up [arena p14, w1 session]
+- "Nearest" for monster targeting is Chebyshev distance (Euclidean ignored); a Chebyshev tie alternates targets every round [arena p15-p16]
+- v4 bug (code, not rule): build_view loads non-target camps within 4 tiles only, so an awake monolith at distance 5 (its range) is invisible and its incoming damage reads 0. w1's P_VIEW_RANGE widens monolith groups to 6; elk stays at 4 (5 cost wins) [results/v5-w1.md]
 ## Capture
 - After every monster in the group is dead, occupy a spawn tile of the group uncontested; first capture phase starts a 5-round timer; empty region or enemy present resets; more allies do not speed it; reward split among allies present, lowest ID gets remainder [doc l.139]
 ## Death, recall, tribute

@@ -19,6 +19,65 @@ Releases are admitted, not single modules. Primary measures: paired gem margin a
 | **v7** main | **Fri 14:00** (patches until 22:00) | Per-map fixes from panel data; experiments that passed (Heart of Ruin initiator, Prism big-bag, Marcella gold) | top-20 sample ≥ 40 % (M3) |
 | Sat | – | Bug fixes only; last upload by 20:00 | gate |
 
+## Draft 5 (20:26 BST Tue 20 Oct): after consult 1946 (consult/1946-sprint2-priorities.md; DeepSeek, Claude, ChatGPT, Copilot)
+**New facts behind this draft:**
+- The pool is 35 maps, and ranked games already use the new ones.
+- No build passes the 35-map gate yet:
+  - v5 loses shortcut 0-0 on gold;
+  - v4 with the pathing change loses shortcut side A 84-115 and runs out of fuel on starvation (100,000);
+  - S1's full build has not been gated on 35 maps.
+- Unranked groups always play the live submission. A concurrent v4 control is impossible.
+
+**Consensus of all four consultants (adopted):**
+- No new decision layer and no auction before the lock.
+- Reliability on all 35 maps comes first.
+- The pathing change ships first.
+- Ability-first and the second-death rule stay out.
+- Panels are judged on paired continuous metrics, not wins.
+- New code must leave fuel headroom: its peak is 90,000 at most.
+
+**Release order (each step: 35-map gate PASS + critic -> Xans submits -> top-10 panel on sets A-D, judged against the previous release in the neighbouring window):**
+1. **R1 = v4 + the pathing change (BANK_REACH + NSB walk-out) + 35 map ids + the starvation fuel fix.**
+   - Built by the S1 session after v5r.
+   - The contest siege joins R1 only if it is already integrated and gated. It acts only on contest, so its effect reads apart (Claude).
+2. **R2a / R2b = R1 + the S2 package (spending, locks from round 200, tribute rule, fuel stop).**
+   - R2a keeps v4's drafts (P_S2_DRAFT_CORE 0); R2b uses the core draft.
+   - Both run on the panel, one after the other; the one with more tributed gems and fewer champion-kill deaths is kept. This settles the draft question raised by all four consultants (the draft alone scored 54/126).
+3. **R3 = the production change** from the imitation queries and the 35-map sweep, if its panel returns by Thu evening.
+4. **Freeze:** large changes stop Fri 04:00. After that, only bug fixes, thresholds and map rules with a structural cause. The Saturday submission is the version with the best ladder performance rating among the frozen finalists (Claude).
+
+**Measurement rules (replace the self-play admission lines from now on):**
+- **Self-play is a regression gate only:** reject a build below 62/126 (Claude: the null is 73, less 2 s.d.). DeepSeek's 80 is not adopted.
+- **Panel metrics** (fixed before each panel):
+  - tributed gems a game;
+  - champion-kill deaths a game;
+  - pickups a game;
+  - gear at round 200;
+  - paired by (team, map) against the previous release.
+- **Keep** if tributed gems rise by 2 SE or more of the paired difference and champion-kill deaths do not rise.
+- **A-B-A:** re-run the previous release on one set when a result lands within 2 SE.
+- **Per-map exceptions:** chosen on seeds 0-2, scored on seeds 3-5.
+- **Ladder:** decode our ranked games (they sample the bracket's likely opponents) and compute a performance rating per version. Ranked games use no quota.
+
+**New work (cloud):**
+- 35-map reliability sweep plus a progress watchdog, and an arena test of what the engine does when a turn exceeds 100,000 fuel (tools/cloud/sweep35.md).
+- Data checks plus production-imitation queries (tools/cloud/imitate.md). The checks:
+  - reconcile top-10 deaths 4.3 vs 6.0;
+  - verify the recall label (15.8 % implies about 170 recalls a game);
+  - our prompt mixed the 90-game and 180-game samples (erratum in the consult file).
+
+**Dropped or parked:**
+- the S1 auction (parked; fuel 97,209 and inside noise);
+- the opener;
+- the second-death rule;
+- per-map draft exceptions picked on scored games;
+- ChatGPT's spawn-suppression scheduler (self-block is negligible except on concentrated_wealth).
+
+**Ideas carded for after R1:**
+- the screen: retreat past an awake camp so the pursuer takes its hits (Claude; rule 1);
+- the domestique escort that draws aggro (DeepSeek);
+- MPC with a safety shield and calibration logs (Copilot).
+
 ## Draft 4 (11:25 BST Tue 20 Oct): after consult 1029 (consult/1029-v5-direction.md; DeepSeek, Claude, ChatGPT, Copilot)
 **Reversal:** the 10:10 override below is withdrawn. All four consultants ranked economy and routing (B) first and fights narrow and later; the pre-registered rule stands. Claude's bound: v4 gained at most about 8 gems per avoided death, so matching top-10 deaths still leaves about 350 vs 880 gems, and the gap is farming rate. Realistic target per the consultants: about 1,600 by the weekend (rank 20 at 1,897 is a stretch).
 
@@ -29,6 +88,11 @@ v5 work (three cloud sessions, briefs tools/cloud/v5-s*.md, superseding v5-w*.md
 - S3's first-hour diagnostics include v4's death split (monster or champion) and the gem funnel vs the top 10 from data/real (Claude's deciding fact: if about 80 % are champion kills, A moves up). This is done in the cloud, not locally.
 
 **Release rule (from consult):** every candidate that passes gate.py and the critic goes live at once (standing approval) for a top-10 panel. It is judged A-B-A against v4's top-10 panel on the same teams and map sets: tributed gem share up, deaths down, no map catastrophically worse. Win rate vs the top 10 cannot register changes. The last substantive build should be live by Fri 04:00 so the rating has time to climb.
+
+**Waiver and panel thresholds, fixed 14:00 BST 20 Oct, before build B's head-to-head and before any S2 panel (critic: notes/critic-v5-s2.md):**
+- S2's admission line "gear at round 200 >= 3.0" is WAIVED for the panel upload only, and is recorded as FAIL wherever it fails. Reason: the 3.0 came from real games (top 10 3.8, v4 1.7) but was measured in self-play, where v4 already has 2.32; the gap is income (S1's work), not unspent gold (v4 holds 23-36 a champion). Replacement mechanism line, measured in the real panel: gear at round 200 above v4's 1.9 (results/v5-s3-diag.md section 5).
+- Build A (sleepy-clarke) is not uploaded: no tribute-gate cap and a latching lock flag. The candidate is build B (nice-cray) on its committed defaults, which needs one 126-game head-to-head vs v4 on exactly that commit plus metrics_s2.py (locks, gear), then gate PASS, >= 45 %, locks > 0, and deaths not up more than 10 %.
+- Panel: the same 9 teams and sets A-D as v4's baseline (36 groups, 180 games), paired by (team, map) with data/real/v4-panel/baseline-v4top.csv. Keep it if its tributed gem share beats v4's 17.1 % (201 vs 976 a game) AND its deaths a game are below v4's 23.4; roll back to v4 if either is worse. A map is catastrophically worse if its gems a game fall by more than 100 AND its deaths rise by more than 10 a game; two such maps mean roll back. A-B-A: re-run v4 on one set (A, 45 games) afterwards only if the s2 result lands within 2 points of gem share or 2 deaths of v4, to check opponent drift.
 
 **Decision 10:10 BST 20 Oct (kill rule fired):** v4 went 37-123 (23 %) on the paired 8-team panel, below the 30 % kill line; deaths 23.0 (rule <= 25 passes). No rollback: v3b is worse on every measure (29-131, 37.9 deaths). The rule's premise (gap = economy, so A+B+F first and micro waits) is contradicted by the per-map split: large maps are near even, and the gap sits on four contact maps (contest 0 gems, fragment, hooks, gold_rush; 45-56 deaths a game). So v5 keeps fights (w2) and points it at those maps; contest goes to w1. Real-team replays are in data/real/ for the cloud. To put to the consultants at the next consult (notes/panel-v4-vs-v3b.md).
 

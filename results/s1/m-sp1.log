@@ -1,0 +1,11 @@
+sp1: 96 games in 60 s (96.4/min, jobs 3), rc 0
+map            wins  strong  medR death   gemD flt fuelL gate
+corners      2.0/2   0.0/0    1370   0.0 1015.4   0    74 
+interlock    2.0/2   0.0/0    1294   0.2 1014.5   0    30 
+collision    2.0/2   0.0/0    1260   0.8 1014.4   0    33 
+eight        2.0/2   0.0/0    1252   0.4 1032.7   0    24 
+islands      2.0/2   0.0/0    1402   0.7 1021.3   0    68 
+fragment     2.0/2   0.0/0    1672   0.0 1011.2   0     8 
+ambush       2.0/2   0.0/0    1772   4.8 1018.8   0    60 
+expanse      2.0/2   0.0/0    1419   0.5 1013.8   0    60 
+total 16.0/16 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/8; out results/s1/m-sp1.json
