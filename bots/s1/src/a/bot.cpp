@@ -431,6 +431,19 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
             banking = gems >= P_ROWS_BAG2   // EXP-096: rule 1, bank at 66
                 || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
         } else
+        if (P_S1_BANK_RATE && !rows) {   // S1 bank task on the u scale (v5-s1-economy.md): u_bank = B(1 - rho_a) / (tau_altar + ceil(B/10))
+            int tau_a = 1 << 20, foes = 0;
+            for (std::size_t i = 0; i < altars.size(); ++i) {
+                const int d = (tile_distance(v.pos, altars[i]) * 5) / 4;
+                if (d < tau_a) { tau_a = d; foes = v.round - altar_foes_round[i] <= kAltarFoeMemory ? altar_foes[i] : 0; }
+            }
+            const double rho_a = std::min(0.8, 0.25 * foes);
+            const double u_bank = gems * (1.0 - rho_a) / (tau_a + (gems + 9) / 10);
+            double u_t = 0;
+            if (target >= 0) { int eta = 0; u_t = s1_value(target, v, 0, eta, is_squad_group(target) ? squad_size : 1); }
+            banking = (gems >= P_S1_BANK_MIN && u_bank > P_S1_BANK_MULT * u_t) || target < 0 || far
+                || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
+        } else
         banking = gems >= (rows ? P_ROWS_BAG : kBankBag) || opening_bank(v, gems) || far || v.round - carry_since >= 40
             || total + gems >= static_cast<int>(cambc::constants::winning_gems) || v.round >= 1900;
         if (!banking) return false;
@@ -559,12 +572,23 @@ void Bot::s1_diag() {
         const vec2 p = me.position();
         std::cout << "S1T r" << rnd << " a" << ally_index << " ch" << int(me.champion_name()) << " p" << p.x << "," << p.y << " hp" << int(me.is_alive() ? me.health() : -1)
                   << " g" << me.gem_count() << " au" << me.gold_count() << " tg" << target << " hd" << holding << " rt" << retreating << " bk" << banking << " sub" << me.is_submitting_gems() << " rc" << me.is_recalling()
-                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << " sbg" << diag_sb_grp << " wt" << wait_rounds;
+                  << " rdy" << (target >= 0 ? groups[target].ready_round : -1) << " ex" << (target >= 0 ? groups[target].excluded_until : -1) << " nc" << last_nc << " sbg" << diag_sb_grp << " wt" << wait_rounds << " sq" << squad << "/" << squad_size << is_squad_group(target);
+        if (target >= 0) { int eta = 0; std::cout << " T" << groups[target].tiles[0].x << "," << groups[target].tiles[0].y << " u" << int(1000 * s1_value(target, build_view(), 0, eta, is_squad_group(target) ? squad_size : 1)); }
         if (diag_sb_grp >= 0) for (auto t : groups[diag_sb_grp].tiles) std::cout << " " << t.x << "," << t.y;
         std::cout << std::endl;
     }
 #endif
-    if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << std::endl;
+    {   // time budget: dead, retreat (incl. recall), bank (walk or tribute), hold (capture), wait (respawn ring), fight (attacked), travel
+        int m = 6;
+        if (!me.is_alive()) m = 0;
+        else if (retreating || me.is_recalling()) m = 1;
+        else if (banking || me.is_submitting_gems()) m = 2;
+        else if (holding >= 0) m = 3;
+        else if (wait_rounds > 0) m = 4;
+        else if (attacked) m = 5;
+        ++diag_mode[m];
+    }
+    if (rnd % 25 == 0) std::cout << "S1D a" << ally_index << " r" << rnd << " on" << diag_on << " sb" << diag_selfblock << " rs" << diag_resp << " cp" << diag_capt << " dup" << diag_dup << " md" << diag_mode[0] << "_" << diag_mode[1] << "_" << diag_mode[2] << "_" << diag_mode[3] << "_" << diag_mode[4] << "_" << diag_mode[5] << "_" << diag_mode[6] << std::endl;
 }
 #endif
 

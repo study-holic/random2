@@ -104,6 +104,11 @@ int Bot::choose_target(const TurnView& v, int exclude) {
     if (P_S1_AUCTION == 1) return s1_pick(v, exclude, nullptr);   // S1: auction replaces the scoring below
     std::array<std::uint8_t, 8> mem{};
     cambc::shared_memory.read(0, std::span{mem.data(), mem.size()});
+    squad_live = 1;   // S1 hybrid coalition: me plus squad mates alive (non-zero claim byte; 0 = dead, bot.cpp)
+    if (P_S1_SQUAD_LIVE)
+        for (int k = 0; k < static_cast<int>(roster.size()); ++k)
+            if (k != ally_index && roster_squad[k] == squad && mem[std::min(k, kSquadClaimByte - 1)] != 0) ++squad_live;
+    if (!P_S1_SQUAD_LIVE) squad_live = squad_size;
     const int round = v.round;
     if (P_OPENING_ASSIGN) {   // EXP-079: own first group during the opening
         const int a = assigned_group(v, exclude, mem.data());
@@ -140,6 +145,7 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             } else if (P_S1_AUCTION == 2) {   // S1: a claimed light group is taken only by outbidding (ETA bucket 2 better)
                 int bb = 4;
                 if (s1_claimants(mem, i, bb) > 0) {
+                    if (!P_S1_OUTBID) continue;
                     int eta = 0; s1_value(i, v, 0, eta, 1);
                     if (eta_bucket(eta) > bb - 2) continue;
                 }
@@ -153,7 +159,8 @@ int Bot::choose_target(const TurnView& v, int exclude) {
             double score = d + P_WAIT_WEIGHT * wait - 0.05 * g.gems;
             if (P_S1_AUCTION == 2) {   // S1: score = -u_ij (value rate), coalition = the squad for squad groups
                 int eta = 0;
-                score = -s1_value(i, v, 0, eta, is_squad_group(i) ? squad_size : 1) * P_S1_U_SCALE;
+                const double u = s1_value(i, v, 0, eta, is_squad_group(i) ? squad_live : 1);
+                score = u > 0 ? -u * P_S1_U_SCALE : 1000.0 + d;   // no positive value: last resort, nearest first
             }
             score += s1_salt_noise(ally_index, i);   // measurement salt (0 at salt 0)
             if (claim_ok && i == my_claim) score -= kClaimBonus;   // squads stay together

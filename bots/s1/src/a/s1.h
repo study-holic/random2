@@ -80,3 +80,27 @@ inline double s1_salt_noise(int who, int group) {
 #ifndef P_S1_U_SCALE
 #define P_S1_U_SCALE 100.0   // hybrid: score = -u x this (v4's pass logic compares scores; the claim bonus is 8 tiles)
 #endif
+#ifndef P_S1_OUTBID
+#define P_S1_OUTBID 1   // hybrid: a claimed light group may be taken with an ETA bucket 2 better (0: never, as v4)
+#endif
+#ifndef P_S1_TRAVEL_W
+#define P_S1_TRAVEL_W 1.0   // weight of walking rounds in the u_ij denominator
+#endif
+#ifndef P_S1_RISK_MAXHP
+#define P_S1_RISK_MAXHP 0   // camp risk against max health (1) or current health (0)
+#endif
+#ifndef P_S1_WAIT_W
+#define P_S1_WAIT_W 1.0   // weight of respawn-wait rounds in the u_ij denominator (v4's score used 2)
+#endif
+#ifndef P_S1_SQUAD_LIVE
+#define P_S1_SQUAD_LIVE 1   // hybrid: coalition k of a squad group = squad mates alive with a claim (1) or the squad size (0)
+#endif
+#ifndef P_S1_BANK_RATE
+#define P_S1_BANK_RATE 0   // bank when u_bank > P_S1_BANK_MULT x u(current target) and the bag >= P_S1_BANK_MIN (replaces the 36-gem and 40-round triggers)
+#endif
+#ifndef P_S1_BANK_MIN
+#define P_S1_BANK_MIN 0
+#endif
+#ifndef P_S1_BANK_MULT
+#define P_S1_BANK_MULT 1.0
+#endif

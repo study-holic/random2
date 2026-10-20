@@ -129,7 +129,7 @@ double Bot::s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed)
     const int k = k_fixed > 0 ? k_fixed : std::max(1, std::max(s1_coalition(i), claim + 1));
     const double dps = std::max(10.0, static_cast<double>(me.strength()) * P_S1_DPS_MULT);
     const double s = static_cast<double>(g.hp_total) / (dps * k) + 5.0;
-    const double h = std::max(300.0, static_cast<double>(me.health()));
+    const double h = std::max(300.0, static_cast<double>(P_S1_RISK_MAXHP ? me.max_health() : me.health()));   // retreat at 30-45 % already guards a hurt champion
     const double ratio = g.str_total * (s - 5.0) / (h * k);
     double rho_c = std::clamp((ratio - P_S1_RISK_RATIO) / P_S1_RISK_RATIO, 0.0, 1.0);
     double rho_e = 0;
@@ -141,7 +141,7 @@ double Bot::s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed)
     const double cost = 60.0 * income + P_S1_LAMBDA * 50.0;
     const double bag = static_cast<double>(me.gem_count());
     const double gain = (g.gems * (1.0 - rho) + P_S1_LAMBDA * g.gold) / k - rho * (cost + bag);
-    return gain / (tau + wait + s);
+    return gain / (P_S1_TRAVEL_W * tau + P_S1_WAIT_W * wait + s);   // travel weighted: a far task also leaves the champion far from the next one
 }
 
 // Claimants of group i other than me, and the best (lowest) ETA bucket among them.

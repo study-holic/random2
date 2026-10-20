@@ -209,6 +209,7 @@ public:
     bool wait_for_squad(const TurnView& v, const std::vector<cambc::champion>& allies);
 
     int last_nc = 0, diag_sb_grp = -1;
+    int diag_mode[7] = {0, 0, 0, 0, 0, 0, 0};
     int diag_on = 0, diag_selfblock = 0, diag_resp = 0, diag_capt = 0, diag_dup = 0;
     void s1_diag();
     void step_off_respawn();   // P_S1_NO_SELF_BLOCK
@@ -224,7 +225,7 @@ public:
     void s1_note_foes(const TurnView& v, const std::vector<cambc::champion>& enemies);
     int s1_coalition(int i) const;
     double s1_value(int i, const TurnView& v, int claim, int& eta, int k_fixed = 0) const;
-    int squad_size = 1;
+    int squad_size = 1, squad_live = 1;
     int s1_claimants(const std::array<std::uint8_t, 8>& mem, int i, int& best_bucket) const;
     int s1_pick(const TurnView& v, int exclude, double* best_u);
     void s1_reauction(const TurnView& v);
