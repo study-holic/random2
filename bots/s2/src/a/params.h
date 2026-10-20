@@ -10,6 +10,9 @@
 #ifndef P_S2_DRAFT_CORE
 #define P_S2_DRAFT_CORE 1             // draft.cpp: top-10 core (Ryth, C&I, Stellar, Ren, Varg; 3 picks C&I, Stellar, Ren); v4 opened Vendetta on 14/21
 #endif
+#ifndef P_S2_DRAFT_KEEPV4
+#define P_S2_DRAFT_KEEPV4 1           // draft.cpp: keep v4's draft on the 6 maps where it beat the core by >= 2 of 6 (results/v5-s2.md)
+#endif
 #ifndef P_S2_ALTAR_LOCK
 #define P_S2_ALTAR_LOCK 1             // bot.cpp: buy a 10-gold altar lock on spawn and place it where enemies tribute (top-10 6.4 a game, v4 0)
 #endif

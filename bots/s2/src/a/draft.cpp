@@ -23,6 +23,17 @@ namespace va {
 
 using D = cambc::champion_draft;
 
+// P_S2_DRAFT_KEEPV4: maps where v4's own draft beat the core by >= 2 of 6 in the forced-draft head-to-head with play code
+// unchanged (results/s2d-vs-v4.json, core <= 1/6: boss_battle 0, corners 0, interlock 0, elk_arena 1, gold_rush 1, islands 1).
+static bool s2_keep_v4_draft(mapid::MapId id) {
+    if (!P_S2_DRAFT_KEEPV4) return false;
+    using M = mapid::MapId;
+    switch (id) {
+        case M::boss_battle: case M::corners_v2: case M::interlock_v2: case M::elk_arena: case M::gold_rush: case M::islands: return true;
+        default: return false;
+    }
+}
+
 // S2 per-map draft exceptions to the core (admitted only where a variant beat the core by >= 2 of 6 on the map and the
 // overall head-to-head did not drop; results/v5-s2.md). nullptr = core.
 static const std::vector<D>* s2_draft_exception(mapid::MapId id, int size) {
@@ -54,7 +65,7 @@ void play_draft() {
         }
         rows = !elk && packs == 6;   // EXP-096b: monolith has six packs among 22 groups
     } } catch (...) { rows = false; }
-    if (P_S2_DRAFT_CORE) {   // S2 task 1: top-10 core by pick count (notes/top10-2026-10-20.md l.49-51); duplicates across
+    if (P_S2_DRAFT_CORE && !s2_keep_v4_draft(Plan::current().id)) {   // S2 task 1: top-10 core by pick count (notes/top10-2026-10-20.md l.49-51); duplicates across
         // teams are allowed and picks within a round are simultaneous, so a fixed table is the whole policy. Overrides the
         // map files and w7 lists; s2_draft_exception() returns a per-map list only where a test admitted one.
         static const std::vector<D> core5{D::ryth, D::cassi_and_issac, D::stellar, D::ren, D::varg};
