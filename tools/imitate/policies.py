@@ -6,7 +6,7 @@ Enemy counts use positions, not line of sight. Outcomes:
   recall5  a recall that completes is started in rounds r..r+4 (start-and-cancel steps excluded: Pantheon);
   trib3    a tribute start (step kind 12) in rounds r..r+2;
   hit2     an attack or cast by this champion damages an enemy champion in rounds r..r+1.
-Writes binned counts to a JSON file: python3 -I tools/imitate/policies.py <dir of decoded v4top-*.json> <out.json>"""
+Writes binned counts to a JSON file: python3 -I tools/imitate/policies.py <dir of decoded v4top-*.json | mapgate result.json> <out.json>\n(for a mapgate result the tested bot is labelled "v4" and its opponent "top10")"""
 import json, sys, glob, os, collections, math
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "cloud")); sys.path.insert(0, os.path.join(ROOT, "tools", "imitate"))
@@ -25,9 +25,21 @@ HPE, BAGE, DSE, EN8E, DAE, RATE, GDE, AL4E = [0.3, 0.5, 0.7, 0.9], [1, 10, 20, 4
 
 if __name__ == "__main__":
     T = collections.defaultdict(lambda: [0, 0])   # key -> [rows, events]
-    for f in sorted(glob.glob(os.path.join(sys.argv[1], "*.json"))):
-        bn = os.path.basename(f)[:-5]; lab, pos = bn.rsplit("-", 1); mm = idx[(lab, int(pos))]; us = 0 if mm["our_side"] == "a" else 1
-        d = json.load(open(f)); ev, S = recall_events(d); m = M.MAPS[M.mapkey(mm["map"])]
+    jobs = []
+    if sys.argv[1].endswith(".json"):   # a scripts/mapgate.py result: our bot is "v4" in the output, the panel bot "top10"
+        G = json.load(open(sys.argv[1])); cache = os.path.join(G["work"], "decoded")
+        M.decode([r["replay"] for r in G["results"]], cache)
+        for r in G["results"]:
+            f = os.path.join(cache, os.path.basename(r["replay"])[:-8] + ".json")
+            if os.path.exists(f): jobs.append((f, 0 if r["side"] == "A" else 1, r["map"], r["opp"]))
+    else:
+        for f in sorted(glob.glob(os.path.join(sys.argv[1], "*.json"))):
+            bn = os.path.basename(f)[:-5]; lab, pos = bn.rsplit("-", 1); mm = idx[(lab, int(pos))]
+            jobs.append((f, 0 if mm["our_side"] == "a" else 1, mm["map"], mm["opponent"]))
+    for f, us, mp_, opp in jobs:
+        mm = dict(map=mp_, opponent=opp)
+        d = json.load(open(f)); ev, S = recall_events(d); m = M.MAPS.get(M.mapkey(mm["map"]))
+        if m is None: continue
         alt = M.mirror(m, [tuple(a) for a in m["altars"]])
         team = [c[0] for c in S[0]["c"]]; typ = [c[1] for c in S[0]["c"]]; n = len(team)
         spawn = {t: [(c[3], c[4]) for c in S[0]["c"] if c[0] == t] for t in (0, 1)}

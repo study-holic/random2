@@ -148,3 +148,18 @@ Unit: one row per alive champion-round outside a recall or tribute channel. Enem
 3. **P_I_SHOPRECALL (recall to shop at full health).** Recall when HP >= 0.7, gold >= 150 (one emblem), no bag or a bag >= 40, no enemy within 8, and at least 11 tiles from spawn. Source: 2.2 and 3.1 (the top 10 recall at >= 0.9 HP 25 times as often as v4, and 16 % of their recalls end in a purchase); 2.3 (v4 spends 59 gold by round 200, the top 10 151). *Expected:* gear at round 200 rises from 2.0 toward 5.3 points. *Falsified if* gear at round 200 does not rise by at least 1 point, or h2h < 62/126. S2's P_S2_SPEND_NOW (shop trips) covers part of this rule.
 
 **Best single rule: P_I_PRESS.** Champion kills cause 81-86 % of v4's deaths (20.2 of 23.4 a game here), and 3.3 has the largest, opposite-signed gap. S2 already covers the shop part of rule 3, and rule 2 costs farming time only on small bags.
+
+## 5. P_I_PRESS built and tested (bots/im = bots/s1g1 + one rule)
+Code: `bots/im/src/a/enemies.cpp:122-138` (in `Bot::enemy_response`: choose the pressed foe; it also lifts the v4 chase-from-camp limit at line 177 for that foe) and `params.h:178-186` (P_I_PRESS 1, P_I_PRESS_RANGE 3, P_I_PRESS_BAG 40). Engine 1.0.0, `--jobs 3`, salts 0-2, both sides.
+
+| test | im (s1g1 + P_I_PRESS) | s1g1 (baseline) | rule |
+|---|---|---|---|
+| vs v4, old 21 maps, 126 games (results/im/*-vs-v4.json) | **81/126** (64 %), deaths 19.8 vs v4's 24.7, gem margin +96 | 74/126, deaths 20.3 vs 23.4, +38 | reject below 62: **pass** |
+| unopposed vs idle, all 35 maps, 210 games (results/im/*-unopp35.json) | 210/210, 751 gems a game, 0 faults | 210/210, 749, 0 faults | no regression: pass |
+| our engage rate at own/enemy HP 1.25-2 / >= 2, alone (policies.py on the 126 games) | 59.9 % / 66.4 % | 54.2 % / 61.7 % | predicted to rise: **rose** (+5 points) |
+| same, with 2+ allies within 4 | 50.0 % / 49.9 % | 43.9 % / 44.8 % | rose |
+| v4's deaths a game in those games | 24.7 | 23.4 | rose by 1.3 |
+
+- **Reading.** +7 wins is about 1.25 s.d. for 126 games: a weak but consistent signal. Our deaths fell (20.3 -> 19.8) while v4's rose (23.4 -> 24.7), as the rule predicts. In self-play s1g1 already engages 54-62 % at high HP ratios (v4 engaged 25-30 % against the real top 10), so the room for the rule is larger against real teams.
+- **Fuel, inherited:** both builds touch 100,000 on the same salted games: salts 1-2 on 20 maps, and salt 0 on islands, starvation and yellow_brick_road unopposed. The P_I_PRESS diff adds no fuel peaks.
+- The live top-10 panel is the test that matters: the falsifier in section 4 applies there unchanged.
