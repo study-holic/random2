@@ -100,6 +100,14 @@ std::vector<Scenario> scenarios(int want) {
     s.push_back({{D::vesper_vale, D::stellar}, {D::vesper_vale, D::stellar}, false,
                  {"G 25 15;R 30;K 28 15;G 28 15;U 28 15 2;G 25 15;W 300", "G 25 13;R 30;G 29 15;U 28 15 2;G 25 13;W 300"},
                  {"W 300", "W 300"}});
+    // 14 monolith regeneration: hit once from d3, back off to d8 (still in sight) and watch its health for 300 rounds
+    s.push_back({{D::vesper_vale}, {D::vesper_vale}, true,
+                 {"G 3 2;G 13 2;W 1;H 16 2;G 12 2;G 11 2;G 10 2;G 9 2;G 8 2;W 300;W 5"}, {}});
+    // 15 nearest metric: elk at the centre (30,15); A diagonal at Chebyshev 3 (Euclid^2 18) attacks, B straight at
+    // Chebyshev 4 (Euclid^2 16) passive. Chebyshev-nearest = A, Euclid-nearest = B.
+    s.push_back({{D::vesper_vale}, {D::vesper_vale}, false, {"G 27 12;R 40;T 30 15 30"}, {"G 34 15;R 40;W 40"}});
+    // 16 control: A straight at Chebyshev 3 (Euclid^2 9) attacks, B diagonal at Chebyshev 3 (Euclid^2 18) passive (centre 31,15)
+    s.push_back({{D::vesper_vale}, {D::vesper_vale}, false, {"G 28 15;R 40;T 31 15 30"}, {"G 34 18;R 40;W 40"}});
     return s;
 }
 
