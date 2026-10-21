@@ -160,14 +160,29 @@ static bool move_towards_closest_impl(const cambc::bitboard& static_block, const
 bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitboard& camp_static,
                           cambc::bitboard goals) {
     bool zone_used = false;
-    if (move_towards_closest_impl(static_block, camp_static, goals, zone_used)) return true;
+    // P_W_FUELCAP: one path attempt costs up to about 30k (starvation) and is the last big spend of a turn (farm,
+    // bank); with less fuel left than the dearest attempt seen in this game + 15k (at least 45k) the champion waits a
+    // turn instead (corners round 234: farm with 70k left overran). A retry costs about what the first attempt did
+    // (three attempts = 72k on starvation): retry only while the fuel left covers one more plus a 20k margin.
+    static std::uint64_t attempt_max = 0;
+    const auto mf0 = cambc::fuel_remaining();
+    if (P_W_FUELCAP && mf0 < std::min<std::uint64_t>(60000, std::max<std::uint64_t>(45000, attempt_max + 15000))) return false;   // capped: never more than 60k held back
+    if (move_towards_closest_impl(static_block, camp_static, goals, zone_used)) {
+        const auto m = cambc::fuel_remaining(); attempt_max = std::max<std::uint64_t>(attempt_max, mf0 > m ? mf0 - m : 0);
+        return true;
+    }
+    const auto mf1 = cambc::fuel_remaining(), mcost = mf0 > mf1 ? mf0 - mf1 : 0;
+    attempt_max = std::max(attempt_max, mcost);
+    auto retry_ok = [&] { return !P_W_FUELCAP || cambc::fuel_remaining() > mcost + 20000; };
     // S1 fuel: each retry below builds new fields (20-35k on big maps); none when the turn is already expensive.
     if ((P_S1_AUCTION || P_S1_THREAT_COST) && cambc::fuel_remaining() < 40000) return false;
+    if (P_W_FUELCAP && cambc::fuel_remaining() < 45000) return false;   // P_W_FUELCAP: same guard with the auction off (s1g1)
     if (P_S1_NO_SELF_BLOCK && P_S1_NSB_WALK && camp_static.is_set(cambc::self().position())) {
         // P_S1_NO_SELF_BLOCK: standing inside a block of spawn tiles (concentrated_wealth group 0 is 5x5), every
         // neighbour is a spawn tile and so a wall: the champion froze there and held the respawn (902 rounds in one
         // game). Walk out over the dead camps' tiles (live camps stay blocked through vision::camp_tiles).
         cambc::bitboard none; none.clear();
+        if (!retry_ok()) return false;
         if (move_towards_closest_impl(static_block, none, goals, zone_used)) return true;
     }
     if (!zone_used) return false;
@@ -181,6 +196,7 @@ bool move_towards_closest(const cambc::bitboard& static_block, const cambc::bitb
             for (const auto& mz : g_mono_list) if (!(mz.zone & goals).is_empty() && awake_tiles().is_set(mz.pos)) return false;
         }
     }
+    if (!retry_ok()) return false;
     g_zone_skip = true;
     const bool r = move_towards_closest_impl(static_block, camp_static, goals, zone_used);
     g_zone_skip = false;

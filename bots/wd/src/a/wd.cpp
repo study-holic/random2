@@ -14,12 +14,13 @@ namespace va {
 //   potential Phi = Chebyshev distance to the altar while banking, to the target group's spawn tiles while travelling
 //   (distance > 4), or the remaining HP of the group's visible camps while clearing (distance <= 4);
 //   progress event = Phi falls below its best since the objective was taken, gems or gold change (pickup, tribute,
-//   purchase), health rises on our spawn (healing), an enemy champion is within 5 (a fight, handled elsewhere), a known
-//   respawn wait of <= 30 rounds at the target, or (no objective) any change of position;
+//   purchase), health rises on our spawn (healing), an enemy champion is within 5 and blows were exchanged (a fight, handled elsewhere), a known
+//   respawn wait of <= 30 rounds at the target, or a step onto a tile not among the last 6 positions;
 //   S = rounds since the last progress event; trigger when S > W (12 travel, 20 clearing, 10 within 3 of the altar).
 // Escalation, one level per trigger (reset by progress): 1 soft hazards for W rounds (Monolith zones, siege block and
 // threat detours dropped from pathing); 2 release the objective and block it 60 rounds (group excluded_until, altar
-// altar_skip_until); 3 drop the bank decision and take the nearest feasible task (resolve_target); 4 walk to the own
+// altar_skip_until); 3 drop the bank decision and take the nearest open group, claims ignored, for 60 rounds when target
+// choice returns none (wd_after_target; rushbait_v2: three champions never left spawn with no target); 4 walk to the own
 // spawn (fixed escape) for 8 rounds. Cost: a few hundred fuel; skipped below 20,000 fuel. Source: Copilot, consult 1946.
 #include <cambc.h>
 #include "bot.h"
@@ -27,6 +28,7 @@ namespace va {
 #include "util.h"
 
 int g_wd_soft_until = 0;   // util.cpp: soft hazards while round < this
+static const cambc::bitboard& wd_enemy_spawn() { static const cambc::bitboard b = cambc::map::spawn_region(cambc::team::enemy); return b; }
 
 bool Bot::wd_tick(const TurnView& v) {
     if (!P_W_WATCHDOG || cambc::fuel_remaining() < 20000) return false;
@@ -38,13 +40,24 @@ bool Bot::wd_tick(const TurnView& v) {
     }
     const int gems = static_cast<int>(me.gem_count()), gold = static_cast<int>(me.gold_count());
     const float hp = me.health();
+    // Level 3 walk: the threat layer and enemy response can hold a champion beside idle enemies before target choice
+    // runs (rushbait_v2), so the watchdog walks it to the forced group itself until within 4, unless it is being hit.
+    if (wd_force >= 0 && r < wd_force_until && groups[wd_force].excluded_until <= r && !(wd_hp >= 0 && hp < wd_hp - 0.5f)
+        && min_distance(v.pos, groups[wd_force].tiles) > 4) {
+        wd_hp = hp; wd_last = r;
+        cambc::bitboard goal; goal.clear();
+        for (auto t : groups[wd_force].tiles) goal.set(t, true);
+        if (move_towards_closest(static_block, camp_static, tiles_around(groups[wd_force].tiles[0], 4) | goal)) return true;
+    }
     int mode = 0, obj = -1, W = 12;
     double phi = 0;
     bool wait_ok = false;
     if (banking && gems > 0 && !altars.empty()) {
         int best = 1 << 20;
         for (std::size_t i = 0; i < altars.size(); ++i) { const int d = tile_distance(v.pos, altars[i]); if (d < best) { best = d; obj = static_cast<int>(i); } }
-        mode = 3; phi = best; W = best <= 3 ? 10 : 12;
+        mode = 3; W = best <= 3 ? 10 : 12;
+        const int pd = wd_alt_dist(obj, v.pos);   // walking distance when the altar table exists
+        phi = pd >= 0 ? pd : best;
     } else if (target >= 0 && target < static_cast<int>(groups.size())) {
         const int d = min_distance(v.pos, groups[target].tiles);
         obj = target;
@@ -56,14 +69,21 @@ bool Bot::wd_tick(const TurnView& v) {
         }
     }
     bool prog = wait_ok;
-    if (mode != wd_mode || obj != wd_obj) { prog = true; wd_mode = mode; wd_obj = obj; wd_best = phi; }
+    // An objective change resets the best potential but not the stall timer: a target flipping between a group and none
+    // every few rounds reset the watchdog for good (Cassi at spawn on reverse_spiral, traced).
+    if (mode != wd_mode || obj != wd_obj) { wd_mode = mode; wd_obj = obj; wd_best = phi; }
     if (phi < wd_best - 1e-6) { wd_best = phi; prog = true; }
     if (gems != wd_gems || gold != wd_gold) prog = true;
     if (hp > wd_hp + 0.5f && ally_spawn.is_set(v.pos)) prog = true;
-    if (mode == 0 && !(v.pos == wd_pos)) prog = true;
-    if (!prog)
-        for (auto e : cambc::vision::champion_tiles(cambc::team::enemy).positions())
-            if (tile_distance(v.pos, e) <= 5) { prog = true; break; }
+    // A fresh tile (not among the last 6 positions) is progress in every mode: Chebyshev Phi does not fall on a detour
+    // round a wall, and reading that as a stall released the altar for every carrier on shortcut side B (traced).
+    bool fresh = true;
+    for (const auto& q : wd_trail) if (q == v.pos) { fresh = false; break; }
+    if (fresh) prog = true;
+    wd_trail[wd_trail_i++ % wd_trail.size()] = v.pos;
+    if (!prog && (attacked || std::abs(hp - wd_hp) > 0.5f))   // a fight: an enemy within 5 and blows exchanged (an idle enemy
+        for (auto e : cambc::vision::champion_tiles(cambc::team::enemy).positions())   // beside our spawn froze 3 champions on rushbait_v2)
+            if (tile_distance(v.pos, e) <= 5 && !wd_enemy_spawn().is_set(e)) { prog = true; break; }   // an enemy on its spawn heals every turn
     wd_gems = gems; wd_gold = gold; wd_hp = hp; wd_pos = v.pos;
     if (prog) { wd_last = r; wd_level = 0; return false; }
     if (r - wd_last <= W) return false;
@@ -76,12 +96,66 @@ bool Bot::wd_tick(const TurnView& v) {
         case 2: case 3:
             if (mode == 3 && obj >= 0 && obj < static_cast<int>(altar_skip_until.size())) altar_skip_until[obj] = r + 60;
             if ((mode == 1 || mode == 2) && obj >= 0) { groups[obj].excluded_until = std::max(groups[obj].excluded_until, r + 60); target = -1; holding = -1; }
-            if (wd_level == 3) { banking = false; target = -1; holding = -1; }
+            if (wd_level == 3) {   // nearest feasible task: the nearest open non-Monolith group, claims ignored, held 60 rounds
+                banking = false; target = -1; holding = -1;
+                int best = -1, bd = 1 << 20;
+                for (std::size_t i = 0; i < groups.size(); ++i) {
+                    if (groups[i].monolith || groups[i].excluded_until > r || static_cast<int>(i) == obj) continue;
+                    const int d = min_distance(v.pos, groups[i].tiles);
+                    if (d < bd) { bd = d; best = static_cast<int>(i); }
+                }
+                if (best >= 0) { wd_force = best; wd_force_until = r + 60; }
+            }
             break;
         default:
             wd_escape_until = r + 8;
             return move_towards_closest(static_block, camp_static, ally_spawn);
     }
+    return false;
+}
+void Bot::wd_after_target(const TurnView& v) {
+    if (!P_W_WATCHDOG || target >= 0 || wd_force < 0) return;
+    if (v.round >= wd_force_until || groups[wd_force].excluded_until > v.round) { wd_force = -1; return; }
+    target = wd_force;
+}
+// P_W_FUELCAP: bank() walked to the altar with a fresh path field each turn, retried up to three times when the step
+// failed (about 70k on starvation, 36k on lanes; sweep35 stamps). A full field costs 13k on starvation and 24k on
+// big_world plus as much to export (bots/fcost), so each altar's field is built once, at the end of a turn with 75k
+// left, and the carrier steps to the reachable neighbour with the smallest table distance.
+void Bot::wd_tables_step() {
+    if (!P_W_FUELCAP || !initialised || wd_alt_next >= altars.size()) return;
+    if (wd_alt_tbl.size() != altars.size()) wd_alt_tbl.assign(altars.size(), {});
+    if (cambc::fuel_remaining() < 75000) return;
+    const std::size_t i = wd_alt_next++;
+    try {
+        const auto roots = tiles_around(altars[i], cambc::constants::submit_gems_range) & ~static_block;
+        cambc::distance_field f; cambc::bitboard seen;
+        f.compute(static_block & ~roots, roots, seen);
+        wd_alt_tbl[i] = f.export_linear_buffer();
+    } catch (...) {}
+}
+
+int Bot::wd_alt_dist(int i, cambc::vec2 p) const {
+    if (i < 0 || i >= static_cast<int>(wd_alt_tbl.size()) || wd_alt_tbl[i].empty()) return -1;
+    const std::size_t k = static_cast<std::size_t>(p.y) * cambc::map::width() + p.x;
+    if (k >= wd_alt_tbl[i].size() || wd_alt_tbl[i][k] == cambc::distance_field::unreachable) return -1;
+    return wd_alt_tbl[i][k];
+}
+
+bool Bot::wd_step_altar(int i, const TurnView& v) {
+    if (!P_W_FUELCAP) return false;
+    auto& me = cambc::self();
+    const int here = wd_alt_dist(i, v.pos);
+    if (here <= 0 || !me.can_move()) return false;
+    auto blocked = static_block | camp_static | cambc::vision::champion_tiles() | cambc::vision::camp_tiles() | cambc::vision::teleport_tiles();
+    blocked.set(v.pos, false);
+    cambc::vec2 best = v.pos; int bd = here;
+    for (auto t : blocked.reachable_tiles(v.pos, me.base_stats().base_move_speed).positions()) {
+        const int d = wd_alt_dist(i, t);
+        if (d >= 0 && d < bd) { bd = d; best = t; }
+    }
+    if (best == v.pos) return false;
+    try { if (me.move_absolute(best)) { DBG(" WDSTEP"); return true; } } catch (...) {}
     return false;
 }
 } // namespace va

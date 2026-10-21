@@ -519,6 +519,7 @@ bool Bot::bank(const TurnView& v, const std::vector<cambc::champion>& enemies, c
         if (near >= 0 && near_d > 2)
             for (const auto& e : enemies) if (tile_distance(e.position(), altars[near]) <= 4) return false;
     }
+    if (kAltarScoring && pick >= 0 && wd_step_altar(pick, v)) return true;   // P_W_FUELCAP: cached altar table
     if (kAltarScoring && pick >= 0)
         move_towards_closest(static_block, camp_static, tiles_around(altars[pick], cambc::constants::submit_gems_range));
     else
@@ -602,7 +603,7 @@ void Bot::play_turn() {
 #if TRACE_V
     struct FG { int r, u; ~FG() { if (r <= 14) std::cout << "F r" << r << " u" << u << " left" << cambc::fuel_remaining() << "\n"; } } fg{static_cast<int>(cambc::round_number()), ally_index};
 #endif
-    if (!initialised) { init(); if (!initialised || cambc::fuel_remaining() < 80000) return; }   // staged init: an unfinished init (or one that left < 80k) yields the turn
+    if (!initialised) { init(); if (!initialised || cambc::fuel_remaining() < (P_W_FUELCAP ? 100000u : 80000u)) return; }   // P_W_FUELCAP: a play turn costs up to ~95k   // staged init: an unfinished init (or one that left < 80k) yields the turn
 #if TRACE_V
     if (ally_index == 0 && cambc::round_number() >= 18 && cambc::round_number() <= 45) std::cout << "S r" << cambc::round_number() << " p" << cambc::self().position().x << "," << cambc::self().position().y << " hp" << (int)cambc::self().health() << " alive" << cambc::self().is_alive() << "\n";
 #endif
@@ -666,6 +667,7 @@ void Bot::play_turn() {
     }
     if (P_S1_AUCTION && mine) mine |= static_cast<std::uint8_t>(eta_bucket(s1_eta) << 6);   // S1 claim: task | ETA bucket
     if (P_S1_AUCTION) s1_tables_step();
+    wd_tables_step();   // P_W_FUELCAP: altar tables on spare turns
     cambc::shared_memory.write(ally_index, std::span<const std::uint8_t>{&mine, 1});
 }
 
@@ -786,6 +788,7 @@ void Bot::play_turn_inner() {
     S1F(7);
     if (P_S1_AUCTION && cambc::fuel_remaining() < 45000) return;   // S1 fuel: an expensive turn (view, enemies) ends before the choice and the move
     resolve_target(v, allies);
+    wd_after_target(v);   // P_W_WATCHDOG level 3: a forced nearest task when target choice returns none
     Plan::target(*this, v, target);
     S1F(8);
     if (P_S1_THREAT_COST && target >= 0) g_threat_exempt = groups[target].mask;

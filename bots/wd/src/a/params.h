@@ -5,6 +5,9 @@
 #if __has_include("params_override.h")
 #include "params_override.h"
 #endif
+#ifndef P_W_FUELCAP
+#define P_W_FUELCAP 1    // fuel fixes from the sweep35 stamps: update_contested prefilter, cheap step when a path field does not fit, round-1 play needs 100k
+#endif
 #ifndef P_W_WATCHDOG
 #define P_W_WATCHDOG 1   // wd.cpp: progress watchdog (tools/cloud/sweep35.md task 3)
 #endif
