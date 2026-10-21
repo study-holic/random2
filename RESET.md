@@ -1,6 +1,6 @@
 # Reset, 22 Oct 00:30 BST: start here
 
-Xans asked for a reset after the 20-22 Oct sessions spent heavily (over $150 of cloud tokens alone) and did not lift the rating. Read this file, then docs/rules/PATCH-NOTES-1.0.md. Treat everything else in the repo as data to audit, not as decisions.
+Xans asked for a reset after the 20-22 Oct sessions spent heavily (over $150 of cloud tokens alone) and did not lift the rating. Read TIMELINE.md first (the full story: every submission, test, consult, assumption and mistake), then this file, then docs/rules/PATCH-NOTES-1.0.md. Treat everything else in the repo as data to audit, not as decisions.
 
 ## Ground truth (checked 21-22 Oct)
 - **Engine and pool:** engine 1.0.2, CLI and SDK 3.0.4 (3.0.1 is archived in archive/sdk-3.0.1). The pool is 40 maps; gem_fields, gemfight, great_wall, lost_world and road_of_riches were added 21 Oct.
