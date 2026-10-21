@@ -177,14 +177,16 @@
 #endif
 // v5 S3 part 3, ability-first opener (results/v5-s3.md). Top-10 teams open 85 % of fights with an ability, v4 47 %
 // (results/v5-s3-diag.md); 19 % of the fights v4 opened came with every ability on cooldown.
+// All three OFF: not admitted (results/v5-s3.md section 3: 126 games vs v4, 68 and 66 wins against 73 without them, and
+// the share of fights we open with an ability fell from 48 % to 34-35 %).
 #ifndef P_S3_SAVE_CASTS
-#define P_S3_SAVE_CASTS 1   // no damage, area or stun cast on a camp while an enemy champion is within 8 tiles
+#define P_S3_SAVE_CASTS 0   // no damage, area or stun cast on a camp while an enemy champion is within 8 tiles
 #endif
 #ifndef P_S3_CAST_ORDER
-#define P_S3_CAST_ORDER 1   // cast_on_enemy: stun first, then damage; ground-target casts aimed at the foe's tile
+#define P_S3_CAST_ORDER 0   // cast_on_enemy: stun first, then damage; ground-target casts aimed at the foe's tile
 #endif
 #ifndef P_S3_FOCUS
-#define P_S3_FOCUS 1        // focus: Cassi (her death kills Issac too), then the biggest bag, then the lowest health
+#define P_S3_FOCUS 0        // focus: Cassi (her death kills Issac too), then the biggest bag, then the lowest health
 #endif
 #ifndef P_SAVE_CC
 #define P_SAVE_CC 0                   // 1: no stun/cc on camps while an enemy champion is within 8 tiles
