@@ -1,0 +1,174 @@
+#pragma once
+// v4: v2's fuel-lean structure plus v3-quick's enemy rules, S-08 squads (squads.cpp), squad micro with shield and
+// stuns (micro.cpp), and the banking rules of S-13.
+#include <cambc.h>
+#include <cstdint>
+#include <vector>
+
+// One physical camp group, cached at init so turns never re-query static data.
+struct GroupInfo {
+    cambc::map::camp_group group;
+    std::vector<cambc::vec2> tiles;   // spawn tiles
+    cambc::bitboard mask;             // spawn tiles as a bitboard
+    cambc::bitboard ring;             // tiles beside the spawn tiles: where to wait without blocking the respawn
+    bool heavy = false;               // elk or monolith present
+    bool monolith = false;
+    bool squad_target = false;        // an Elk or three or more wolves: farmed by a squad
+    int wolves = 0;
+    int gems = 0;
+    int ready_round = 0;              // estimated round the group respawns (0 = assume alive)
+    int excluded_until = 0;           // gave up here: skip this group until this round
+    int contested_round = -1000;      // last round 2+ enemy champions were seen within 4 tiles of a spawn tile
+    int dist_ally = 0;                // min distance from a spawn tile to our spawn centre
+    int dist_enemy = 0;               // same for the enemy spawn centre
+    bool cluster = false;             // EXP-030: a gem cluster and no damaging camp (wolf, Elk, Monolith)
+    bool has_gem_cluster = false;     // EXP-030: at least one gem cluster (mixed groups too)
+    int cluster_seen = -1000;         // EXP-030: last round a mixed group was seen with only clusters alive
+};
+
+// A live camp with its group index and health, read once per turn.
+struct LiveCamp {
+    cambc::camp camp;
+    int group;
+    float health;
+};
+
+// Per-turn view of live camps near the champion (and of the target group), queried once.
+struct TurnView {
+    cambc::vec2 pos{};
+    int round = 0;
+    std::vector<LiveCamp> camps;
+    cambc::bitboard visible;
+};
+
+// Shared memory: bytes 0..5 hold each champion's target + 1, bytes 6 and 7 each squad's claimed group + 1.
+inline constexpr int kSquadClaimByte = 6;
+
+// Per-champion state survives between turns.
+class Bot {
+    bool initialised = false;
+    int ally_index = 0;                 // slot in shared memory (0..5), position in the roster
+    int squad = 0;
+    bool is_melee = false;
+    bool squad_capable = true;          // the squad has a melee champion to tank
+    std::vector<GroupInfo> groups;
+    std::vector<cambc::champion> roster;
+    std::vector<int> roster_squad;
+    std::vector<bool> roster_melee;
+    std::vector<int> capture_key;       // capture order inside a squad (lowest first)
+    int target = -1;
+    int holding = -1;                   // squad group whose capture this champion stands on
+    int hold_since = 0;
+    bool retreating = false;            // hurt: leave camp range, recall, return at full health
+    // Stall fix (EXP-026/EXP-021 re-run): retreat ping-pong between two danger-zone tiles, and a lock never attacked.
+    cambc::vec2 pos_prev{-1, -1}, pos_prev2{-1, -1};
+    int retreat_osc = 0;                // consecutive A-B-A-B turns while retreating
+    int retreat_walk_until = 0;         // until this round the retreat walks home through the danger zone
+    int lock_wait = 0;                  // turns spent in submit range of a locked altar without attacking the lock
+    int carry_since = -1;               // round the current bag was first carried
+    bool banking = false;               // decided to bank: keep going until the bag is empty
+    int wait_rounds = 0;                // rounds spent waiting beside a respawning group
+    int wait_tank = 0;
+    int wait_cohesion = 0;              // rounds spent waiting for squad members to catch up                  // ranged: rounds spent waiting for a melee ally to engage
+    std::size_t state_cursor = 0;       // rotates the group whose state is refreshed this turn
+    // Stuck detector (EXP-018): rounds alive at the same position, not tributing, capturing or attacking.
+    cambc::vec2 last_pos{-1, -1};
+    int still_rounds = 0;
+    bool could_attack = false;          // can_attack() at the start of the turn (attack detection)
+    bool attacked = false;
+    int walk_home = 0;                  // stuck walk: rounds left walking towards our spawn
+    cambc::vec2 walk_from{0, 0};
+
+    // Static map data cached at init.
+    cambc::bitboard static_block;       // walls, holes, altars, enemy spawn
+    cambc::bitboard camp_static;        // every camp spawn tile
+    cambc::bitboard ally_spawn;
+    cambc::bitboard altar_goals;        // tiles from which gems can be submitted
+    std::vector<cambc::vec2> altars;
+    std::vector<int> lock_until;        // per altar: an enemy lock was seen, avoid it until this round
+    std::vector<int> altar_skip_until;  // per altar: stuck there, avoid it until this round
+    std::vector<int> altar_foes;        // EXP-023: enemy champions seen within 5 tiles of each altar
+    std::vector<int> altar_foes_round;  // round of that sighting
+    std::vector<cambc::vec2> spawn_tiles;
+    // EXP-073 centre control (centre.cpp)
+    bool centre_map = false;            // draft-time test: altar near the map centre with 2+ gem-cluster groups beside it
+    int centre_altar = -1;              // index into altars
+    cambc::vec2 centre_pos{0, 0};
+    int map_w = 0, map_h = 0;
+    bool pre_valid = false;
+    std::vector<cambc::champion> pre_enemies, pre_allies;
+    int diag_inr = 0, diag_dsum = 0, diag_fail = 0;
+    int diag_foe = 0, diag_ready = 0, diag_c = 0;
+    int d_streak = 0, diag_stack = 0, diag_d = 0, diag_burst = 0, diag_attack = 0, diag_hold = 0;
+    bool diag_done = false;
+    int stack_until = -1000;            // leader: stack runs until this round
+    bool stack_on = false;              // this turn: a stack is active
+    cambc::vec2 stack_tile{0, 0};
+    int engaged_until = -1000;          // synchronized burst: keep hitting the focus until this round
+    bool focus_set = false;
+    std::optional<cambc::champion> focus_unit;   // leader focus enemy (valid when focus_set)
+    std::vector<char> centre_group;     // per group: within 10 tiles of the centre altar (the only targets on a centre map)
+    bool cluster_map = false;           // EXP-030: three or more gem-cluster groups on the map
+
+    TurnView build_view() const;
+    void init();
+    void buy_items();
+    bool refresh_group(int index, int round, const cambc::bitboard& visible);
+    void update_group_memory(const TurnView& v);
+    bool bank(const TurnView& v, const std::vector<cambc::champion>& enemies,
+              const std::vector<cambc::champion>& allies);
+    void play_turn_inner();
+    // enemies.cpp
+    bool enemy_response(const TurnView& v, const std::vector<cambc::champion>& enemies,
+                        const std::vector<cambc::champion>& allies);
+
+    // stuck.cpp (EXP-018)
+    void update_contested(const TurnView& v, const std::vector<cambc::champion>& enemies);
+    bool contested(int index, int round) const;
+    bool leave_contested(const TurnView& v);
+    void update_stuck();
+    bool handle_stuck(const TurnView& v);
+    cambc::bitboard altar_goal_tiles(int round) const;
+    int choose_altar(const TurnView& v, const std::vector<cambc::champion>& enemies, int& contest);   // EXP-023
+
+    // squads.cpp
+    void assign_squads();
+    int roster_index(const cambc::champion& c) const;
+    int read_squad_claim() const;
+    void write_squad_claim(int group);
+    bool is_squad_group(int index) const;
+    bool claim_usable(int claim, int round, int exclude) const;
+    int choose_target(const TurnView& v, int exclude);
+    // EXP-030 (cluster.cpp): cluster-first opening on maps with three or more gem-cluster groups.
+    bool cluster_opening(int round) const;
+    bool harmless_now(int index, int round) const;
+    void note_mixed_clusters(const TurnView& v);
+    int choose_cluster(const TurnView& v, int exclude, const std::uint8_t* mem);
+    bool opening_bank(const TurnView& v, int gems) const;
+    void exclude_group(int index, int round);
+    bool group_cleared(const TurnView& v, int index) const;
+    int capture_rank(const std::vector<cambc::champion>& allies, int group) const;
+    void resolve_target(const TurnView& v, const std::vector<cambc::champion>& allies);
+
+    // centre.cpp (EXP-073)
+    void setup_centre();
+    cambc::bitboard centre_hold_goals(const cambc::bitboard& ring) const;
+    void centre_idle(const TurnView& v);
+    bool centre_fight(const TurnView& v, const std::vector<cambc::champion>& enemies, const std::vector<cambc::champion>& allies);
+    // stack.cpp (EXP-077)
+    void centre_publish(const std::vector<cambc::champion>& enemies);
+    bool centre_stack_turn(const TurnView& v, const std::vector<cambc::champion>& enemies, const std::vector<cambc::champion>& allies);
+    bool centre_ok(int group) const;
+    bool centre_recentre(const TurnView& v, const std::vector<cambc::champion>& enemies);
+
+    // micro.cpp
+    void farm(const TurnView& v, const std::vector<cambc::champion>& allies);
+    void farm_squad(const TurnView& v, const std::vector<cambc::champion>& allies, const LiveCamp* prey);
+    void farm_solo(const TurnView& v, const LiveCamp* prey);
+    bool engaged_at_squad_target(const TurnView& v) const;
+    bool fresher_mate_near(const TurnView& v, const std::vector<cambc::champion>& allies) const;
+    bool wait_for_squad(const TurnView& v, const std::vector<cambc::champion>& allies);
+
+public:
+    void play_turn();
+};

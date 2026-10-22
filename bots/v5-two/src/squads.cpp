@@ -1,0 +1,202 @@
+// S-08 squads: squad assignment by champion type, squad claims in shared memory, target choice (v2 scoring with
+// v3-quick's own-half-first rule), and the capture rule (lowest-id squad member captures, the rest move on).
+#include <cambc.h>
+#include "bot.h"
+#include "util.h"
+#include <algorithm>
+#include <array>
+#include <cstdint>
+#include <numeric>
+#include <span>
+#include <variant>
+
+using cambc::vec2;
+using CT = cambc::champion_type;
+
+static constexpr int kRespawnTime = 65;      // rules: respawn_time 60 plus the 5-round capture
+static constexpr int kClaimSlack = 25;       // a squad claim stays valid while its group respawns within this many rounds
+static constexpr int kExcludeRounds = 30;
+static constexpr int kClaimBonus = 8;          // score bonus (tiles) for the squad's claimed group
+static constexpr bool kCaptureByHealth = true;   // false: lowest id captures (spec); true: lowest starting health
+
+// v5-two: two stacks by champion type (Vendetta, Issac, Cassi; the rest) with 4 or more champions, one stack of
+// everything below that. When a stack lacks a melee champion or has fewer than two members, melee champions
+// (highest max health first) are dealt alternately to the two stacks, then the ranged ones.
+void Bot::assign_squads() {
+    const int n = static_cast<int>(roster.size());
+    roster_squad.assign(n, 0);
+    roster_melee.assign(n, false);
+    for (int i = 0; i < n; ++i) roster_melee[i] = roster[i].attack_range() <= 1;
+    if (n >= 4) {
+        for (int i = 0; i < n; ++i) {
+            const auto t = roster[i].champion_name();
+            roster_squad[i] = (t == CT::vendetta || t == CT::issac || t == CT::cassi) ? 0 : 1;
+        }
+        int size[2] = {0, 0}, melee[2] = {0, 0};
+        for (int i = 0; i < n; ++i) { ++size[roster_squad[i]]; if (roster_melee[i]) ++melee[roster_squad[i]]; }
+        if (size[0] < 2 || size[1] < 2 || melee[0] == 0 || melee[1] == 0) {
+            std::vector<int> order(n);
+            std::iota(order.begin(), order.end(), 0);
+            std::stable_sort(order.begin(), order.end(), [&](int a, int b) {
+                if (roster_melee[a] != roster_melee[b]) return static_cast<bool>(roster_melee[a]);
+                return roster[a].max_health() > roster[b].max_health();
+            });
+            for (int k = 0; k < n; ++k) roster_squad[order[k]] = k % 2;
+        }
+    }
+    capture_key.assign(n, 0);
+    for (int i = 0; i < n; ++i)
+        capture_key[i] = kCaptureByHealth ? static_cast<int>(roster[i].max_health()) * 8 + i : i;
+    squad = roster_squad[ally_index];
+    is_melee = roster_melee[ally_index];
+    squad_capable = false;
+    for (int i = 0; i < n; ++i) if (roster_squad[i] == squad && roster_melee[i]) squad_capable = true;
+}
+
+int Bot::roster_index(const cambc::champion& c) const {
+    for (std::size_t i = 0; i < roster.size(); ++i) if (roster[i] == c) return static_cast<int>(i);
+    return -1;
+}
+
+int Bot::read_squad_claim() const {
+    std::uint8_t b = 0;
+    cambc::shared_memory.read(kSquadClaimByte + squad, std::span{&b, 1});
+    return static_cast<int>(b) - 1;
+}
+
+void Bot::write_squad_claim(int group) {
+    const std::uint8_t b = static_cast<std::uint8_t>(group + 1);
+    cambc::shared_memory.write(kSquadClaimByte + squad, std::span<const std::uint8_t>{&b, 1});
+}
+
+bool Bot::is_squad_group(int index) const {
+    return index >= 0 && squad_capable && groups[index].squad_target;
+}
+
+bool Bot::claim_usable(int claim, int round, int exclude) const {
+    if (claim < 0 || claim >= static_cast<int>(groups.size()) || claim == exclude) return false;
+    const auto& g = groups[claim];
+    return !g.monolith && g.excluded_until <= round && g.ready_round <= round + kClaimSlack;
+}
+
+// Squad groups go through the squad claim: while the claim is usable it is the only squad group a member may pick;
+// solo groups are free for whoever is nearest and unclaimed. Scores follow v2 (distance, wait, gem value) with
+// v3-quick's own half first before round 400.
+int Bot::choose_target(const TurnView& v, int exclude) {
+    std::array<std::uint8_t, 8> mem{};
+    cambc::shared_memory.read(0, std::span{mem.data(), mem.size()});
+    const int round = v.round;
+    const int my_claim = static_cast<int>(mem[kSquadClaimByte + squad]) - 1;
+    const int other_claim = static_cast<int>(mem[kSquadClaimByte + 1 - squad]) - 1;
+    const bool amb = ambush_on();
+    if (exclude >= 0 && exclude == ambush_group) ambush_done = true;
+    const bool claim_ok = squad_capable && claim_usable(my_claim, round, exclude);
+    int best = -1; double best_score = 1e18;
+    // Ambush: the first target is the group on the enemy half nearest to the enemy spawn.
+    if (amb && !ambush_done && !claim_ok && ambush_group >= 0 && ambush_group != exclude
+        && groups[ambush_group].excluded_until <= round && round < 300) {
+        write_squad_claim(ambush_group);
+        return ambush_group;
+    }
+    for (int pass = 0; pass < 2 && best < 0; ++pass) {
+        const bool own_half_only = round < 400 && pass == 0 && !amb;
+        const bool enemy_half_only = amb && pass == 0;
+        for (int i = 0; i < static_cast<int>(groups.size()); ++i) {
+            const auto& g = groups[i];
+            if (g.monolith || g.excluded_until > round || i == exclude) continue;
+            if (own_half_only && g.dist_enemy < g.dist_ally && !(claim_ok && i == my_claim)) continue;
+            if (enemy_half_only && g.dist_enemy >= g.dist_ally && !(claim_ok && i == my_claim)) continue;
+            if (is_squad_group(i)) {
+                if (i == other_claim) continue;
+                if (claim_ok && i != my_claim) continue;
+            } else {
+                bool taken = false;
+                for (int k = 0; k < kSquadClaimByte; ++k) if (k != ally_index && mem[k] == i + 1) taken = true;
+                if (taken) continue;
+            }
+            const int d = min_distance(v.pos, g.tiles);
+            const int wait = std::max(0, g.ready_round - round - d);
+            double score = d + 2.0 * wait - 0.05 * g.gems;
+            if (claim_ok && i == my_claim) score -= kClaimBonus;   // squads stay together
+            if (amb) score += 0.5 * g.dist_enemy;   // wipe phase: enemy-half groups nearest to their spawn first
+            else if (round >= 400) score += 0.5 * std::max(0, g.dist_ally - g.dist_enemy);
+            if (score < best_score) { best_score = score; best = i; }
+        }
+    }
+    if (best >= 0 && is_squad_group(best) && !claim_ok) write_squad_claim(best);
+    return best;
+}
+
+// Give up on a group for a while; a squad claim on it is cleared so the squad picks again.
+void Bot::exclude_group(int index, int round) {
+    if (index < 0) return;
+    groups[index].excluded_until = round + kExcludeRounds;
+    if (index == ambush_group) ambush_done = true;
+    if (is_squad_group(index) && read_squad_claim() == index) write_squad_claim(-1);
+}
+
+// True when every spawn tile of the group is in view and no camp of it is alive.
+bool Bot::group_cleared(const TurnView& v, int index) const {
+    const auto& g = groups[index];
+    if (!(g.mask & ~v.visible).is_empty()) return false;
+    for (const auto& c : v.camps) if (c.group == index) return false;
+    return true;
+}
+
+// Number of squad members near the group that capture before this one (0 = this champion captures). The order is
+// lowest starting health first (ties by id), so the ranged member captures and banks while the tank stays on.
+int Bot::capture_rank(const std::vector<cambc::champion>& allies, int group) const {
+    auto& me = cambc::self();
+    int rank = 0;
+    for (const auto& a : allies) {
+        if (a == me) continue;
+        const int idx = roster_index(a);
+        if (idx < 0 || roster_squad[idx] != squad || capture_key[idx] >= capture_key[ally_index]) continue;
+        if (min_distance(a.position(), groups[group].tiles) > 8) continue;
+        ++rank;
+    }
+    return rank;
+}
+
+// Decide this turn's target: hold a capture (20-round timeout), leave a cleared squad group (the lowest-id member
+// stays), follow the squad claim, or choose afresh.
+void Bot::resolve_target(const TurnView& v, const std::vector<cambc::champion>& allies) {
+    const int round = v.round;
+    if (holding >= 0) {
+        bool contested = false;
+        for (const auto& c : v.camps) if (c.group == holding) contested = true;
+        refresh_group(holding, round, v.visible);   // respawning means the capture has been paid
+        if (contested || groups[holding].ready_round > round) {
+            holding = -1;
+        } else if (round - hold_since > 20) {
+            exclude_group(holding, round);
+            holding = -1;
+            target = -1;
+        } else { target = holding; return; }
+    }
+    if (is_squad_group(target) && groups[target].ready_round <= round && group_cleared(v, target)) {
+        const int cleared = target;
+        const int rank = capture_rank(allies, cleared);
+        wait_stack = 0;   // v5-two: non-capturers do not wait for the capture, the capturer catches up
+        const int next = choose_target(v, cleared);
+        const bool stay = rank == 0 || next < 0;
+        if (stay) { holding = cleared; hold_since = round; return; }
+        groups[cleared].ready_round = round + kRespawnTime;
+        if (read_squad_claim() == cleared) write_squad_claim(is_squad_group(next) ? next : -1);
+        target = next;
+        return;
+    }
+    if (target >= 0 && groups[target].excluded_until > round) target = -1;
+    if (target < 0 || (groups[target].ready_round && groups[target].ready_round > round + 10)) {
+        target = choose_target(v, -1);
+        wait_rounds = 0;
+        wait_stack = 0;
+        wait_tank = 0;
+        return;
+    }
+    // A squad group target follows the squad claim when the squad moved on.
+    if (is_squad_group(target)) {
+        const int claim = read_squad_claim();
+        if (claim != target && claim_usable(claim, round, -1)) { target = claim; wait_rounds = 0; wait_tank = 0; }
+    }
+}
