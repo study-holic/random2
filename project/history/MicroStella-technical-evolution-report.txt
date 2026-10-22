@@ -1,0 +1,64 @@
+MicroStella Bot — Technical Evolution Report (18–20 Oct 2026)
+5. Technical Evolution & Artifacts
+5.1 Version lineage
+Version	Base	Change	Measured result
+v11	William's candidate-v418b	—	Baseline, ~456th
+v16	v11	Draft lists, field shop (Tavi), Monolith poke module, altar locks, channel interrupts, contested-group rule	Sprint 1 entry
+v19	v16	#1-team roster gated to swirl only	Ladder 19 Oct; collapsed when the map pool was replaced
+v20	v19	Gem-weighted target scoring (P_GEM_WEIGHT 0.3, cap 12 tiles, gold-only penalty)	26–16 vs v19 on the new 21-map pool
+v21	v20	Reachability filter, corridor-jam pathing, 32-bit long fix in pick_monolith, gate_mode for boss_battle, one-squad rule, bolder camp retreat	117/168 on the 4-opponent bench; 30–12 vs v19
+v22	v21	No Cassi & Issac on 3-pick maps; stun staggering via unit::buffs()	129/168 — current ladder submission
+v23 (not shipped)	v22	Awake-camp path avoidance, escape-scaled retreat buffer	125/168 (each alone 122–123) — rejected
+5.2 Key architectural elements (final state)
+Target scoring (squads.cpp::choose_target)
+
+double score = d + P_WAIT_WEIGHT * wait - std::min(P_GEM_WEIGHT * g.gems, P_GEM_CAP);
+if (g.gems == 0 && gold >= P_GOLD_ENOUGH) score += P_GOLD_ONLY_PENALTY;
+if (!g.reachable) continue;   // v21
+Reachability at init (bot.cpp): one distance_field BFS from the ally spawn over walls | holes; a group is reachable if any ring tile is reached; altar_walkable additionally excludes static_block and camp spawn tiles. This single check turned islands from 0–360 gems at round 600 into ~1000.
+
+Pathing through allies (util.cpp::move_towards_closest): if the first BFS yields no step, a second BFS treats ally champion tiles as passable (they move too) while the chosen step still must be free.
+
+Monolith play (monolith.cpp): 1L << 40 is 0 in wasm32, so pick_monolith had returned −1 since v12; replaced with long long. gate_mode = Monolith present ∧ no walkable altar neighbour → full-time poking from Chebyshev 4 with line of sight, no banking or escorting until gate_open() (Monolith group respawning), bags capped at P_GATE_BAG 60 so tributes are short enough to survive stuns.
+
+Squad structure (squads.cpp::assign_squads): P_ONE_SQUAD collapses the roster into one squad on 5-pick maps with both sides ≥ 40, excluding mono-only and rows maps.
+
+Retreat rule (bot.cpp): need = max(maxHP·threshold, incoming·1.5 + 0.05·maxHP) (was 4 / 0.1). Tank rotation at 50%.
+
+Draft (draft.cpp): 3-pick → Tavi, Stellar, Ryth (scr_prefs applied to every size-3 map); 5-pick unchanged (Tavi, Stellar, Ryth, Varg, Ren).
+
+Stun staggering (util.cpp, enemies.cpp): skip is_cc() abilities when target.buffs().has_stun().
+
+Tooling produced
+
+pace.py <bot> [opp] [maps] — both-side runs, gems@300/600, first tribute, deaths, winner (caches per bot name; delete replays/pace_<bot>_vs_<opp> after source changes).
+evalall.sh <bot> — 168-game benchmark (21 maps × 2 sides × v19/v20/v16/v13).
+addtrace.py, trace.sh — inject a per-turn state trace (T r<round> a<idx> ...) and extract it from replay bundles.
+bots/probe (map/group/reachability dump), bots/elkprobe (monster wake/regen test), reach.py (walk vs one-teleport reachability from the ASCII map).
+Replay viewer automation: cambc view + Playwright/swiftshader; round slider is input[type=range], ~2.5 rounds/s load.
+5.3 Pivots (bug → approach change)
+Ranking drop 317→456 was not code regression — the map pool had been replaced at 21:51 on 19 Oct; v19 had never seen 10 of the 21 maps. Testing moved entirely to the new pool.
+Uncapped gem weighting (0.3/gem) sent level-1 teams across the map to 3-Elk stacks (collision: 0 gems). Fixed by capping the bonus at 12 tiles.
+"Fuel exhaustion on islands" was actually unreachable targets — 38 of 46 groups need a teleport. The trace showed MV … NO every turn; the probe's BFS confirmed it. Reachability filter added; the earlier fuel hypothesis dropped.
+One squad everywhere broke small/special maps (contest, collision, fragment, monolith) while fixing Elk maps → gated by map size and mode.
+Elk-stack "gather before engage" and "retreat-twice-then-shelve" both scored worse — squad mates chose different groups and waited alone. Code retained behind P_STACK_GATHER 0.
+pick_monolith never worked — discovered only because boss_battle traces printed MP-1 with a valid group; the 32-bit long overflow explained every prior "poke play is weak" observation.
+boss_battle altar is enclosed — walls/holes on every neighbour except the Monolith tile; bots stood beside the Monolith with 1000+-gem bags forever. gate_mode plus bag cap.
+16-game samples were unreliable — two "corridors fixes" (conditional retreat, ranged poke-from-4) looked good on 6 maps and scored 99–101/168. All decisions moved to the 168-game bench; games are deterministic but chaotic under code changes.
+Cassi & Issac on 3-pick maps — linked death doubled every loss (fragment: 29 deaths). Removing them was the largest single gain after v21 (+6 on the bench alone).
+Engine-bug/reverse-engineering requests were declined; all work stayed within documented mechanics.
+5.4 Engine facts established (verified, not assumed)
+Camps do not regenerate; hitting one wakes the group, each monster attacks only within its own range 3 and never chases; sleep after 2 damage-free rounds.
+Tiebreak at round 2000: gems → gold earned → kills; side B wins full ties. Side A acts first within a round (symmetric brawls favour A).
+Tribute = ⌈gems/10⌉ turns; damage does not interrupt, stun/death/altar lock do.
+Every champion exhausts fuel on turns 1–2 (init BFS and group tables); turns resume, only time is lost.
+5.5 Open items / next steps
+Ladder validation of v22: collect match-group zips of actual losses; self-play has reached diminishing returns.
+corridors (0–2 both sides): the 2×2 four-Elk block has no tile in reach of fewer than two Elks; needs a dedicated plan (end-pair clearing or spell-only poking), and transit along the camp row must wait for monsters to sleep.
+hooks / gold_rush as side B: centre brawls lost to first-mover advantage; consider a delayed/side-aware opening.
+monolith (00) map: ~70 gems behind v20; 392-gem Monolith corners now pokeable since the long fix — untested as a deliberate strategy.
+Teleport crystals: islands +392 gems (14 one-hop groups, 4 one-hop altars), big_world +192; requires buy-at-spawn → walk → channel-3 → farm → recall loop.
+Turn-1 fuel: precompute reachability/group tables in the draft turn (10× fuel) into the 1024-byte draft memory.
+Combat micro: generic parameters (chase, flee, focus, engage-HP floor) are exhausted (all ≤ baseline); further gains require per-map replay study.
+Rejected, do not retry without a new idea: six-body roster on 5-pick maps (49/84), Monster shards ×10 first, P_THREAT_LAYER 1, old retreat buffer, gather-before-engage.
+All of the above is recorded in the project doc claude/bot-findings-2026-10-20.md; the shipped bundles are v21.zip and v22.zip in the battlecode folder.
