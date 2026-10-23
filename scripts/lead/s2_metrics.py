@@ -3,7 +3,7 @@
 
 Two uses:
   python3 s2_metrics.py local <dir with *.json>                -> metrics.csv in that dir (validation on local games)
-  python3 s2_metrics.py fetch <ids.csv> [--out matchdb] [--keep] -> runs `cambc matches summary <id> --json -o <out>/<id>.json`
+  python3 s2_metrics.py fetch <ids.csv> [--out matchdb] [--keep] [--cambc PATH] -> runs `cambc matches summary <id> --json -o <out>/<id>.json`
      for every match_id in ids.csv (needs `cambc login` once), appends rows to <out>/metrics.csv, deletes each JSON unless --keep.
      Resume-safe: ids already in metrics.csv are skipped. Stops after 5 consecutive download failures and prints the last error.
 Columns: match_id, map, rounds, team (A|B), team_name, opp_name, won, gems_submitted, submissions, round_250, round_500, round_1000,
@@ -11,7 +11,30 @@ Columns: match_id, map, rounds, team (A|B), team_name, opp_name, won, gems_submi
   dead_rounds (60 per death, capped at game end), gold_earned, gold_spent, items_bought, locks_bought, crystals_bought, wards,
   dmg_to_champions, dmg_to_monsters, dmg_from_champions, dmg_from_monsters, picks.
 """
-import csv, json, os, subprocess, sys, collections
+import csv, json, os, shutil, subprocess, sys, sysconfig, collections
+
+
+def find_cambc():
+    """cambc from --cambc PATH, the CAMBC variable, PATH, or the Scripts folders of this Python (pip --user on Windows
+    installs cambc.exe in %APPDATA%\\Python\\Python3xx\\Scripts, which is often off PATH)."""
+    if "--cambc" in sys.argv:
+        return sys.argv[sys.argv.index("--cambc") + 1]
+    if os.environ.get("CAMBC"):
+        return os.environ["CAMBC"]
+    hit = shutil.which("cambc")
+    if hit:
+        return hit
+    dirs = [sysconfig.get_path("scripts")]
+    for scheme in ("nt_user", "posix_user", "osx_framework_user"):
+        try:
+            dirs.append(sysconfig.get_path("scripts", scheme))
+        except KeyError:
+            pass
+    for d in dirs:
+        for name in ("cambc.exe", "cambc"):
+            if d and os.path.isfile(os.path.join(d, name)):
+                return os.path.join(d, name)
+    sys.exit("cambc not found. Pass --cambc <path to cambc.exe>, or run: python -m pip install --user cambc==3.0.5")
 
 COLS = ["match_id", "map", "rounds", "team", "team_name", "opp_name", "won", "gems_submitted", "submissions", "round_250", "round_500",
         "round_1000", "gems_from_camps", "gems_from_kills", "gems_lost_to_champions", "gems_lost_to_camps", "deaths_by_champions",
@@ -83,6 +106,8 @@ def main():
         print(f"{len(rows)} rows -> {os.path.join(d0, 'metrics.csv')}")
         return
     ids_csv = sys.argv[2]
+    cambc = find_cambc()
+    print(f"cambc: {cambc}")
     out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "matchdb"
     keep = "--keep" in sys.argv
     os.makedirs(out, exist_ok=True)
@@ -101,7 +126,7 @@ def main():
         if mid in done:
             continue
         jp = os.path.join(out, f"{mid}.json")
-        p = subprocess.run(["cambc", "matches", "summary", mid, "--json", "-o", jp], capture_output=True, text=True)
+        p = subprocess.run([cambc, "matches", "summary", mid, "--json", "-o", jp], capture_output=True, text=True)
         if p.returncode != 0 or not os.path.exists(jp):
             fails += 1; print(f"[{i+1}/{len(ids)}] {mid} failed: {(p.stderr or p.stdout).strip()[:200]}")
             if fails >= 5:
