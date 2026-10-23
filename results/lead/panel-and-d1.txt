@@ -1,9 +1,18 @@
 F2 reference and D1 summaries (engine 1.0.3, 40 maps x 2 seats, release; raw games.csv and summary.json stay out of the repo by .gitignore)
-Written 23 Oct 11:29 BST from runs/*/summary.json by scripts/lead/panel_show.py
+Written 23 Oct 11:52 BST from runs/*/summary.json by scripts/lead/panel_show.py
 
 opponent                                      v5r
 centre                               61/80   745-379 
 centre-v3                            61/80   745-376 
+comp-deysag-baseline                  1/80   209-1018
+comp-dpark2380-v7                    22/80   472-791 
+comp-dpark2380-v8                    13/80   434-813 
+comp-fhl-08-foundry-v16              61/80   692-447 
+comp-fhl-08-squad-v21                48/80   607-495 
+comp-not-tnb-stress-test-cpp         80/80   768-0   
+comp-realahmedkhairi-benchmark       69/80   768-355 
+comp-s0ulsyte-merged                 53/80   631-445 
+comp-s0ulsyte-v2                     68/80   685-151 
 hunter                               67/80   738-355 
 locker                               76/80   782-40  
 raider2                              72/80   739-258 
@@ -21,7 +30,7 @@ x-ifish                              75/80   822-134
 x-mite                               76/80   827-170 
 x-shawn                              76/80   833-133 
 x-v4-14                              58/80   716-483 
-v5r: 1284/1520 over 19 opponents
+v5r: 1699/2240 over 28 opponents
 
 d1-meta-v5r {'set': 'd1-meta-v5r', 'a': 'v5r-meta', 'b': 'v5r', 'games': 80, 'a_wins': 48, 'a_gems_mean': 716.4, 'b_gems_mean': 584.3, 'a_deaths_mean': 12.39, 'b_deaths_mean': 27.04, 'a_fuel_exh': 0, 'b_fuel_exh': 0, 'unattributed_fuel': 0, 'a_faults': 0, 'b_faults': 0, 'batch_rc': 0, 'wall_s': 318}
 d1-meta-starter {'set': 'd1-meta-starter', 'a': 'v5r-meta', 'b': 'starter-cpp', 'games': 80, 'a_wins': 75, 'a_gems_mean': 763.6, 'b_gems_mean': 164.3, 'a_deaths_mean': 4.34, 'b_deaths_mean': 32.79, 'a_fuel_exh': 0, 'b_fuel_exh': 6, 'unattributed_fuel': 0, 'a_faults': 0, 'b_faults': 0, 'batch_rc': 0, 'wall_s': 275}

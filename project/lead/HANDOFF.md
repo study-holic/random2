@@ -11,7 +11,8 @@ Read with CAMBC-LEAD-PROMPT.md (version 10) and CONTEXT.md. LEDGER.md holds ever
 - S2 index done (chat 2): 31,220 ranked matches since 21 Oct 05:30 UTC for the top 20, UK top 8, Xanarchy, and MicroStella; tables pick_rates, team_drafts, finish_by_map, xanarchy_by_map. Chat 1's smaller index (22,465) is superseded; its pace figures and Monolith-altar finding stand in CONTEXT 3f.
 - S3 v1 done (chat 2): production model, calibration, v5r at 0.76 of top teams' production (12 maps under 0.6), sensitivities, k = 6 archetypes.
 - D1 (chat 1): the top-20 draft on v5r's role code gives 48/80 against v5r (pre-registered lines 49 and 31); deaths halve and pace rises 22 per cent head to head; 75/80 against the starter. Verdict for the grader.
-- F2 references (chat 1): v5r against the 19 random2 panel bots 1,284 of 1,520 (complete 11:29); the 9-bot competitor panel is running.
+- F2 references (chat 1): v5r against the 19 random2 panel bots 1,284 of 1,520; against the 9 competitor bots 415 of 720, with deysag-baseline (Howrah River Trading, rating 1,663) winning 79 of 80 at top-20 farming rates. deysag-baseline is the local reference opponent for S3 and S4.
+- S2 measures, partial: 241 top-20 vs top-20 games (laptop fetch 1); CONTEXT 3j. v5r takes 0.39 to 0.42 camp damage per point dealt (top 20: 0.23 to 0.26). Fetch 2 (chat 2's list, with champions.csv) is running on the laptop.
 
 ## Files
 
