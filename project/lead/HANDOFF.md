@@ -27,7 +27,7 @@ Read with CAMBC-LEAD-PROMPT.md (version 10) and CONTEXT.md. LEDGER.md holds ever
 3. Laptop summary fetch: matchdb/metrics.csv.
 4. Match-database range reads (laptop test with a signed link).
 5. G1 grading in a fresh chat.
-6. Rollback rule part 2 (road_of_riches, 0 of 1 at 12:36; part 1 passed 51/100): recheck when v5r has 6 road_of_riches games (rollback_check.py).
+6. Rollback rule complete (19:30): part 1 51/100, part 2 1 of 6 on road_of_riches; v5r stays live (154/305 since 09:03).
 7. F2 panel completion for v5r (random2 panel, then competitors).
 
 ## Next action
