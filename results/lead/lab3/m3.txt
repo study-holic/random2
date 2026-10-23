@@ -1,0 +1,9 @@
+a LAB 3 r3 willow A: can_attack0=1 moved=1 can_attack1=0 atk1=err:engine error 41: Attack already used. reset=ready=1 use=1 can_attack2=1 atk2=ok
+a LAB 3 r3 tavi A: can_attack0=1 moved=1 can_attack1=0 atk1=err:engine error 41: Attack already used. reset=ready=1 use=1 can_attack2=1 atk2=ok
+a LAB 3 r4 willow B: can_attack0=1 atk1=ok reset=err:engine error 28: Ability is on cooldown. atk2=err:engine error 41: Attack already used.
+a LAB 3 r4 tavi B: can_attack0=1 atk1=ok reset=err:engine error 28: Ability is on cooldown. atk2=err:engine error 41: Attack already used.
+a LAB 3 r4 vesper_vale A: can_attack0=1 moved=1 can_attack1=0 atk1=err:engine error 41: Attack already used. reset=ready=1 use=1 can_attack2=1 atk2=ok
+a LAB 3 r5 vesper_vale B: can_attack0=1 atk1=ok reset=err:engine error 28: Ability is on cooldown. atk2=err:engine error 41: Attack already used.
+a LAB 3 r11 willow C(after 6): atk1=ok reset=ready=1 use=1 can_attack=1 atk2=ok
+a LAB 3 r11 tavi C(after 6): atk1=ok reset=ready=1 use=1 can_attack=1 atk2=ok
+a LAB 3 r12 vesper_vale C(after 6): atk1=ok reset=ready=1 use=1 can_attack=1 atk2=ok

@@ -1,0 +1,1200 @@
+a LAB 2 r1 ryth prio=0 pos 0,0 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r1 vesper_vale prio=0 pos 1,0 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r1 vendetta prio=0 pos 2,0 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r1 stellar prio=0 pos 0,1 A:ryth=1 A:prism=0 A:vesper_vale=1 A:vendetta=1
+a LAB 2 r1 prism prio=0 pos 1,1 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r2 ryth prio=0 pos 0,0 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r2 vesper_vale prio=0 pos 2,1 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r2 vendetta prio=0 pos 3,1 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r2 stellar prio=0 pos 0,2 A:ryth=1 A:prism=0 A:vesper_vale=1 A:vendetta=1
+a LAB 2 r2 prism prio=0 pos 1,2 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r3 ryth prio=0 pos 1,1 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r3 vesper_vale prio=0 pos 2,2 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r3 vendetta prio=0 pos 3,2 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r3 stellar prio=0 pos 0,3 A:ryth=1 A:prism=0 A:vesper_vale=1 A:vendetta=1
+a LAB 2 r3 prism prio=0 pos 1,3 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r4 ryth prio=0 pos 1,2 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r4 vesper_vale prio=0 pos 2,3 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r4 vendetta prio=0 pos 3,3 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r4 stellar prio=0 pos 0,4 A:ryth=1 A:prism=0 A:vesper_vale=1 A:vendetta=1
+a LAB 2 r4 prism prio=0 pos 1,4 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r5 ryth prio=0 pos 1,3 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r5 vesper_vale prio=0 pos 2,4 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r5 vendetta prio=0 pos 3,4 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r5 stellar prio=0 pos 0,5 A:ryth=1 A:prism=0 A:vesper_vale=1 A:vendetta=1
+a LAB 2 r5 prism prio=0 pos 1,5 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r6 ryth prio=0 pos 1,4 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r6 vesper_vale prio=0 pos 2,5 A:ryth=1 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r6 vendetta prio=0 pos 3,5 A:ryth=1 A:stellar=0 A:prism=0 A:vesper_vale=1
+a LAB 2 r6 stellar prio=0 pos 0,6 A:ryth=1 A:vendetta=1 A:prism=0 A:vesper_vale=1
+a LAB 2 r6 prism prio=0 pos 1,6 A:ryth=1 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+a LAB 2 r7 ryth prio=0 pos 1,5 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0
+a LAB 2 r7 vesper_vale prio=0 pos 2,6 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r7 vendetta prio=0 pos 4,5 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r7 stellar prio=0 pos 1,7 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r7 prism prio=0 pos 2,7 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r8 ryth prio=0 pos 0,6 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r8 vesper_vale prio=0 pos 1,6 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r8 vendetta prio=0 pos 5,6 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r8 stellar prio=0 pos 2,8 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r8 prism prio=0 pos 3,8 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r9 ryth prio=0 pos 0,7 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r9 vesper_vale prio=0 pos 1,7 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r9 vendetta prio=0 pos 4,7 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r9 stellar prio=0 pos 3,9 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r9 prism prio=0 pos 4,9 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r10 ryth prio=0 pos 1,8 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r10 vesper_vale prio=0 pos 2,8 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r10 vendetta prio=0 pos 4,8 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r10 stellar prio=0 pos 4,10 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r10 prism prio=0 pos 5,10 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r11 ryth prio=0 pos 2,9 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r11 vesper_vale prio=0 pos 3,9 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r11 vendetta prio=0 pos 5,9 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r11 stellar prio=0 pos 5,11 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r11 prism prio=0 pos 6,11 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1
+a LAB 2 r12 ryth prio=0 pos 3,10 A:vesper_vale=0 A:vendetta=0 A:stellar=0 A:prism=0
+a LAB 2 r12 vesper_vale prio=0 pos 4,10 A:vendetta=0 A:ryth=1 A:stellar=0 A:prism=0
+a LAB 2 r12 vendetta prio=0 pos 6,10 A:ryth=1 A:vesper_vale=1 A:stellar=0 A:prism=0
+a LAB 2 r12 stellar prio=0 pos 6,12 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:prism=0
+a LAB 2 r12 prism prio=0 pos 7,12 A:ryth=1 A:vesper_vale=1 A:vendetta=1 A:stellar=1 E:vendetta=1
+a LAB 2 r13 ryth prio=0 pos 4,11 A:vesper_vale=0 A:vendetta=0 A:prism=0 A:stellar=0
+a LAB 2 r13 vesper_vale prio=0 pos 5,11 A:vendetta=0 A:ryth=1 A:prism=0 A:stellar=0
+a LAB 2 r13 vendetta prio=0 pos 7,11 A:ryth=1 A:vesper_vale=1 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r13 stellar prio=0 pos 7,13 A:vendetta=1 A:ryth=1 A:vesper_vale=1 A:prism=0 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r13 prism prio=0 pos 7,12 A:vendetta=1 A:ryth=1 A:vesper_vale=1 A:stellar=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r14 ryth prio=0 pos 5,12 A:vendetta=0 A:vesper_vale=0 A:prism=0 A:stellar=0
+a LAB 2 r14 vesper_vale prio=0 pos 6,12 A:vendetta=0 A:prism=0 A:ryth=1 A:stellar=0
+a LAB 2 r14 vendetta prio=0 pos 7,11 A:prism=0 A:vesper_vale=1 A:ryth=1 A:stellar=0 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r14 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:vesper_vale=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r14 prism prio=0 pos 7,12 A:vendetta=1 A:vesper_vale=1 A:ryth=1 A:stellar=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r15 ryth prio=0 pos 6,13 A:vendetta=0 A:prism=0 A:vesper_vale=0 A:stellar=0
+a LAB 2 r15 vesper_vale prio=0 pos 5,13 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1
+a LAB 2 r15 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:vesper_vale=1 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r15 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:vesper_vale=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r15 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:vesper_vale=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r16 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 A:vesper_vale=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r16 vesper_vale prio=0 pos 6,14 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1
+a LAB 2 r16 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r16 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r16 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r17 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r17 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r17 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r17 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r17 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r18 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r18 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r18 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r18 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r18 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r19 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r19 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r19 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r19 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r19 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r20 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r20 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r20 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r20 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r20 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r21 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r21 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r21 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r21 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r21 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r22 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r22 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r22 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r22 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r22 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r23 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r23 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r23 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r23 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r23 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r24 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r24 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r24 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r24 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r24 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r25 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r25 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r25 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r25 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r25 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r26 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r26 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r26 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r26 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r26 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r27 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r27 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r27 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r27 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r27 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r28 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r28 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r28 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r28 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r28 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r29 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r29 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r29 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r29 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r29 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r30 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r30 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r30 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r30 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r30 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r31 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r31 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r31 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r31 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r31 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r32 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r32 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r32 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r32 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r32 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r33 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r33 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r33 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r33 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r33 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r34 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r34 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r34 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r34 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r34 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r35 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r35 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r35 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r35 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r35 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r36 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r36 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r36 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r36 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r36 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r37 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r37 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r37 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r37 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r37 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r38 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r38 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r38 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r38 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r38 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r39 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r39 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r39 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r39 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r39 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r40 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r40 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r40 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r40 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r40 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r41 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r41 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r41 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r41 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r41 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r42 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r42 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r42 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r42 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r42 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r43 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r43 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r43 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r43 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r43 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r44 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r44 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r44 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r44 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r44 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r45 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r45 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r45 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r45 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r45 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r46 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r46 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r46 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r46 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r46 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r47 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r47 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r47 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r47 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r47 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r48 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r48 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r48 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r48 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r48 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r49 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r49 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r49 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r49 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r49 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r50 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r50 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r50 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r50 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r50 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r51 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r51 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r51 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r51 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r51 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r52 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r52 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r52 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r52 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r52 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r53 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r53 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r53 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r53 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r53 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r54 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r54 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r54 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r54 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r54 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r55 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r55 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r55 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r55 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r55 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r56 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r56 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r56 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r56 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r56 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r57 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r57 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r57 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r57 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r57 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r58 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r58 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r58 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r58 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r58 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r59 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r59 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r59 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r59 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r59 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r60 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r60 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r60 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r60 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r60 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r61 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r61 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r61 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r61 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r61 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r62 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r62 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r62 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r62 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r62 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r63 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r63 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r63 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r63 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r63 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r64 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r64 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r64 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r64 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r64 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r65 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r65 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r65 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r65 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r65 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r66 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r66 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r66 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r66 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r66 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r67 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r67 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r67 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r67 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r67 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r68 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r68 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r68 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r68 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r68 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r69 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r69 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r69 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r69 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r69 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r70 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r70 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r70 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r70 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r70 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r71 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r71 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r71 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r71 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r71 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r72 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r72 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r72 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r72 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r72 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r73 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r73 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r73 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r73 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r73 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r74 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r74 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r74 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r74 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r74 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r75 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r75 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r75 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r75 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r75 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r76 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r76 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r76 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r76 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r76 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r77 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r77 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r77 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r77 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r77 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r78 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r78 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r78 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r78 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r78 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r79 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r79 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r79 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r79 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r79 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r80 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r80 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r80 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r80 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r80 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r81 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r81 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r81 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r81 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r81 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r82 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r82 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r82 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r82 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r82 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r83 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r83 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r83 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r83 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r83 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r84 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r84 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r84 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r84 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r84 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r85 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r85 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r85 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r85 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r85 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r86 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r86 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r86 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r86 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r86 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r87 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r87 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r87 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r87 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r87 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r88 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r88 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r88 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r88 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r88 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r89 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r89 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r89 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r89 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r89 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r90 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r90 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r90 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r90 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r90 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r91 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r91 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r91 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r91 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r91 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r92 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r92 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r92 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r92 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r92 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r93 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r93 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r93 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r93 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r93 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r94 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r94 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r94 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r94 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r94 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r95 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r95 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r95 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r95 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r95 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r96 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r96 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r96 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r96 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r96 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r97 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r97 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r97 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r97 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r97 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r98 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r98 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r98 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r98 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r98 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r99 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r99 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r99 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r99 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r99 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r100 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r100 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r100 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r100 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r100 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r101 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r101 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r101 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r101 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r101 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r102 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r102 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r102 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r102 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r102 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r103 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r103 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r103 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r103 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r103 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r104 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r104 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r104 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r104 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r104 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r105 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r105 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r105 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r105 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r105 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r106 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r106 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r106 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r106 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r106 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r107 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r107 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r107 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r107 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r107 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r108 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r108 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r108 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r108 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r108 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r109 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r109 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r109 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r109 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r109 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r110 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r110 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r110 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r110 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r110 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r111 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r111 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r111 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r111 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r111 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r112 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r112 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r112 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r112 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r112 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r113 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r113 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r113 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r113 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r113 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r114 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r114 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r114 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r114 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r114 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r115 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r115 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r115 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r115 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r115 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r116 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r116 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r116 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r116 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r116 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r117 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r117 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r117 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r117 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r117 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r118 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r118 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r118 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r118 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r118 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r119 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r119 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=0 E:stellar=0 E:ryth=1
+a LAB 2 r119 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1
+a LAB 2 r119 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=0
+a LAB 2 r119 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r120 ryth prio=0 pos 7,14 A:vendetta=0 A:prism=0 A:stellar=0 E:vendetta=0 E:vesper_vale=0 E:stellar=0
+a LAB 2 r120 vesper_vale prio=0 pos 7,15 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:vesper_vale=1 E:stellar=0 E:ryth=1
+a LAB 2 r120 vendetta prio=0 pos 7,11 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1
+a LAB 2 r120 stellar prio=0 pos 7,13 A:vendetta=1 A:prism=0 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+a LAB 2 r120 prism prio=0 pos 7,12 A:vendetta=1 A:stellar=1 A:ryth=1 E:vendetta=1 E:vesper_vale=1 E:stellar=1
+b LAB 2 r1 ryth prio=0 pos 29,29 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r1 vesper_vale prio=0 pos 28,29 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r1 vendetta prio=0 pos 27,29 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r1 stellar prio=0 pos 29,28 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r1 prism prio=0 pos 28,28 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r2 ryth prio=0 pos 29,29 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r2 vesper_vale prio=0 pos 27,28 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r2 vendetta prio=0 pos 26,28 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r2 stellar prio=0 pos 28,27 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r2 prism prio=0 pos 27,27 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r3 ryth prio=0 pos 28,28 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r3 vesper_vale prio=0 pos 26,27 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r3 vendetta prio=0 pos 25,27 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r3 stellar prio=0 pos 27,26 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r3 prism prio=0 pos 26,26 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r4 ryth prio=0 pos 27,27 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r4 vesper_vale prio=0 pos 25,26 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r4 vendetta prio=0 pos 24,26 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r4 stellar prio=0 pos 26,25 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r4 prism prio=0 pos 25,25 A:vendetta=1 A:stellar=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r5 ryth prio=0 pos 26,26 A:vendetta=0 A:prism=0 A:stellar=0 A:vesper_vale=0
+b LAB 2 r5 vesper_vale prio=0 pos 24,25 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r5 vendetta prio=0 pos 23,25 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r5 stellar prio=0 pos 25,24 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r5 prism prio=0 pos 24,24 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r6 ryth prio=0 pos 25,25 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r6 vesper_vale prio=0 pos 23,24 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r6 vendetta prio=0 pos 22,24 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r6 stellar prio=0 pos 24,23 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r6 prism prio=0 pos 23,23 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r7 ryth prio=0 pos 24,24 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r7 vesper_vale prio=0 pos 22,23 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r7 vendetta prio=0 pos 21,23 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r7 stellar prio=0 pos 23,22 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r7 prism prio=0 pos 22,22 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r8 ryth prio=0 pos 23,23 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r8 vesper_vale prio=0 pos 21,22 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r8 vendetta prio=0 pos 20,22 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r8 stellar prio=0 pos 22,21 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r8 prism prio=0 pos 21,21 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r9 ryth prio=0 pos 22,22 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r9 vesper_vale prio=0 pos 20,21 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r9 vendetta prio=0 pos 19,21 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r9 stellar prio=0 pos 21,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r9 prism prio=0 pos 20,20 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r10 ryth prio=0 pos 21,21 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r10 vesper_vale prio=0 pos 19,20 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r10 vendetta prio=0 pos 18,20 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r10 stellar prio=0 pos 20,19 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r10 prism prio=0 pos 19,19 A:stellar=1 A:vendetta=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r11 ryth prio=0 pos 20,20 A:prism=0 A:stellar=0 A:vendetta=0 A:vesper_vale=0
+b LAB 2 r11 vesper_vale prio=0 pos 18,19 A:prism=0 A:stellar=0 A:vendetta=0 A:ryth=1
+b LAB 2 r11 vendetta prio=0 pos 17,19 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r11 stellar prio=0 pos 19,18 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r11 prism prio=0 pos 18,18 A:vendetta=1 A:vesper_vale=1 A:stellar=1 A:ryth=1
+b LAB 2 r12 ryth prio=0 pos 19,19 A:vendetta=0 A:vesper_vale=0 A:prism=0 A:stellar=0
+b LAB 2 r12 vesper_vale prio=0 pos 17,18 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r12 vendetta prio=0 pos 16,18 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r12 stellar prio=0 pos 18,19 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r12 prism prio=0 pos 17,19 A:vendetta=1 A:stellar=1 A:vesper_vale=1 A:ryth=1
+b LAB 2 r13 ryth prio=0 pos 18,20 A:vendetta=0 A:prism=0 A:stellar=0 A:vesper_vale=0
+b LAB 2 r13 vesper_vale prio=0 pos 16,19 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1
+b LAB 2 r13 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=1 E:prism=0 E:stellar=0
+b LAB 2 r13 stellar prio=0 pos 17,18 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r13 prism prio=0 pos 16,18 A:vendetta=1 A:vesper_vale=1 A:stellar=1 A:ryth=1
+b LAB 2 r14 ryth prio=0 pos 17,19 A:vendetta=0 A:vesper_vale=0 A:prism=0 A:stellar=0
+b LAB 2 r14 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:prism=0 E:stellar=0
+b LAB 2 r14 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:prism=0 A:stellar=0 A:ryth=1 E:vendetta=0 E:prism=0 E:stellar=0
+b LAB 2 r14 stellar prio=0 pos 16,19 A:vendetta=1 A:vesper_vale=1 A:prism=0 A:ryth=1
+b LAB 2 r14 prism prio=0 pos 17,18 A:vendetta=1 A:vesper_vale=1 A:stellar=1 A:ryth=1
+b LAB 2 r15 ryth prio=0 pos 16,20 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0
+b LAB 2 r15 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r15 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r15 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r15 prism prio=0 pos 16,19 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r16 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0
+b LAB 2 r16 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r16 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r16 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r16 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r17 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r17 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r17 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r17 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r17 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r18 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r18 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r18 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r18 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r18 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r19 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r19 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r19 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r19 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r19 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r20 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r20 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r20 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r20 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r20 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r21 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r21 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r21 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r21 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r21 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r22 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r22 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r22 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r22 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r22 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r23 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r23 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r23 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r23 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r23 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r24 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r24 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r24 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r24 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r24 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r25 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r25 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r25 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r25 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r25 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r26 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r26 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r26 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r26 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r26 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r27 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r27 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r27 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r27 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r27 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r28 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r28 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r28 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r28 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r28 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r29 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r29 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r29 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r29 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r29 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r30 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r30 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r30 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r30 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r30 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r31 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r31 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r31 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r31 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r31 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r32 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r32 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r32 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r32 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r32 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r33 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r33 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r33 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r33 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r33 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r34 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r34 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r34 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r34 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r34 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r35 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r35 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r35 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r35 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r35 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r36 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r36 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r36 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r36 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r36 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r37 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r37 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r37 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r37 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r37 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r38 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r38 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r38 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r38 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r38 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r39 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r39 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r39 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r39 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r39 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r40 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r40 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r40 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r40 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r40 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r41 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r41 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r41 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r41 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r41 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r42 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r42 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r42 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r42 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r42 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r43 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r43 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r43 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r43 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r43 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r44 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r44 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r44 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r44 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r44 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r45 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r45 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r45 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r45 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r45 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r46 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r46 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r46 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r46 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r46 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r47 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r47 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r47 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r47 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r47 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r48 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r48 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r48 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r48 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r48 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r49 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r49 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r49 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r49 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r49 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r50 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r50 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r50 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r50 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r50 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r51 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r51 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r51 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r51 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r51 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r52 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r52 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r52 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r52 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r52 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r53 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r53 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r53 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r53 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r53 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r54 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r54 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r54 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r54 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r54 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r55 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r55 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r55 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r55 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r55 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r56 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r56 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r56 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r56 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r56 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r57 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r57 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r57 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r57 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r57 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r58 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r58 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r58 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r58 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r58 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r59 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r59 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r59 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r59 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r59 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r60 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r60 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r60 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r60 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r60 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r61 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r61 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r61 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r61 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r61 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r62 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r62 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r62 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r62 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r62 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r63 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r63 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r63 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r63 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r63 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r64 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r64 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r64 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r64 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r64 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r65 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r65 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r65 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r65 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r65 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r66 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r66 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r66 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r66 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r66 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r67 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r67 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r67 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r67 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r67 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r68 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r68 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r68 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r68 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r68 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r69 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r69 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r69 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r69 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r69 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r70 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r70 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r70 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r70 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r70 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r71 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r71 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r71 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r71 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r71 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r72 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r72 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r72 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r72 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r72 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r73 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r73 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r73 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r73 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r73 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r74 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r74 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r74 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r74 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r74 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r75 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r75 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r75 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r75 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r75 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r76 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r76 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r76 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r76 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r76 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r77 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r77 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r77 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r77 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r77 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r78 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r78 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r78 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r78 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r78 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r79 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r79 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r79 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r79 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r79 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r80 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r80 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r80 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r80 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r80 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r81 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r81 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r81 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r81 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r81 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r82 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r82 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r82 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r82 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r82 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r83 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r83 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r83 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r83 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r83 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r84 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r84 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r84 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r84 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r84 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r85 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r85 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r85 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r85 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r85 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r86 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r86 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r86 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r86 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r86 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r87 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r87 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r87 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r87 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r87 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r88 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r88 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r88 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r88 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r88 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r89 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r89 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r89 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r89 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r89 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r90 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r90 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r90 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r90 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r90 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r91 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r91 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r91 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r91 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r91 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r92 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r92 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r92 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r92 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r92 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r93 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r93 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r93 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r93 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r93 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r94 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r94 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r94 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r94 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r94 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r95 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r95 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r95 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r95 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r95 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r96 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r96 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r96 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r96 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r96 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r97 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r97 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r97 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r97 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r97 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r98 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r98 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r98 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r98 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r98 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r99 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r99 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r99 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r99 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r99 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r100 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r100 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r100 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r100 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r100 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r101 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r101 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r101 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r101 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r101 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r102 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r102 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r102 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r102 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r102 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r103 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r103 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r103 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r103 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r103 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r104 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r104 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r104 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r104 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r104 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r105 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r105 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r105 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r105 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r105 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r106 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r106 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r106 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r106 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r106 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r107 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r107 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r107 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r107 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r107 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r108 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r108 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r108 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r108 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r108 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r109 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r109 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r109 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r109 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r109 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r110 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r110 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r110 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r110 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r110 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r111 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r111 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r111 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r111 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r111 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r112 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r112 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r112 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r112 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r112 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r113 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r113 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r113 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r113 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r113 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r114 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r114 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r114 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r114 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r114 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r115 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r115 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r115 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r115 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r115 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r116 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r116 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r116 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r116 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r116 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r117 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r117 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r117 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r117 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r117 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r118 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r118 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r118 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r118 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r118 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r119 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=1 E:vesper_vale=0
+b LAB 2 r119 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r119 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=1 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r119 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=1 E:ryth=1
+b LAB 2 r119 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1
+b LAB 2 r120 ryth prio=0 pos 15,21 A:vendetta=0 A:vesper_vale=0 A:stellar=0 A:prism=0 E:stellar=0 E:ryth=0 E:vesper_vale=0
+b LAB 2 r120 vesper_vale prio=0 pos 15,19 A:vendetta=0 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r120 vendetta prio=0 pos 15,18 A:vesper_vale=1 A:stellar=0 A:prism=0 E:vendetta=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r120 stellar prio=0 pos 15,20 A:vendetta=1 A:vesper_vale=1 A:prism=0 E:prism=0 E:stellar=0 E:ryth=1
+b LAB 2 r120 prism prio=0 pos 16,20 A:vendetta=1 A:vesper_vale=1 A:stellar=1

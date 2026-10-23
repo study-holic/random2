@@ -1,0 +1,500 @@
+a LAB 6 r1 att gold=0 pos 0,0
+a LAB 6 r2 att gold=0 pos 0,0
+a LAB 6 r3 att gold=0 pos 1,1
+a LAB 6 r4 att gold=0 pos 1,2
+a LAB 6 r5 att gold=0 pos 1,3
+a LAB 6 r6 att gold=0 pos 1,4
+a LAB 6 r7 att gold=0 pos 1,5
+a LAB 6 r8 att gold=0 pos 0,6
+a LAB 6 r9 att gold=0 pos 0,7
+a LAB 6 r10 att gold=0 pos 1,8
+a LAB 6 r11 att gold=0 pos 2,9
+a LAB 6 r12 att gold=0 pos 3,10
+a LAB 6 r13 att gold=0 pos 4,11
+a LAB 6 r14 att gold=0 pos 5,12
+a LAB 6 r15 att gold=0 pos 6,13 tgt=ren hp=900 d=7
+a LAB 6 r16 att gold=0 pos 7,14 tgt=ren hp=900 d=6
+a LAB 6 r17 att gold=0 pos 8,15 tgt=ren hp=900 d=5
+a LAB 6 r18 att gold=0 pos 9,15 tgt=ren hp=900 d=4
+a LAB 6 r19 att gold=0 pos 10,16 tgt=ren hp=900 d=3 atk=ok
+a LAB 6 r20 att gold=0 pos 10,16 tgt=ren hp=845 d=3 atk=ok
+a LAB 6 r21 att gold=0 pos 10,16 tgt=ren hp=790 d=3 atk=ok
+a LAB 6 r22 att gold=0 pos 10,16 tgt=ren hp=735 d=3 atk=ok
+a LAB 6 r23 att gold=0 pos 10,16 tgt=varg hp=1000 d=2 atk=ok
+a LAB 6 r24 att gold=0 pos 10,16 tgt=varg hp=945 d=2 atk=ok
+a LAB 6 r25 att gold=0 pos 10,16 tgt=varg hp=890 d=2 atk=ok
+a LAB 6 r26 att gold=0 pos 10,16 tgt=varg hp=835 d=2 atk=ok
+a LAB 6 r27 att gold=0 pos 10,16 tgt=varg hp=780 d=2 atk=ok
+a LAB 6 r28 att gold=0 pos 10,16 tgt=varg hp=725 d=2 atk=ok
+a LAB 6 r29 att gold=0 pos 10,16 tgt=varg hp=670 d=2 atk=ok
+a LAB 6 r30 att gold=0 pos 10,16 tgt=varg hp=615 d=2 atk=ok
+a LAB 6 r31 att gold=0 pos 10,16 tgt=varg hp=560 d=2 atk=ok
+a LAB 6 r32 att gold=0 pos 10,16 tgt=varg hp=505 d=2 atk=ok
+a LAB 6 r33 att gold=0 pos 10,16 tgt=varg hp=450 d=2 atk=ok
+a LAB 6 r34 att gold=0 pos 10,16 tgt=varg hp=395 d=2 atk=ok
+a LAB 6 r35 att gold=0 pos 10,16 tgt=varg hp=340 d=2 atk=ok
+a LAB 6 r36 att gold=0 pos 10,16 tgt=varg hp=285 d=2 atk=ok
+a LAB 6 r37 att gold=0 pos 10,16 tgt=varg hp=230 d=2 atk=ok
+a LAB 6 r38 att gold=0 pos 10,16 tgt=varg hp=175 d=2 atk=ok
+a LAB 6 r39 att gold=0 pos 10,16 tgt=varg hp=120 d=2 atk=ok
+a LAB 6 r40 att gold=0 pos 10,16 tgt=varg hp=65 d=2 atk=ok
+a LAB 6 r41 att gold=0 pos 10,16 tgt=varg hp=10 d=2 atk=ok
+a LAB 6 r42 att gold=133 pos 10,16 tgt=ren hp=680 d=3 atk=ok
+a LAB 6 r43 att gold=133 pos 10,16 tgt=ren hp=625 d=3 atk=ok
+a LAB 6 r44 att gold=133 pos 10,16 tgt=ren hp=570 d=3 atk=ok
+a LAB 6 r45 att gold=133 pos 10,16 tgt=ren hp=515 d=3 atk=ok
+a LAB 6 r46 att gold=133 pos 10,16 tgt=ren hp=460 d=3 atk=ok
+a LAB 6 r47 att gold=133 pos 10,16 tgt=ren hp=405 d=3 atk=ok
+a LAB 6 r48 att gold=133 pos 10,16 tgt=ren hp=350 d=3 atk=ok
+a LAB 6 r49 att gold=133 pos 10,16 tgt=ren hp=295 d=3 atk=ok
+a LAB 6 r50 att gold=133 pos 10,16 tgt=ren hp=240 d=3 atk=ok
+a LAB 6 r51 att gold=133 pos 10,16 tgt=ren hp=185 d=3 atk=ok
+a LAB 6 r52 att gold=133 pos 10,16 tgt=ren hp=130 d=3 atk=ok
+a LAB 6 r53 att gold=133 pos 10,16 tgt=ren hp=75 d=3 atk=ok
+a LAB 6 r54 att gold=133 pos 10,16 tgt=ren hp=20 d=3 atk=ok
+a LAB 6 r55 att gold=266 pos 10,16 tgt=vesper_vale hp=1000 d=3 atk=ok
+a LAB 6 r56 att gold=266 pos 10,16 tgt=vesper_vale hp=945 d=3 atk=ok
+a LAB 6 r57 att gold=266 pos 10,16 tgt=vesper_vale hp=890 d=3 atk=ok
+a LAB 6 r58 att gold=266 pos 10,16 tgt=vesper_vale hp=835 d=3 atk=ok
+a LAB 6 r59 att gold=266 pos 10,16 tgt=vesper_vale hp=780 d=3 atk=ok
+a LAB 6 r60 att gold=266 pos 10,16 tgt=vesper_vale hp=725 d=3 atk=ok
+a LAB 6 r61 att gold=266 pos 10,16 tgt=vesper_vale hp=670 d=3 atk=ok
+a LAB 6 r62 att gold=266 pos 10,16 tgt=vesper_vale hp=615 d=3 atk=ok
+a LAB 6 r63 att gold=266 pos 10,16 tgt=vesper_vale hp=560 d=3 atk=ok
+a LAB 6 r64 att gold=266 pos 10,16 tgt=vesper_vale hp=505 d=3 atk=ok
+a LAB 6 r65 att gold=266 pos 10,16 tgt=vesper_vale hp=450 d=3 atk=ok
+a LAB 6 r66 att gold=266 pos 10,16 tgt=vesper_vale hp=395 d=3 atk=ok
+a LAB 6 r67 att gold=266 pos 10,16 tgt=vesper_vale hp=340 d=3 atk=ok
+a LAB 6 r68 att gold=266 pos 10,16 tgt=vesper_vale hp=285 d=3 atk=ok
+a LAB 6 r69 att gold=266 pos 10,16 tgt=vesper_vale hp=230 d=3 atk=ok
+a LAB 6 r70 att gold=266 pos 10,16 tgt=vesper_vale hp=175 d=3 atk=ok
+a LAB 6 r71 att gold=266 pos 10,16 tgt=vesper_vale hp=120 d=3 atk=ok
+a LAB 6 r72 att gold=266 pos 10,16 tgt=vesper_vale hp=65 d=3 atk=ok
+a LAB 6 r73 att gold=266 pos 10,16 tgt=vesper_vale hp=10 d=3 atk=ok
+a LAB 6 r74 att gold=399 pos 10,16 tgt=marcella hp=1200 d=3 atk=ok
+a LAB 6 r75 att gold=399 pos 10,16 tgt=marcella hp=1145 d=3 atk=ok
+a LAB 6 r76 att gold=399 pos 10,16 tgt=marcella hp=1090 d=3 atk=ok
+a LAB 6 r77 att gold=399 pos 10,16 tgt=marcella hp=1035 d=3 atk=ok
+a LAB 6 r78 att gold=399 pos 10,16 tgt=marcella hp=980 d=3 atk=ok
+a LAB 6 r79 att gold=399 pos 10,16 tgt=marcella hp=925 d=3 atk=ok
+a LAB 6 r80 att gold=399 pos 10,16 tgt=marcella hp=870 d=3 atk=ok
+a LAB 6 r81 att gold=399 pos 10,16 tgt=marcella hp=815 d=3 atk=ok
+a LAB 6 r82 att gold=399 pos 10,16 tgt=marcella hp=760 d=3 atk=ok
+a LAB 6 r83 att gold=399 pos 10,16 tgt=marcella hp=705 d=3 atk=ok
+a LAB 6 r84 att gold=399 pos 10,16 tgt=marcella hp=650 d=3 atk=ok
+a LAB 6 r85 att gold=399 pos 10,16 tgt=marcella hp=595 d=3 atk=ok
+a LAB 6 r86 att gold=399 pos 10,16 tgt=marcella hp=540 d=3 atk=ok
+a LAB 6 r87 att gold=399 pos 10,16 tgt=marcella hp=485 d=3 atk=ok
+a LAB 6 r88 att gold=399 pos 10,16 tgt=marcella hp=430 d=3 atk=ok
+a LAB 6 r89 att gold=399 pos 10,16 tgt=marcella hp=375 d=3 atk=ok
+a LAB 6 r90 att gold=399 pos 10,16 tgt=marcella hp=320 d=3 atk=ok
+a LAB 6 r91 att gold=399 pos 10,16 tgt=marcella hp=265 d=3 atk=ok
+a LAB 6 r92 att gold=399 pos 10,16 tgt=marcella hp=210 d=3 atk=ok
+a LAB 6 r93 att gold=399 pos 10,16 tgt=marcella hp=155 d=3 atk=ok
+a LAB 6 r94 att gold=399 pos 10,16 tgt=marcella hp=100 d=3 atk=ok
+a LAB 6 r95 att gold=399 pos 10,16 tgt=marcella hp=45 d=3 atk=ok
+a LAB 6 r96 att gold=532 pos 10,16 tgt=ryth hp=1200 d=3 atk=ok
+a LAB 6 r97 att gold=532 pos 10,16 tgt=ryth hp=1145 d=3 atk=ok
+a LAB 6 r98 att gold=532 pos 10,16 tgt=ryth hp=1090 d=3 atk=ok
+a LAB 6 r99 att gold=532 pos 10,16 tgt=ryth hp=1035 d=3 atk=ok
+a LAB 6 r100 att gold=532 pos 10,16 tgt=ryth hp=980 d=3 atk=ok
+a LAB 6 r101 att gold=532 pos 10,16 tgt=ryth hp=925 d=3 atk=ok
+a LAB 6 r102 att gold=532 pos 10,16 tgt=ryth hp=870 d=3 atk=ok
+a LAB 6 r103 att gold=532 pos 10,16 tgt=ryth hp=815 d=3 atk=ok
+a LAB 6 r104 att gold=532 pos 10,16 tgt=ryth hp=760 d=3 atk=ok
+a LAB 6 r105 att gold=532 pos 10,16 tgt=ryth hp=705 d=3 atk=ok
+a LAB 6 r106 att gold=532 pos 10,16 tgt=ryth hp=650 d=3 atk=ok
+a LAB 6 r107 att gold=532 pos 10,16 tgt=ryth hp=595 d=3 atk=ok
+a LAB 6 r108 att gold=532 pos 10,16 tgt=ryth hp=540 d=3 atk=ok
+a LAB 6 r109 att gold=532 pos 10,16 tgt=ryth hp=485 d=3 atk=ok
+a LAB 6 r110 att gold=532 pos 10,16 tgt=ryth hp=430 d=3 atk=ok
+a LAB 6 r111 att gold=532 pos 10,16 tgt=ryth hp=375 d=3 atk=ok
+a LAB 6 r112 att gold=532 pos 10,16 tgt=ryth hp=320 d=3 atk=ok
+a LAB 6 r113 att gold=532 pos 10,16 tgt=ryth hp=265 d=3 atk=ok
+a LAB 6 r114 att gold=532 pos 10,16 tgt=ryth hp=210 d=3 atk=ok
+a LAB 6 r115 att gold=532 pos 10,16 tgt=ryth hp=155 d=3 atk=ok
+a LAB 6 r116 att gold=532 pos 10,16 tgt=ryth hp=100 d=3 atk=ok
+a LAB 6 r117 att gold=532 pos 10,16 tgt=varg hp=1000 d=3 atk=ok
+a LAB 6 r118 att gold=532 pos 10,16 tgt=varg hp=945 d=3 atk=ok
+a LAB 6 r119 att gold=532 pos 10,16 tgt=varg hp=890 d=3 atk=ok
+a LAB 6 r120 att gold=532 pos 10,16 tgt=varg hp=835 d=3 atk=ok
+a LAB 6 r121 att gold=532 pos 10,16 tgt=varg hp=780 d=3 atk=ok
+a LAB 6 r122 att gold=532 pos 10,16 tgt=varg hp=725 d=3 atk=ok
+a LAB 6 r123 att gold=532 pos 10,16 tgt=varg hp=670 d=3 atk=ok
+a LAB 6 r124 att gold=532 pos 10,16 tgt=varg hp=615 d=3 atk=ok
+a LAB 6 r125 att gold=532 pos 10,16 tgt=varg hp=560 d=3 atk=ok
+a LAB 6 r126 att gold=532 pos 10,16 tgt=varg hp=505 d=3 atk=ok
+a LAB 6 r127 att gold=532 pos 10,16 tgt=varg hp=450 d=3 atk=ok
+a LAB 6 r128 att gold=532 pos 10,16 tgt=varg hp=395 d=3 atk=ok
+a LAB 6 r129 att gold=532 pos 10,16 tgt=varg hp=340 d=3 atk=ok
+a LAB 6 r130 att gold=532 pos 10,16 tgt=varg hp=285 d=3 atk=ok
+a LAB 6 r131 att gold=532 pos 10,16 tgt=varg hp=230 d=3 atk=ok
+a LAB 6 r132 att gold=532 pos 10,16 tgt=varg hp=175 d=3 atk=ok
+a LAB 6 r133 att gold=532 pos 10,16 tgt=varg hp=120 d=3 atk=ok
+a LAB 6 r134 att gold=532 pos 10,16 tgt=varg hp=65 d=3 atk=ok
+a LAB 6 r135 att gold=532 pos 10,16 tgt=varg hp=10 d=3 atk=ok
+a LAB 6 r136 att gold=665 pos 10,16 tgt=ren hp=900 d=3 atk=ok
+a LAB 6 r137 att gold=665 pos 10,16 tgt=ren hp=845 d=3 atk=ok
+a LAB 6 r138 att gold=665 pos 10,16 tgt=ren hp=790 d=3 atk=ok
+a LAB 6 r139 att gold=665 pos 10,16 tgt=ren hp=735 d=3 atk=ok
+a LAB 6 r140 att gold=665 pos 10,16 tgt=ren hp=680 d=3 atk=ok
+a LAB 6 r141 att gold=665 pos 10,16 tgt=ren hp=625 d=3 atk=ok
+a LAB 6 r142 att gold=665 pos 10,16 tgt=ren hp=570 d=3 atk=ok
+a LAB 6 r143 att gold=665 pos 10,16 tgt=ren hp=515 d=3 atk=ok
+a LAB 6 r144 att gold=665 pos 10,16 tgt=ren hp=460 d=3 atk=ok
+a LAB 6 r145 att gold=665 pos 10,16 tgt=ren hp=405 d=3 atk=ok
+a LAB 6 r146 att gold=665 pos 10,16 tgt=ren hp=350 d=3 atk=ok
+a LAB 6 r147 att gold=665 pos 10,16 tgt=ren hp=295 d=3 atk=ok
+a LAB 6 r148 att gold=665 pos 10,16 tgt=vesper_vale hp=1000 d=3 atk=ok
+a LAB 6 r149 att gold=665 pos 10,16 tgt=vesper_vale hp=945 d=3 atk=ok
+a LAB 6 r150 att gold=665 pos 10,16 tgt=vesper_vale hp=890 d=3 atk=ok
+a LAB 6 r151 att gold=665 pos 10,16 tgt=vesper_vale hp=835 d=3 atk=ok
+a LAB 6 r152 att gold=665 pos 10,16 tgt=vesper_vale hp=780 d=3 atk=ok
+a LAB 6 r153 att gold=665 pos 10,16 tgt=vesper_vale hp=725 d=3 atk=ok
+a LAB 6 r154 att gold=665 pos 10,16 tgt=vesper_vale hp=670 d=3 atk=ok
+a LAB 6 r155 att gold=665 pos 10,16 tgt=vesper_vale hp=615 d=3 atk=ok
+a LAB 6 r156 att gold=665 pos 10,16 tgt=vesper_vale hp=560 d=3 atk=ok
+a LAB 6 r157 att gold=665 pos 10,16 tgt=vesper_vale hp=505 d=3 atk=ok
+a LAB 6 r158 att gold=665 pos 10,16 tgt=vesper_vale hp=450 d=3 atk=ok
+a LAB 6 r159 att gold=665 pos 10,16 tgt=vesper_vale hp=395 d=3 atk=ok
+a LAB 6 r160 att gold=665 pos 10,16 tgt=vesper_vale hp=340 d=3 atk=ok
+a LAB 6 r161 att gold=665 pos 10,16 tgt=vesper_vale hp=285 d=3 atk=ok
+a LAB 6 r162 att gold=665 pos 10,16 tgt=vesper_vale hp=230 d=3 atk=ok
+a LAB 6 r163 att gold=665 pos 10,16 tgt=vesper_vale hp=175 d=3 atk=ok
+a LAB 6 r164 att gold=665 pos 10,16 tgt=vesper_vale hp=120 d=3 atk=ok
+a LAB 6 r165 att gold=665 pos 10,16 tgt=vesper_vale hp=65 d=3 atk=ok
+a LAB 6 r166 att gold=665 pos 10,16 tgt=vesper_vale hp=10 d=3 atk=ok
+a LAB 6 r167 att gold=798 pos 10,16 tgt=ren hp=240 d=3 atk=ok
+a LAB 6 r168 att gold=798 pos 10,16 tgt=ren hp=185 d=3 atk=ok
+a LAB 6 r169 att gold=798 pos 10,16 tgt=ren hp=130 d=3 atk=ok
+a LAB 6 r170 att gold=798 pos 10,16 tgt=ren hp=75 d=3 atk=ok
+a LAB 6 r171 att gold=798 pos 10,16 tgt=marcella hp=1200 d=3 atk=ok
+a LAB 6 r172 att gold=798 pos 10,16 tgt=marcella hp=1145 d=3 atk=ok
+a LAB 6 r173 att gold=798 pos 10,16 tgt=marcella hp=1090 d=3 atk=ok
+a LAB 6 r174 att gold=798 pos 10,16 tgt=marcella hp=1035 d=3 atk=ok
+a LAB 6 r175 att gold=798 pos 10,16 tgt=marcella hp=980 d=3 atk=ok
+a LAB 6 r176 att gold=798 pos 10,16 tgt=marcella hp=925 d=3 atk=ok
+a LAB 6 r177 att gold=798 pos 10,16 tgt=marcella hp=870 d=3 atk=ok
+a LAB 6 r178 att gold=798 pos 10,16 tgt=marcella hp=815 d=3 atk=ok
+a LAB 6 r179 att gold=798 pos 10,16 tgt=marcella hp=760 d=3 atk=ok
+a LAB 6 r180 att gold=798 pos 10,16 tgt=marcella hp=705 d=3 atk=ok
+a LAB 6 r181 att gold=798 pos 10,16 tgt=marcella hp=650 d=3 atk=ok
+a LAB 6 r182 att gold=798 pos 10,16 tgt=marcella hp=595 d=3 atk=ok
+a LAB 6 r183 att gold=798 pos 10,16 tgt=marcella hp=540 d=3 atk=ok
+a LAB 6 r184 att gold=798 pos 10,16 tgt=marcella hp=485 d=3 atk=ok
+a LAB 6 r185 att gold=798 pos 10,16 tgt=marcella hp=430 d=3 atk=ok
+a LAB 6 r186 att gold=798 pos 10,16 tgt=marcella hp=375 d=3 atk=ok
+a LAB 6 r187 att gold=798 pos 10,16 tgt=marcella hp=320 d=3 atk=ok
+a LAB 6 r188 att gold=798 pos 10,16 tgt=marcella hp=265 d=3 atk=ok
+a LAB 6 r189 att gold=798 pos 10,16 tgt=marcella hp=210 d=3 atk=ok
+a LAB 6 r190 att gold=798 pos 10,16 tgt=marcella hp=155 d=3 atk=ok
+a LAB 6 r191 att gold=798 pos 10,16 tgt=marcella hp=100 d=3 atk=ok
+a LAB 6 r192 att gold=798 pos 10,16 tgt=marcella hp=45 d=3 atk=ok
+a LAB 6 r193 att gold=931 pos 10,16 tgt=ren hp=20 d=3 atk=ok
+a LAB 6 r194 att gold=1064 pos 10,16 tgt=ryth hp=45 d=3 atk=ok
+a LAB 6 r195 att gold=1197 pos 10,16
+a LAB 6 r196 att gold=1197 pos 11,17
+a LAB 6 r197 att gold=1197 pos 12,18
+a LAB 6 r198 att gold=1197 pos 12,18
+a LAB 6 r199 att gold=1197 pos 12,18
+a LAB 6 r200 att gold=1197 pos 12,18
+a LAB 6 r201 att gold=1197 pos 12,18
+a LAB 6 r202 att gold=1197 pos 12,18
+a LAB 6 r203 att gold=1197 pos 12,18
+a LAB 6 r204 att gold=1197 pos 12,18 tgt=varg hp=1000 d=8
+a LAB 6 r205 att gold=1197 pos 13,18 tgt=varg hp=1000 d=6
+a LAB 6 r206 att gold=1197 pos 14,18 tgt=varg hp=1000 d=4
+a LAB 6 r207 att gold=1197 pos 15,18 tgt=varg hp=1000 d=2 atk=ok
+a LAB 6 r208 att gold=1197 pos 15,18 tgt=varg hp=945 d=1 atk=ok
+a LAB 6 r209 att gold=1197 pos 15,18 tgt=varg hp=890 d=1 atk=ok
+a LAB 6 r210 att gold=1197 pos 15,18 tgt=varg hp=835 d=1 atk=ok
+a LAB 6 r211 att gold=1197 pos 15,18 tgt=varg hp=780 d=2 atk=ok
+a LAB 6 r212 att gold=1197 pos 15,18 tgt=varg hp=725 d=2 atk=ok
+a LAB 6 r213 att gold=1197 pos 15,18 tgt=varg hp=670 d=2 atk=ok
+a LAB 6 r214 att gold=1197 pos 15,18 tgt=varg hp=615 d=2 atk=ok
+a LAB 6 r215 att gold=1197 pos 15,18 tgt=varg hp=560 d=2 atk=ok
+a LAB 6 r216 att gold=1197 pos 15,18 tgt=varg hp=505 d=2 atk=ok
+a LAB 6 r217 att gold=1197 pos 15,18 tgt=varg hp=450 d=2 atk=ok
+a LAB 6 r218 att gold=1197 pos 15,18 tgt=varg hp=395 d=2 atk=ok
+a LAB 6 r219 att gold=1197 pos 15,18 tgt=varg hp=340 d=2 atk=ok
+a LAB 6 r220 att gold=1197 pos 15,18 tgt=varg hp=285 d=2 atk=ok
+a LAB 6 r221 att gold=1197 pos 15,18 tgt=varg hp=230 d=2 atk=ok
+a LAB 6 r222 att gold=1197 pos 15,18 tgt=varg hp=175 d=2 atk=ok
+a LAB 6 r223 att gold=1197 pos 15,18 tgt=varg hp=120 d=2 atk=ok
+a LAB 6 r224 att gold=1197 pos 15,18 tgt=varg hp=65 d=2 atk=ok
+a LAB 6 r225 att gold=1197 pos 15,18 tgt=varg hp=10 d=2 atk=ok
+a LAB 6 r226 att gold=1330 pos 15,18
+a LAB 6 r227 att gold=1330 pos 14,18
+a LAB 6 r228 att gold=1330 pos 13,18
+a LAB 6 r229 att gold=1330 pos 12,18
+a LAB 6 r230 att gold=1330 pos 12,18
+a LAB 6 r231 att gold=1330 pos 12,18
+a LAB 6 r232 att gold=1330 pos 12,18
+a LAB 6 r233 att gold=1330 pos 12,18
+a LAB 6 r234 att gold=1330 pos 12,18
+a LAB 6 r235 att gold=1330 pos 12,18
+a LAB 6 r236 att gold=1330 pos 12,18 tgt=vesper_vale hp=1000 d=7
+a LAB 6 r237 att gold=1330 pos 13,18 tgt=vesper_vale hp=1000 d=6
+a LAB 6 r238 att gold=1330 pos 14,18 tgt=vesper_vale hp=1000 d=3 atk=ok
+a LAB 6 r239 att gold=1330 pos 14,18 tgt=vesper_vale hp=945 d=3 atk=ok
+a LAB 6 r240 att gold=1330 pos 14,18 tgt=vesper_vale hp=890 d=1 atk=ok
+a LAB 6 r241 att gold=1330 pos 14,18 tgt=vesper_vale hp=835 d=1 atk=ok
+a LAB 6 r242 att gold=1330 pos 14,18 tgt=vesper_vale hp=780 d=1 atk=ok
+a LAB 6 r243 att gold=1330 pos 14,18 tgt=vesper_vale hp=725 d=1 atk=ok
+a LAB 6 r244 att gold=1330 pos 14,18 tgt=vesper_vale hp=670 d=1 atk=ok
+a LAB 6 r245 att gold=1330 pos 14,18 tgt=vesper_vale hp=615 d=1 atk=ok
+a LAB 6 r246 att gold=1330 pos 14,18 tgt=vesper_vale hp=560 d=1 atk=ok
+a LAB 6 r247 att gold=1330 pos 14,18 tgt=vesper_vale hp=505 d=1 atk=ok
+a LAB 6 r248 att gold=1330 pos 14,18 tgt=vesper_vale hp=450 d=1 atk=ok
+a LAB 6 r249 att gold=1330 pos 14,18 tgt=vesper_vale hp=395 d=1 atk=ok
+a LAB 6 r250 att gold=1330 pos 14,18 tgt=vesper_vale hp=340 d=1 atk=ok
+a LAB 6 r251 att gold=1330 pos 14,18 tgt=vesper_vale hp=285 d=1 atk=ok
+a LAB 6 r252 att gold=1330 pos 14,18 tgt=vesper_vale hp=230 d=1 atk=ok
+a LAB 6 r253 att gold=1330 pos 14,18 tgt=vesper_vale hp=175 d=1 atk=ok
+a LAB 6 r254 att gold=1330 pos 14,18 tgt=vesper_vale hp=120 d=1 atk=ok
+a LAB 6 r255 att gold=1330 pos 14,18 tgt=vesper_vale hp=65 d=1 atk=ok
+a LAB 6 r256 att gold=1330 pos 14,18 tgt=vesper_vale hp=10 d=1 atk=ok
+a LAB 6 r257 att gold=1463 pos 14,18
+a LAB 6 r258 att gold=1463 pos 13,18
+a LAB 6 r259 att gold=1463 pos 12,18
+a LAB 6 r260 att gold=1463 pos 12,18
+a LAB 6 r261 att gold=1463 pos 12,18 tgt=marcella hp=1200 d=8
+a LAB 6 r262 att gold=1463 pos 13,18 tgt=marcella hp=1200 d=6
+a LAB 6 r263 att gold=1463 pos 14,18 tgt=marcella hp=1200 d=4
+a LAB 6 r264 att gold=1463 pos 15,18 tgt=marcella hp=1200 d=2 atk=ok
+a LAB 6 r265 att gold=1463 pos 15,18 tgt=marcella hp=1145 d=1 atk=ok
+a LAB 6 r266 att gold=1463 pos 15,18 tgt=marcella hp=1090 d=1 atk=ok
+a LAB 6 r267 att gold=1463 pos 15,18 tgt=marcella hp=1035 d=1 atk=ok
+a LAB 6 r268 att gold=1463 pos 15,18 tgt=ren hp=900 d=1 atk=ok
+a LAB 6 r269 att gold=1463 pos 15,18 tgt=ryth hp=1200 d=1 atk=ok
+a LAB 6 r270 att gold=1463 pos 15,18 tgt=ryth hp=1145 d=1 atk=ok
+a LAB 6 r271 att gold=1463 pos 15,18 tgt=marcella hp=980 d=2 atk=ok
+a LAB 6 r272 att gold=1463 pos 15,18 tgt=marcella hp=925 d=2 atk=ok
+a LAB 6 r273 att gold=1463 pos 15,18 tgt=marcella hp=870 d=2 atk=ok
+a LAB 6 r274 att gold=1463 pos 15,18 tgt=marcella hp=815 d=2 atk=ok
+a LAB 6 r275 att gold=1463 pos 15,18 tgt=marcella hp=760 d=2 atk=ok
+a LAB 6 r276 att gold=1463 pos 15,18 tgt=marcella hp=705 d=2 atk=ok
+a LAB 6 r277 att gold=1463 pos 15,18 tgt=marcella hp=650 d=2 atk=ok
+a LAB 6 r278 att gold=1463 pos 15,18 tgt=marcella hp=595 d=2 atk=ok
+a LAB 6 r279 att gold=1463 pos 15,18 tgt=marcella hp=540 d=2 atk=ok
+a LAB 6 r280 att gold=1463 pos 15,18 tgt=marcella hp=485 d=2 atk=ok
+a LAB 6 r281 att gold=1463 pos 15,18 tgt=marcella hp=430 d=2 atk=ok
+a LAB 6 r282 att gold=1463 pos 15,18 tgt=marcella hp=375 d=2 atk=ok
+a LAB 6 r283 att gold=1463 pos 15,18 tgt=marcella hp=320 d=2 atk=ok
+a LAB 6 r284 att gold=1463 pos 15,18 tgt=marcella hp=265 d=2 atk=ok
+a LAB 6 r285 att gold=1463 pos 15,18 tgt=marcella hp=210 d=2 atk=ok
+a LAB 6 r286 att gold=1463 pos 15,18 tgt=marcella hp=155 d=2 atk=ok
+a LAB 6 r287 att gold=1463 pos 15,18 tgt=marcella hp=100 d=2 atk=ok
+a LAB 6 r288 att gold=1463 pos 15,18 tgt=marcella hp=45 d=2 atk=ok
+a LAB 6 r289 att gold=1596 pos 15,18 tgt=ren hp=845 d=2 atk=ok
+a LAB 6 r290 att gold=1596 pos 15,18 tgt=ren hp=790 d=2 atk=ok
+a LAB 6 r291 att gold=1596 pos 15,18 tgt=ren hp=735 d=2 atk=ok
+a LAB 6 r292 att gold=1596 pos 15,18 tgt=ren hp=680 d=2 atk=ok
+a LAB 6 r293 att gold=1596 pos 15,18 tgt=ren hp=625 d=2 atk=ok
+a LAB 6 r294 att gold=1596 pos 15,18 tgt=ren hp=570 d=2 atk=ok
+a LAB 6 r295 att gold=1596 pos 15,18 tgt=ren hp=515 d=2 atk=ok
+a LAB 6 r296 att gold=1596 pos 15,18 tgt=ren hp=460 d=2 atk=ok
+a LAB 6 r297 att gold=1596 pos 15,18 tgt=ren hp=405 d=2 atk=ok
+a LAB 6 r298 att gold=1596 pos 15,18 tgt=varg hp=1000 d=1 atk=ok
+a LAB 6 r299 att gold=1596 pos 15,18 tgt=varg hp=945 d=1 atk=ok
+a LAB 6 r300 att gold=1596 pos 15,18 tgt=varg hp=890 d=1 atk=ok
+a LAB 6 r301 att gold=1596 pos 15,18 tgt=varg hp=835 d=2 atk=ok
+a LAB 6 r302 att gold=1596 pos 15,18 tgt=varg hp=780 d=2 atk=ok
+a LAB 6 r303 att gold=1596 pos 15,18 tgt=varg hp=725 d=2 atk=ok
+a LAB 6 r304 att gold=1596 pos 15,18 tgt=varg hp=670 d=2 atk=ok
+a LAB 6 r305 att gold=1596 pos 15,18 tgt=varg hp=615 d=2 atk=ok
+a LAB 6 r306 att gold=1596 pos 15,18 tgt=varg hp=560 d=2 atk=ok
+a LAB 6 r307 att gold=1596 pos 15,18 tgt=varg hp=505 d=2 atk=ok
+a LAB 6 r308 att gold=1596 pos 15,18 tgt=varg hp=450 d=2 atk=ok
+a LAB 6 r309 att gold=1596 pos 15,18 tgt=varg hp=395 d=2 atk=ok
+a LAB 6 r310 att gold=1596 pos 15,18 tgt=varg hp=340 d=2 atk=ok
+a LAB 6 r311 att gold=1596 pos 15,18 tgt=varg hp=285 d=2 atk=ok
+a LAB 6 r312 att gold=1596 pos 15,18 tgt=varg hp=230 d=2 atk=ok
+a LAB 6 r313 att gold=1596 pos 15,18 tgt=varg hp=175 d=2 atk=ok
+a LAB 6 r314 att gold=1596 pos 15,18 tgt=varg hp=120 d=2 atk=ok
+a LAB 6 r315 att gold=1596 pos 15,18 tgt=varg hp=65 d=2 atk=ok
+a LAB 6 r316 att gold=1596 pos 15,18 tgt=varg hp=10 d=2 atk=ok
+a LAB 6 r317 att gold=1729 pos 15,18 tgt=ren hp=350 d=2 atk=ok
+a LAB 6 r318 att gold=1729 pos 15,18 tgt=ren hp=295 d=2 atk=ok
+a LAB 6 r319 att gold=1729 pos 15,18 tgt=ren hp=240 d=2 atk=ok
+a LAB 6 r320 att gold=1729 pos 15,18 tgt=ren hp=185 d=2 atk=ok
+a LAB 6 r321 att gold=1729 pos 15,18 tgt=ren hp=130 d=2 atk=ok
+a LAB 6 r322 att gold=1729 pos 15,18 tgt=ren hp=75 d=2 atk=ok
+a LAB 6 r323 att gold=1729 pos -1,-1
+a LAB 6 r324 att gold=1729 pos -1,-1
+a LAB 6 r325 att gold=1729 pos -1,-1
+a LAB 6 r326 att gold=1729 pos -1,-1
+a LAB 6 r327 att gold=1729 pos -1,-1
+a LAB 6 r328 att gold=1729 pos -1,-1
+a LAB 6 r329 att gold=1729 pos -1,-1
+a LAB 6 r330 att gold=1729 pos -1,-1
+a LAB 6 r331 att gold=1729 pos -1,-1
+a LAB 6 r332 att gold=1729 pos -1,-1
+a LAB 6 r333 att gold=1729 pos -1,-1
+a LAB 6 r334 att gold=1729 pos -1,-1
+a LAB 6 r335 att gold=1729 pos -1,-1
+a LAB 6 r336 att gold=1729 pos -1,-1
+a LAB 6 r337 att gold=1729 pos -1,-1
+a LAB 6 r338 att gold=1729 pos -1,-1
+a LAB 6 r339 att gold=1729 pos -1,-1
+a LAB 6 r340 att gold=1729 pos -1,-1
+a LAB 6 r341 att gold=1729 pos -1,-1
+a LAB 6 r342 att gold=1729 pos -1,-1
+a LAB 6 r343 att gold=1729 pos -1,-1
+a LAB 6 r344 att gold=1729 pos -1,-1
+a LAB 6 r345 att gold=1729 pos -1,-1
+a LAB 6 r346 att gold=1729 pos -1,-1
+a LAB 6 r347 att gold=1729 pos -1,-1
+a LAB 6 r348 att gold=1729 pos -1,-1
+a LAB 6 r349 att gold=1729 pos -1,-1
+a LAB 6 r350 att gold=1729 pos -1,-1
+a LAB 6 r351 att gold=1729 pos -1,-1
+a LAB 6 r352 att gold=1729 pos -1,-1
+a LAB 6 r353 att gold=1729 pos -1,-1
+a LAB 6 r354 att gold=1729 pos -1,-1
+a LAB 6 r355 att gold=1729 pos -1,-1
+a LAB 6 r356 att gold=1729 pos -1,-1
+a LAB 6 r357 att gold=1729 pos -1,-1
+a LAB 6 r358 att gold=1729 pos -1,-1
+a LAB 6 r359 att gold=1729 pos -1,-1
+a LAB 6 r360 att gold=1729 pos -1,-1
+a LAB 6 r361 att gold=1729 pos -1,-1
+a LAB 6 r362 att gold=1729 pos -1,-1
+a LAB 6 r363 att gold=1729 pos -1,-1
+a LAB 6 r364 att gold=1729 pos -1,-1
+a LAB 6 r365 att gold=1729 pos -1,-1
+a LAB 6 r366 att gold=1729 pos -1,-1
+a LAB 6 r367 att gold=1729 pos -1,-1
+a LAB 6 r368 att gold=1729 pos -1,-1
+a LAB 6 r369 att gold=1729 pos -1,-1
+a LAB 6 r370 att gold=1729 pos -1,-1
+a LAB 6 r371 att gold=1729 pos -1,-1
+a LAB 6 r372 att gold=1729 pos -1,-1
+a LAB 6 r373 att gold=1729 pos -1,-1
+a LAB 6 r374 att gold=1729 pos -1,-1
+a LAB 6 r375 att gold=1729 pos -1,-1
+a LAB 6 r376 att gold=1729 pos -1,-1
+a LAB 6 r377 att gold=1729 pos -1,-1
+a LAB 6 r378 att gold=1729 pos -1,-1
+a LAB 6 r379 att gold=1729 pos -1,-1
+a LAB 6 r380 att gold=1729 pos -1,-1
+a LAB 6 r381 att gold=1729 pos -1,-1
+a LAB 6 r382 att gold=1729 pos 0,0
+a LAB 6 r383 att gold=1729 pos 0,1
+a LAB 6 r384 att gold=1729 pos 0,2
+a LAB 6 r385 att gold=1729 pos 0,3
+a LAB 6 r386 att gold=1729 pos 0,4
+a LAB 6 r387 att gold=1729 pos 0,5
+a LAB 6 r388 att gold=1729 pos 0,6
+a LAB 6 r389 att gold=1729 pos 1,6
+a LAB 6 r390 att gold=1729 pos 0,7
+a LAB 6 r391 att gold=1729 pos 1,6
+a LAB 6 r392 att gold=1729 pos 0,7
+a LAB 6 r393 att gold=1729 pos 1,6
+a LAB 6 r394 att gold=1729 pos 0,7
+a LAB 6 r395 att gold=1729 pos 1,6
+a LAB 6 r396 att gold=1729 pos 0,7
+a LAB 6 r397 att gold=1729 pos 1,6
+a LAB 6 r398 att gold=1729 pos 0,7
+a LAB 6 r399 att gold=1729 pos 1,6
+a LAB 6 r400 att gold=1729 pos 0,7
+b LAB 6 r20 def vesper_vale hp=1000 pos 11,19
+b LAB 6 r20 def ryth hp=1200 pos 13,19
+b LAB 6 r20 def ren hp=790 pos 13,18
+b LAB 6 r20 def marcella hp=1200 pos 12,19
+b LAB 6 r20 def varg hp=1000 pos 11,20
+b LAB 6 r40 def vesper_vale hp=1000 pos 11,19
+b LAB 6 r40 def ryth hp=1200 pos 13,19
+b LAB 6 r40 def ren hp=680 pos 13,18
+b LAB 6 r40 def marcella hp=1200 pos 12,19
+b LAB 6 r40 def varg hp=10 pos 11,18
+b LAB 6 r60 def vesper_vale hp=725 pos 11,19
+b LAB 6 r60 def ryth hp=1200 pos 13,19
+b LAB 6 r60 def ren hp=0 pos -1,-1
+b LAB 6 r60 def marcella hp=1200 pos 12,19
+b LAB 6 r60 def varg hp=0 pos -1,-1
+b LAB 6 r80 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r80 def ryth hp=1200 pos 13,19
+b LAB 6 r80 def ren hp=0 pos -1,-1
+b LAB 6 r80 def marcella hp=815 pos 12,19
+b LAB 6 r80 def varg hp=0 pos -1,-1
+b LAB 6 r100 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r100 def ryth hp=925 pos 13,19
+b LAB 6 r100 def ren hp=0 pos -1,-1
+b LAB 6 r100 def marcella hp=0 pos -1,-1
+b LAB 6 r100 def varg hp=0 pos -1,-1
+b LAB 6 r120 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r120 def ryth hp=45 pos 13,19
+b LAB 6 r120 def ren hp=900 pos 22,22
+b LAB 6 r120 def marcella hp=0 pos -1,-1
+b LAB 6 r120 def varg hp=780 pos 13,18
+b LAB 6 r140 def vesper_vale hp=1000 pos 21,21
+b LAB 6 r140 def ryth hp=45 pos 13,19
+b LAB 6 r140 def ren hp=625 pos 12,19
+b LAB 6 r140 def marcella hp=0 pos -1,-1
+b LAB 6 r140 def varg hp=0 pos -1,-1
+b LAB 6 r160 def vesper_vale hp=340 pos 13,18
+b LAB 6 r160 def ryth hp=45 pos 13,19
+b LAB 6 r160 def ren hp=240 pos 12,19
+b LAB 6 r160 def marcella hp=1200 pos 23,23
+b LAB 6 r160 def varg hp=0 pos -1,-1
+b LAB 6 r180 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r180 def ryth hp=45 pos 13,19
+b LAB 6 r180 def ren hp=20 pos 12,19
+b LAB 6 r180 def marcella hp=650 pos 13,18
+b LAB 6 r180 def varg hp=0 pos -1,-1
+b LAB 6 r200 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r200 def ryth hp=0 pos -1,-1
+b LAB 6 r200 def ren hp=0 pos -1,-1
+b LAB 6 r200 def marcella hp=0 pos -1,-1
+b LAB 6 r200 def varg hp=1000 pos 23,23
+b LAB 6 r220 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r220 def ryth hp=0 pos -1,-1
+b LAB 6 r220 def ren hp=0 pos -1,-1
+b LAB 6 r220 def marcella hp=0 pos -1,-1
+b LAB 6 r220 def varg hp=230 pos 13,18
+b LAB 6 r240 def vesper_vale hp=890 pos 15,18
+b LAB 6 r240 def ryth hp=0 pos -1,-1
+b LAB 6 r240 def ren hp=0 pos -1,-1
+b LAB 6 r240 def marcella hp=0 pos -1,-1
+b LAB 6 r240 def varg hp=0 pos -1,-1
+b LAB 6 r260 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r260 def ryth hp=1200 pos 22,22
+b LAB 6 r260 def ren hp=900 pos 21,22
+b LAB 6 r260 def marcella hp=1200 pos 20,20
+b LAB 6 r260 def varg hp=0 pos -1,-1
+b LAB 6 r280 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r280 def ryth hp=1090 pos 12,19
+b LAB 6 r280 def ren hp=845 pos 13,19
+b LAB 6 r280 def marcella hp=430 pos 13,18
+b LAB 6 r280 def varg hp=0 pos -1,-1
+b LAB 6 r300 def vesper_vale hp=0 pos -1,-1
+b LAB 6 r300 def ryth hp=1090 pos 12,19
+b LAB 6 r300 def ren hp=350 pos 13,19
+b LAB 6 r300 def marcella hp=0 pos -1,-1
+b LAB 6 r300 def varg hp=835 pos 13,18
+b LAB 6 r320 def vesper_vale hp=1000 pos 25,25
+b LAB 6 r320 def ryth hp=1090 pos 12,19
+b LAB 6 r320 def ren hp=130 pos 13,19
+b LAB 6 r320 def marcella hp=0 pos -1,-1
+b LAB 6 r320 def varg hp=0 pos -1,-1
+b LAB 6 r340 def vesper_vale hp=1000 pos 13,18
+b LAB 6 r340 def ryth hp=1090 pos 12,19
+b LAB 6 r340 def ren hp=20 pos 13,19
+b LAB 6 r340 def marcella hp=0 pos -1,-1
+b LAB 6 r340 def varg hp=0 pos -1,-1
+b LAB 6 r360 def vesper_vale hp=1000 pos 13,18
+b LAB 6 r360 def ryth hp=1090 pos 12,19
+b LAB 6 r360 def ren hp=20 pos 13,19
+b LAB 6 r360 def marcella hp=1200 pos 16,18
+b LAB 6 r360 def varg hp=0 pos -1,-1
+b LAB 6 r380 def vesper_vale hp=1000 pos 13,18
+b LAB 6 r380 def ryth hp=1090 pos 12,19
+b LAB 6 r380 def ren hp=20 pos 13,19
+b LAB 6 r380 def marcella hp=1200 pos 11,19
+b LAB 6 r380 def varg hp=1000 pos 24,24
+b LAB 6 r400 def vesper_vale hp=1000 pos 13,18
+b LAB 6 r400 def ryth hp=1090 pos 12,19
+b LAB 6 r400 def ren hp=20 pos 13,19
+b LAB 6 r400 def marcella hp=1200 pos 11,19
+b LAB 6 r400 def varg hp=1000 pos 11,18

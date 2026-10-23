@@ -10,6 +10,8 @@ cp $H/state/CONTEXT.md $H/state/LEDGER.md $P/project/lead/
 [ -f $H/state/HANDOFF.md ] && cp $H/state/HANDOFF.md $P/project/lead/
 cp $H/scripts/*.py $H/scripts/*.sh $P/scripts/lead/
 cp $H/bots/census/src/main.cpp $P/bots/census/src/
+mkdir -p $P/bots/lab3/src && cp $H/bots/lab3/src/main.cpp $P/bots/lab3/src/
+mkdir -p $P/results/lead/lab3 && cp $H/runs/lab3/logs/*.txt $P/results/lead/lab3/
 cp $H/tools/microstella/pace.py $P/tools/microstella/
 cp $H/data/ENGINE-FACTS.json $H/data/census-groups.json $H/data/designs-1.0.2.json $H/data/designs-1.0.3.json $P/data/lead/
 cp $H/data/readers/dump-1.0.3.json $P/data/lead/readers/
