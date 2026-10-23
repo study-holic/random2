@@ -8,6 +8,10 @@ P=$H/out/pkg-$STAMP
 mkdir -p $P/project/lead $P/scripts/lead $P/bots/census/src $P/tools/microstella $P/data/lead/readers $P/results/lead
 cp $H/state/CONTEXT.md $H/state/LEDGER.md $P/project/lead/
 [ -f $H/state/HANDOFF.md ] && cp $H/state/HANDOFF.md $P/project/lead/
+[ -f $H/state/G1-GRADER-PACKET.md ] && cp $H/state/G1-GRADER-PACKET.md $P/project/lead/
+mkdir -p $P/bots/mapkey/src && cp $H/bots/mapkey/src/main.cpp $P/bots/mapkey/src/
+mkdir -p $P/data/lead/s2 && cp $H/data/s2/ladder.csv $P/data/lead/s2/ && { [ -f $H/data/s2/index.csv ] && cp $H/data/s2/index.csv $P/data/lead/s2/ || true; }
+mkdir -p $P/data/lead/heldout && cp $H/heldout/keys.txt $H/heldout/unknown.txt $H/heldout/known.txt $P/data/lead/heldout/
 cp $H/scripts/*.py $H/scripts/*.sh $P/scripts/lead/
 cp $H/bots/census/src/main.cpp $P/bots/census/src/
 mkdir -p $P/bots/lab3/src && cp $H/bots/lab3/src/main.cpp $P/bots/lab3/src/

@@ -33,7 +33,8 @@ static std::string B(bool b) { return b ? "1" : "0"; }
 static std::vector<champion_draft> prefs() {
     using d = champion_draft;
     switch (MODE) {
-        case 1: case 4: case 6: return { d::vesper_vale, d::ryth, d::ren, d::marcella, d::varg, d::vendetta };
+        case 1: case 4: case 6: case 8: return { d::vesper_vale, d::ryth, d::ren, d::marcella, d::varg, d::vendetta };
+        case 7: return { d::ryth, d::marcella, d::varg, d::vendetta, d::ren, d::heart_of_ruin };
         case 3: return { d::willow, d::tavi, d::vesper_vale, d::ryth, d::ren, d::varg };
         case 5: return { d::marcella, d::ryth, d::ren, d::varg, d::vendetta, d::willow };
         default: return { d::ryth, d::vesper_vale, d::vendetta, d::stellar, d::prism, d::ren };
@@ -388,6 +389,83 @@ static void play() {
         if (me.attack_tiles().is_set(tgt->position())) s += " atk=" + try_attack(me, *tgt); else step_to(me, tgt->position());
     } else step_to(me, centre());
     lg(s);
+}
+#elif MODE == 7
+// Golem payout (#13): the whole team clears the nearest group holding a golem (melee champions surround it, so the
+// golem alternates targets), then the lowest-id ally alone stands on a spawn tile; logs the reward and the group values.
+static void play() {
+    auto& me = self();
+    static int gi = -1, phase = 0, gold0 = -1, gems0 = -1;
+    auto gs = map::camp_groups();
+    const int r = static_cast<int>(round_number());
+    if (r > 600) return;
+    if (gi < 0) {
+        gi = nearest_group(me.position(), [](const map::camp_group& g) { return count_kind(g, camp_type::golem) >= 1; });
+        lg(nm(me) + " target group " + std::to_string(gi) + " gems " + std::to_string(gs[gi].gem_value()) + " gold " + std::to_string(gs[gi].gold_value()) + " respawn " + std::to_string(gs[gi].max_respawn_timer()));
+    }
+    const auto& g = gs[gi];
+    int lowest = 1 << 30;
+    for (const auto& a : vision::champions(team::ally)) lowest = std::min(lowest, static_cast<int>(a.champion_name()));
+    const bool capturer = static_cast<int>(me.champion_name()) == lowest;
+    if (phase == 0) {
+        if (r % 10 == 0) lg(nm(me) + " clearing hp=" + std::to_string(static_cast<int>(me.health())) + " grp=" + group_state(g));
+        if (clear_group(me, g)) { phase = 1; lg(nm(me) + " cleared " + group_state(g)); }
+        return;
+    }
+    if (!capturer) {   // everyone else leaves the group's tiles
+        if (on_group(g, me.position())) step_to(me, map::spawn_region(team::ally).positions()[0]);
+        return;
+    }
+    vec2 t = first_spawn_tile(g, me.position());
+    if (gold0 < 0) { gold0 = static_cast<int>(me.gold_count()); gems0 = static_cast<int>(me.gem_count()); }
+    if (!(me.position() == t)) { step_to(me, t); return; }
+    lg(nm(me) + " on_tile gold=" + std::to_string(me.gold_count()) + " gems=" + std::to_string(me.gem_count()) + " grp=" + group_state(g));
+    if (static_cast<int>(me.gem_count()) > gems0 || static_cast<int>(me.gold_count()) > gold0 + 30) {
+        lg(nm(me) + " PAID gems +" + std::to_string(static_cast<int>(me.gem_count()) - gems0) + " gold +" + std::to_string(static_cast<int>(me.gold_count()) - gold0));
+        phase = 2;
+    }
+}
+#elif MODE == 8
+// Inventory and stat caps (#9), self-play: the attacking seat's Vesper farms kill gold (133 a kill) from idle defenders;
+// from round 250 it recalls, then at spawn buys one shard of each type in turn until a purchase fails, then repeats one type.
+static void play() {
+    auto& me = self();
+    const bool att = attacker_seat();
+    const int r = static_cast<int>(round_number());
+    if (r > 900) return;
+    if (!att) { if (cheb(me.position(), centre()) > 1) step_to(me, centre()); return; }
+    if (me.champion_name() != champion_type::vesper_vale) { if (cheb(me.position(), centre()) > 4) step_to(me, centre()); return; }
+    static int phase = 0, next_type = 0, same = 0;
+    if (phase == 0) {
+        auto en = vision::champions(team::enemy);
+        const champion* tgt = nullptr; int bd = 1 << 20;
+        for (const auto& c : en) { int d = cheb(me.position(), c.position()); if (d < bd) { bd = d; tgt = &c; } }
+        if (tgt) { if (me.attack_tiles().is_set(tgt->position())) try_attack(me, *tgt); else step_to(me, tgt->position()); }
+        else step_to(me, centre());
+        if (r >= 250 && me.gold_count() >= 900) { try { me.recall(); phase = 1; lg("recall gold=" + std::to_string(me.gold_count())); } catch (const std::exception& e) { lg(std::string("recall err ") + e.what()); } }
+        return;
+    }
+    if (phase == 1) { if (map::spawn_region(team::ally).is_set(me.position())) phase = 2; return; }
+    if (phase == 2) {   // one shard of each type (shard types are the even ids), until a purchase fails
+        const int N = static_cast<int>(item_type::enum_type::count);
+        while (next_type < N) {
+            item_type t{ static_cast<std::uint32_t>(next_type) };
+            next_type += 2;   // shards sit at even ids; odd ids are emblems
+            try { me.buy(t); lg("buy " + to_string(t) + " ok gold=" + std::to_string(me.gold_count())); }
+            catch (const std::exception& e) { lg("buy " + to_string(t) + " FAIL " + e.what() + " gold=" + std::to_string(me.gold_count())); phase = 3; break; }
+            if (fuel_remaining() < 40000) return;
+        }
+        if (next_type >= N) phase = 3;
+        return;
+    }
+    if (phase == 3) {   // repeat one strength shard type until a purchase fails
+        item_type t = item_type::power_shard_of_strength;
+        for (int k = 0; k < 40 && fuel_remaining() > 40000; ++k) {
+            try { me.buy(t); ++same; lg("repeat " + to_string(t) + " #" + std::to_string(same) + " ok gold=" + std::to_string(me.gold_count())); }
+            catch (const std::exception& e) { lg("repeat " + to_string(t) + " FAIL " + e.what() + " after " + std::to_string(same) + " gold=" + std::to_string(me.gold_count())); phase = 4; return; }
+        }
+        return;
+    }
 }
 #endif
 

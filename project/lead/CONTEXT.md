@@ -20,9 +20,11 @@ Labels follow A2.11. Every result names engine, pool, build, sample, and opponen
 ## 2a. Event and platform (KNOWN, platform pages, 23 Oct 08:41 to 08:50)
 
 - Sprint 2 locks Sat 24 Oct 23:59 BST (tournament 25 Oct); Sprint 3 locks Sat 31 Oct 23:59 GMT (1 Nov); International qualifiers 4 Nov; UK qualifiers 11 Nov; finals 18 Nov at the Cambridge Union, 16 teams (8 UK, 8 international). Xanarchy (team of 1) is eligible for the sprints, the UK qualifiers, and the main prize pool.
+- Ladder at 09:16: 752 teams (168 UK). Xanarchy 1,344, UK 130 of 168. UK ranks 1, 8, 16: 2,084, 1,825, 1,752. Top UK picks centre on Marcella, Heart of Ruin, Vesper, Ryth, Vendetta, Tavi; v4 drafted Cassi and Issac in 830 of 830 games.
 - Every sprint tournament uses unseen maps outside the active pool. Map-specific code earns nothing there; sprint builds need a held-out map test.
-- One person in two teams, and code shared between teams: OPEN (public pages say teams of 1 to 4 and nothing more; source: email or Discord).
-- Xanarchy: rating 1,354, ladder #563, season ranked 310-312 (08:43). Platform numbering: v1 = our v2, v2 = our v3b, v3 = our v4, v4 = our v5r. v5r uploaded 08:53 and selected for the next match; platform v3 stays the fallback until v5r compiles. Rollback: Make Live on platform v3 if v5r wins 40 or fewer of its first 100 ranked games, or 0 of its first 6 on road_of_riches.
+- One person in two teams with shared code: allowed as a team merger (Xans, 23 Oct 09:03). Which record and rating a merged team carries is OPEN.
+- No 1.0.3 change note on Discord as of 09:03.
+- Xanarchy: rating 1,354, ladder #563, season ranked 310-312 (08:43). Platform numbering: v1 = our v2, v2 = our v3b, v3 = our v4, v4 = our v5r. v5r uploaded 08:53, compiled and live from 09:03 BST. Rollback: Make Live on platform v3 if v5r wins 40 or fewer of its first 100 ranked games, or 0 of its first 6 on road_of_riches.
 - Public API without login: /api/v1/match-groups/<id> gives map, rounds, end reason, engine build, drafts, scores, and ratings. Match summaries, replays, and the match database need a login; database parts redirect to signed CloudFront URLs, and the 206 range test is blocked from the sandbox and the browser.
 
 ## 3. Engine facts (KNOWN, census bot on 40 maps, engine 1.0.3; data/ENGINE-FACTS.json)
@@ -38,6 +40,7 @@ Labels follow A2.11. Every result names engine, pool, build, sample, and opponen
 - Turn order (lab3 M2): champions interleave across teams in within-team order (A1, B1, A2, B2, ...); the starting team alternates each round, Team A on odd rounds. Within a team, priority then draft order.
 - Ranged champions (lab3 M3): a move uses the attack allowance; an attack reset restores it, so move + reset + attack and attack + reset + attack both work, every 8 rounds.
 - Capture, recall, crystal (lab3 M4): paid 5 rounds after the first capture phase on the tile; recall 5 turn ends; crystal 10 gold, range 3, refuses walls, holes, and occupied tiles, channels 3 turn ends.
+- Golem groups pay their group values (lab3 M7: 36 gems, 240 gold). No inventory or stat cap within 21 shard types and 44 shards (M8); gold binds first.
 - Gold bonuses (lab3 M4, M6): Vesper's +33 per cent applies to capture gold (40 -> 53) and kill gold (100 -> 133). Marcella's 2 gold per gem counts her own tributes alone (M5). A tribute of up to 10 gems completes in one turn end.
 - Rewards and capture split reconfirmed (p03): gem cluster 7, gold cluster 20, wolf 4 gems and 40 gold, a 21-gem group paid 11 and 10. Ranges reconfirmed (p00 to p02): wolf 3, elk 4, Monolith 5. Targeting reconfirmed (p04 to p08): nearest champion, immediate switch, alternation between equidistant champions.
 
@@ -47,6 +50,17 @@ Labels follow A2.11. Every result names engine, pool, build, sample, and opponen
 - B4 map rows on 1.0.3: islands holds; boss_battle holds; elk_arena's centre group pays 72 gems (B4's 216 is the pre-1.0 value); corridors' "no tile in reach of fewer than two elk" fails (8 tiles); v4 tributes 0 gems on boss_battle, contest, and shortcut in every game (6 per map).
 - The supply ceiling (gems / (respawn + 5)) ignores clear and travel time and runs from 1.1 to 14.6 gems per round across the 40 maps; S3 needs a clear-time version before it binds.
 - PATCH-NOTES-1.0.md matches the engine on all 35 champion stat values, every ability and passive change, all camp values, kill gold, ward cooldown, and lock hits.
+
+## 3b. Held-out proxy for unseen sprint maps (MEASUREMENT, 1.0.3, 40 maps x 2 seats)
+
+- Builds v4-u and v5r-u force the map id to unknown (the plan they run on any unseen map). v5r-u vs SDK starter 77/80 and v4-u 75/80, each with the same losses as the unforced build. v5r-u vs v5r 38/80 (noise band): v5r's map plans add nothing measurable. v5r-u vs v4-u 49/80 (two-SD line).
+- Only 3 of 23 distinct non-pool maps in random2 are unknown to v5r; the rest share a pool key, so they are no held-out set.
+
+## 3c. Data path (KNOWN)
+
+- Public API, no login, from the sandbox: ladder (with each team's picks over its last 50 games), ranked groups per team, per-match map, drafts, scores, rounds, end reason, engine build. Index in data/s2 (scripts/s2_index.py).
+- Per-match summaries need a login: presigned S3 links, readable in the browser, same CAMSTAT format as local summaries. scripts/s2_metrics.py fetch runs on Xans's laptop (`cambc login` once) and returns per-team metrics; validated on local summaries.
+- Each team plays a ranked group of 5 games about every 10 minutes (about 30 ranked games an hour).
 
 ## 4. Baselines (MEASUREMENT, release builds, 40 maps, both seats, salt 0, sandbox)
 
@@ -67,13 +81,12 @@ Reading rule (DERIVED): at n = 80, 49/80 is two binomial SDs; the salted v4 copi
 1. No existing build passes F1 on engine 1.0.3, the platform's engine. Strongest evidence against: F1 here uses the SDK 3.0.5 starter template; against random2's older starter the counts differ (v4 74/80), so the floor depends on the reference bot.
 2. v5r beats v4 head to head (52/80, above the 49/80 line) and loses fewer F1 games (3 against 5). Strongest evidence against: one 80-game deterministic set per pairing; v5r loses road_of_riches to the starter on both seats with 32 deaths (B4) and 0-2 to v4 on six maps.
 3. v22 fails F1 by the widest margin (73/80, 603 overrun events) and sits inside the noise band against v5r (46/80) and v4 (39/80). Strongest evidence against: v22 is MicroStella's ladder submission with an unknown rating, and most of its overruns fall in rounds 1 and 2, so their cost is concentrated in the opening.
-4. Sprint and qualifier results depend on unseen maps, so the map-id dispatch in v4 and v5r has no value there; the ladder still uses the 40-map pool. Strongest evidence against: none in hand; the unseen maps' generator and size range are unknown (OUT OF REACH until a sprint's maps are published).
+4. Sprint and qualifier results depend on unseen maps. v5r's default plan matches v5r on the pool within noise (38/80) and edges v4's (49/80), so v5r is the strongest existing Sprint 2 build. Strongest evidence against: the proxy keeps pool geometry; unseen maps may differ in size and layout from the pool (OUT OF REACH until a sprint's maps are published; Sprint 1's maps may be retrievable from its replays).
 
 ## 6. Open
 
-- B1b #9 inventory and stat caps; B1b #13 golem payout (group values KNOWN).
-- One person in two teams; code shared between teams (email contact@battlecode.co.uk or Discord).
-- The 1.0.3 change list (Discord).
+- A merged team's record and rating (when the new team starts).
+- The 1.0.3 change list (none published as of 09:03).
 - Match-database range reads (laptop: download one part link in the browser and test the signed URL with a 16-byte range).
 - v5r's compile status and first ranked results on the platform.
 - S2: metrics source check (`cambc summary` fields), the index via the public match-group API, and the per-map ranked record of v5r against v4.

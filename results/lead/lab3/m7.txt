@@ -1,0 +1,1197 @@
+a LAB 7 r1 ryth target group 10 gems 36 gold 240 respawn 80
+a LAB 7 r1 marcella target group 10 gems 36 gold 240 respawn 80
+a LAB 7 r1 varg target group 10 gems 36 gold 240 respawn 80
+a LAB 7 r1 vendetta target group 10 gems 36 gold 240 respawn 80
+a LAB 7 r1 ren target group 10 gems 36 gold 240 respawn 80
+a LAB 7 r10 ryth clearing hp=1200 grp=unseen
+a LAB 7 r10 marcella clearing hp=1200 grp=unseen
+a LAB 7 r10 varg clearing hp=1000 grp=unseen
+a LAB 7 r10 vendetta clearing hp=1000 grp=unseen
+a LAB 7 r10 ren clearing hp=900 grp=unseen
+a LAB 7 r20 ryth clearing hp=1200 grp=unseen
+a LAB 7 r20 marcella clearing hp=1200 grp=unseen
+a LAB 7 r20 varg clearing hp=1000 grp=unseen
+a LAB 7 r20 vendetta clearing hp=1000 grp=unseen
+a LAB 7 r20 ren clearing hp=900 grp=unseen
+a LAB 7 r30 ryth clearing hp=1200 grp=unseen
+a LAB 7 r30 marcella clearing hp=1200 grp=unseen
+a LAB 7 r30 varg clearing hp=1000 grp=unseen
+a LAB 7 r30 vendetta clearing hp=1000 grp=unseen
+a LAB 7 r30 ren clearing hp=900 grp=unseen
+a LAB 7 r40 ryth clearing hp=1200 grp=unseen
+a LAB 7 r40 marcella clearing hp=1200 grp=unseen
+a LAB 7 r40 varg clearing hp=1000 grp=unseen
+a LAB 7 r40 vendetta clearing hp=1000 grp=unseen
+a LAB 7 r40 ren clearing hp=900 grp=unseen
+a LAB 7 r50 ryth clearing hp=1080 grp=alive
+a LAB 7 r50 marcella clearing hp=1200 grp=unseen
+a LAB 7 r50 varg clearing hp=1000 grp=unseen
+a LAB 7 r50 vendetta clearing hp=280 grp=alive
+a LAB 7 r50 ren clearing hp=780 grp=alive
+a LAB 7 r60 ryth clearing hp=0 grp=unseen
+a LAB 7 r60 marcella clearing hp=1080 grp=alive
+a LAB 7 r60 varg clearing hp=1000 grp=alive
+a LAB 7 r60 vendetta clearing hp=280 grp=alive
+a LAB 7 r60 ren clearing hp=780 grp=alive
+a LAB 7 r70 ryth clearing hp=0 grp=unseen
+a LAB 7 r70 marcella clearing hp=0 grp=unseen
+a LAB 7 r70 varg clearing hp=880 grp=alive
+a LAB 7 r70 vendetta clearing hp=280 grp=alive
+a LAB 7 r70 ren clearing hp=780 grp=alive
+a LAB 7 r79 ren cleared reward
+a LAB 7 r80 ryth clearing hp=0 grp=unseen
+a LAB 7 r80 marcella clearing hp=0 grp=unseen
+a LAB 7 r80 varg clearing hp=0 grp=unseen
+a LAB 7 r80 vendetta clearing hp=160 grp=reward
+a LAB 7 r80 vendetta cleared reward
+a LAB 7 r81 vendetta on_tile gold=0 gems=0 grp=reward
+a LAB 7 r82 vendetta on_tile gold=0 gems=0 grp=reward
+a LAB 7 r83 vendetta on_tile gold=0 gems=0 grp=reward
+a LAB 7 r84 vendetta on_tile gold=0 gems=0 grp=reward
+a LAB 7 r85 vendetta on_tile gold=240 gems=36 grp=respawn80
+a LAB 7 r85 vendetta PAID gems +36 gold +240
+a LAB 7 r86 vendetta on_tile gold=240 gems=36 grp=respawn79
+a LAB 7 r86 vendetta PAID gems +36 gold +240
+a LAB 7 r87 vendetta on_tile gold=240 gems=36 grp=respawn78
+a LAB 7 r87 vendetta PAID gems +36 gold +240
+a LAB 7 r88 vendetta on_tile gold=240 gems=36 grp=respawn77
+a LAB 7 r88 vendetta PAID gems +36 gold +240
+a LAB 7 r89 vendetta on_tile gold=240 gems=36 grp=respawn76
+a LAB 7 r89 vendetta PAID gems +36 gold +240
+a LAB 7 r90 ryth clearing hp=0 grp=unseen
+a LAB 7 r90 marcella clearing hp=0 grp=unseen
+a LAB 7 r90 varg clearing hp=0 grp=unseen
+a LAB 7 r90 vendetta on_tile gold=240 gems=36 grp=respawn75
+a LAB 7 r90 vendetta PAID gems +36 gold +240
+a LAB 7 r91 vendetta on_tile gold=240 gems=36 grp=respawn74
+a LAB 7 r91 vendetta PAID gems +36 gold +240
+a LAB 7 r92 vendetta on_tile gold=240 gems=36 grp=respawn73
+a LAB 7 r92 vendetta PAID gems +36 gold +240
+a LAB 7 r93 vendetta on_tile gold=240 gems=36 grp=respawn72
+a LAB 7 r93 vendetta PAID gems +36 gold +240
+a LAB 7 r94 vendetta on_tile gold=240 gems=36 grp=respawn71
+a LAB 7 r94 vendetta PAID gems +36 gold +240
+a LAB 7 r95 vendetta on_tile gold=240 gems=36 grp=respawn70
+a LAB 7 r95 vendetta PAID gems +36 gold +240
+a LAB 7 r96 vendetta on_tile gold=240 gems=36 grp=respawn69
+a LAB 7 r96 vendetta PAID gems +36 gold +240
+a LAB 7 r97 vendetta on_tile gold=240 gems=36 grp=respawn68
+a LAB 7 r97 vendetta PAID gems +36 gold +240
+a LAB 7 r98 vendetta on_tile gold=240 gems=36 grp=respawn67
+a LAB 7 r98 vendetta PAID gems +36 gold +240
+a LAB 7 r99 vendetta on_tile gold=240 gems=36 grp=respawn66
+a LAB 7 r99 vendetta PAID gems +36 gold +240
+a LAB 7 r100 ryth clearing hp=0 grp=unseen
+a LAB 7 r100 marcella clearing hp=0 grp=unseen
+a LAB 7 r100 varg clearing hp=0 grp=unseen
+a LAB 7 r100 vendetta on_tile gold=240 gems=36 grp=respawn65
+a LAB 7 r100 vendetta PAID gems +36 gold +240
+a LAB 7 r101 vendetta on_tile gold=240 gems=36 grp=respawn64
+a LAB 7 r101 vendetta PAID gems +36 gold +240
+a LAB 7 r102 vendetta on_tile gold=240 gems=36 grp=respawn63
+a LAB 7 r102 vendetta PAID gems +36 gold +240
+a LAB 7 r103 vendetta on_tile gold=240 gems=36 grp=respawn62
+a LAB 7 r103 vendetta PAID gems +36 gold +240
+a LAB 7 r104 vendetta on_tile gold=240 gems=36 grp=respawn61
+a LAB 7 r104 vendetta PAID gems +36 gold +240
+a LAB 7 r105 vendetta on_tile gold=240 gems=36 grp=respawn60
+a LAB 7 r105 vendetta PAID gems +36 gold +240
+a LAB 7 r106 vendetta on_tile gold=240 gems=36 grp=respawn59
+a LAB 7 r106 vendetta PAID gems +36 gold +240
+a LAB 7 r107 vendetta on_tile gold=240 gems=36 grp=respawn58
+a LAB 7 r107 vendetta PAID gems +36 gold +240
+a LAB 7 r108 vendetta on_tile gold=240 gems=36 grp=respawn57
+a LAB 7 r108 vendetta PAID gems +36 gold +240
+a LAB 7 r109 vendetta on_tile gold=240 gems=36 grp=respawn56
+a LAB 7 r109 vendetta PAID gems +36 gold +240
+a LAB 7 r110 ryth clearing hp=0 grp=unseen
+a LAB 7 r110 marcella clearing hp=0 grp=unseen
+a LAB 7 r110 varg clearing hp=0 grp=unseen
+a LAB 7 r110 vendetta on_tile gold=240 gems=36 grp=respawn55
+a LAB 7 r110 vendetta PAID gems +36 gold +240
+a LAB 7 r111 vendetta on_tile gold=240 gems=36 grp=respawn54
+a LAB 7 r111 vendetta PAID gems +36 gold +240
+a LAB 7 r112 vendetta on_tile gold=240 gems=36 grp=respawn53
+a LAB 7 r112 vendetta PAID gems +36 gold +240
+a LAB 7 r113 vendetta on_tile gold=240 gems=36 grp=respawn52
+a LAB 7 r113 vendetta PAID gems +36 gold +240
+a LAB 7 r114 vendetta on_tile gold=240 gems=36 grp=respawn51
+a LAB 7 r114 vendetta PAID gems +36 gold +240
+a LAB 7 r115 vendetta on_tile gold=240 gems=36 grp=respawn50
+a LAB 7 r115 vendetta PAID gems +36 gold +240
+a LAB 7 r116 vendetta on_tile gold=240 gems=36 grp=respawn49
+a LAB 7 r116 vendetta PAID gems +36 gold +240
+a LAB 7 r117 vendetta on_tile gold=240 gems=36 grp=respawn48
+a LAB 7 r117 vendetta PAID gems +36 gold +240
+a LAB 7 r118 vendetta on_tile gold=240 gems=36 grp=respawn47
+a LAB 7 r118 vendetta PAID gems +36 gold +240
+a LAB 7 r119 vendetta on_tile gold=240 gems=36 grp=respawn46
+a LAB 7 r119 vendetta PAID gems +36 gold +240
+a LAB 7 r120 ryth clearing hp=1200 grp=unseen
+a LAB 7 r120 marcella clearing hp=0 grp=unseen
+a LAB 7 r120 varg clearing hp=0 grp=unseen
+a LAB 7 r120 vendetta on_tile gold=240 gems=36 grp=respawn45
+a LAB 7 r120 vendetta PAID gems +36 gold +240
+a LAB 7 r121 vendetta on_tile gold=240 gems=36 grp=respawn44
+a LAB 7 r121 vendetta PAID gems +36 gold +240
+a LAB 7 r122 vendetta on_tile gold=240 gems=36 grp=respawn43
+a LAB 7 r122 vendetta PAID gems +36 gold +240
+a LAB 7 r123 vendetta on_tile gold=240 gems=36 grp=respawn42
+a LAB 7 r123 vendetta PAID gems +36 gold +240
+a LAB 7 r124 vendetta on_tile gold=240 gems=36 grp=respawn41
+a LAB 7 r124 vendetta PAID gems +36 gold +240
+a LAB 7 r125 vendetta on_tile gold=240 gems=36 grp=respawn40
+a LAB 7 r125 vendetta PAID gems +36 gold +240
+a LAB 7 r126 vendetta on_tile gold=240 gems=36 grp=respawn39
+a LAB 7 r126 vendetta PAID gems +36 gold +240
+a LAB 7 r127 vendetta on_tile gold=240 gems=36 grp=respawn38
+a LAB 7 r127 vendetta PAID gems +36 gold +240
+a LAB 7 r128 vendetta on_tile gold=240 gems=36 grp=respawn37
+a LAB 7 r128 vendetta PAID gems +36 gold +240
+a LAB 7 r129 vendetta on_tile gold=240 gems=36 grp=respawn36
+a LAB 7 r129 vendetta PAID gems +36 gold +240
+a LAB 7 r130 ryth clearing hp=1200 grp=unseen
+a LAB 7 r130 marcella clearing hp=1200 grp=unseen
+a LAB 7 r130 varg clearing hp=0 grp=unseen
+a LAB 7 r130 vendetta on_tile gold=240 gems=36 grp=respawn35
+a LAB 7 r130 vendetta PAID gems +36 gold +240
+a LAB 7 r131 vendetta on_tile gold=240 gems=36 grp=respawn34
+a LAB 7 r131 vendetta PAID gems +36 gold +240
+a LAB 7 r132 vendetta on_tile gold=240 gems=36 grp=respawn33
+a LAB 7 r132 vendetta PAID gems +36 gold +240
+a LAB 7 r133 vendetta on_tile gold=240 gems=36 grp=respawn32
+a LAB 7 r133 vendetta PAID gems +36 gold +240
+a LAB 7 r134 vendetta on_tile gold=240 gems=36 grp=respawn31
+a LAB 7 r134 vendetta PAID gems +36 gold +240
+a LAB 7 r135 vendetta on_tile gold=240 gems=36 grp=respawn30
+a LAB 7 r135 vendetta PAID gems +36 gold +240
+a LAB 7 r136 vendetta on_tile gold=240 gems=36 grp=respawn29
+a LAB 7 r136 vendetta PAID gems +36 gold +240
+a LAB 7 r137 vendetta on_tile gold=240 gems=36 grp=respawn28
+a LAB 7 r137 vendetta PAID gems +36 gold +240
+a LAB 7 r138 vendetta on_tile gold=240 gems=36 grp=respawn27
+a LAB 7 r138 vendetta PAID gems +36 gold +240
+a LAB 7 r139 vendetta on_tile gold=240 gems=36 grp=respawn26
+a LAB 7 r139 vendetta PAID gems +36 gold +240
+a LAB 7 r140 ryth clearing hp=1200 grp=unseen
+a LAB 7 r140 marcella clearing hp=1200 grp=unseen
+a LAB 7 r140 varg clearing hp=1000 grp=unseen
+a LAB 7 r140 vendetta on_tile gold=240 gems=36 grp=respawn25
+a LAB 7 r140 vendetta PAID gems +36 gold +240
+a LAB 7 r141 vendetta on_tile gold=240 gems=36 grp=respawn24
+a LAB 7 r141 vendetta PAID gems +36 gold +240
+a LAB 7 r142 vendetta on_tile gold=240 gems=36 grp=respawn23
+a LAB 7 r142 vendetta PAID gems +36 gold +240
+a LAB 7 r143 vendetta on_tile gold=240 gems=36 grp=respawn22
+a LAB 7 r143 vendetta PAID gems +36 gold +240
+a LAB 7 r144 vendetta on_tile gold=240 gems=36 grp=respawn21
+a LAB 7 r144 vendetta PAID gems +36 gold +240
+a LAB 7 r145 vendetta on_tile gold=240 gems=36 grp=respawn20
+a LAB 7 r145 vendetta PAID gems +36 gold +240
+a LAB 7 r146 vendetta on_tile gold=240 gems=36 grp=respawn19
+a LAB 7 r146 vendetta PAID gems +36 gold +240
+a LAB 7 r147 vendetta on_tile gold=240 gems=36 grp=respawn18
+a LAB 7 r147 vendetta PAID gems +36 gold +240
+a LAB 7 r148 vendetta on_tile gold=240 gems=36 grp=respawn17
+a LAB 7 r148 vendetta PAID gems +36 gold +240
+a LAB 7 r149 vendetta on_tile gold=240 gems=36 grp=respawn16
+a LAB 7 r149 vendetta PAID gems +36 gold +240
+a LAB 7 r150 ryth clearing hp=1200 grp=unseen
+a LAB 7 r150 marcella clearing hp=1200 grp=unseen
+a LAB 7 r150 varg clearing hp=1000 grp=unseen
+a LAB 7 r150 vendetta on_tile gold=240 gems=36 grp=respawn15
+a LAB 7 r150 vendetta PAID gems +36 gold +240
+a LAB 7 r151 vendetta on_tile gold=240 gems=36 grp=respawn14
+a LAB 7 r151 vendetta PAID gems +36 gold +240
+a LAB 7 r152 vendetta on_tile gold=240 gems=36 grp=respawn13
+a LAB 7 r152 vendetta PAID gems +36 gold +240
+a LAB 7 r153 vendetta on_tile gold=240 gems=36 grp=respawn12
+a LAB 7 r153 vendetta PAID gems +36 gold +240
+a LAB 7 r154 vendetta on_tile gold=240 gems=36 grp=respawn11
+a LAB 7 r154 vendetta PAID gems +36 gold +240
+a LAB 7 r155 vendetta on_tile gold=240 gems=36 grp=respawn10
+a LAB 7 r155 vendetta PAID gems +36 gold +240
+a LAB 7 r156 vendetta on_tile gold=240 gems=36 grp=respawn9
+a LAB 7 r156 vendetta PAID gems +36 gold +240
+a LAB 7 r157 vendetta on_tile gold=240 gems=36 grp=respawn8
+a LAB 7 r157 vendetta PAID gems +36 gold +240
+a LAB 7 r158 vendetta on_tile gold=240 gems=36 grp=respawn7
+a LAB 7 r158 vendetta PAID gems +36 gold +240
+a LAB 7 r159 vendetta on_tile gold=240 gems=36 grp=respawn6
+a LAB 7 r159 vendetta PAID gems +36 gold +240
+a LAB 7 r160 ryth clearing hp=1200 grp=unseen
+a LAB 7 r160 marcella clearing hp=1200 grp=unseen
+a LAB 7 r160 varg clearing hp=1000 grp=unseen
+a LAB 7 r160 vendetta on_tile gold=240 gems=36 grp=respawn5
+a LAB 7 r160 vendetta PAID gems +36 gold +240
+a LAB 7 r161 vendetta on_tile gold=240 gems=36 grp=respawn4
+a LAB 7 r161 vendetta PAID gems +36 gold +240
+a LAB 7 r162 vendetta on_tile gold=240 gems=36 grp=respawn3
+a LAB 7 r162 vendetta PAID gems +36 gold +240
+a LAB 7 r163 vendetta on_tile gold=240 gems=36 grp=respawn2
+a LAB 7 r163 vendetta PAID gems +36 gold +240
+a LAB 7 r164 vendetta on_tile gold=240 gems=36 grp=respawn1
+a LAB 7 r164 vendetta PAID gems +36 gold +240
+a LAB 7 r165 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r165 vendetta PAID gems +36 gold +240
+a LAB 7 r166 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r166 vendetta PAID gems +36 gold +240
+a LAB 7 r167 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r167 vendetta PAID gems +36 gold +240
+a LAB 7 r168 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r168 vendetta PAID gems +36 gold +240
+a LAB 7 r169 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r169 vendetta PAID gems +36 gold +240
+a LAB 7 r170 ryth clearing hp=1200 grp=unseen
+a LAB 7 r170 marcella clearing hp=1200 grp=unseen
+a LAB 7 r170 varg clearing hp=1000 grp=unseen
+a LAB 7 r170 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r170 vendetta PAID gems +36 gold +240
+a LAB 7 r171 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r171 vendetta PAID gems +36 gold +240
+a LAB 7 r172 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r172 vendetta PAID gems +36 gold +240
+a LAB 7 r173 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r173 vendetta PAID gems +36 gold +240
+a LAB 7 r174 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r174 vendetta PAID gems +36 gold +240
+a LAB 7 r175 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r175 vendetta PAID gems +36 gold +240
+a LAB 7 r176 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r176 vendetta PAID gems +36 gold +240
+a LAB 7 r177 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r177 vendetta PAID gems +36 gold +240
+a LAB 7 r178 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r178 vendetta PAID gems +36 gold +240
+a LAB 7 r179 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r179 vendetta PAID gems +36 gold +240
+a LAB 7 r180 ryth clearing hp=1200 grp=unseen
+a LAB 7 r180 marcella clearing hp=1200 grp=unseen
+a LAB 7 r180 varg clearing hp=1000 grp=respawn0
+a LAB 7 r180 varg cleared respawn0
+a LAB 7 r180 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r180 vendetta PAID gems +36 gold +240
+a LAB 7 r181 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r181 vendetta PAID gems +36 gold +240
+a LAB 7 r182 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r182 vendetta PAID gems +36 gold +240
+a LAB 7 r183 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r183 vendetta PAID gems +36 gold +240
+a LAB 7 r184 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r184 vendetta PAID gems +36 gold +240
+a LAB 7 r185 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r185 vendetta PAID gems +36 gold +240
+a LAB 7 r186 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r186 vendetta PAID gems +36 gold +240
+a LAB 7 r187 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r187 vendetta PAID gems +36 gold +240
+a LAB 7 r188 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r188 vendetta PAID gems +36 gold +240
+a LAB 7 r189 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r189 vendetta PAID gems +36 gold +240
+a LAB 7 r190 ryth clearing hp=1200 grp=unseen
+a LAB 7 r190 marcella clearing hp=1200 grp=unseen
+a LAB 7 r190 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r190 vendetta PAID gems +36 gold +240
+a LAB 7 r191 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r191 vendetta PAID gems +36 gold +240
+a LAB 7 r192 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r192 vendetta PAID gems +36 gold +240
+a LAB 7 r193 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r193 vendetta PAID gems +36 gold +240
+a LAB 7 r194 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r194 vendetta PAID gems +36 gold +240
+a LAB 7 r195 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r195 vendetta PAID gems +36 gold +240
+a LAB 7 r196 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r196 vendetta PAID gems +36 gold +240
+a LAB 7 r197 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r197 vendetta PAID gems +36 gold +240
+a LAB 7 r198 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r198 vendetta PAID gems +36 gold +240
+a LAB 7 r199 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r199 vendetta PAID gems +36 gold +240
+a LAB 7 r200 ryth clearing hp=1200 grp=unseen
+a LAB 7 r200 marcella clearing hp=1200 grp=unseen
+a LAB 7 r200 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r200 vendetta PAID gems +36 gold +240
+a LAB 7 r201 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r201 vendetta PAID gems +36 gold +240
+a LAB 7 r202 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r202 vendetta PAID gems +36 gold +240
+a LAB 7 r203 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r203 vendetta PAID gems +36 gold +240
+a LAB 7 r204 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r204 vendetta PAID gems +36 gold +240
+a LAB 7 r205 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r205 vendetta PAID gems +36 gold +240
+a LAB 7 r206 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r206 vendetta PAID gems +36 gold +240
+a LAB 7 r207 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r207 vendetta PAID gems +36 gold +240
+a LAB 7 r208 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r208 vendetta PAID gems +36 gold +240
+a LAB 7 r209 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r209 vendetta PAID gems +36 gold +240
+a LAB 7 r210 ryth clearing hp=1200 grp=unseen
+a LAB 7 r210 marcella clearing hp=1200 grp=unseen
+a LAB 7 r210 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r210 vendetta PAID gems +36 gold +240
+a LAB 7 r211 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r211 vendetta PAID gems +36 gold +240
+a LAB 7 r212 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r212 vendetta PAID gems +36 gold +240
+a LAB 7 r213 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r213 vendetta PAID gems +36 gold +240
+a LAB 7 r214 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r214 vendetta PAID gems +36 gold +240
+a LAB 7 r215 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r215 vendetta PAID gems +36 gold +240
+a LAB 7 r216 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r216 vendetta PAID gems +36 gold +240
+a LAB 7 r217 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r217 vendetta PAID gems +36 gold +240
+a LAB 7 r218 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r218 vendetta PAID gems +36 gold +240
+a LAB 7 r219 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r219 vendetta PAID gems +36 gold +240
+a LAB 7 r220 ryth clearing hp=1200 grp=unseen
+a LAB 7 r220 marcella clearing hp=1200 grp=unseen
+a LAB 7 r220 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r220 vendetta PAID gems +36 gold +240
+a LAB 7 r221 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r221 vendetta PAID gems +36 gold +240
+a LAB 7 r222 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r222 vendetta PAID gems +36 gold +240
+a LAB 7 r223 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r223 vendetta PAID gems +36 gold +240
+a LAB 7 r224 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r224 vendetta PAID gems +36 gold +240
+a LAB 7 r225 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r225 vendetta PAID gems +36 gold +240
+a LAB 7 r226 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r226 vendetta PAID gems +36 gold +240
+a LAB 7 r227 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r227 vendetta PAID gems +36 gold +240
+a LAB 7 r228 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r228 vendetta PAID gems +36 gold +240
+a LAB 7 r229 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r229 vendetta PAID gems +36 gold +240
+a LAB 7 r230 ryth clearing hp=1200 grp=unseen
+a LAB 7 r230 marcella clearing hp=1200 grp=unseen
+a LAB 7 r230 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r230 vendetta PAID gems +36 gold +240
+a LAB 7 r231 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r231 vendetta PAID gems +36 gold +240
+a LAB 7 r232 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r232 vendetta PAID gems +36 gold +240
+a LAB 7 r233 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r233 vendetta PAID gems +36 gold +240
+a LAB 7 r234 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r234 vendetta PAID gems +36 gold +240
+a LAB 7 r235 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r235 vendetta PAID gems +36 gold +240
+a LAB 7 r236 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r236 vendetta PAID gems +36 gold +240
+a LAB 7 r237 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r237 vendetta PAID gems +36 gold +240
+a LAB 7 r238 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r238 vendetta PAID gems +36 gold +240
+a LAB 7 r239 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r239 vendetta PAID gems +36 gold +240
+a LAB 7 r240 ryth clearing hp=1200 grp=unseen
+a LAB 7 r240 marcella clearing hp=1200 grp=unseen
+a LAB 7 r240 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r240 vendetta PAID gems +36 gold +240
+a LAB 7 r241 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r241 vendetta PAID gems +36 gold +240
+a LAB 7 r242 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r242 vendetta PAID gems +36 gold +240
+a LAB 7 r243 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r243 vendetta PAID gems +36 gold +240
+a LAB 7 r244 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r244 vendetta PAID gems +36 gold +240
+a LAB 7 r245 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r245 vendetta PAID gems +36 gold +240
+a LAB 7 r246 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r246 vendetta PAID gems +36 gold +240
+a LAB 7 r247 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r247 vendetta PAID gems +36 gold +240
+a LAB 7 r248 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r248 vendetta PAID gems +36 gold +240
+a LAB 7 r249 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r249 vendetta PAID gems +36 gold +240
+a LAB 7 r250 ryth clearing hp=1200 grp=unseen
+a LAB 7 r250 marcella clearing hp=1200 grp=unseen
+a LAB 7 r250 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r250 vendetta PAID gems +36 gold +240
+a LAB 7 r251 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r251 vendetta PAID gems +36 gold +240
+a LAB 7 r252 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r252 vendetta PAID gems +36 gold +240
+a LAB 7 r253 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r253 vendetta PAID gems +36 gold +240
+a LAB 7 r254 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r254 vendetta PAID gems +36 gold +240
+a LAB 7 r255 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r255 vendetta PAID gems +36 gold +240
+a LAB 7 r256 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r256 vendetta PAID gems +36 gold +240
+a LAB 7 r257 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r257 vendetta PAID gems +36 gold +240
+a LAB 7 r258 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r258 vendetta PAID gems +36 gold +240
+a LAB 7 r259 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r259 vendetta PAID gems +36 gold +240
+a LAB 7 r260 ryth clearing hp=1200 grp=unseen
+a LAB 7 r260 marcella clearing hp=1200 grp=unseen
+a LAB 7 r260 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r260 vendetta PAID gems +36 gold +240
+a LAB 7 r261 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r261 vendetta PAID gems +36 gold +240
+a LAB 7 r262 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r262 vendetta PAID gems +36 gold +240
+a LAB 7 r263 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r263 vendetta PAID gems +36 gold +240
+a LAB 7 r264 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r264 vendetta PAID gems +36 gold +240
+a LAB 7 r265 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r265 vendetta PAID gems +36 gold +240
+a LAB 7 r266 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r266 vendetta PAID gems +36 gold +240
+a LAB 7 r267 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r267 vendetta PAID gems +36 gold +240
+a LAB 7 r268 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r268 vendetta PAID gems +36 gold +240
+a LAB 7 r269 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r269 vendetta PAID gems +36 gold +240
+a LAB 7 r270 ryth clearing hp=1200 grp=unseen
+a LAB 7 r270 marcella clearing hp=1200 grp=unseen
+a LAB 7 r270 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r270 vendetta PAID gems +36 gold +240
+a LAB 7 r271 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r271 vendetta PAID gems +36 gold +240
+a LAB 7 r272 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r272 vendetta PAID gems +36 gold +240
+a LAB 7 r273 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r273 vendetta PAID gems +36 gold +240
+a LAB 7 r274 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r274 vendetta PAID gems +36 gold +240
+a LAB 7 r275 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r275 vendetta PAID gems +36 gold +240
+a LAB 7 r276 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r276 vendetta PAID gems +36 gold +240
+a LAB 7 r277 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r277 vendetta PAID gems +36 gold +240
+a LAB 7 r278 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r278 vendetta PAID gems +36 gold +240
+a LAB 7 r279 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r279 vendetta PAID gems +36 gold +240
+a LAB 7 r280 ryth clearing hp=1200 grp=unseen
+a LAB 7 r280 marcella clearing hp=1200 grp=unseen
+a LAB 7 r280 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r280 vendetta PAID gems +36 gold +240
+a LAB 7 r281 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r281 vendetta PAID gems +36 gold +240
+a LAB 7 r282 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r282 vendetta PAID gems +36 gold +240
+a LAB 7 r283 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r283 vendetta PAID gems +36 gold +240
+a LAB 7 r284 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r284 vendetta PAID gems +36 gold +240
+a LAB 7 r285 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r285 vendetta PAID gems +36 gold +240
+a LAB 7 r286 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r286 vendetta PAID gems +36 gold +240
+a LAB 7 r287 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r287 vendetta PAID gems +36 gold +240
+a LAB 7 r288 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r288 vendetta PAID gems +36 gold +240
+a LAB 7 r289 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r289 vendetta PAID gems +36 gold +240
+a LAB 7 r290 ryth clearing hp=1200 grp=unseen
+a LAB 7 r290 marcella clearing hp=1200 grp=unseen
+a LAB 7 r290 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r290 vendetta PAID gems +36 gold +240
+a LAB 7 r291 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r291 vendetta PAID gems +36 gold +240
+a LAB 7 r292 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r292 vendetta PAID gems +36 gold +240
+a LAB 7 r293 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r293 vendetta PAID gems +36 gold +240
+a LAB 7 r294 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r294 vendetta PAID gems +36 gold +240
+a LAB 7 r295 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r295 vendetta PAID gems +36 gold +240
+a LAB 7 r296 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r296 vendetta PAID gems +36 gold +240
+a LAB 7 r297 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r297 vendetta PAID gems +36 gold +240
+a LAB 7 r298 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r298 vendetta PAID gems +36 gold +240
+a LAB 7 r299 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r299 vendetta PAID gems +36 gold +240
+a LAB 7 r300 ryth clearing hp=1200 grp=unseen
+a LAB 7 r300 marcella clearing hp=1200 grp=unseen
+a LAB 7 r300 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r300 vendetta PAID gems +36 gold +240
+a LAB 7 r301 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r301 vendetta PAID gems +36 gold +240
+a LAB 7 r302 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r302 vendetta PAID gems +36 gold +240
+a LAB 7 r303 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r303 vendetta PAID gems +36 gold +240
+a LAB 7 r304 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r304 vendetta PAID gems +36 gold +240
+a LAB 7 r305 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r305 vendetta PAID gems +36 gold +240
+a LAB 7 r306 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r306 vendetta PAID gems +36 gold +240
+a LAB 7 r307 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r307 vendetta PAID gems +36 gold +240
+a LAB 7 r308 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r308 vendetta PAID gems +36 gold +240
+a LAB 7 r309 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r309 vendetta PAID gems +36 gold +240
+a LAB 7 r310 ryth clearing hp=1200 grp=unseen
+a LAB 7 r310 marcella clearing hp=1200 grp=unseen
+a LAB 7 r310 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r310 vendetta PAID gems +36 gold +240
+a LAB 7 r311 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r311 vendetta PAID gems +36 gold +240
+a LAB 7 r312 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r312 vendetta PAID gems +36 gold +240
+a LAB 7 r313 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r313 vendetta PAID gems +36 gold +240
+a LAB 7 r314 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r314 vendetta PAID gems +36 gold +240
+a LAB 7 r315 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r315 vendetta PAID gems +36 gold +240
+a LAB 7 r316 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r316 vendetta PAID gems +36 gold +240
+a LAB 7 r317 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r317 vendetta PAID gems +36 gold +240
+a LAB 7 r318 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r318 vendetta PAID gems +36 gold +240
+a LAB 7 r319 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r319 vendetta PAID gems +36 gold +240
+a LAB 7 r320 ryth clearing hp=1200 grp=unseen
+a LAB 7 r320 marcella clearing hp=1200 grp=unseen
+a LAB 7 r320 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r320 vendetta PAID gems +36 gold +240
+a LAB 7 r321 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r321 vendetta PAID gems +36 gold +240
+a LAB 7 r322 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r322 vendetta PAID gems +36 gold +240
+a LAB 7 r323 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r323 vendetta PAID gems +36 gold +240
+a LAB 7 r324 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r324 vendetta PAID gems +36 gold +240
+a LAB 7 r325 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r325 vendetta PAID gems +36 gold +240
+a LAB 7 r326 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r326 vendetta PAID gems +36 gold +240
+a LAB 7 r327 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r327 vendetta PAID gems +36 gold +240
+a LAB 7 r328 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r328 vendetta PAID gems +36 gold +240
+a LAB 7 r329 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r329 vendetta PAID gems +36 gold +240
+a LAB 7 r330 ryth clearing hp=1200 grp=unseen
+a LAB 7 r330 marcella clearing hp=1200 grp=unseen
+a LAB 7 r330 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r330 vendetta PAID gems +36 gold +240
+a LAB 7 r331 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r331 vendetta PAID gems +36 gold +240
+a LAB 7 r332 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r332 vendetta PAID gems +36 gold +240
+a LAB 7 r333 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r333 vendetta PAID gems +36 gold +240
+a LAB 7 r334 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r334 vendetta PAID gems +36 gold +240
+a LAB 7 r335 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r335 vendetta PAID gems +36 gold +240
+a LAB 7 r336 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r336 vendetta PAID gems +36 gold +240
+a LAB 7 r337 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r337 vendetta PAID gems +36 gold +240
+a LAB 7 r338 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r338 vendetta PAID gems +36 gold +240
+a LAB 7 r339 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r339 vendetta PAID gems +36 gold +240
+a LAB 7 r340 ryth clearing hp=1200 grp=unseen
+a LAB 7 r340 marcella clearing hp=1200 grp=unseen
+a LAB 7 r340 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r340 vendetta PAID gems +36 gold +240
+a LAB 7 r341 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r341 vendetta PAID gems +36 gold +240
+a LAB 7 r342 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r342 vendetta PAID gems +36 gold +240
+a LAB 7 r343 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r343 vendetta PAID gems +36 gold +240
+a LAB 7 r344 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r344 vendetta PAID gems +36 gold +240
+a LAB 7 r345 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r345 vendetta PAID gems +36 gold +240
+a LAB 7 r346 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r346 vendetta PAID gems +36 gold +240
+a LAB 7 r347 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r347 vendetta PAID gems +36 gold +240
+a LAB 7 r348 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r348 vendetta PAID gems +36 gold +240
+a LAB 7 r349 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r349 vendetta PAID gems +36 gold +240
+a LAB 7 r350 ryth clearing hp=1200 grp=unseen
+a LAB 7 r350 marcella clearing hp=1200 grp=unseen
+a LAB 7 r350 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r350 vendetta PAID gems +36 gold +240
+a LAB 7 r351 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r351 vendetta PAID gems +36 gold +240
+a LAB 7 r352 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r352 vendetta PAID gems +36 gold +240
+a LAB 7 r353 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r353 vendetta PAID gems +36 gold +240
+a LAB 7 r354 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r354 vendetta PAID gems +36 gold +240
+a LAB 7 r355 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r355 vendetta PAID gems +36 gold +240
+a LAB 7 r356 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r356 vendetta PAID gems +36 gold +240
+a LAB 7 r357 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r357 vendetta PAID gems +36 gold +240
+a LAB 7 r358 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r358 vendetta PAID gems +36 gold +240
+a LAB 7 r359 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r359 vendetta PAID gems +36 gold +240
+a LAB 7 r360 ryth clearing hp=1200 grp=unseen
+a LAB 7 r360 marcella clearing hp=1200 grp=unseen
+a LAB 7 r360 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r360 vendetta PAID gems +36 gold +240
+a LAB 7 r361 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r361 vendetta PAID gems +36 gold +240
+a LAB 7 r362 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r362 vendetta PAID gems +36 gold +240
+a LAB 7 r363 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r363 vendetta PAID gems +36 gold +240
+a LAB 7 r364 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r364 vendetta PAID gems +36 gold +240
+a LAB 7 r365 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r365 vendetta PAID gems +36 gold +240
+a LAB 7 r366 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r366 vendetta PAID gems +36 gold +240
+a LAB 7 r367 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r367 vendetta PAID gems +36 gold +240
+a LAB 7 r368 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r368 vendetta PAID gems +36 gold +240
+a LAB 7 r369 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r369 vendetta PAID gems +36 gold +240
+a LAB 7 r370 ryth clearing hp=1200 grp=unseen
+a LAB 7 r370 marcella clearing hp=1200 grp=unseen
+a LAB 7 r370 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r370 vendetta PAID gems +36 gold +240
+a LAB 7 r371 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r371 vendetta PAID gems +36 gold +240
+a LAB 7 r372 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r372 vendetta PAID gems +36 gold +240
+a LAB 7 r373 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r373 vendetta PAID gems +36 gold +240
+a LAB 7 r374 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r374 vendetta PAID gems +36 gold +240
+a LAB 7 r375 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r375 vendetta PAID gems +36 gold +240
+a LAB 7 r376 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r376 vendetta PAID gems +36 gold +240
+a LAB 7 r377 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r377 vendetta PAID gems +36 gold +240
+a LAB 7 r378 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r378 vendetta PAID gems +36 gold +240
+a LAB 7 r379 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r379 vendetta PAID gems +36 gold +240
+a LAB 7 r380 ryth clearing hp=1200 grp=unseen
+a LAB 7 r380 marcella clearing hp=1200 grp=unseen
+a LAB 7 r380 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r380 vendetta PAID gems +36 gold +240
+a LAB 7 r381 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r381 vendetta PAID gems +36 gold +240
+a LAB 7 r382 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r382 vendetta PAID gems +36 gold +240
+a LAB 7 r383 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r383 vendetta PAID gems +36 gold +240
+a LAB 7 r384 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r384 vendetta PAID gems +36 gold +240
+a LAB 7 r385 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r385 vendetta PAID gems +36 gold +240
+a LAB 7 r386 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r386 vendetta PAID gems +36 gold +240
+a LAB 7 r387 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r387 vendetta PAID gems +36 gold +240
+a LAB 7 r388 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r388 vendetta PAID gems +36 gold +240
+a LAB 7 r389 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r389 vendetta PAID gems +36 gold +240
+a LAB 7 r390 ryth clearing hp=1200 grp=unseen
+a LAB 7 r390 marcella clearing hp=1200 grp=unseen
+a LAB 7 r390 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r390 vendetta PAID gems +36 gold +240
+a LAB 7 r391 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r391 vendetta PAID gems +36 gold +240
+a LAB 7 r392 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r392 vendetta PAID gems +36 gold +240
+a LAB 7 r393 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r393 vendetta PAID gems +36 gold +240
+a LAB 7 r394 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r394 vendetta PAID gems +36 gold +240
+a LAB 7 r395 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r395 vendetta PAID gems +36 gold +240
+a LAB 7 r396 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r396 vendetta PAID gems +36 gold +240
+a LAB 7 r397 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r397 vendetta PAID gems +36 gold +240
+a LAB 7 r398 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r398 vendetta PAID gems +36 gold +240
+a LAB 7 r399 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r399 vendetta PAID gems +36 gold +240
+a LAB 7 r400 ryth clearing hp=1200 grp=unseen
+a LAB 7 r400 marcella clearing hp=1200 grp=unseen
+a LAB 7 r400 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r400 vendetta PAID gems +36 gold +240
+a LAB 7 r401 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r401 vendetta PAID gems +36 gold +240
+a LAB 7 r402 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r402 vendetta PAID gems +36 gold +240
+a LAB 7 r403 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r403 vendetta PAID gems +36 gold +240
+a LAB 7 r404 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r404 vendetta PAID gems +36 gold +240
+a LAB 7 r405 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r405 vendetta PAID gems +36 gold +240
+a LAB 7 r406 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r406 vendetta PAID gems +36 gold +240
+a LAB 7 r407 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r407 vendetta PAID gems +36 gold +240
+a LAB 7 r408 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r408 vendetta PAID gems +36 gold +240
+a LAB 7 r409 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r409 vendetta PAID gems +36 gold +240
+a LAB 7 r410 ryth clearing hp=1200 grp=unseen
+a LAB 7 r410 marcella clearing hp=1200 grp=unseen
+a LAB 7 r410 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r410 vendetta PAID gems +36 gold +240
+a LAB 7 r411 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r411 vendetta PAID gems +36 gold +240
+a LAB 7 r412 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r412 vendetta PAID gems +36 gold +240
+a LAB 7 r413 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r413 vendetta PAID gems +36 gold +240
+a LAB 7 r414 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r414 vendetta PAID gems +36 gold +240
+a LAB 7 r415 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r415 vendetta PAID gems +36 gold +240
+a LAB 7 r416 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r416 vendetta PAID gems +36 gold +240
+a LAB 7 r417 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r417 vendetta PAID gems +36 gold +240
+a LAB 7 r418 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r418 vendetta PAID gems +36 gold +240
+a LAB 7 r419 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r419 vendetta PAID gems +36 gold +240
+a LAB 7 r420 ryth clearing hp=1200 grp=unseen
+a LAB 7 r420 marcella clearing hp=1200 grp=unseen
+a LAB 7 r420 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r420 vendetta PAID gems +36 gold +240
+a LAB 7 r421 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r421 vendetta PAID gems +36 gold +240
+a LAB 7 r422 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r422 vendetta PAID gems +36 gold +240
+a LAB 7 r423 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r423 vendetta PAID gems +36 gold +240
+a LAB 7 r424 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r424 vendetta PAID gems +36 gold +240
+a LAB 7 r425 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r425 vendetta PAID gems +36 gold +240
+a LAB 7 r426 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r426 vendetta PAID gems +36 gold +240
+a LAB 7 r427 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r427 vendetta PAID gems +36 gold +240
+a LAB 7 r428 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r428 vendetta PAID gems +36 gold +240
+a LAB 7 r429 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r429 vendetta PAID gems +36 gold +240
+a LAB 7 r430 ryth clearing hp=1200 grp=unseen
+a LAB 7 r430 marcella clearing hp=1200 grp=unseen
+a LAB 7 r430 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r430 vendetta PAID gems +36 gold +240
+a LAB 7 r431 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r431 vendetta PAID gems +36 gold +240
+a LAB 7 r432 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r432 vendetta PAID gems +36 gold +240
+a LAB 7 r433 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r433 vendetta PAID gems +36 gold +240
+a LAB 7 r434 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r434 vendetta PAID gems +36 gold +240
+a LAB 7 r435 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r435 vendetta PAID gems +36 gold +240
+a LAB 7 r436 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r436 vendetta PAID gems +36 gold +240
+a LAB 7 r437 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r437 vendetta PAID gems +36 gold +240
+a LAB 7 r438 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r438 vendetta PAID gems +36 gold +240
+a LAB 7 r439 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r439 vendetta PAID gems +36 gold +240
+a LAB 7 r440 ryth clearing hp=1200 grp=unseen
+a LAB 7 r440 marcella clearing hp=1200 grp=unseen
+a LAB 7 r440 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r440 vendetta PAID gems +36 gold +240
+a LAB 7 r441 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r441 vendetta PAID gems +36 gold +240
+a LAB 7 r442 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r442 vendetta PAID gems +36 gold +240
+a LAB 7 r443 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r443 vendetta PAID gems +36 gold +240
+a LAB 7 r444 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r444 vendetta PAID gems +36 gold +240
+a LAB 7 r445 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r445 vendetta PAID gems +36 gold +240
+a LAB 7 r446 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r446 vendetta PAID gems +36 gold +240
+a LAB 7 r447 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r447 vendetta PAID gems +36 gold +240
+a LAB 7 r448 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r448 vendetta PAID gems +36 gold +240
+a LAB 7 r449 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r449 vendetta PAID gems +36 gold +240
+a LAB 7 r450 ryth clearing hp=1200 grp=unseen
+a LAB 7 r450 marcella clearing hp=1200 grp=unseen
+a LAB 7 r450 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r450 vendetta PAID gems +36 gold +240
+a LAB 7 r451 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r451 vendetta PAID gems +36 gold +240
+a LAB 7 r452 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r452 vendetta PAID gems +36 gold +240
+a LAB 7 r453 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r453 vendetta PAID gems +36 gold +240
+a LAB 7 r454 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r454 vendetta PAID gems +36 gold +240
+a LAB 7 r455 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r455 vendetta PAID gems +36 gold +240
+a LAB 7 r456 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r456 vendetta PAID gems +36 gold +240
+a LAB 7 r457 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r457 vendetta PAID gems +36 gold +240
+a LAB 7 r458 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r458 vendetta PAID gems +36 gold +240
+a LAB 7 r459 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r459 vendetta PAID gems +36 gold +240
+a LAB 7 r460 ryth clearing hp=1200 grp=unseen
+a LAB 7 r460 marcella clearing hp=1200 grp=unseen
+a LAB 7 r460 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r460 vendetta PAID gems +36 gold +240
+a LAB 7 r461 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r461 vendetta PAID gems +36 gold +240
+a LAB 7 r462 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r462 vendetta PAID gems +36 gold +240
+a LAB 7 r463 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r463 vendetta PAID gems +36 gold +240
+a LAB 7 r464 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r464 vendetta PAID gems +36 gold +240
+a LAB 7 r465 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r465 vendetta PAID gems +36 gold +240
+a LAB 7 r466 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r466 vendetta PAID gems +36 gold +240
+a LAB 7 r467 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r467 vendetta PAID gems +36 gold +240
+a LAB 7 r468 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r468 vendetta PAID gems +36 gold +240
+a LAB 7 r469 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r469 vendetta PAID gems +36 gold +240
+a LAB 7 r470 ryth clearing hp=1200 grp=unseen
+a LAB 7 r470 marcella clearing hp=1200 grp=unseen
+a LAB 7 r470 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r470 vendetta PAID gems +36 gold +240
+a LAB 7 r471 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r471 vendetta PAID gems +36 gold +240
+a LAB 7 r472 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r472 vendetta PAID gems +36 gold +240
+a LAB 7 r473 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r473 vendetta PAID gems +36 gold +240
+a LAB 7 r474 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r474 vendetta PAID gems +36 gold +240
+a LAB 7 r475 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r475 vendetta PAID gems +36 gold +240
+a LAB 7 r476 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r476 vendetta PAID gems +36 gold +240
+a LAB 7 r477 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r477 vendetta PAID gems +36 gold +240
+a LAB 7 r478 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r478 vendetta PAID gems +36 gold +240
+a LAB 7 r479 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r479 vendetta PAID gems +36 gold +240
+a LAB 7 r480 ryth clearing hp=1200 grp=unseen
+a LAB 7 r480 marcella clearing hp=1200 grp=unseen
+a LAB 7 r480 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r480 vendetta PAID gems +36 gold +240
+a LAB 7 r481 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r481 vendetta PAID gems +36 gold +240
+a LAB 7 r482 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r482 vendetta PAID gems +36 gold +240
+a LAB 7 r483 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r483 vendetta PAID gems +36 gold +240
+a LAB 7 r484 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r484 vendetta PAID gems +36 gold +240
+a LAB 7 r485 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r485 vendetta PAID gems +36 gold +240
+a LAB 7 r486 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r486 vendetta PAID gems +36 gold +240
+a LAB 7 r487 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r487 vendetta PAID gems +36 gold +240
+a LAB 7 r488 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r488 vendetta PAID gems +36 gold +240
+a LAB 7 r489 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r489 vendetta PAID gems +36 gold +240
+a LAB 7 r490 ryth clearing hp=1200 grp=unseen
+a LAB 7 r490 marcella clearing hp=1200 grp=unseen
+a LAB 7 r490 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r490 vendetta PAID gems +36 gold +240
+a LAB 7 r491 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r491 vendetta PAID gems +36 gold +240
+a LAB 7 r492 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r492 vendetta PAID gems +36 gold +240
+a LAB 7 r493 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r493 vendetta PAID gems +36 gold +240
+a LAB 7 r494 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r494 vendetta PAID gems +36 gold +240
+a LAB 7 r495 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r495 vendetta PAID gems +36 gold +240
+a LAB 7 r496 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r496 vendetta PAID gems +36 gold +240
+a LAB 7 r497 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r497 vendetta PAID gems +36 gold +240
+a LAB 7 r498 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r498 vendetta PAID gems +36 gold +240
+a LAB 7 r499 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r499 vendetta PAID gems +36 gold +240
+a LAB 7 r500 ryth clearing hp=1200 grp=unseen
+a LAB 7 r500 marcella clearing hp=1200 grp=unseen
+a LAB 7 r500 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r500 vendetta PAID gems +36 gold +240
+a LAB 7 r501 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r501 vendetta PAID gems +36 gold +240
+a LAB 7 r502 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r502 vendetta PAID gems +36 gold +240
+a LAB 7 r503 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r503 vendetta PAID gems +36 gold +240
+a LAB 7 r504 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r504 vendetta PAID gems +36 gold +240
+a LAB 7 r505 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r505 vendetta PAID gems +36 gold +240
+a LAB 7 r506 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r506 vendetta PAID gems +36 gold +240
+a LAB 7 r507 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r507 vendetta PAID gems +36 gold +240
+a LAB 7 r508 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r508 vendetta PAID gems +36 gold +240
+a LAB 7 r509 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r509 vendetta PAID gems +36 gold +240
+a LAB 7 r510 ryth clearing hp=1200 grp=unseen
+a LAB 7 r510 marcella clearing hp=1200 grp=unseen
+a LAB 7 r510 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r510 vendetta PAID gems +36 gold +240
+a LAB 7 r511 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r511 vendetta PAID gems +36 gold +240
+a LAB 7 r512 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r512 vendetta PAID gems +36 gold +240
+a LAB 7 r513 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r513 vendetta PAID gems +36 gold +240
+a LAB 7 r514 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r514 vendetta PAID gems +36 gold +240
+a LAB 7 r515 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r515 vendetta PAID gems +36 gold +240
+a LAB 7 r516 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r516 vendetta PAID gems +36 gold +240
+a LAB 7 r517 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r517 vendetta PAID gems +36 gold +240
+a LAB 7 r518 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r518 vendetta PAID gems +36 gold +240
+a LAB 7 r519 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r519 vendetta PAID gems +36 gold +240
+a LAB 7 r520 ryth clearing hp=1200 grp=unseen
+a LAB 7 r520 marcella clearing hp=1200 grp=unseen
+a LAB 7 r520 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r520 vendetta PAID gems +36 gold +240
+a LAB 7 r521 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r521 vendetta PAID gems +36 gold +240
+a LAB 7 r522 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r522 vendetta PAID gems +36 gold +240
+a LAB 7 r523 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r523 vendetta PAID gems +36 gold +240
+a LAB 7 r524 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r524 vendetta PAID gems +36 gold +240
+a LAB 7 r525 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r525 vendetta PAID gems +36 gold +240
+a LAB 7 r526 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r526 vendetta PAID gems +36 gold +240
+a LAB 7 r527 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r527 vendetta PAID gems +36 gold +240
+a LAB 7 r528 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r528 vendetta PAID gems +36 gold +240
+a LAB 7 r529 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r529 vendetta PAID gems +36 gold +240
+a LAB 7 r530 ryth clearing hp=1200 grp=unseen
+a LAB 7 r530 marcella clearing hp=1200 grp=unseen
+a LAB 7 r530 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r530 vendetta PAID gems +36 gold +240
+a LAB 7 r531 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r531 vendetta PAID gems +36 gold +240
+a LAB 7 r532 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r532 vendetta PAID gems +36 gold +240
+a LAB 7 r533 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r533 vendetta PAID gems +36 gold +240
+a LAB 7 r534 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r534 vendetta PAID gems +36 gold +240
+a LAB 7 r535 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r535 vendetta PAID gems +36 gold +240
+a LAB 7 r536 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r536 vendetta PAID gems +36 gold +240
+a LAB 7 r537 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r537 vendetta PAID gems +36 gold +240
+a LAB 7 r538 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r538 vendetta PAID gems +36 gold +240
+a LAB 7 r539 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r539 vendetta PAID gems +36 gold +240
+a LAB 7 r540 ryth clearing hp=1200 grp=unseen
+a LAB 7 r540 marcella clearing hp=1200 grp=unseen
+a LAB 7 r540 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r540 vendetta PAID gems +36 gold +240
+a LAB 7 r541 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r541 vendetta PAID gems +36 gold +240
+a LAB 7 r542 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r542 vendetta PAID gems +36 gold +240
+a LAB 7 r543 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r543 vendetta PAID gems +36 gold +240
+a LAB 7 r544 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r544 vendetta PAID gems +36 gold +240
+a LAB 7 r545 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r545 vendetta PAID gems +36 gold +240
+a LAB 7 r546 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r546 vendetta PAID gems +36 gold +240
+a LAB 7 r547 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r547 vendetta PAID gems +36 gold +240
+a LAB 7 r548 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r548 vendetta PAID gems +36 gold +240
+a LAB 7 r549 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r549 vendetta PAID gems +36 gold +240
+a LAB 7 r550 ryth clearing hp=1200 grp=unseen
+a LAB 7 r550 marcella clearing hp=1200 grp=unseen
+a LAB 7 r550 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r550 vendetta PAID gems +36 gold +240
+a LAB 7 r551 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r551 vendetta PAID gems +36 gold +240
+a LAB 7 r552 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r552 vendetta PAID gems +36 gold +240
+a LAB 7 r553 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r553 vendetta PAID gems +36 gold +240
+a LAB 7 r554 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r554 vendetta PAID gems +36 gold +240
+a LAB 7 r555 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r555 vendetta PAID gems +36 gold +240
+a LAB 7 r556 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r556 vendetta PAID gems +36 gold +240
+a LAB 7 r557 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r557 vendetta PAID gems +36 gold +240
+a LAB 7 r558 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r558 vendetta PAID gems +36 gold +240
+a LAB 7 r559 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r559 vendetta PAID gems +36 gold +240
+a LAB 7 r560 ryth clearing hp=1200 grp=unseen
+a LAB 7 r560 marcella clearing hp=1200 grp=unseen
+a LAB 7 r560 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r560 vendetta PAID gems +36 gold +240
+a LAB 7 r561 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r561 vendetta PAID gems +36 gold +240
+a LAB 7 r562 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r562 vendetta PAID gems +36 gold +240
+a LAB 7 r563 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r563 vendetta PAID gems +36 gold +240
+a LAB 7 r564 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r564 vendetta PAID gems +36 gold +240
+a LAB 7 r565 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r565 vendetta PAID gems +36 gold +240
+a LAB 7 r566 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r566 vendetta PAID gems +36 gold +240
+a LAB 7 r567 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r567 vendetta PAID gems +36 gold +240
+a LAB 7 r568 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r568 vendetta PAID gems +36 gold +240
+a LAB 7 r569 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r569 vendetta PAID gems +36 gold +240
+a LAB 7 r570 ryth clearing hp=1200 grp=unseen
+a LAB 7 r570 marcella clearing hp=1200 grp=unseen
+a LAB 7 r570 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r570 vendetta PAID gems +36 gold +240
+a LAB 7 r571 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r571 vendetta PAID gems +36 gold +240
+a LAB 7 r572 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r572 vendetta PAID gems +36 gold +240
+a LAB 7 r573 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r573 vendetta PAID gems +36 gold +240
+a LAB 7 r574 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r574 vendetta PAID gems +36 gold +240
+a LAB 7 r575 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r575 vendetta PAID gems +36 gold +240
+a LAB 7 r576 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r576 vendetta PAID gems +36 gold +240
+a LAB 7 r577 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r577 vendetta PAID gems +36 gold +240
+a LAB 7 r578 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r578 vendetta PAID gems +36 gold +240
+a LAB 7 r579 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r579 vendetta PAID gems +36 gold +240
+a LAB 7 r580 ryth clearing hp=1200 grp=unseen
+a LAB 7 r580 marcella clearing hp=1200 grp=unseen
+a LAB 7 r580 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r580 vendetta PAID gems +36 gold +240
+a LAB 7 r581 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r581 vendetta PAID gems +36 gold +240
+a LAB 7 r582 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r582 vendetta PAID gems +36 gold +240
+a LAB 7 r583 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r583 vendetta PAID gems +36 gold +240
+a LAB 7 r584 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r584 vendetta PAID gems +36 gold +240
+a LAB 7 r585 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r585 vendetta PAID gems +36 gold +240
+a LAB 7 r586 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r586 vendetta PAID gems +36 gold +240
+a LAB 7 r587 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r587 vendetta PAID gems +36 gold +240
+a LAB 7 r588 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r588 vendetta PAID gems +36 gold +240
+a LAB 7 r589 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r589 vendetta PAID gems +36 gold +240
+a LAB 7 r590 ryth clearing hp=1200 grp=unseen
+a LAB 7 r590 marcella clearing hp=1200 grp=unseen
+a LAB 7 r590 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r590 vendetta PAID gems +36 gold +240
+a LAB 7 r591 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r591 vendetta PAID gems +36 gold +240
+a LAB 7 r592 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r592 vendetta PAID gems +36 gold +240
+a LAB 7 r593 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r593 vendetta PAID gems +36 gold +240
+a LAB 7 r594 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r594 vendetta PAID gems +36 gold +240
+a LAB 7 r595 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r595 vendetta PAID gems +36 gold +240
+a LAB 7 r596 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r596 vendetta PAID gems +36 gold +240
+a LAB 7 r597 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r597 vendetta PAID gems +36 gold +240
+a LAB 7 r598 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r598 vendetta PAID gems +36 gold +240
+a LAB 7 r599 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r599 vendetta PAID gems +36 gold +240
+a LAB 7 r600 ryth clearing hp=1200 grp=unseen
+a LAB 7 r600 marcella clearing hp=1200 grp=unseen
+a LAB 7 r600 vendetta on_tile gold=240 gems=36 grp=respawn0
+a LAB 7 r600 vendetta PAID gems +36 gold +240

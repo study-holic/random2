@@ -1,0 +1,753 @@
+rank,team_id,name,category,rating,matches,wins,losses,language,members,picks_last50
+1,38e6d8c4-1608-44f5-956b-08390f564336,prism best girl,pending,2277.1,226,184,42,cpp,1,prism:50;marcella:45;vesper-vale:45;heart-of-ruin:41;ryth:27;vendetta:19;ren:4
+2,1890540d-1ffc-4847-adbf-d0d08772f268,Intercontinental Fish,international,2251.8,1191,931,260,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;cassi-and-issac:42;ryth:25;varg:7
+3,bbe481a7-4575-4826-9a3e-f81c28205de8,:3,non_student,2226.8,1352,714,638,rust,3,vesper-vale:50;heart-of-ruin:43;marcella:36;vendetta:36;prism:32;ryth:17;tavi:7;stellar:2;ren:1
+4,8df7e1cd-0d60-413b-9331-f5427ce9ca88,procless,international,2166.1,1370,750,620,rust,4,heart-of-ruin:50;vesper-vale:50;marcella:45;ryth:45;vendetta:38
+5,3ec4a701-a9b5-498f-9361-eea4a6dd1cde,policy wonk,non_student,2138.2,509,270,239,rust,1,tavi:50;vesper-vale:50;marcella:49;willow:42;heart-of-ruin:30;prism:1;ryth:1
+6,a4350547-b7a1-47b1-9031-4f7f084ad0d8,Univardisty of Shingtonwash,non_student,2137.2,1373,761,612,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:43;varg:30;vendetta:30;ryth:14;tavi:5
+7,547efb5b-57e5-4355-8501-3b331f506d62,Pantheon,international,2100.4,1221,602,619,cpp,3,prism:50;vesper-vale:50;marcella:45;heart-of-ruin:41;ryth:26;vendetta:19
+8,36258abf-3fd0-4827-8fa5-2a217438cf6f,Trzy Kwaterki,international,2091.5,1408,729,679,cpp,4,marcella:50;ryth:50;vendetta:50;vesper-vale:44;heart-of-ruin:32
+9,616e95e4-36ee-4669-b9b6-edfe818a7470,new team(4),international,2091.1,1208,602,606,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:40;vendetta:24
+10,197f3952-fd35-499a-9a01-4abdf3196600,hello,uk,2083.8,1397,715,682,cpp,1,marcella:50;ryth:43;vesper-vale:43;tavi:39;vendetta:39;heart-of-ruin:11;cassi-and-issac:2;varg:2
+11,d559d741-ac53-411e-bc4e-36b8f3d12d5a,print dont int,international,2082.9,1159,614,545,cpp,4,heart-of-ruin:50;vesper-vale:50;ryth:43;vendetta:43;marcella:37
+12,c0a5d0a5-eb8f-4aa7-8d6a-8e74ed78874c,Zarzorki,international,2064.7,1354,700,654,cpp,4,heart-of-ruin:50;marcella:50;ryth:50;vesper-vale:50;vendetta:32
+13,26824601-d225-427f-bd2d-ce8aa9faa392,Sponge(Albert and Bob),international,2050.3,1127,596,531,cpp,1,heart-of-ruin:50;ryth:50;marcella:48;vesper-vale:41;vendetta:36;ren:2;stellar:2;varg:2
+14,882106d4-9deb-40cc-9d5c-8522c1d32129,NEETCoders,international,2043.9,1399,735,664,cpp,4,vendetta:50;vesper-vale:39;heart-of-ruin:36;marcella:32;ryth:30;cassi-and-issac:14;stellar:14;varg:10;tavi:2
+15,a1e82708-dfd3-4609-8b9a-69f652d12185,EMPEROR Tung,international,2042.8,1410,710,700,cpp,3,marcella:50;heart-of-ruin:45;vesper-vale:45;ryth:39;vendetta:32;tavi:5
+16,ec2b57be-fa43-4e3e-9eb0-57b266624d27,subscribe to caterpillow,international,2035.9,289,166,123,cpp,4,heart-of-ruin:50;varg:50;vesper-vale:50;marcella:42;ryth:36
+17,de4b4211-4d8b-4755-a37f-3955b7cbdd8a,Noobot,international,2030.7,635,357,278,cpp,1,marcella:50;ryth:50;vesper-vale:50;willow:40;tavi:30
+18,d2ef7d2c-be90-44e8-be4e-807bc580cc7c,Let's LARP again,international,2028.0,1088,565,523,cpp,4,marcella:50;vendetta:50;heart-of-ruin:33;ryth:33;vesper-vale:25
+19,de0b1e3c-39fb-473c-8244-61c1133ad612,Ad Astra,non_student,2009.2,995,524,471,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:43;varg:33;ren:1
+20,59f5706f-16db-4ae0-bb3f-deadb41cdc50,Tartarus,international,2006.6,1408,690,718,cpp,4,marcella:50;vesper-vale:48;ryth:44;willow:42;stellar:23;heart-of-ruin:13;prism:5;ren:4;cassi-and-issac:1;varg:1
+21,fa706d6e-9f66-44b0-bd81-1ed3dad69a99,FürFortnite,pending,1991.3,969,512,457,cpp,4,heart-of-ruin:49;marcella:47;ryth:45;vesper-vale:41;stellar:18;cassi-and-issac:15;tavi:10;willow:6;varg:1
+22,ee83f5e5-bcad-4923-86b4-b79ea6083d2e,Mite,uk,1989.7,1384,818,566,cpp,1,heart-of-ruin:50;marcella:39;cassi-and-issac:35;stellar:35;willow:28;ryth:18;vesper-vale:15;prism:7;vendetta:4
+23,93fd07ff-2f73-4ed4-9911-356cc1034ba5,Nanyang Technological University,international,1982.2,1374,708,666,cpp,2,heart-of-ruin:50;ryth:50;vesper-vale:50;ren:44;marcella:32
+24,40cf616f-378f-48c7-b381-fe323bce3773,dromedaries,international,1981.7,1059,559,500,cpp,3,heart-of-ruin:50;marcella:50;willow:45;cassi-and-issac:35;ryth:35;tavi:10;vesper-vale:5
+25,ad5474c2-784c-4f91-b8da-5fec554e4de4,Claudus Maximus,uk,1975.4,53,49,4,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;tavi:43;marcella:36
+26,7fbd85fc-ea4a-422e-86f4-624b6b7e0c72,the ruliad,international,1966.5,1286,665,621,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:43;vendetta:34
+27,6f7fd199-4115-4fe0-8752-525bd8ccad8d,Nyx,international,1956.4,1298,667,631,cpp,4,heart-of-ruin:50;prism:50;vesper-vale:50;marcella:46;vendetta:34
+28,4851bec0-9af2-4413-a07b-c70bbb4cde21,ひななー,international,1950.7,1411,722,689,cpp,2,heart-of-ruin:50;vendetta:50;vesper-vale:50;willow:40;ryth:31
+29,1570a113-57fd-4f15-84fb-0d764b12799b,conqueror_of_openai,international,1943.7,1288,666,622,cpp,4,heart-of-ruin:50;vesper-vale:47;vendetta:38;varg:35;ryth:32;ren:12;tavi:6;prism:3
+30,1499428c-52fc-4495-86ca-56ca4d107c85,Nameless,international,1939.2,1414,723,691,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:40;vendetta:31
+31,d4f3c646-d772-4f2c-805f-2d1e35337946,EggsAfter11AM,international,1937.7,1409,723,686,cpp,3,heart-of-ruin:50;vesper-vale:50;marcella:46;ryth:46;vendetta:41
+32,4129538c-62fb-4f05-b8d7-bc3ec39fc554,Supaswag,international,1934.3,572,303,269,cpp,3,heart-of-ruin:50;vendetta:50;marcella:33;ren:32;willow:30;varg:21;cassi-and-issac:9;vesper-vale:7
+33,f3a877ff-d808-4141-ac02-c370b662ed81,Jupiter,international,1933.1,1391,704,687,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:47;ryth:35
+34,58cf3e57-7f17-4712-903c-88b3a27eb79d,BBL,international,1923.1,1399,697,702,cpp,2,vesper-vale:44;heart-of-ruin:41;tavi:31;willow:27;marcella:21;prism:21;ryth:16;ren:12;vendetta:6;cassi-and-issac:5
+35,4d0fe2ae-015f-4365-9705-463ff71e4291,Sneaky Bush Campers,international,1921.3,1199,643,556,cpp,4,heart-of-ruin:50;ren:44;ryth:27;stellar:27;marcella:26;vesper-vale:19;tavi:11;varg:8;willow:8;prism:3;cassi-and-issac:2
+36,ee3e7b98-f09f-46b9-8e52-348e3d07f551,geese geese go,international,1911.6,1192,606,586,rust,4,heart-of-ruin:49;vesper-vale:49;marcella:42;ryth:42;vendetta:41;cassi-and-issac:1;ren:1;stellar:1;varg:1
+37,cfa40068-99c1-4038-b52d-b9ed4c10f9fb,OneTap,international,1908.6,1357,681,676,cpp,3,marcella:50;heart-of-ruin:42;vesper-vale:42;ryth:41;prism:25;vendetta:15;tavi:8
+38,56169cfe-e8dc-45ae-815c-f2fa45368296,Quant Merch Traders,international,1907.2,1383,719,664,cpp,2,marcella:50;vesper-vale:50;ryth:45;tavi:36;vendetta:36;heart-of-ruin:14
+39,e1648263-37d3-4df5-a7bc-2e1f8f5fbc16,𓎼𓃭𓅱𓂋𓇌 𓏏𓅱 𓂋𓄿,international,1903.3,1334,669,665,cpp,4,vesper-vale:50;heart-of-ruin:49;ryth:40;marcella:31;varg:30;vendetta:11
+40,34b36bab-66bb-4506-b032-2df6a081758d,ha²t,international,1902.7,317,180,137,cpp,4,heart-of-ruin:50;marcella:50;ryth:50;vendetta:44;varg:33
+41,bed04918-82d1-40d2-ba15-b977a2906943,SilverSamurai,international,1902.1,1382,705,677,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:42;ryth:33
+42,83798ea3-f051-43ed-933d-e0bced90992b,smurphy,international,1890.6,1330,685,645,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:49;vendetta:44;varg:29;ren:1;ryth:1;tavi:1
+43,6fd448fc-cec3-4dc1-8d6a-b384b1127d47,PENTAKILL,international,1886.2,636,333,303,cpp,1,heart-of-ruin:50;vesper-vale:50;vendetta:48;marcella:45;willow:18;tavi:12
+44,d4086267-bcda-495e-b632-4b7ab155fbf4,SquidProxyLovers,international,1884.6,1128,591,537,cpp,4,heart-of-ruin:50;vesper-vale:50;vendetta:49;varg:41;ryth:36;ren:1;stellar:1
+45,21b63196-9d0e-436f-bf5d-25c55bdc4eaf,E=mc^2+AI^3,international,1884.2,812,423,389,cpp,1,heart-of-ruin:50;vesper-vale:50;marcella:45;ryth:45;vendetta:39
+46,589be06f-219f-4af6-9139-cd1109c62316,SSSA,international,1880.0,1394,703,691,cpp,2,ryth:38;vesper-vale:35;heart-of-ruin:27;marcella:26;cassi-and-issac:21;vendetta:21;prism:16;varg:14;tavi:10;stellar:8;ren:6;willow:6
+47,67f45d6d-9cd8-403d-ade2-14aad9202201,Still Testing,international,1879.7,1365,701,664,cpp,1,ryth:47;vendetta:35;heart-of-ruin:33;marcella:31;ren:27;vesper-vale:18;cassi-and-issac:16;stellar:10;tavi:6;varg:6
+48,2afdf30d-c49f-4272-af87-6597b1e955ec,AlphaSlop,international,1872.2,1188,592,596,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;vendetta:43;ryth:30
+49,a4247250-fa1e-4d33-811d-d94667bf7a2b,bentheboss,uk,1872.1,868,450,418,rust,1,vesper-vale:47;marcella:35;ryth:35;tavi:25;heart-of-ruin:15;stellar:15;vendetta:14;varg:13;prism:12;willow:12;cassi-and-issac:3
+50,5be464de-33ff-4f25-9ab3-766a6ac71d8b,filter,international,1870.0,1084,546,538,cpp,2,heart-of-ruin:50;marcella:50;vendetta:50;vesper-vale:42;ryth:33
+51,772c398c-6856-4e72-a709-a20db9f67569,Gem Simons,international,1869.5,1349,696,653,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:41;vendetta:38
+52,5a103c90-b00b-4d46-8ace-6a3bb058dc72,HouseOfCoders,international,1867.3,965,495,470,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;ryth:41;marcella:22;varg:10
+53,975c2c15-506b-489b-a439-839c8145933b,Valenki,international,1865.5,1384,712,672,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:37;vendetta:31;varg:2
+54,f5d4d2c9-efe4-415b-b08a-99cff7ab0c78,Stubborn Gold Clusters,international,1862.3,860,475,385,,1,cassi-and-issac:50;stellar:50;varg:45;tavi:35;ryth:33
+55,38a622d3-32ed-490d-b78a-cf93ab734a6a,Patient Builder,international,1861.6,395,213,182,cpp,4,tavi:50;vendetta:50;vesper-vale:50;marcella:39;varg:31
+56,dda35964-f70a-4ced-ab60-7304ddaadb8d,the uncancelables,international,1861.3,1394,720,674,rust,4,heart-of-ruin:50;marcella:50;vesper-vale:45;ryth:43;vendetta:35;cassi-and-issac:5
+57,0c75a4f1-2e92-48e4-b1c1-384ddad80450,Serious-Wyso,international,1861.1,1413,716,697,cpp,2,vesper-vale:50;tavi:48;vendetta:44;ryth:42;varg:33;cassi-and-issac:6
+58,47c2a57c-e235-441f-a5c9-c56f0665f81a,Rogue Fog Walkers,international,1854.4,916,456,460,rust,2,heart-of-ruin:50;vesper-vale:50;vendetta:43;marcella:38;ryth:38
+59,2f87c732-873b-4310-9d43-780cf85629bd,"Nah, Id Lose",international,1847.4,532,276,256,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;ryth:41;marcella:32
+60,fba385b1-397b-4521-b48a-3a1fe631b79a,PtitLK,international,1842.5,1070,559,511,cpp,1,heart-of-ruin:50;vesper-vale:50;vendetta:40;marcella:39;ryth:39
+61,9b0a89b8-f553-4916-8b58-eea33334757c,wawow,international,1838.7,1138,592,546,cpp,1,marcella:50;vendetta:50;heart-of-ruin:43;ryth:43;vesper-vale:38;tavi:7
+62,0dec71fb-eeb0-4cad-b626-15ddd484c3b1,红包控股,international,1836.7,992,528,464,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:45;ryth:33
+63,c2892f58-a3ad-4ff7-a256-120445ad6ee7,The Party of Heroes,international,1836.3,1350,692,658,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;cassi-and-issac:41;ryth:35
+64,19a21cd3-4d97-4bbb-adb6-242bf2d676ff,Hidden Altar Keepers,uk,1835.5,272,157,115,cpp,3,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:39
+65,f9d72b03-4526-4213-bc2f-afbf06f2a933,Bamboo Teahouse,international,1835.1,1408,724,684,cpp,1,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:41;prism:32
+66,6599a236-7801-436f-a863-4acbb6aafa91,KratosMessi,non_student,1835.1,1403,704,699,cpp,1,vesper-vale:50;heart-of-ruin:36;ren:31;varg:31;vendetta:31;prism:19;marcella:14;ryth:14
+67,878b7260-4640-466b-bb37-cf04acccf45b,2/27TELEVIZR+1/6EIT,uk,1834.4,1104,566,538,cpp,4,heart-of-ruin:50;marcella:50;ryth:50;vesper-vale:42;vendetta:35
+68,5e127d43-5b21-445c-8b94-32a6e34192bf,Sloppy Joe Pirates,non_student,1834.3,1223,639,584,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;ren:41;cassi-and-issac:27
+69,8055ffc9-d28b-461f-8a41-bfefa35893b8,SkuBap,international,1832.4,1366,719,647,cpp,2,marcella:50;varg:50;vesper-vale:50;vendetta:42;tavi:32
+70,6b04505b-d16c-4196-b7c6-53a4688a32ca,Agentic Loop Builders,international,1832.2,1289,672,617,cpp,3,heart-of-ruin:50;vesper-vale:48;marcella:41;ryth:41;vendetta:40;prism:2;ren:2;stellar:2;tavi:2
+71,2dba5fac-6e54-493c-8f0e-d7a32d898d9a,umamusume,international,1825.9,1368,701,667,rust,2,marcella:50;vendetta:50;vesper-vale:50;heart-of-ruin:43;ryth:29;prism:4
+72,fcf5f666-ea55-4da0-b8d4-97c64bb37236,DOOMSDAY,uk,1825.7,1369,691,678,cpp,4,heart-of-ruin:50;varg:50;vendetta:50;stellar:31;willow:22;ryth:13;marcella:10
+73,958beb45-6e30-4c1d-a250-be7052ee7566,剑桥夜爬者,uk,1825.2,1345,671,674,rust,2,heart-of-ruin:40;stellar:28;vendetta:27;willow:27;varg:22;ren:21;tavi:20;cassi-and-issac:19;prism:10;marcella:8
+74,30d8d10c-a7ce-4449-a394-42a76621c1db,:3,international,1819.0,1416,716,700,cpp,1,vendetta:50;vesper-vale:50;marcella:33;ryth:28;varg:27;tavi:20;prism:7
+75,792ef36d-f125-4806-8399-03147f22cfcc,an iq too high,non_student,1811.4,1008,525,483,cpp,4,marcella:50;ryth:50;vesper-vale:50;heart-of-ruin:42;prism:32
+76,6d389a3b-413e-451e-b7d0-f1c6b9b34e51,Sic Mundus Creatus Est,international,1811.1,656,354,302,cpp,1,ryth:50;vendetta:50;vesper-vale:50;willow:48;varg:37
+77,f5ce77d3-e5c9-4e9e-8f26-3d679a5d1906,KKB,international,1808.5,590,302,288,cpp,1,marcella:50;ryth:50;varg:50;ren:31;stellar:22;vendetta:18
+78,118dbffc-87ec-48a6-ac9c-dc1e371ba364,Velvet TributersAjay_2705,international,1805.7,677,351,326,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;ryth:46;marcella:29
+79,1e112f0b-e23f-483f-91a1-bfae0eaee8f3,Ninja Turtles,international,1805.6,958,513,445,cpp,4,heart-of-ruin:50;vesper-vale:50;ryth:46;vendetta:44;varg:22;willow:11;marcella:8
+80,67e6d408-0d7f-4f95-af3d-c2b7bad5e8aa,SkibidiSloppers,international,1802.2,1174,606,568,cpp,2,marcella:48;vesper-vale:48;ryth:41;vendetta:35;willow:29;tavi:15;cassi-and-issac:2;varg:2
+81,f6e2d7fe-9ae5-44b6-b4ad-a79d2443cb89,meow,international,1800.6,1320,651,669,ocaml,2,cassi-and-issac:50;stellar:50;varg:50;ryth:46;ren:36
+82,7a66309e-a216-491e-af67-cb7bf1663ddb,Brakence Fan Club,uk,1799.7,1135,580,555,cpp,4,marcella:50;ren:50;vesper-vale:50;cassi-and-issac:43;ryth:31
+83,3ad833e0-635d-4164-9f86-26d82c5f18b0,sudo rm -rf Imperial,uk,1798.6,1201,597,604,cpp,4,heart-of-ruin:50;vesper-vale:50;marcella:49;ryth:43;vendetta:38;varg:1
+84,3b926693-77fd-4796-b543-5149870a1e6a,error404,international,1797.1,1266,633,633,cpp,1,varg:50;vendetta:48;ryth:46;marcella:40;cassi-and-issac:30;stellar:7;vesper-vale:4;prism:2
+85,292625c5-0f3a-49f0-a08a-9757b8f58658,Live Love Larp,international,1796.7,1410,722,688,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:34
+86,12aaa3a4-3ded-48ea-b737-8aa4287b0eb1,Pathological liar,uk,1794.3,1045,527,518,cpp,1,marcella:50;ryth:50;vendetta:50;vesper-vale:38;willow:31
+87,f300f36c-116a-4c9f-9d5d-4a13fe2e5332,Funky monkeys,uk,1792.7,1218,611,607,cpp,4,heart-of-ruin:50;vesper-vale:50;marcella:42;ryth:42;vendetta:39
+88,0329caf5-7ab7-4ac8-b672-8042c2aab6b5,Slawomir Zarzycki,international,1792.0,1202,622,580,cpp,4,heart-of-ruin:50;tavi:50;vesper-vale:50;marcella:39;varg:32
+89,0d9285fa-1783-44d6-b170-67fa3bea5449,hold up,international,1791.0,994,521,473,cpp,1,vesper-vale:49;heart-of-ruin:46;marcella:41;ryth:39;vendetta:22;varg:6;ren:5;stellar:4;prism:3;tavi:3
+90,91261fd4-7236-4726-826c-e9cd30f20966,Danger Bille,international,1789.4,1062,547,515,cpp,2,heart-of-ruin:50;vendetta:50;vesper-vale:50;ryth:41;marcella:29
+91,2728f025-48ee-4adb-bd24-d7d26878a47e,The Mania,international,1789.2,1315,679,636,cpp,4,heart-of-ruin:50;marcella:50;varg:50;ryth:46;vendetta:36
+92,d61e374a-4f07-4bca-a3a8-fe7b77089dbd,Stranger Danger,international,1788.7,803,426,377,cpp,1,heart-of-ruin:50;ryth:50;vendetta:47;marcella:43;vesper-vale:30;ren:3;tavi:3
+93,6976e700-2d72-4474-bdb4-b64affb38442,y,international,1784.7,1102,556,546,cpp,1,heart-of-ruin:50;vesper-vale:50;vendetta:40;marcella:38;ryth:38
+94,5095aa78-11de-4a63-ad5d-b30dae825f5e,will think later,international,1784.3,1385,700,685,cpp,4,marcella:50;vendetta:50;vesper-vale:50;heart-of-ruin:42;tavi:34
+95,b593565f-9ebc-49e2-807b-e29d72fbd365,cache_v2,international,1781.4,729,375,354,cpp,1,heart-of-ruin:50;marcella:50;stellar:50;vendetta:37;ryth:28
+96,2d18e39c-62f8-4822-b113-04d34bee8b06,天天开心 :(,international,1778.6,977,515,462,cpp,4,marcella:50;vendetta:50;vesper-vale:50;ryth:45;varg:39
+97,1e25877b-9ea9-4821-bd54-236e44c5e650,Kaizen,international,1778.3,1353,670,683,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:41;ryth:33
+98,962f04b9-033a-42f9-bc38-0505066c19ef,Midnight Wardens,international,1775.8,1371,716,655,python,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ren:37;stellar:35
+99,b6eddc2e-0bba-4bb8-ab8b-0938ba05f6b4,kitfunso,non_student,1775.7,270,149,121,rust,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:31
+100,6bbc4925-89d1-4523-beac-b651d41bf945,QS2isLaw,uk,1774.0,709,361,348,cpp,1,ryth:48;tavi:47;stellar:39;prism:25;willow:24;marcella:19;vesper-vale:10;varg:8;cassi-and-issac:3
+101,5711f738-37e5-4e2c-a6d5-4554a1078440,team,uk,1772.3,484,271,213,cpp,1,ryth:47;tavi:46;stellar:43;willow:33;marcella:23;prism:19;varg:8;vesper-vale:8;cassi-and-issac:4
+102,f752d854-acdd-4417-8c41-bf4b39108db6,patisserie du pont neuf,international,1764.9,626,342,284,cpp,2,vendetta:45;vesper-vale:45;heart-of-ruin:44;prism:41;ryth:18;cassi-and-issac:12;tavi:8;ren:5;stellar:5
+103,d39366d0-e7a8-43ce-a9c1-631284f0c28e,EvilMangohh,international,1764.2,889,454,435,cpp,3,ren:50;stellar:50;heart-of-ruin:44;ryth:38;varg:25;prism:6;tavi:6;cassi-and-issac:5
+104,6f67dab5-8edd-4700-b33b-71c2df1dc881,noobers,international,1763.9,1365,693,672,cpp,1,heart-of-ruin:50;vendetta:43;vesper-vale:42;ryth:36;varg:24;ren:20;marcella:6;tavi:3;cassi-and-issac:1;stellar:1
+105,e116c0be-ed7a-4fe8-b713-d611b8bd09d2,Martin Shkreli's Defense Team,international,1760.0,1121,575,546,cpp,1,heart-of-ruin:50;ren:50;stellar:50;vendetta:38;marcella:25
+106,c00b682e-e45a-476b-96ca-470205e9dd44,test4,international,1758.1,264,142,122,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;vendetta:43;ryth:28
+107,7348a083-dc1d-45ec-a355-c4bede12dd6a,tip,international,1755.9,1395,695,700,cpp,3,heart-of-ruin:49;vesper-vale:47;vendetta:38;ryth:35;prism:32;marcella:9;ren:4;stellar:3;tavi:3;varg:2;cassi-and-issac:1;willow:1
+108,fbae2ae9-2794-44b5-9db1-489c24e1a43b,Manta,uk,1753.1,1334,669,665,cpp,4,heart-of-ruin:49;vesper-vale:48;marcella:46;ryth:44;vendetta:43;ren:2;varg:2
+109,eeb96607-55bb-421b-9868-38767018cb93,Aynir Industries,uk,1752.1,278,149,129,rust,1,heart-of-ruin:50;marcella:50;ryth:50;vesper-vale:45;vendetta:29
+110,ff9d7df3-6308-4dbd-a440-40835248d86a,Rogue Lock Pickers,uk,1752.0,966,504,462,cpp,4,marcella:50;vendetta:50;vesper-vale:50;varg:45;willow:34
+111,bce53e61-4959-46ca-9fb2-c296138b8621,.,international,1750.8,1246,631,615,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:37;ryth:34
+112,c6a4a0d8-433d-49a6-9c16-56f5cbaca220,Sydney's Realist,international,1750.3,1291,650,641,cpp,3,heart-of-ruin:50;marcella:46;ryth:46;vendetta:46;varg:41;stellar:4
+113,dcc0ffd0-e6a9-49ad-8252-30351898b3cd,WYYL,uk,1750.2,1359,680,679,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:35
+114,b9b2f439-fc05-437f-907e-e8380921f9a4,ClosedAI,uk,1748.0,1209,623,586,cpp,2,ryth:50;tavi:50;vesper-vale:50;marcella:38;vendetta:26
+115,b50b3aa9-a0fb-4388-93d2-3459e1a350a9,Kingstonks,uk,1747.5,1394,731,663,cpp,4,marcella:50;tavi:50;ryth:48;varg:42;vesper-vale:32;vendetta:2
+116,94fc1e5a-b5a7-4196-b076-bd47fbc7ca49,Mommy Shogun,international,1746.6,1378,705,673,cpp,3,marcella:50;ryth:50;vesper-vale:50;tavi:40;ren:26
+117,debc09f4-90ea-49d7-be1f-87c8bbf614bb,deadlock worst game ever,uk,1746.1,1208,612,596,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:47;ryth:41;willow:37;varg:3;vendetta:3
+118,96b0be30-6a0e-45b3-8d4b-cd2a910d6bf8,jazz,international,1744.5,471,249,222,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:32
+119,192c0f8e-3816-4c24-ade1-379c20f2843a,Rhodes Island,international,1744.3,1298,664,634,rust,3,vesper-vale:30;willow:29;heart-of-ruin:28;marcella:26;cassi-and-issac:24;ryth:23;vendetta:21;tavi:16;prism:10;varg:10;stellar:8;ren:6
+120,e6a409f4-31f1-4ea1-9e97-4121a6b72eac,FBOT5,uk,1743.1,1211,616,595,cpp,4,heart-of-ruin:50;vesper-vale:50;marcella:42;ryth:42;vendetta:36
+121,0a4557a9-ed59-4e2a-93c2-f9b338607d3a,Zkey Farming,non_student,1738.9,256,134,122,rust,1,marcella:50;tavi:50;vesper-vale:50;willow:40;ryth:32
+122,b8ae1b5a-3c43-4ddf-bb0a-382f6a644e84,Cozy Campfire,international,1738.7,776,402,374,cpp,1,marcella:50;prism:50;vesper-vale:50;tavi:37;ryth:36;varg:2
+123,ca97df1a-125d-4c04-a8ca-50b7ed06a2a5,Mate in One,uk,1738.2,1412,715,697,cpp,1,heart-of-ruin:50;vesper-vale:47;marcella:44;ryth:40;vendetta:30;ren:5;cassi-and-issac:4;prism:4;stellar:2;tavi:1
+124,62270180-b974-4f66-9bca-3ff6a25940c3,FRChronic,uk,1738.2,1353,686,667,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:47;vendetta:41
+125,409129b9-e6ac-4f80-921c-2ede2ed1cb4f,Memory?,international,1738.0,1398,730,668,cpp,1,stellar:50;ren:48;varg:45;cassi-and-issac:36;ryth:36;tavi:14
+126,569a54ca-7f13-4488-90ac-ca0539281922,yuri,uk,1737.0,615,322,293,rust,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:41;vendetta:22
+127,33fd952b-b067-40b2-a0d4-ba289bddcb57,❤️Quantom❤️,uk,1731.8,1383,693,690,rust,1,cassi-and-issac:50;ren:50;varg:50;ryth:40;vendetta:29;stellar:21
+128,ebb0ee4b-a81e-43cd-a729-58938a97e623,lETHal,international,1728.9,1359,684,675,cpp,4,vendetta:49;vesper-vale:46;willow:37;tavi:29;prism:27;cassi-and-issac:21;ren:21
+129,d35fcb89-edd7-47ca-9af7-a500d4149c9f,Latent Tactics,international,1726.4,1172,605,567,cpp,1,marcella:50;tavi:47;vesper-vale:45;willow:33;ryth:27;heart-of-ruin:6;ren:5;vendetta:1
+130,b4646915-2bc5-4bdf-a2e4-c57e79bf1ceb,Gem_alert,international,1725.5,1391,710,681,cpp,4,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:41;vendetta:29
+131,788c49a0-256d-4094-a57d-2487d0a16f32,kata,pending,1724.3,1284,666,618,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:39;vendetta:31
+132,bd2f7698-bf3a-4174-b0c0-3317595bd013,Nine Lives,international,1723.5,1308,649,659,cpp,1,heart-of-ruin:50;tavi:50;vendetta:50;marcella:43;vesper-vale:33
+133,2aa08e1e-f986-4c2a-a15f-e10b10f159ba,meowest,international,1723.1,604,317,287,cpp,1,heart-of-ruin:50;vesper-vale:50;marcella:47;ryth:47;vendetta:36
+134,7d91d8b7-11eb-457a-a408-3d272a5d5b0a,snoc,international,1721.0,441,239,202,cpp,1,cassi-and-issac:36;ryth:36;stellar:35;varg:34;ren:28;marcella:14;prism:10;vesper-vale:10;vendetta:8;heart-of-ruin:5;willow:2;tavi:1
+135,4620d7df-a9ac-4747-aa77-dce12395dc0c,Crimson Bush Campers,international,1720.4,842,428,414,cpp,3,heart-of-ruin:45;vesper-vale:45;marcella:40;ryth:36;vendetta:33;varg:10;stellar:8;willow:7
+136,f629c9ef-6fe1-4a2b-9dd0-c9c62fdd92df,Rogue Gem Thieves,international,1719.5,177,101,76,cpp,3,marcella:50;varg:50;vendetta:50;vesper-vale:44;ryth:35
+137,0d643742-c2b9-486f-bc6c-416b76b7cfc3,Anime girls against #2 period cramp,uk,1718.9,544,277,267,rust,4,vesper-vale:46;tavi:44;marcella:24;ryth:23;prism:15;vendetta:15;ren:14;varg:14;heart-of-ruin:13;willow:12;cassi-and-issac:1;stellar:1
+138,b0a2db2f-9c46-4c43-8740-f3002a4212af,Preyas,international,1718.3,1157,587,570,python,1,varg:50;stellar:46;ren:44;ryth:44;cassi-and-issac:32;vendetta:18
+139,7dbc4027-199c-4bb8-b060-46ba46430c59,Quantum Tributers,pending,1717.2,118,73,45,cpp,1,marcella:48;vesper-vale:48;ryth:46;heart-of-ruin:39;prism:26;willow:24
+140,c898d0aa-84c2-4da4-bda4-a6d14e8cdadf,Tozo's Disciples,international,1715.9,1307,671,636,cpp,4,vendetta:50;ryth:43;heart-of-ruin:31;marcella:31;vesper-vale:31;ren:19;stellar:19
+141,05c4d857-1412-4c63-8c8e-ad05df77f193,EternalWisdom,international,1715.9,1408,736,672,cpp,2,prism:50;vesper-vale:47;heart-of-ruin:43;marcella:42;ryth:23;vendetta:17
+142,9345d6a5-3d96-40cc-b9e8-17d6311e6de9,Context Overflow,uk,1714.4,1047,547,500,cpp,3,heart-of-ruin:50;vesper-vale:50;marcella:43;prism:26;vendetta:24;ryth:17;tavi:12
+143,e747283d-a801-4175-8b9d-ee36df006daa,The something,international,1713.5,1140,578,562,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:41;vendetta:28
+144,dd747c09-0574-4689-808a-1d475026a252,Mouth Breathers,uk,1712.4,865,447,418,rust,4,marcella:50;tavi:50;vendetta:50;ryth:41;vesper-vale:30
+145,46ba6067-4045-4e84-a065-951204db6b5d,bbas,international,1711.1,1318,671,647,cpp,4,marcella:50;prism:50;vesper-vale:50;ryth:42;heart-of-ruin:17;varg:12
+146,13651eb3-dd0e-4e8a-a4e4-64820c2f5a72,5m,international,1705.3,1175,616,559,rust,1,heart-of-ruin:47;vesper-vale:47;marcella:43;ryth:43;vendetta:37;cassi-and-issac:3;tavi:3;varg:3
+147,8acba65a-d848-440f-b2f7-170cbb20b733,cronjohn,international,1705.0,1401,720,681,cpp,1,heart-of-ruin:50;vesper-vale:50;ren:38;tavi:38;ryth:20;varg:18
+148,271f8b15-7d97-4a0a-bd32-b634dd006dc0,Crimson Pathfinders,international,1702.7,1354,694,660,cpp,2,cassi-and-issac:42;stellar:42;tavi:42;willow:42;prism:31;varg:8;vendetta:8;vesper-vale:8
+149,f65081ab-16d8-421c-9ae7-654b22cd4bd1,DiscordMess,international,1701.9,944,473,471,cpp,4,marcella:50;heart-of-ruin:49;vendetta:35;vesper-vale:35;ryth:26;stellar:15;tavi:10;varg:3
+150,bf820f6c-c1ac-47e4-911f-71cf3f5fd9f5,Dota2 is better than LOL,uk,1701.8,1340,676,664,cpp,4,heart-of-ruin:50;vesper-vale:50;vendetta:43;marcella:40;ryth:40
+151,afdecb06-d440-4133-b536-4a712300f74d,Turbo Stunners,international,1700.7,905,471,434,cpp,3,vesper-vale:50;tavi:48;marcella:47;vendetta:44;varg:34;prism:3;cassi-and-issac:1
+152,7b219a14-b935-46b6-8c2d-ad2aaaf21f25,opsec level opera gx,international,1700.5,1284,658,626,cpp,4,heart-of-ruin:50;vesper-vale:50;ryth:44;willow:44;marcella:37;varg:8
+153,ee94077f-ae11-4a1c-b3cd-4db00e7a598c,Mu&Hoon,international,1700.3,823,419,404,cpp,2,marcella:50;vendetta:50;vesper-vale:50;ryth:43;heart-of-ruin:32
+154,78276d24-398e-4967-9c98-d7bf8733117e,Wood V,international,1697.6,1100,549,551,cpp,1,cassi-and-issac:50;heart-of-ruin:50;tavi:50;marcella:41;vesper-vale:32
+155,0c45b27c-44f2-4846-b0fb-94f623ce8a5c,67 Lions,uk,1697.4,868,434,434,cpp,3,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:45;vendetta:35
+156,b71a40fe-8a01-4ae7-8daf-7869ada28576,Forged Token,pending,1696.6,1103,571,532,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;vendetta:43;willow:31
+157,2b3052da-5e86-47aa-ad3b-0148c668df18,Shawn,uk,1695.9,1347,656,691,rust,1,cassi-and-issac:50;stellar:50;ryth:48;varg:35;ren:33;tavi:11
+158,e8a3da99-594c-454c-b0c3-72f51890cde3,let it ride,international,1695.1,1301,663,638,cpp,4,cassi-and-issac:45;ren:45;stellar:45;varg:45;ryth:39;heart-of-ruin:5;vesper-vale:5
+159,c5fe98e9-c795-4c67-a36b-2c66bac443e8,German Empire Destroyers,international,1695.1,1413,731,682,cpp,4,ryth:50;varg:50;vesper-vale:50;marcella:39;stellar:25
+160,375485e0-f950-4bc4-ab9b-928e096fffe1,Rogo,uk,1692.9,1351,682,669,cpp,1,heart-of-ruin:50;ryth:50;tavi:50;vendetta:41;varg:28
+161,91189ca4-3040-4021-aaa8-2aece91aae18,💩 Super Intelligence 💩,international,1692.7,1343,673,670,cpp,2,cassi-and-issac:50;heart-of-ruin:50;stellar:50;varg:42;tavi:33
+162,64ae7e80-d604-4121-a067-210e515e5bb5,Alpha pekka,international,1692.5,667,347,320,cpp,1,heart-of-ruin:50;ren:50;ryth:43;marcella:35;varg:28;stellar:15
+163,4ce66a67-dc60-44f3-81f5-03997b963594,WHIM,international,1692.1,1399,713,686,cpp,3,cassi-and-issac:50;ren:50;stellar:50;varg:39;ryth:24;prism:4;tavi:4
+164,1a8ce505-d8f1-49a6-9b68-b9a89ecf1fac,Rogue Elk,pending,1691.3,233,120,113,cpp,1,heart-of-ruin:48;vendetta:46;ryth:44;vesper-vale:44;ren:36;stellar:4;cassi-and-issac:3;prism:3;tavi:3;marcella:2
+165,193f0ae4-93f2-4972-a446-181cfbfd5d1c,not adgato,pending,1690.6,224,121,103,cpp,1,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:46;vendetta:37
+166,e17f3280-363d-49a2-aa38-d1af0bb02fb5,cheesynachos,international,1689.9,1086,548,538,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;vendetta:44;varg:32
+167,c80d3067-10b6-41cc-9336-8ee8867ae7bb,Velvet Recallers,uk,1689.8,632,324,308,cpp,4,marcella:50;vendetta:50;vesper-vale:50;ryth:44;heart-of-ruin:37
+168,40ca81a5-1467-438c-837f-82a1f4614474,Teto Territory,non_student,1684.8,506,261,245,python,4,vendetta:50;marcella:48;ryth:48;varg:36;vesper-vale:28;cassi-and-issac:2;heart-of-ruin:2;ren:2
+169,d9124ac1-e2c0-40ca-ba01-6297618af1dd,NotSoLonely,international,1684.4,1408,705,703,cpp,4,ren:50;ryth:41;vesper-vale:38;varg:31;vendetta:19;willow:11;prism:7;tavi:6;cassi-and-issac:5;marcella:4;heart-of-ruin:3;stellar:3
+170,06f6a0ee-9f73-4ce5-ac87-8c956da6b762,Doxford,international,1682.0,1280,649,631,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:41;ren:32
+171,58d26938-cdcd-4af0-b9cc-e7d1dfc8c1aa,FF15,international,1678.0,1241,621,620,cpp,1,cassi-and-issac:49;heart-of-ruin:49;varg:45;ren:17;ryth:13;prism:12;stellar:8;tavi:7;vendetta:6;vesper-vale:6;marcella:2;willow:1
+172,f583fbd0-8720-484e-b00c-61159d393c7f,Gamblr,international,1676.5,818,428,390,cpp,4,prism:50;varg:46;vesper-vale:46;ryth:45;tavi:43;cassi-and-issac:4;stellar:4
+173,9cafa328-26dc-4492-89b5-f6f79f1ee2b3,Sillycate,pending,1676.3,594,306,288,,1,cassi-and-issac:50;ryth:50;varg:50;stellar:43;vendetta:20;ren:14
+174,502db312-059e-4f3f-9a50-4bcc024f14b7,Crimson Altar Keepers,pending,1675.1,137,74,63,cpp,1,ryth:50;vendetta:50;varg:44;vesper-vale:44;marcella:19;tavi:15
+175,82ea5cf8-3f91-4603-95f8-8ca29a4d4ed4,Gilded Recallers,pending,1674.8,232,127,105,cpp,1,heart-of-ruin:50;ryth:46;vendetta:45;vesper-vale:35;ren:29;prism:4;stellar:4;cassi-and-issac:3;tavi:2
+176,b930f2f0-612d-4d27-b83d-f178156589eb,tst,international,1673.6,945,483,462,cpp,3,marcella:50;vendetta:45;varg:44;ren:40;stellar:29;vesper-vale:5;cassi-and-issac:4;prism:4;tavi:3;heart-of-ruin:1;ryth:1;willow:1
+177,66548120-e844-40b2-baff-9badde2a1f5a,al,uk,1672.7,688,345,343,ocaml,1,ryth:50;stellar:50;varg:50;marcella:41;tavi:33
+178,fe852ad6-1ff3-4415-8c6b-0fbb65c4a9b8,BitShift,international,1672.6,1398,720,678,cpp,1,vesper-vale:42;heart-of-ruin:41;willow:28;marcella:27;ren:24;vendetta:21;tavi:13;varg:9;prism:7;stellar:6;cassi-and-issac:4;ryth:3
+179,0f552a25-55ca-4bd3-a6b3-4ed8096ece24,PrepaForTheWeak,international,1672.0,226,126,100,cpp,1,heart-of-ruin:50;tavi:50;vesper-vale:50;marcella:46;ryth:35
+180,13ab0d63-ddfe-45c6-ac7a-22cf0bda68f7,TTS,uk,1671.7,682,346,336,cpp,3,heart-of-ruin:50;varg:50;vendetta:50;ryth:35;tavi:21;marcella:12;stellar:4
+181,1d18cc99-fa2a-4f6a-b1cf-5e905bba9228,gugu gaga,international,1671.7,1259,628,631,cpp,1,ren:50;stellar:50;marcella:48;ryth:43;varg:33;cassi-and-issac:2
+182,14f0c09e-8234-4056-b8a8-93be730312f6,Santa Claude,non_student,1671.5,1115,562,553,cpp,1,marcella:50;vesper-vale:50;cassi-and-issac:47;vendetta:43;heart-of-ruin:27;ryth:9;prism:3;ren:2
+183,4a0abab7-9cec-4e46-973e-61eda906c452,Turbo Gold Clusters,pending,1671.4,547,288,259,cpp,1,heart-of-ruin:50;ryth:49;vendetta:48;vesper-vale:38;ren:27;cassi-and-issac:1;prism:1;stellar:1;tavi:1
+184,1d963c21-f973-4783-aded-5293fba26892,Babapro31,uk,1668.5,1191,597,594,cpp,2,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:42;ryth:29
+185,cb9f89e6-7d78-42af-b459-1bf3ece814bf,U235,international,1668.5,1103,555,548,rust,1,marcella:50;tavi:50;vesper-vale:50;willow:44;varg:33
+186,5d6858ca-2352-4585-af55-3d79b614f824,Argon enjoyers,international,1667.2,942,493,449,cpp,2,ryth:50;marcella:41;vendetta:40;vesper-vale:40;tavi:29;prism:10;willow:10
+187,533e23e7-733d-4036-8713-d84d4e6e10ba,getramramd#euw,uk,1666.6,848,432,416,,1,cassi-and-issac:50;ren:50;stellar:50;ryth:38;varg:32
+188,a162f0a7-d72e-4924-acf4-0acf8f2440eb,VeryGood,uk,1664.2,1362,682,680,cpp,4,cassi-and-issac:50;stellar:50;prism:30;tavi:30;ryth:27;ren:11;varg:10;willow:10
+189,8a509652-43f5-4ee8-92bc-16fa59563d2e,#grrrrmonday,international,1663.6,1348,675,673,rust,3,prism:47;vendetta:47;vesper-vale:47;ryth:37;varg:25;heart-of-ruin:3;ren:3;stellar:3
+190,87dba610-e95d-4169-a90f-27eef2ea9fb0,German Empire,international,1661.8,1220,633,587,cpp,4,marcella:50;ryth:50;varg:50;stellar:43;ren:38
+191,ce221879-a07c-4cab-a202-5f12456c4d00,:3 <3,international,1661.4,186,98,88,cpp,2,ryth:50;vendetta:50;vesper-vale:50;heart-of-ruin:44;marcella:34
+192,31795553-16ff-464f-9d33-1ed6e8d82e41,Electric Tributers,pending,1660.5,1116,576,540,cpp,1,heart-of-ruin:47;vendetta:47;ryth:44;vesper-vale:40;ren:32;stellar:6;marcella:3;cassi-and-issac:2;prism:2;tavi:1
+193,d7e3a16b-1608-4346-8d44-78e38b0d8e6d,Team M^2FC,uk,1657.8,700,351,349,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:43;vendetta:29
+194,dd9eb69a-628a-4578-a7a8-b2228624cec3,天使,non_student,1657.5,994,499,495,cpp,1,stellar:50;cassi-and-issac:38;tavi:32;ren:30;ryth:30;varg:26;prism:8;marcella:3;vendetta:3;vesper-vale:2
+195,66a9699e-6211-4ace-8679-fdd6ed830d1f,Howrah River Trading,international,1656.9,647,320,327,cpp,4,heart-of-ruin:50;varg:50;marcella:43;tavi:43;vesper-vale:35
+196,59d3bb9b-c603-432d-a98b-3824289230d5,swiGLU,international,1655.8,878,440,438,cpp,1,marcella:50;tavi:50;vesper-vale:50;willow:43;ryth:37
+197,f4b8f624-e839-4118-8ed0-8f60810435aa,JOHN_BANEGA_DON,international,1655.0,679,357,322,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:42;ryth:35
+198,cf8377a4-20e3-4d87-8efb-b554ba4851a5,Princess Donut the Queen Anne Chonk,international,1654.5,1311,666,645,cpp,1,marcella:50;prism:50;vesper-vale:50;ryth:42;heart-of-ruin:34;ren:2
+199,36098632-7a53-466f-9046-50553a95a46a,The row boats are hier,international,1654.1,1305,651,654,rust,3,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:46;vendetta:36
+200,ce501991-2191-4063-9cdb-86103b8e9f81,CompetitiveBasmaga,international,1651.8,1034,525,509,cpp,3,cassi-and-issac:50;stellar:50;varg:50;ryth:45;tavi:35
+201,84b02442-4aa2-4f9b-9738-83d4d5da8a6f,SHINK AI 6500,pending,1651.5,1385,703,682,cpp,4,cassi-and-issac:45;ryth:38;varg:29;ren:26;stellar:25;vendetta:24;tavi:19;prism:3;marcella:1
+202,5d63d901-6a2a-4bcb-9487-f1315b1fd76d,Ascendance,international,1651.0,1306,649,657,cpp,3,heart-of-ruin:50;marcella:50;vesper-vale:50;prism:39;vendetta:30
+203,9675cee9-7ac6-4d74-98a8-06c95aa93e83,Anaxes,international,1650.1,1146,583,563,cpp,1,heart-of-ruin:50;ren:50;vendetta:50;vesper-vale:44;tavi:33
+204,48bd83bb-8cb5-488a-9d1a-7d4bfb5ab10b,MFF1,international,1648.9,1244,641,603,rust,4,cassi-and-issac:50;vesper-vale:50;willow:50;ryth:44;stellar:34
+205,b01a6fbf-b54a-4f44-9ab9-74f1364debbf,JukeFall,international,1648.0,977,497,480,cpp,2,varg:45;ren:42;ryth:42;tavi:28;marcella:26;cassi-and-issac:21;stellar:13;prism:3;vendetta:3;willow:3
+206,16a3a670-0757-4ed1-96c7-cb498d595ccc,EE,international,1648.0,505,269,236,cpp,1,vesper-vale:50;ren:37;marcella:35;varg:34;vendetta:23;ryth:20;tavi:13;heart-of-ruin:10;cassi-and-issac:3
+207,98a0a457-1b01-4c7f-b5bd-50b7a374c98f,VU cops,pending,1646.1,1197,599,598,cpp,3,ren:50;stellar:50;varg:50;tavi:42;ryth:35
+208,e355f425-bfad-465f-a9c4-dd9c940d4560,Quantum Stunners,international,1643.7,873,452,421,cpp,4,ryth:50;vendetta:50;vesper-vale:50;marcella:34;ren:34;varg:7
+209,2de3fa1c-2f18-4911-9d0d-c282886b9b34,Antifreeze,international,1642.8,1400,693,707,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;vendetta:34;ryth:15
+210,ecf1cfb7-bd1b-4efb-88ad-d4e48bb9bd93,ExCode,international,1641.5,621,325,296,cpp,1,heart-of-ruin:50;vesper-vale:50;marcella:48;willow:39;varg:32;ryth:2
+211,695ddbdf-afd9-43bf-9988-2a98fdb0f750,Micron,international,1641.4,1399,704,695,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;cassi-and-issac:40;ren:31
+212,8082d67c-dec7-40e9-9581-634db81477a4,Squishy,pending,1641.2,735,371,364,cpp,2,marcella:50;prism:50;vesper-vale:50;heart-of-ruin:46;ryth:38
+213,a4431057-ba98-473a-8f7c-20b41b603d6b,orZers,international,1640.8,1306,651,655,cpp,3,ryth:50;stellar:38;varg:38;ren:32;tavi:32;marcella:12;prism:12;vesper-vale:12
+214,246f9cef-b416-4864-964e-ebcafb97f7ad,Milk and Potatoes,uk,1639.8,1067,530,537,python,3,marcella:50;vendetta:50;willow:50;varg:42;ryth:34
+215,1122cb5c-4082-45b3-aa00-dab53302e53f,six_-_-_seven>>,international,1639.6,1050,519,531,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:32;vendetta:15
+216,369282fc-388d-4522-b2c7-c7c03ea43761,Hajime Kashimo,international,1638.3,683,347,336,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:42;vendetta:28
+217,749e1d6a-3e00-40da-99da-d4beae1d69e7,Gilded Shard Casters,international,1637.6,899,457,442,,3,cassi-and-issac:50;ren:50;stellar:50;ryth:39;varg:36
+218,c0472a19-6c4d-49fa-a16e-3d3583bd52bc,big daddy,uk,1637.4,1380,697,683,cpp,1,cassi-and-issac:50;heart-of-ruin:50;ryth:38;marcella:36;willow:29;vendetta:18;stellar:9;tavi:6;ren:2
+219,4f2a47d3-039d-43ef-9625-a1bdfaa38e35,edcr,international,1634.0,1386,696,690,cpp,1,marcella:50;vesper-vale:50;tavi:40;willow:38;ryth:28;vendetta:10
+220,76f2d18c-ffb5-4d34-b29c-30c552bb3420,Hide on Bush,uk,1633.3,1094,532,562,cpp,1,heart-of-ruin:50;vesper-vale:50;marcella:43;ryth:43;ren:37
+221,043b2233-65b2-420c-b636-96744a71ce79,Team 1,uk,1631.8,977,501,476,cpp,3,marcella:50;ren:50;stellar:50;vesper-vale:42;willow:29;prism:1;tavi:1
+222,db805a0c-d0df-4414-8d07-99dba8851659,Prabhutva,international,1630.6,1394,700,694,cpp,3,marcella:50;vesper-vale:50;vendetta:48;ren:37;heart-of-ruin:22;tavi:9
+223,bf4251b6-3694-4918-b784-dd01fb8e81e6,cory,uk,1630.1,673,342,331,cpp,1,ren:50;heart-of-ruin:46;ryth:42;stellar:42;marcella:41;cassi-and-issac:4;vesper-vale:4
+224,4938a543-0798-4879-b8ce-f63f98ca13c3,BrendanBurgess,uk,1630.1,1243,617,626,rust,4,heart-of-ruin:50;varg:50;vendetta:50;ryth:41;ren:27
+225,5355827c-d303-49d7-b9e3-9aabcee49ac2,ᕙ(⇀‸↼‶)ᕗ,non_student,1626.7,1380,690,690,python,3,marcella:50;vesper-vale:49;vendetta:46;varg:39;tavi:28;ryth:15;willow:1
+226,29d590ef-cbbe-44de-a0fd-4496396ee10e,Game is gone,uk,1626.0,536,275,261,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:41;ryth:28
+227,75042888-53b6-4764-b318-1131cf939fd7,Quantum Bush Campers,uk,1625.7,1038,519,519,cpp,2,heart-of-ruin:50;ren:43;ryth:43;stellar:43;varg:33;marcella:7;vesper-vale:7
+228,58271d23-d86a-48de-987a-5d82c983d7db,HighCortisol,international,1625.6,875,463,412,cpp,4,tavi:50;varg:50;vesper-vale:50;willow:44;stellar:21;vendetta:8;ryth:1
+229,41ca3ad3-6e9d-4fd3-a5cf-2aa042049221,Lucky Lock Pickers,international,1623.5,217,112,105,cpp,1,heart-of-ruin:50;marcella:50;ryth:50;varg:39;vesper-vale:26
+230,a4135516-6508-42a4-8d3e-f1f2eddb28e6,SPAWNCAMPINGWARRIORS,international,1622.4,1273,641,632,cpp,4,cassi-and-issac:50;tavi:50;vesper-vale:50;ren:35;ryth:23;varg:3
+231,664a1030-a751-4883-9c13-0d37846ef000,꧁☠️__xXx_2012_m1n3cr4ft12y34r0ldr34lYT_Pl4yz_xXx__☠️꧂,international,1621.3,1148,572,576,cpp,2,vesper-vale:46;heart-of-ruin:35;ryth:35;marcella:30;vendetta:24;tavi:15;varg:15;cassi-and-issac:14;stellar:12;prism:1
+232,003e72fd-6c4a-45c9-8859-60d31833af7c,Nomad,international,1621.1,1200,598,602,cpp,2,ryth:50;vesper-vale:50;marcella:49;vendetta:44;prism:26;heart-of-ruin:3
+233,df3d0960-64dc-47b0-b0bd-e9624d61aa5b,slop,non_student,1619.9,966,498,468,rust,1,varg:50;cassi-and-issac:48;tavi:42;vesper-vale:39;ryth:32;vendetta:11;stellar:2
+234,aa96ab82-ae15-44fc-b92d-eda7c136aae8,Dirty Coding,international,1618.9,1192,609,583,cpp,1,heart-of-ruin:50;ren:50;tavi:50;ryth:45;marcella:29
+235,9e977cae-a226-451a-a62d-940180d69f23,Chinese person can fly,uk,1618.5,1063,528,535,python,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;ren:44;stellar:30
+236,ac16401b-0fb6-4b23-8dc0-496fcc03b153,Hide on Bush,pending,1618.4,1389,697,692,cpp,2,heart-of-ruin:50;ren:50;ryth:50;stellar:38;marcella:28
+237,bee75a64-fae5-48aa-8751-73d4e78ebfb5,DIET CODE,international,1618.1,1130,578,552,cpp,2,marcella:50;vesper-vale:50;vendetta:41;ryth:31;heart-of-ruin:27;tavi:17
+238,b3e8da84-aae5-42cf-b488-e97b3de9cecd,Just for fun,uk,1615.7,263,142,121,cpp,1,heart-of-ruin:50;vesper-vale:50;ryth:46;vendetta:45;marcella:31
+239,3b11f9f4-0432-4c07-b33c-5cb1d6da0daa,Quantum Fog Walkers,pending,1613.6,772,406,366,,1,cassi-and-issac:50;varg:50;vendetta:50;ren:39;ryth:34
+240,e12d64aa-daa4-42e5-a248-aa718edcd859,Undefined Behavior,international,1612.8,736,381,355,cpp,2,heart-of-ruin:50;tavi:50;vendetta:50;ryth:41;varg:31
+241,91b991b0-c974-4ffe-a1f8-4c83c171e9f4,Tübingen Quants,international,1612.3,663,350,313,cpp,2,tavi:50;vesper-vale:50;willow:46;ryth:45;vendetta:28;ren:5;varg:5
+242,43273a52-af05-495e-b44b-c3911144a40c,The World Machine,uk,1611.7,1041,525,516,python,4,ryth:50;stellar:50;ren:43;varg:38;tavi:31;vendetta:7
+243,15635837-d5c9-4f7e-8f9e-59fe7530dc13,CamboCore,international,1611.3,1385,683,702,cpp,1,heart-of-ruin:50;ryth:50;vesper-vale:50;vendetta:43;prism:32
+244,df6442c5-1ff6-4529-b28a-95afc33e7aee,Warwick Wuants,uk,1610.6,1074,547,527,python,1,tavi:50;vesper-vale:45;marcella:43;ryth:42;varg:30;prism:5;willow:5;heart-of-ruin:2;ren:2;vendetta:2
+245,71cd4e80-586c-437e-a16c-9027b35b243b,Gilded Fog Walkers,uk,1609.4,1201,609,592,cpp,4,marcella:50;vesper-vale:50;ryth:39;vendetta:35;ren:14;varg:14;cassi-and-issac:6;heart-of-ruin:6;tavi:6;stellar:4;prism:2;willow:1
+246,bb2cbcd0-1b15-4219-ac22-324046727cad,VeryHotKimchi,uk,1609.2,805,410,395,python,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:42;vendetta:31
+247,23d3cb0b-eaa4-4b33-8c2b-30896d6c23a5,Hidden Fog Walkers,uk,1608.7,544,285,259,python,1,marcella:50;ryth:50;vesper-vale:50;tavi:38;willow:28
+248,8a8af7e4-d8a1-4a63-8ca4-6dd616728b86,Midnight,international,1607.1,1397,707,690,cpp,4,heart-of-ruin:50;marcella:50;ryth:50;vesper-vale:42;stellar:30
+249,9a848453-f90f-4e97-988f-367378a79d1b,Tzunami,uk,1606.4,1318,660,658,cpp,2,ren:50;varg:50;vesper-vale:50;ryth:43;vendetta:35
+250,ccb3c236-83be-42df-b06b-ddfd44d3ffbd,we were fed fish,international,1606.4,1398,711,687,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;cassi-and-issac:44;ryth:29
+251,598ea864-6da9-41d1-984f-63136069bc50,Agent Perry the Platypus Gang,international,1605.3,1344,684,660,cpp,4,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:41;vendetta:35
+252,f243d7fa-78be-4815-8f7b-502b018de0d6,Kamikaze,international,1604.3,1094,545,549,cpp,2,marcella:49;vesper-vale:49;ryth:39;heart-of-ruin:27;varg:25;cassi-and-issac:18;tavi:4;stellar:1
+253,24731510-784f-4176-985e-17c1626934ca,Rusty Epee,international,1604.2,1302,659,643,cpp,4,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:46;vendetta:33
+254,8adec93e-6977-41d8-b614-b1e311e07551,QS2,uk,1602.9,1336,683,653,cpp,3,cassi-and-issac:50;ren:50;stellar:50;ryth:37;varg:36
+255,dafff4aa-fdd5-4eda-ac61-b8f507860fc5,Conley,international,1602.8,1161,585,576,rust,4,stellar:50;ren:38;tavi:34;ryth:31;cassi-and-issac:29;prism:21;varg:17
+256,ade3ac95-78aa-439e-a5f0-79be3028922b,Borufeczki,international,1601.2,673,338,335,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:39;vendetta:28
+257,fdc651cd-9fa1-4c43-b294-cf89a17a4119,Turbo Altar Keepers,uk,1600.8,202,112,90,cpp,1,vesper-vale:50;marcella:49;varg:47;tavi:43;ryth:29
+258,42220ad3-01b9-4e78-a6db-e26f75bf375c,EXP'D,uk,1600.6,848,430,418,cpp,4,ryth:50;vesper-vale:50;willow:50;tavi:41;prism:31
+259,1ebceae7-edcf-45eb-8422-573fbe64ca8a,Berkeley Token Experiment,international,1599.7,27,18,9,cpp,1,marcella:50;tavi:50;vesper-vale:50;willow:43;ryth:31
+260,30ba7057-ee2f-4719-a61b-4abd7e6d0820,Velvet Monoliths,uk,1599.1,1397,698,699,cpp,1,cassi-and-issac:50;ren:50;stellar:50;ryth:47;tavi:38
+261,efc36fa9-8864-43ac-8c75-41a5270d6df5,E-Rank,international,1597.2,1398,711,687,cpp,4,ren:50;ryth:50;stellar:50;varg:40;heart-of-ruin:30
+262,709acc55-05fd-40be-81e8-5e27a9ef686c,Claude wrote everything,uk,1596.8,978,485,493,rust,1,ryth:32;vendetta:26;tavi:25;cassi-and-issac:20;marcella:19;prism:19;stellar:17;heart-of-ruin:15;ren:15;vesper-vale:14;willow:13;varg:8
+263,4d0658cb-f3f4-4acc-a0cc-15368365e4c7,Give me a job,pending,1595.3,747,391,356,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;ryth:41;marcella:31
+264,2d21aeb2-4548-49eb-b339-cbaf1cbd6816,DK,non_student,1593.5,766,380,386,cpp,1,ren:50;ryth:50;stellar:50;varg:42;cassi-and-issac:30
+265,20711ea2-2e99-4e6c-b054-d094be099821,Monarch,international,1592.6,1383,690,693,rust,4,ryth:49;heart-of-ruin:48;ren:41;varg:41;stellar:40;cassi-and-issac:1;marcella:1;prism:1;tavi:1;vesper-vale:1;willow:1
+266,d3eb9c3f-b7a2-4cf3-96cf-aeb4a363b52d,Quantum Elk,international,1592.0,690,358,332,cpp,1,ryth:50;tavi:50;vesper-vale:50;varg:40;willow:16
+267,4850f1b5-6542-4785-930e-0b790aaa569a,𓃠𓃠𓃠 CATaclysm 𓃠𓃠𓃠,international,1591.6,724,387,337,cpp,4,cassi-and-issac:50;ryth:50;stellar:50;tavi:43;prism:33
+268,5cbd58da-9d3e-48ec-8a69-ad0a96120978,Velvet Altar Keepers,international,1590.5,859,430,429,cpp,1,ryth:50;tavi:50;vesper-vale:50;marcella:45;stellar:25;varg:8
+269,24a0870c-efc0-4f73-855f-3f6e6b3af88c,Aggies,international,1589.9,1371,673,698,cpp,1,heart-of-ruin:50;marcella:49;stellar:40;vesper-vale:36;willow:35;varg:8;vendetta:7;ryth:1
+270,3a198334-2725-4d97-99cd-d285932cdf80,POFPOF,uk,1587.6,667,330,337,cpp,1,heart-of-ruin:50;ryth:45;marcella:39;vesper-vale:39;vendetta:27;ren:11;stellar:11;varg:6
+271,a196aaff-f611-4209-b3c6-d529feddc68f,Us V Them,international,1587.2,1237,631,606,cpp,4,cassi-and-issac:50;ren:50;stellar:50;ryth:42;varg:33;prism:2;tavi:2
+272,219177e8-5e0e-4e31-88ac-a25007ccc5b9,67,international,1587.1,1204,598,606,cpp,4,varg:50;vendetta:50;vesper-vale:50;ren:39;ryth:30
+273,39fd4f14-96fb-4c0b-bba9-a4fb5ab60591,Halma _und _Oleck,international,1586.4,1060,545,515,python,2,ren:50;vendetta:50;vesper-vale:50;varg:45;marcella:36
+274,bd72a424-4977-4247-8b08-f02c24758e6c,Stubborn Gem Thieves,international,1585.6,225,112,113,cpp,1,heart-of-ruin:49;ryth:46;marcella:35;vesper-vale:26;vendetta:22;cassi-and-issac:12;stellar:11;ren:6;varg:5;willow:4;tavi:3
+275,079af7bd-6ba6-4176-87cb-fb1b5b36dc4f,meat proxies,uk,1585.2,1225,625,600,python,4,ryth:50;varg:50;marcella:47;stellar:43;tavi:33;cassi-and-issac:3
+276,cdd7b4ce-735e-409c-981d-5479f7451aff,nullptr,international,1584.8,1112,553,559,cpp,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:44;varg:36
+277,601d492f-6f69-4ddb-afba-95ce076de47b,quant-dog,pending,1584.6,636,345,291,,2,cassi-and-issac:50;ryth:43;tavi:43;varg:42;stellar:36;prism:6;ren:2;willow:2
+278,b6a1e40c-c537-435c-9d52-dc99d6b4de67,Feral Fog Walkers,international,1583.9,629,324,305,cpp,3,heart-of-ruin:50;vesper-vale:50;ryth:49;ren:46;stellar:33;vendetta:1
+279,252a02b9-e638-4aa1-a4f6-cbe26015faf0,Quantum Lock Pickers,non_student,1583.8,481,234,247,cpp,1,marcella:50;varg:43;vesper-vale:26;ren:24;ryth:24;stellar:24;vendetta:22;heart-of-ruin:11
+280,5b99bee8-2c5b-47c6-8092-b140fa43e464,O(n^2) Only,international,1582.9,1359,707,652,python,1,cassi-and-issac:50;heart-of-ruin:50;vendetta:50;marcella:45;ryth:36
+281,989eb81f-0a87-47bd-ae04-211accf417ac,Atlas,uk,1582.7,771,389,382,python,1,cassi-and-issac:50;ren:50;stellar:50;ryth:43;varg:32
+282,ef7a14f3-79a3-4905-878c-f9e6d6b51b12,Peasantry,international,1581.9,1028,517,511,cpp,1,heart-of-ruin:50;varg:50;vesper-vale:41;ryth:29;marcella:24;stellar:16;vendetta:16
+283,b365f3f3-0daa-42d4-97f3-8e5af4aacec3,shark pluh pluh,international,1580.1,915,481,434,cpp,2,stellar:50;ryth:48;ren:47;varg:46;cassi-and-issac:41;tavi:2
+284,8bc5d0da-23c0-4ab4-925e-8ed46d5cda7a,Wildest_Peace,international,1580.0,1251,615,636,cpp,1,cassi-and-issac:50;marcella:50;ren:45;stellar:45;varg:41
+285,e57c2807-3ca5-4ba1-8951-9fbccbba6023,中国人能飞,pending,1579.5,1086,545,541,cpp,4,cassi-and-issac:50;varg:50;vendetta:50;ren:41;ryth:37
+286,66ce3a72-adbc-4f31-aab1-305664d7e247,sub7anr,international,1578.0,1300,663,637,cpp,1,cassi-and-issac:50;stellar:47;tavi:37;willow:34;prism:30;varg:12;ren:9;ryth:8;vendetta:4
+287,577a9abb-e4ce-44dd-8f13-94e7f32c9e9e,T1 Faker,international,1577.3,1358,683,675,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ren:37;tavi:30
+288,655681f9-2c90-46a0-9916-767c6c524ea1,Tokyo to Cambridge,international,1576.8,1152,575,577,cpp,4,marcella:50;varg:50;vesper-vale:50;ryth:41;heart-of-ruin:29
+289,98e4b307-05e5-454a-96d4-1ee967550319,final_final_v3_really_final,international,1574.1,1060,546,514,cpp,4,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:45;ryth:35
+290,81857de3-44fc-4a81-ae7c-f0cecf522d11,Hesitation is Defeat,international,1573.3,1119,565,554,cpp,3,stellar:50;ren:46;ryth:45;varg:37;cassi-and-issac:31;prism:6;tavi:6
+291,7a823b6e-bb54-4f66-a3f6-2f9ea921d3e5,MFF - Policka,international,1572.5,1216,611,605,cpp,4,marcella:50;ryth:50;vesper-vale:50;willow:42;tavi:32
+292,085af3a8-d436-496b-a211-b7a92c5a5f35,Evil Money Corp,uk,1572.2,763,397,366,rust,2,cassi-and-issac:50;stellar:50;varg:42;tavi:39;ryth:35;prism:8;ren:8
+293,e71c3a1c-5ee1-4670-a5d3-011785ffd183,goated,international,1572.1,1249,629,620,cpp,1,cassi-and-issac:50;stellar:50;varg:50;vendetta:40;willow:29
+294,969212e5-03c6-4643-8015-e6c565e9ed6b,John,pending,1569.7,1386,699,687,cpp,1,ren:50;stellar:50;cassi-and-issac:49;ryth:36;varg:35;tavi:7
+295,f7f7a8e6-9fd2-4551-bd55-6e93422332a3,Silent Monoliths,international,1569.4,773,389,384,cpp,2,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:38;vendetta:25
+296,4f4346d8-ad5a-4ccd-b6cd-9b00f0dd847c,Narla's Gang,international,1568.8,1057,539,518,cpp,4,vendetta:50;vesper-vale:50;heart-of-ruin:43;ryth:38;cassi-and-issac:25;varg:19
+297,23792688-eef8-44c8-b8af-cce90c81dfcd,alfungus,international,1568.3,1178,582,596,cpp,1,cassi-and-issac:50;varg:50;ren:41;ryth:41;prism:30;stellar:11;vesper-vale:4
+298,22557406-3239-4a08-8133-3d2dc2ea3584,Unharmful,uk,1568.2,1393,705,688,cpp,1,ryth:50;stellar:50;vendetta:50;varg:41;ren:32
+299,4aa07eac-233e-4168-b95d-6f7d8eacac85,Quantum Monoliths,international,1566.9,1252,638,614,cpp,3,cassi-and-issac:50;ren:50;stellar:50;ryth:46;tavi:37
+300,ec924986-9a86-4cb8-ae8b-eca69ddcbbc4,Amba's Strongest Soldiers,international,1566.5,690,347,343,,4,cassi-and-issac:50;stellar:50;varg:45;ryth:36;ren:26;prism:12;tavi:5
+301,0de32b86-5bad-4f5a-be64-a729408f1f35,ESILV - Hidden Wolves,international,1565.8,1181,594,587,cpp,4,varg:40;cassi-and-issac:34;stellar:34;ren:26;tavi:21;ryth:17;vendetta:16;vesper-vale:16;marcella:13;willow:3
+302,fe96780a-5e61-4cb8-a2c7-f28bd9474954,Boss of This Gym,international,1565.1,904,455,449,python,4,cassi-and-issac:50;stellar:47;ryth:36;varg:33;tavi:32;ren:12;prism:11
+303,7b144718-7883-4344-8c3c-566f49292d79,newtern,international,1564.4,607,323,284,cpp,3,cassi-and-issac:50;varg:50;vendetta:50;ryth:39;stellar:32
+304,fdf9c3ff-fc4c-46e3-aa56-b3a22a479733,Camalares,international,1563.7,780,389,391,python,3,heart-of-ruin:50;vesper-vale:50;ryth:47;marcella:39;vendetta:28;ren:3;stellar:3
+305,94248375-16f9-4fde-a582-6206aa3f04d8,test,uk,1563.0,1249,629,620,cpp,1,stellar:50;ren:42;tavi:34;ryth:30;cassi-and-issac:27;prism:21;varg:17;willow:1
+306,798480e0-c9e0-4a41-b943-2e78ddde58da,Knoobs,uk,1562.8,1218,616,602,cpp,4,ryth:50;tavi:50;varg:50;heart-of-ruin:43;ren:34
+307,4d61a598-cd78-4245-bab7-09cf5075e870,riskadjustedreturns,uk,1561.5,535,290,245,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:46;stellar:32
+308,51e8da36-33a4-4c41-9775-6c463886d003,big,international,1560.8,1254,625,629,python,4,cassi-and-issac:50;ren:50;stellar:50;varg:38;ryth:29
+309,19d69604-932b-4b85-a0d6-7278c85cea7a,Unimportant,international,1560.6,1353,680,673,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:38;willow:16;ryth:15
+310,ef9931de-bf8b-46bf-908f-5682995ff239,Feral Monoliths,pending,1559.6,393,210,183,cpp,1,tavi:50;vendetta:50;vesper-vale:50;ryth:41;varg:32
+311,3d918774-df81-4947-a19d-0eb6abf69455,Feral Wardens,international,1558.3,104,52,52,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:44;ryth:33
+312,4b09b8ff-b429-43dc-9be1-180565784e87,Prime Bot 007,international,1557.8,1241,613,628,cpp,1,heart-of-ruin:50;marcella:50;ryth:50;vendetta:29;vesper-vale:29;ren:17
+313,28111f61-3c72-4f12-a0f1-aa45ad93e517,Team 921,international,1557.6,946,468,478,python,4,ryth:50;heart-of-ruin:45;varg:45;vendetta:45;ren:32;marcella:5;tavi:5;cassi-and-issac:3
+314,fd7417c0-ca44-4cd0-b3d4-818be5a67d1c,Apex Gamma,international,1556.9,760,389,371,cpp,1,ryth:43;varg:36;vendetta:34;tavi:32;vesper-vale:32;stellar:21;ren:12;heart-of-ruin:11;cassi-and-issac:9;prism:2
+315,059cfebf-0510-43f6-bc2f-c5c3f4cdcfc0,Team Torsk,non_student,1556.6,1385,700,685,python,1,cassi-and-issac:50;varg:37;ryth:34;vendetta:26;stellar:24;ren:23;tavi:22
+316,4f0fd54e-7c31-4763-b989-b47ad1061876,Spawn Campers,uk,1556.3,929,460,469,python,4,ryth:50;stellar:50;varg:50;cassi-and-issac:42;tavi:36
+317,4f208a57-8627-430d-80d6-ca9bfc7770a7,Team name,international,1554.3,1308,646,662,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ryth:43;ren:38
+318,35f51c6c-e4d2-4a04-92f1-00fe5b7bc386,Quantcoders,international,1552.4,1282,649,633,python,3,heart-of-ruin:50;vesper-vale:50;marcella:46;ryth:36;varg:36;cassi-and-issac:14
+319,c877bb23-a84a-4989-bd01-a88511d92cae,Palestine 🇵🇸,international,1552.0,1398,704,694,cpp,2,heart-of-ruin:50;vesper-vale:50;marcella:41;ryth:41;vendetta:41
+320,46c3d2fd-7d53-4cf5-b286-bfc17e84ac51,Gobfrey,uk,1551.4,640,332,308,cpp,1,marcella:49;varg:45;stellar:42;willow:34;tavi:28;heart-of-ruin:10;ryth:8;vesper-vale:7;ren:6;vendetta:1
+321,0ed9ae0e-ac90-49e4-b570-1ba88adf79f4,Claude's plan,international,1551.3,1029,531,498,cpp,3,cassi-and-issac:50;ren:50;stellar:50;ryth:43;tavi:29
+322,b131d74e-c6fe-4f9e-a12a-f15c0dc566ad,BattleClaude,international,1551.0,1325,653,672,cpp,3,tavi:50;varg:50;vesper-vale:45;vendetta:43;marcella:34
+323,cac4c5cc-37e3-4e31-8252-5a3e26de1a11,Velvet,pending,1549.7,264,130,134,cpp,1,ryth:43;tavi:37;varg:36;vesper-vale:36;vendetta:33;stellar:16;heart-of-ruin:12;ren:8;cassi-and-issac:6;marcella:3;prism:1
+324,1da65826-626a-4583-99c7-5a7ff90f4db4,Silent Gem Thieves,international,1549.2,1124,563,561,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:40;marcella:28
+325,b485130b-46f4-40f1-8987-e0414313cc0a,Plantir 🌱,uk,1549.2,1069,541,528,cpp,2,heart-of-ruin:50;stellar:50;varg:50;ryth:46;ren:31
+326,9c16b699-cad2-453e-8042-dae23ff934d8,LionelMSISS,international,1547.5,903,448,455,cpp,4,ryth:50;varg:50;vesper-vale:50;vendetta:41;ren:25;willow:4
+327,d06ee6ab-e303-457d-b839-d3e39600b78b,JBG fam,international,1547.5,41,22,19,cpp,3,tavi:50;vendetta:50;vesper-vale:50;varg:41;marcella:32
+328,aa62724a-668b-4720-be7a-a4e28634d74a,sheTungMyLarp,pending,1546.7,1225,614,611,cpp,3,cassi-and-issac:49;stellar:47;heart-of-ruin:43;ren:31;varg:28;marcella:24;vendetta:5
+329,0e2abba9-e657-4025-a4e6-a1eed7c5dea0,Silent Fog Walkers,pending,1544.4,594,300,294,cpp,4,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:42;vendetta:28
+330,72154f48-5415-4540-a79e-8542709de7eb,ESILV - Peaky Blinders,international,1543.1,1369,693,676,python,3,cassi-and-issac:50;stellar:50;varg:50;tavi:29;ren:24;ryth:19
+331,5c058f44-ce98-41bd-8645-6bb6b3026d38,Shannon,international,1542.8,1406,702,704,cpp,2,cassi-and-issac:50;ren:50;stellar:50;ryth:43;varg:30
+332,0acdb393-3258-4c17-a188-1ecf66b9d79c,Survival of the Fittest,international,1541.8,575,296,279,cpp,1,vendetta:26;ren:24;vesper-vale:24;prism:22;heart-of-ruin:19;willow:18;stellar:17;tavi:17;marcella:16;ryth:16;cassi-and-issac:13;varg:13
+333,e24309f2-8fa4-4793-809d-498bdaa27bf3,Full Damage,international,1540.4,1381,696,685,cpp,4,ryth:30;stellar:29;varg:29;cassi-and-issac:26;tavi:26;prism:24;vendetta:21;ren:20;willow:13
+334,ed3119e7-c98a-4050-917f-041cdf35d1da,Blame the Altar,international,1539.8,881,452,429,cpp,2,tavi:50;varg:50;vendetta:50;marcella:43;vesper-vale:29
+335,beb77fe8-1b39-45af-9116-3c9b7e46b109,-,uk,1539.8,1372,687,685,cpp,4,stellar:50;tavi:50;varg:50;vendetta:36;ryth:24
+336,16d93910-669e-428f-8163-94da73d48eca,Bristol Bulls,uk,1538.7,992,497,495,cpp,3,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:41;stellar:34
+337,bd4173ac-bc6b-4fa1-81b9-2070aa63962d,CeePeePee,international,1537.8,534,263,271,cpp,1,ryth:50;varg:50;tavi:48;vesper-vale:43;stellar:29;vendetta:7
+338,bac39a7b-b6be-44ad-aefe-d04035512be0,The Failing Pipelines,international,1537.3,972,485,487,cpp,3,cassi-and-issac:50;ren:50;stellar:50;varg:41;tavi:29
+339,3ced55e6-b104-46e8-820d-423d32a296ef,Lucky Shard,non_student,1536.5,958,481,477,cpp,1,stellar:50;tavi:50;varg:50;ryth:42;ren:31
+340,48474fc3-65cd-4c9f-a3a4-191dda415c67,TEST-DUMMIES,international,1535.8,1348,666,682,cpp,3,cassi-and-issac:50;stellar:50;ren:46;varg:38;prism:35;ryth:4;tavi:4
+341,29f3e99d-2eca-4971-875d-81b1c0a838b6,Hammer Method 💥🔨💥🔨📈💎💎,international,1535.1,786,395,391,python,1,varg:50;tavi:47;cassi-and-issac:44;stellar:40;vendetta:30;willow:6;marcella:4;ryth:2;vesper-vale:2
+342,12ff4dde-c190-4075-a954-2f394e86e47f,qs2^3,uk,1533.8,1206,599,607,cpp,3,ryth:44;marcella:39;prism:36;vesper-vale:35;heart-of-ruin:22;cassi-and-issac:13;stellar:12;varg:12;vendetta:9;ren:4;tavi:2
+343,bc12fc80-7c71-4beb-86d9-542713780a32,Cabbage,international,1531.4,1401,698,703,cpp,1,heart-of-ruin:50;tavi:50;vesper-vale:50;varg:47;ryth:39
+344,ff00bf5d-6464-40e0-9cd1-9d7606d8ea03,Spoon,international,1531.4,927,458,469,,1,stellar:50;cassi-and-issac:42;varg:40;vendetta:36;ren:23;prism:18;vesper-vale:18;marcella:2;willow:2
+345,13b12189-3063-478a-ad4d-8e70a62deea1,octo's odyssey,international,1530.9,1255,632,623,python,1,stellar:49;varg:49;tavi:48;vendetta:37;cassi-and-issac:34;heart-of-ruin:1;ren:1;vesper-vale:1
+346,164054b3-1e7a-4d60-b64d-00f5d1f9984d,Epinoia,uk,1530.5,1051,532,519,python,2,tavi:49;vesper-vale:33;vendetta:32;marcella:26;varg:24;willow:17;stellar:13;heart-of-ruin:7;cassi-and-issac:5;prism:1;ren:1
+347,1c876c83-8f6b-4894-bee1-f2fbc393e327,Index[0],international,1529.9,742,359,383,cpp,2,heart-of-ruin:50;ryth:50;vesper-vale:50;prism:41;vendetta:31
+348,1665c5cb-b785-4421-b831-21dbe480da37,Krusty Krab,international,1529.0,661,329,332,python,3,heart-of-ruin:50;marcella:50;ryth:50;vesper-vale:43;ren:34
+349,2e6a831e-cc37-4b3f-a1cf-527692e957a2,Phishing Season,uk,1528.7,1326,674,652,python,4,stellar:49;varg:49;tavi:45;ryth:39;marcella:24;cassi-and-issac:16
+350,7c8eaba6-d6a9-482f-9c4c-0132c0d6d50b,Hidden Pathfinders,pending,1527.8,1249,623,626,cpp,4,cassi-and-issac:50;stellar:50;varg:50;ryth:37;tavi:29
+351,a7850ae6-e067-4b71-94a3-7cdaeb31f5bc,newbies,pending,1527.6,1119,556,563,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ren:44;ryth:37
+352,2aae618c-0bd6-46ab-b8bc-00365ce1d8f9,일필휘지,international,1526.8,1404,709,695,cpp,1,cassi-and-issac:50;stellar:46;ren:44;tavi:34;vendetta:24;ryth:20;varg:11
+353,9608c441-389d-4dcd-961c-e19258e4a236,Seacaps,international,1526.5,1085,540,545,python,3,cassi-and-issac:50;ren:50;stellar:50;ryth:40;varg:30
+354,7bbbe71d-04d3-453a-9cf7-34f698c93fca,Patient Lock Pickers,uk,1525.0,1011,530,481,rust,1,cassi-and-issac:50;varg:47;stellar:46;tavi:42;ren:35;ryth:4;vendetta:4
+355,5fe68a94-2fa4-444c-89bd-edc008f65bee,weAreSoCooked,international,1524.2,1139,579,560,cpp,1,ryth:50;stellar:50;tavi:50;prism:44;varg:30
+356,a8dd3420-96d8-428b-a9c9-e990715cedc0,Project Elrond,international,1523.8,638,317,321,cpp,1,tavi:50;varg:50;vendetta:44;ryth:35;stellar:27;heart-of-ruin:6;ren:6;vesper-vale:4
+357,944811b7-2ee8-43df-9167-735e811713fe,LigaSiur,pending,1523.4,1405,692,713,cpp,2,cassi-and-issac:50;tavi:50;varg:50;ren:36;ryth:30
+358,0a7f58a2-84f8-4c83-abdc-82d7fe4d4558,Rataturing,uk,1520.8,974,482,492,cpp,1,ryth:49;marcella:38;vesper-vale:37;prism:29;tavi:22;vendetta:21;varg:11;stellar:9;ren:8;willow:3;cassi-and-issac:2;heart-of-ruin:1
+359,a07e547e-bb55-4a9c-b031-86bbb77516f4,Outlast,uk,1520.8,1340,676,664,cpp,3,marcella:50;prism:50;vesper-vale:45;tavi:35;varg:24;willow:12
+360,d48d65ef-625c-4966-b2cc-a7b1b02fafec,Lucky Stunner,international,1520.6,1333,666,667,cpp,1,marcella:50;prism:50;ryth:50;vesper-vale:39;vendetta:30
+361,04127fab-36dd-4c23-9971-e5b1923f3c99,"light up, make happy",uk,1520.4,690,346,344,cpp,4,tavi:50;varg:50;vesper-vale:50;ryth:39;willow:33;stellar:3
+362,c52a0c99-5a36-4e05-b451-70935e3c849f,Sneaky Wardens,international,1520.0,1106,552,554,cpp,1,marcella:48;heart-of-ruin:47;vesper-vale:47;ryth:39;vendetta:31;ren:3;stellar:3;cassi-and-issac:2;varg:2;prism:1;tavi:1
+363,2396be85-efb4-4c1b-931f-f16d714efb80,Deluded,international,1516.4,742,380,362,cpp,4,vesper-vale:45;ryth:42;varg:42;tavi:32;stellar:20;vendetta:20;ren:13;cassi-and-issac:5;heart-of-ruin:5;marcella:5;prism:1
+364,a159726f-af79-424d-85ac-fcfd76f2ec1e,John Doe,international,1516.2,1106,559,547,python,4,heart-of-ruin:50;prism:50;vesper-vale:50;ryth:44;marcella:36
+365,4d9439b1-f0ba-4923-8747-a79c5b657f9c,MirukuDragon,international,1516.1,1394,689,705,cpp,4,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:45;ryth:34
+366,77ee1dd3-4d9a-43c8-9d85-5f0b94b9ad61,GLM5.3,uk,1514.6,1190,603,587,cpp,1,tavi:45;vesper-vale:45;varg:39;willow:39;prism:31;stellar:7;cassi-and-issac:5;ryth:5;marcella:4;ren:4
+367,b02d80a6-8661-4605-b8eb-c315ad47dc78,Escaped from Al-Abbasiya,international,1513.9,1321,658,663,cpp,3,cassi-and-issac:50;tavi:50;varg:50;stellar:43;ren:30
+368,5d282848-5a6a-4266-9ae0-f7c3ae3d7d60,Worker999,pending,1513.8,971,470,501,cpp,1,stellar:45;ren:35;cassi-and-issac:27;tavi:27;prism:21;willow:19;vendetta:13;ryth:8;heart-of-ruin:7;varg:7;vesper-vale:5;marcella:2
+369,fd795986-cfd3-4732-9fa9-94caba40067a,V4.1 Flash,international,1513.5,904,458,446,rust,3,heart-of-ruin:50;ren:50;ryth:50;vesper-vale:40;marcella:33
+370,87493851-f727-4ad5-90fa-37975afdeb60,ChatGTP,uk,1513.3,1307,670,637,cpp,4,prism:50;stellar:50;vesper-vale:50;marcella:42;willow:34
+371,b5df022b-6cef-4985-85d1-97c4ded914d5,ㅤ,uk,1511.8,612,308,304,cpp,1,tavi:50;varg:50;vesper-vale:50;ryth:45;heart-of-ruin:34
+372,168564c3-2b32-4032-bb6c-b29b95ee61cd,FF 15 pls,non_student,1511.2,1149,573,576,cpp,1,heart-of-ruin:50;marcella:50;ryth:50;vendetta:44;varg:34
+373,e245a158-806f-486e-a36f-ffbb571b3d5b,Biggest Randomuserhi Fan,international,1510.0,1273,646,627,cpp,1,ryth:50;varg:50;vendetta:50;vesper-vale:48;heart-of-ruin:38
+374,70573b2a-8ec1-470c-a1bd-f8a70fd9a2f3,Electric Fog Walkers,international,1509.1,864,429,435,cpp,2,cassi-and-issac:50;stellar:50;ren:49;ryth:40;varg:33;prism:3;tavi:2
+375,44232d91-13e6-41ea-a21e-ff0547a8661b,Snowcrab,international,1509.1,1370,687,683,cpp,1,cassi-and-issac:50;ryth:50;vendetta:50;varg:42;stellar:27
+376,785ea6d9-8ed6-4149-89ac-3c290570a6b0,Velvet Pathfinders,international,1507.7,1183,592,591,cpp,3,stellar:50;cassi-and-issac:48;ren:48;varg:34;tavi:28;ryth:17
+377,15e99c94-14d7-4ec0-bd53-b77d88884a96,bwgreen,international,1506.1,1392,692,700,cpp,1,vendetta:49;varg:48;stellar:43;tavi:35;vesper-vale:18;marcella:14;ryth:7;cassi-and-issac:5;ren:5;willow:4;prism:1
+378,26033268-2524-4a24-89f4-793a5fc6adae,GLM-5.3,pending,1506.0,647,322,325,cpp,1,tavi:50;vesper-vale:50;varg:44;willow:42;prism:35;stellar:4
+379,79dda181-32a8-4602-af22-7ef2a59483fc,maomao90,international,1505.8,1197,628,569,cpp,1,heart-of-ruin:50;varg:50;marcella:48;vesper-vale:42;ryth:37;prism:4;ren:2
+380,f28f8525-f0d5-423b-bf3a-fcaf78b3b028,Lucky Gem Thieves,international,1505.5,1288,648,640,cpp,4,varg:49;vesper-vale:49;ryth:40;vendetta:38;stellar:32;ren:11;tavi:3;prism:1
+381,dad33999-164a-4e52-a53f-5e98628f1611,Mein Kraft,international,1505.3,1075,535,540,cpp,4,tavi:50;varg:50;vesper-vale:50;willow:40;cassi-and-issac:30
+382,9dc7b5e1-4f3e-45fb-9db5-7608f7a51bf9,UnZure,international,1504.8,1329,658,671,cpp,2,cassi-and-issac:50;stellar:50;varg:50;ryth:44;ren:36
+383,efc1c934-4bf1-402f-9c3d-152f4f599b83,aura ka laura,international,1504.5,790,400,390,cpp,1,cassi-and-issac:50;stellar:50;ren:39;ryth:32;varg:28;tavi:18;prism:3
+384,38c6d7ee-43e1-46dd-855e-09e0ffcc58db,Campfire Codex,pending,1503.4,1193,600,593,cpp,1,tavi:50;varg:50;stellar:48;vendetta:41;ryth:32;cassi-and-issac:2
+385,76e154be-0013-43ee-a0e2-780c6d93664c,Sneaky Altar Keepers,uk,1503.1,61,32,29,python,1,heart-of-ruin:50;marcella:50;vesper-vale:50;ryth:44;vendetta:30
+386,ec15a0b3-972b-4d05-8c98-efc4ef97389e,Jammy Jumpers,uk,1501.7,1382,701,681,cpp,4,cassi-and-issac:50;stellar:50;ryth:47;varg:47;tavi:36
+387,9c0225e6-9bbb-44b9-80cb-6ba64e1ab190,Siphony,international,1501.1,751,387,364,cpp,2,marcella:50;prism:50;vendetta:50;heart-of-ruin:42;vesper-vale:32
+388,bf8b759e-290f-44f2-828b-675e0e209cbe,Creative Juices,international,1500.7,881,432,449,python,4,ryth:50;varg:50;vesper-vale:50;ren:39;stellar:32
+389,4680e55a-368d-4892-b09b-fa18f4becaa9,Qual_ify,international,1500.5,1238,612,626,cpp,2,tavi:50;varg:50;vendetta:50;vesper-vale:43;marcella:34
+390,b016e0e1-73b6-42ef-8123-3082ceb278ef,lol,uk,1498.8,1078,535,543,cpp,1,cassi-and-issac:50;stellar:48;tavi:44;marcella:27;varg:25;prism:14;ryth:9;ren:3;vendetta:2
+391,dc99d244-89e7-4ce2-9511-b5feafb9b220,Deer Park,international,1497.6,1129,566,563,cpp,3,stellar:47;varg:42;cassi-and-issac:39;vesper-vale:31;ryth:28;vendetta:19;tavi:11;willow:8;marcella:2
+392,52b00be4-22e0-4422-92ef-42b599c87b93,Holygod,international,1496.6,1045,527,518,cpp,2,stellar:49;varg:46;ryth:45;heart-of-ruin:44;ren:42;vesper-vale:5
+393,dc24ee25-0f21-4353-8ebf-1ce5a82e22bb,Pikachu,international,1495.7,1199,585,614,cpp,1,heart-of-ruin:50;vesper-vale:50;marcella:43;ryth:43;vendetta:43
+394,29a22080-5593-4f7b-93e8-7d4085e72185,hackingnoises,international,1495.1,1298,645,653,cpp,4,ryth:48;cassi-and-issac:43;varg:40;vendetta:37;stellar:33;tavi:9;marcella:8;ren:5;vesper-vale:3;willow:3
+395,1ec259ba-7596-4a78-9fd6-090c77f543bf,Patient Wolves,international,1494.7,655,323,332,rust,3,cassi-and-issac:50;tavi:49;varg:49;stellar:44;prism:30;ren:1
+396,26e3aa71-9ef6-4ce9-9f93-35c125b17051,C*mbridge Battlechuds,international,1494.4,1224,615,609,cpp,3,cassi-and-issac:49;vendetta:44;ryth:41;varg:41;tavi:19;vesper-vale:11;ren:9;prism:3;stellar:2
+397,cd168e4d-952a-47db-aa97-a9cae638dea1,Opus 5.5,uk,1493.6,1073,522,551,python,2,ryth:50;cassi-and-issac:45;ren:45;stellar:45;varg:30;tavi:5;vendetta:5
+398,6257cfdb-cfac-492c-b71c-3d55eacdd547,WOLVES,international,1492.4,1108,549,559,cpp,2,cassi-and-issac:50;ryth:50;stellar:50;vendetta:44;varg:29;vesper-vale:2
+399,61e5f5c0-3ba9-4c48-ba68-bf125f0fdfc0,gargantua,international,1491.9,698,360,338,cpp,4,cassi-and-issac:50;ryth:48;vendetta:47;marcella:45;varg:25;vesper-vale:11;stellar:3
+400,5cc17226-5367-4168-90c5-0ac7affe1f5f,okonomiyaki,pending,1491.7,935,467,468,,1,stellar:50;cassi-and-issac:48;ryth:42;varg:42;vendetta:27;ren:16;tavi:4
+401,6193609b-cf31-4af5-bcc2-e5752ac0d7be,Monkey D. Luffy,uk,1490.9,667,328,339,cpp,1,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:44;ryth:37
+402,efc57d51-a074-46fe-ab12-6109db6c3cd7,LLL,uk,1490.5,1389,690,699,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;willow:46;ren:34
+403,f292aded-dbe1-4520-ba72-98f568f9e13d,Midnight Altar Keepers,international,1489.8,838,415,423,cpp,1,cassi-and-issac:50;ryth:50;stellar:50;vendetta:44;varg:37
+404,689bebf5-7bf5-4b73-876b-b33f4af7192c,Arasaka,uk,1488.5,1060,543,517,cpp,1,stellar:50;varg:48;ryth:46;tavi:41;cassi-and-issac:26;ren:3;prism:2
+405,9ea52653-07d3-4730-8d52-74e7abb422f6,RandomGuy,international,1488.4,1103,548,555,cpp,1,tavi:48;vesper-vale:48;heart-of-ruin:47;cassi-and-issac:36;ryth:27;marcella:20;varg:3;vendetta:1
+406,a65688e3-cb2b-4e8b-8c6f-771292c1ebe2,Placeholder,uk,1488.2,1327,656,671,cpp,4,stellar:50;varg:50;tavi:45;cassi-and-issac:33;vesper-vale:27;willow:20
+407,d58450ba-8deb-4236-b389-6cfde9165a10,bandit,uk,1487.0,1192,611,581,cpp,1,ryth:50;stellar:50;vendetta:50;willow:34;prism:33;varg:9;ren:1
+408,7824004e-86e8-460a-a3cd-e9f3605b98eb,Snowman Workshop,uk,1486.7,1363,674,689,cpp,1,cassi-and-issac:50;varg:37;ren:33;willow:26;stellar:19;vendetta:18;vesper-vale:15;tavi:13;ryth:9
+409,e7bbf1ac-afde-4509-85a5-460bc80edb0a,abcde,international,1486.4,1387,684,703,cpp,1,cassi-and-issac:50;stellar:50;ryth:39;varg:39;ren:37
+410,89041e37-b511-48d2-aa3d-922e12fe8630,angsana forest,international,1486.4,379,182,197,cpp,2,ren:50;stellar:50;cassi-and-issac:49;ryth:38;varg:30;heart-of-ruin:5
+411,94f6d660-7c65-40c2-bca0-40d7b66a5005,Prompt Beasts,uk,1485.6,1354,674,680,python,4,cassi-and-issac:50;varg:50;vendetta:50;willow:43;ren:34
+412,87bb1c13-b46d-4c4f-ad8c-e9284054dcd6,dream,pending,1485.4,1068,542,526,cpp,4,ryth:50;varg:50;vendetta:50;tavi:43;vesper-vale:32
+413,f437e066-15f3-4a27-8ec3-9687cb68696b,dominos,uk,1484.8,1202,611,591,python,4,vesper-vale:50;tavi:48;marcella:41;vendetta:35;varg:32;heart-of-ruin:13;willow:6;cassi-and-issac:2
+414,c8e1aade-71ef-4738-96f9-b1f8504db6fe,Ehh,international,1483.9,1,0,1,cpp,2,heart-of-ruin:3;marcella:3;ryth:3;vesper-vale:3;stellar:2;tavi:2;varg:2;cassi-and-issac:1;prism:1;ren:1;vendetta:1;willow:1
+415,f73c4710-c1c1-41c1-b59a-6165b02a1be9,Worldwide Gem Thieves,international,1483.2,1305,639,666,cpp,3,stellar:50;cassi-and-issac:49;varg:45;ren:42;tavi:27;ryth:7;prism:1
+416,109a6800-6db6-42d2-a491-f697e21e367b,Tethys,international,1480.2,976,489,487,cpp,1,heart-of-ruin:50;ryth:50;vesper-vale:50;vendetta:43;marcella:31
+417,b57f0a81-36a4-4eea-85a7-74f456fa5988,The Deities,pending,1479.6,1323,661,662,cpp,2,cassi-and-issac:50;stellar:50;tavi:50;prism:42;ryth:28
+418,4fbe2b8b-0a69-4dd5-b3f0-d8787101d7bc,tRust me bro,international,1476.6,640,332,308,rust,4,marcella:50;heart-of-ruin:45;ryth:45;vendetta:45;vesper-vale:38;cassi-and-issac:5
+419,605c150e-bd88-4cb3-b77a-8140a3915609,fa_kyuu,non_student,1474.4,1347,688,659,cpp,1,cassi-and-issac:50;stellar:50;vesper-vale:50;ryth:42;prism:36
+420,b2981f3c-2006-4307-b745-45086626336b,Turbo Bush Campers,uk,1473.9,1357,660,697,python,3,cassi-and-issac:50;vendetta:50;varg:48;ryth:33;vesper-vale:30;tavi:4;ren:2;willow:2
+421,2173d644-f134-4b10-8cd8-2f6d9bfc0696,preachers of ttts,uk,1473.1,646,321,325,cpp,4,ryth:43;cassi-and-issac:36;stellar:36;prism:30;varg:26;ren:19;vendetta:14;marcella:10;vesper-vale:2
+422,5b65fc8d-d32d-49f7-af4a-360b2ddc0022,mostly harmless,international,1472.7,1361,674,687,rust,1,heart-of-ruin:50;ren:50;stellar:50;ryth:40;varg:33
+423,f80cbb17-bcdb-4381-8959-57c4fbdfe04f,Civilian Conservation Corps,international,1471.6,1274,628,646,cpp,3,cassi-and-issac:50;varg:47;vendetta:40;stellar:30;tavi:23;ryth:20;marcella:3;ren:1
+424,88c01e3a-ac73-431d-8fb8-5dd482a5418b,Hungry Hungry Hungry,international,1471.3,998,503,495,python,2,stellar:50;cassi-and-issac:45;ren:44;ryth:36;varg:24;prism:9;tavi:8;vendetta:5
+425,85eb5c58-76b8-40f9-a759-b81b9a3e8f41,Birla Bots,international,1471.2,838,415,423,cpp,2,cassi-and-issac:50;stellar:50;tavi:50;ren:38;varg:24;prism:6
+426,4c1f8cbd-ee24-4502-ba26-957c65a3e6a0,Velvet Stunners,international,1470.6,1241,606,635,cpp,3,heart-of-ruin:50;ryth:50;vendetta:50;ren:44;cassi-and-issac:35
+427,92b742bb-333e-4677-9f63-adf894534dcb,bob,pending,1470.2,1351,697,654,python,1,cassi-and-issac:48;stellar:48;varg:48;ryth:40;ren:33;vesper-vale:4;vendetta:2;willow:2;tavi:1
+428,6f4c71f0-c41f-41f2-a24d-d229699d4f7a,Janglibaaba's kids,uk,1469.2,1229,633,596,python,1,cassi-and-issac:50;stellar:50;varg:50;tavi:42;ren:34
+429,47a066ba-5cc9-4ee9-ad57-ab0c0fcc1b59,Velvet Wolves,uk,1468.5,677,340,337,python,1,ryth:50;varg:50;vendetta:50;stellar:41;ren:33
+430,16460538-abbb-4ff8-9410-957944fa8ee2,Ely2sh,international,1466.6,1390,688,702,cpp,1,stellar:50;cassi-and-issac:49;tavi:39;vendetta:29;ryth:22;ren:17;varg:13;prism:5;willow:1
+431,285f4eb5-e97f-4ea4-93c5-19e1590a1e5a,BattleCats,uk,1465.8,925,469,456,python,3,vendetta:42;cassi-and-issac:38;heart-of-ruin:37;ryth:26;prism:22;willow:16;tavi:14;ren:12;vesper-vale:5;marcella:4;stellar:3;varg:3
+432,0580c098-a7c9-46d7-b414-bf39c02c3dcc,Kvantai,international,1465.7,658,328,330,cpp,3,ryth:50;tavi:50;varg:50;vesper-vale:44;ren:32
+433,a738d27c-f929-4cfe-924e-dc099aa1e3b5,Big Boss,pending,1464.8,1097,537,560,cpp,3,cassi-and-issac:50;stellar:50;tavi:50;vesper-vale:41;varg:34
+434,ebfb0236-a504-4aab-9c02-01b7bec1930f,Cant Code Can League,uk,1464.5,1377,674,703,python,4,cassi-and-issac:50;varg:50;vendetta:50;stellar:40;tavi:29;heart-of-ruin:1;prism:1
+435,f43512ab-25ea-4bcd-ada6-9a303b63c153,Math Have Mercy,international,1464.1,971,494,477,cpp,3,varg:50;cassi-and-issac:49;tavi:43;willow:21;marcella:15;stellar:15;vendetta:8;ryth:7
+436,ac326709-3ba4-43ed-b5bc-a621519997b7,Quantum Altar Keepers,uk,1463.4,1349,667,682,python,2,stellar:50;ren:48;cassi-and-issac:45;varg:41;ryth:34;tavi:1
+437,7f91f920-6ea5-4d9a-a314-a284ff4d3655,For all beneath,international,1462.9,1010,491,519,cpp,3,stellar:50;varg:50;ryth:43;vendetta:43;tavi:34;cassi-and-issac:7
+438,8c62aea2-8feb-48a4-868c-2216e66a0d93,Lucky Gem Thieves,international,1461.9,700,346,354,rust,4,cassi-and-issac:50;ryth:50;vesper-vale:50;prism:43;stellar:30
+439,ee461d0b-afa8-4943-ae64-d0605ffa01a4,Quantum Elk,pending,1461.8,988,511,477,cpp,4,ryth:41;varg:30;tavi:25;vesper-vale:25;cassi-and-issac:21;marcella:19;ren:18;vendetta:17;prism:15;stellar:11;willow:9
+440,3346d36f-0840-4094-b208-1ee7c702ee8f,Real Learning,pending,1461.1,718,352,366,cpp,4,marcella:50;ryth:50;varg:50;ren:44;stellar:33
+441,2ca829fa-4f05-4f9c-a523-592d3084c145,ShadowKnight,international,1459.5,702,341,361,python,1,stellar:50;varg:50;marcella:43;tavi:35;cassi-and-issac:26;vendetta:14;ren:6;heart-of-ruin:2
+442,bc379efe-8a4d-4416-9432-13b717a19c39,Dean's List,pending,1458.8,805,400,405,cpp,3,cassi-and-issac:50;ren:50;stellar:50;varg:44;tavi:31
+443,86e4dc35-835d-409f-b576-b423b3897c52,larp,international,1457.9,1379,685,694,python,1,vesper-vale:50;marcella:47;vendetta:43;heart-of-ruin:42;varg:32;cassi-and-issac:3;ren:3
+444,58e98a11-6404-4f00-83f2-3943c3b72e94,SilverBullet,pending,1457.9,903,450,453,cpp,1,stellar:50;tavi:50;vendetta:50;varg:45;ryth:37
+445,5bfa785b-3a15-4398-96b7-624e1a1e103c,ohhhhhh caml,international,1455.4,1354,670,684,ocaml,2,ryth:50;varg:50;vendetta:50;cassi-and-issac:38;ren:29
+446,1a73e547-36f0-42df-aba5-698de2d22685,What Are We Doing,international,1454.8,650,314,336,cpp,4,ryth:50;stellar:50;marcella:44;vesper-vale:44;tavi:30;ren:6
+447,d793f432-203a-4593-b13a-b108b09cfaeb,Turbo Elk,international,1453.3,898,443,455,cpp,1,cassi-and-issac:50;stellar:50;varg:50;tavi:39;ren:27
+448,de81b66a-d087-4fa2-a347-7e72dfe3ea94,Sharky,international,1452.4,675,332,343,cpp,1,prism:50;stellar:50;tavi:50;marcella:45;cassi-and-issac:35
+449,d02e5f2c-f75a-499c-b5e9-418c425a0746,Kuchh_bhii,international,1451.9,650,329,321,cpp,1,ryth:50;vendetta:50;vesper-vale:50;tavi:38;willow:27
+450,2cb78ebc-e61e-4ee0-9950-b3e3963d9743,Rogue Noogers,pending,1450.6,651,343,308,cpp,4,cassi-and-issac:50;stellar:50;varg:50;ryth:40;vendetta:24;marcella:9;ren:2;vesper-vale:1
+451,23bf8120-448a-424e-8353-cca7079209f4,0xBURGER,international,1449.9,662,328,334,cpp,1,stellar:50;varg:49;cassi-and-issac:43;ren:39;tavi:35;ryth:7;marcella:1;prism:1
+452,1fe37c2c-8180-4b65-9374-468d46009478,Astra EK,uk,1449.8,689,334,355,cpp,1,cassi-and-issac:50;stellar:50;varg:50;prism:38;tavi:30;vendetta:8
+453,852a4c8c-7b85-4417-8faf-3287d22aedf2,LiquidSwords,uk,1448.5,1039,516,523,cpp,1,cassi-and-issac:50;ryth:50;vendetta:50;varg:37;stellar:31
+454,72cedb6b-265d-4201-948d-0629cac52669,RedDragon,international,1448.2,1285,622,663,cpp,1,ryth:50;tavi:50;varg:50;willow:35;ren:28;marcella:16;vesper-vale:1
+455,9c1e2f3a-79f1-41c7-ab5c-e72bb96238c7,ehoy minoy,international,1447.0,265,136,129,cpp,1,ryth:50;varg:50;vendetta:50;marcella:41;heart-of-ruin:26
+456,184a3866-fec8-4f0a-8221-6691e1abfdc2,range rover,international,1447.0,667,330,337,python,4,ren:50;cassi-and-issac:49;stellar:49;ryth:41;varg:34;heart-of-ruin:1;willow:1
+457,8478dd36-bb39-4d06-abe2-b76bdc755cac,Brr Brr Battlecode,uk,1446.7,1377,676,701,python,2,ren:50;stellar:50;varg:50;vendetta:35;cassi-and-issac:25;ryth:8;marcella:5
+458,e3b844a2-013f-4734-a996-9c4cd7680bfa,Solaris,uk,1446.5,1194,599,595,python,3,cassi-and-issac:50;stellar:50;varg:50;prism:39;ryth:31
+459,b2e01c45-0219-48e2-982f-7e754933133e,octovibers,international,1443.3,1400,693,707,cpp,4,prism:50;varg:46;ryth:45;tavi:43;vesper-vale:35;marcella:7
+460,d1cb1906-76ed-46c7-b005-90fac23a59cd,du.RAM,uk,1442.8,1367,684,683,cpp,2,cassi-and-issac:50;ren:50;stellar:50;varg:40;tavi:29
+461,05f7f6ef-25e7-4707-b0aa-51d1106c980a,** sudo rm -rf Victory**,uk,1442.8,676,335,341,python,1,heart-of-ruin:50;stellar:50;ren:49;cassi-and-issac:44;ryth:32;tavi:5
+462,fa2b8732-ebdd-4618-8d5d-47be4a1c1ed5,MHW,international,1441.1,1398,684,714,cpp,2,ryth:50;stellar:50;tavi:48;ren:41;cassi-and-issac:32;varg:2
+463,c7ab1030-abf5-4f1b-89d5-f8b930f96265,Veni Vidi Inti,non_student,1439.8,1219,588,631,rust,1,marcella:50;ren:50;ryth:50;stellar:40;vesper-vale:30
+464,6d6f7fdb-cd9f-455b-abf2-a73c5c1ee764,RAMpage,international,1439.2,970,483,487,python,3,cassi-and-issac:50;varg:46;stellar:41;tavi:30;ren:28;ryth:15;heart-of-ruin:5;vesper-vale:5;prism:2
+465,05dcfad0-d27d-4452-beab-4b61c0d8179b,Turbo Pathfinders,international,1438.9,1241,627,614,cpp,1,varg:50;vendetta:50;vesper-vale:50;tavi:44;stellar:31
+466,dcc95611-f947-4e73-ac58-7e3e62574bcf,Pawsibble,international,1438.0,1405,671,734,cpp,2,ryth:39;marcella:34;vesper-vale:32;tavi:24;vendetta:23;varg:17;cassi-and-issac:16;heart-of-ruin:15;willow:14;ren:11;stellar:6
+467,4f895cf2-77c0-4d65-91a6-320d46ecca54,The Flotte Experience,international,1437.5,640,323,317,ocaml,2,ryth:50;stellar:50;varg:50;tavi:44;marcella:34
+468,3d88148f-c65b-4e6a-b90e-7560eb8a2308,Magyar módszer,international,1436.8,1359,686,673,python,4,cassi-and-issac:50;tavi:50;vesper-vale:50;varg:39;vendetta:30
+469,b095a9ef-91f3-4c4a-b4aa-3ec386286b82,another name,international,1434.1,1403,695,708,cpp,3,heart-of-ruin:50;stellar:50;tavi:50;ryth:45;ren:29
+470,1d9b1fa3-a58f-44b4-bc26-6752af3e2522,"i ""graduated"" a month ago",non_student,1433.3,1129,572,557,rust,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:43;varg:31
+471,90d22787-0f43-4b23-a293-c8b18d90ddc6,okbro,international,1432.6,1387,700,687,cpp,2,stellar:50;varg:50;willow:50;marcella:31;tavi:31;heart-of-ruin:8
+472,53e40e20-b46c-4dab-b68f-6e9e30d57408,Ouroboros,international,1432.6,466,229,237,,1,cassi-and-issac:50;ryth:48;ren:47;stellar:19;vesper-vale:19;tavi:17;varg:12
+473,f06e2db0-f987-4960-93c8-26cf6969c216,BigHero6,uk,1431.8,1231,616,615,python,1,cassi-and-issac:50;stellar:50;varg:50;ryth:40;ren:31
+474,8c751548-2afc-4eaf-92c1-0e01f17c058e,LOS HOMOS HERMANOS,international,1430.7,812,403,409,python,2,cassi-and-issac:50;ren:50;varg:50;ryth:40;stellar:30
+475,066207d4-fa0d-4ce1-906e-aa5f94c2d711,postman,pending,1429.8,306,152,154,cpp,3,vesper-vale:46;cassi-and-issac:35;vendetta:33;tavi:32;heart-of-ruin:28;varg:27;ryth:13;marcella:12;stellar:1
+476,3881272c-9c7f-4b3d-94f9-4c0788a3b27a,let's jump into it,international,1429.6,1197,580,617,cpp,2,cassi-and-issac:50;stellar:50;tavi:50;varg:42;ryth:25;vendetta:5;marcella:2;willow:2;ren:1
+477,82f82c01-b5e1-4bcb-ad42-34268c642954,Crazy Robot,international,1429.0,1394,671,723,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ryth:38;ren:29
+478,e1f192db-587e-4602-b11e-dc91877f599d,TrueCoders,international,1428.6,867,426,441,cpp,2,cassi-and-issac:50;stellar:50;ren:48;ryth:40;varg:32;vesper-vale:2
+479,417114b2-d24d-4000-8165-ad523b89cea1,Dangel & Claude,international,1427.6,1098,550,548,rust,1,heart-of-ruin:50;stellar:49;varg:49;willow:44;ryth:28;vesper-vale:3;ren:1;vendetta:1
+480,895285b0-fee7-4543-ac50-401017b951eb,chatswood rsl,international,1427.2,805,393,412,python,1,cassi-and-issac:50;stellar:50;varg:50;tavi:38;ryth:31
+481,8b059dff-740f-43d2-9c2e-5710fc68a04b,Dreamar,non_student,1426.7,797,385,412,cpp,1,ren:50;stellar:50;cassi-and-issac:48;varg:42;tavi:35;heart-of-ruin:2
+482,2451bf9d-9782-4060-b8b4-fc2e7a69ef9a,Crimson Bush Campers,international,1424.1,1369,673,696,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:41;tavi:29
+483,c7180e7d-d64f-4ecb-9f47-0df4910fc9d7,almost surely,pending,1423.9,500,250,250,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ryth:35;ren:26
+484,378a749d-070a-44ed-a2fb-fb7eee40ea15,risq-v,pending,1423.9,1404,691,713,cpp,3,cassi-and-issac:50;tavi:50;varg:50;ryth:42;stellar:34
+485,07ff1080-4e0e-4622-bf68-3063bb2e149b,hey it's me it's verity,international,1422.6,499,238,261,rust,1,ryth:50;stellar:50;varg:50;vendetta:43;willow:35
+486,7bc404a3-e682-433f-8f33-36b810993d7c,64bit,international,1421.4,624,296,328,cpp,4,varg:47;cassi-and-issac:42;heart-of-ruin:38;willow:34;marcella:19;vesper-vale:19;ryth:7;vendetta:5;tavi:4;prism:2;ren:2;stellar:1
+487,defd3e5d-1b62-4e15-b751-fe842a33be3a,ggez,uk,1420.8,676,338,338,cpp,4,heart-of-ruin:50;ryth:50;vesper-vale:50;marcella:40;vendetta:32
+488,b58c08d8-498a-4fc7-9585-f4fafaefa688,‎,international,1419.9,1302,638,664,cpp,1,stellar:50;tavi:50;varg:50;vesper-vale:40;ryth:31
+489,7218a6a8-8211-4587-bdf8-3bae779e930e,Azerbaijan Technologies,pending,1418.9,1315,647,668,cpp,2,varg:50;vendetta:50;cassi-and-issac:43;ryth:40;ren:32;marcella:4
+490,411cab6c-fc55-4fae-bb10-dc26ad29c76b,mcr,pending,1418.7,1357,676,681,cpp,4,cassi-and-issac:50;ryth:50;varg:50;marcella:33;vesper-vale:33;tavi:10
+491,f55b4e8c-91d3-47d7-9539-88cabea848fc,I told chatgpt about her,non_student,1417.9,626,304,322,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:45;tavi:33
+492,2e350c20-b742-42aa-b4e1-47516c423a3a,Solo Zorgis,non_student,1416.6,1197,576,621,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:42;ryth:29
+493,32c26dc1-3a91-4d91-a775-ff9b4bd7fb79,Against The Odds,international,1416.3,793,382,411,cpp,3,cassi-and-issac:50;ren:50;stellar:50;ryth:45;varg:36
+494,fd3a404c-954b-4628-a418-7a8e57fb3783,Slough Reps,pending,1416.1,1366,688,678,python,1,marcella:50;tavi:50;vendetta:50;varg:42;ryth:30
+495,51c7519c-1a77-43a5-aa76-daf667556a8d,knownasjason,international,1414.4,1410,698,712,cpp,2,cassi-and-issac:50;varg:50;tavi:41;stellar:32;ren:25;vendetta:25
+496,5e0c725a-b9b4-4523-8739-4427f20b9ce5,Sneaky Bush Campers,international,1413.2,1141,555,586,cpp,1,cassi-and-issac:50;stellar:50;varg:50;tavi:39;ren:28
+497,384ed54d-3ec6-42c1-badf-b48f9be00cc1,Phantom Troupe,pending,1412.3,677,332,345,python,3,prism:50;heart-of-ruin:47;varg:43;ryth:38;marcella:23;stellar:19;vesper-vale:5;ren:2;vendetta:2
+498,1fd7861b-b197-4ea9-b94d-0d5a70f69758,Electric Shard Casters,pending,1412.2,1283,638,645,cpp,1,stellar:50;vendetta:50;ryth:43;varg:43;willow:33;cassi-and-issac:7
+499,c8e20f33-9aab-458d-b38d-0faf927b45f4,Andreas,pending,1412.1,950,474,476,python,4,tavi:50;varg:50;vendetta:50;marcella:39;stellar:26
+500,9adb6bb0-1936-4dcf-b8d3-1c4eba82968f,Odyssey,international,1411.8,1298,636,662,cpp,1,cassi-and-issac:50;varg:47;ryth:45;stellar:44;ren:34;tavi:2
+501,3e0b8502-991b-4fa8-a4f7-d7e08c57a97e,Hidden Lock Pickers,international,1411.5,672,337,335,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:49;tavi:34
+502,7ad58f1a-2b64-463d-8b4c-71f1ff26a146,Fighting Illini,international,1411.5,1297,640,657,cpp,2,cassi-and-issac:50;stellar:50;tavi:50;marcella:40;vendetta:33
+503,da1c0f93-a0cc-43df-8aca-059e15923cda,Divide and Conquer,international,1409.5,682,342,340,python,3,cassi-and-issac:50;ryth:50;stellar:50;vendetta:43;varg:32
+504,d88df6e3-53c7-44ed-874f-67f3caa0578c,WhatIsQuantTrading??????,uk,1408.5,629,307,322,cpp,2,ryth:50;stellar:50;vendetta:50;varg:41;tavi:30
+505,c2fa831a-bbf9-41dd-b588-dbc33b9af1bb,Gilded Fog Walkers,international,1408.2,1051,518,533,cpp,4,cassi-and-issac:50;ryth:50;vendetta:50;stellar:33;varg:32
+506,529c79c1-a5c7-4bc8-96b3-1dc99393e787,Silent Pathfinders,international,1406.9,612,328,284,python,1,marcella:50;vesper-vale:50;varg:48;tavi:41;willow:27;prism:2;ryth:2;stellar:2
+507,56492446-eca6-4557-9a40-559bd4c318dc,:blauerdrache:,international,1406.6,1399,684,715,cpp,4,cassi-and-issac:50;stellar:50;varg:50;ryth:39;tavi:27
+508,c971c3ef-28d1-4b4a-9be6-cc9c112439ae,Ding_Dong_MAN,international,1404.0,1127,548,579,cpp,1,ryth:50;vendetta:50;marcella:41;varg:31;tavi:26;cassi-and-issac:20;vesper-vale:4
+509,d3f95349-b568-4699-b975-ce3f1f9f60fd,avg larper,international,1403.1,126,60,66,cpp,1,heart-of-ruin:49;vesper-vale:48;vendetta:45;marcella:35;prism:18;ryth:18;stellar:11;cassi-and-issac:2;tavi:1
+510,7e47e419-abe1-4bd9-9d31-42b250e76a2a,wuh pi,international,1401.6,491,237,254,,1,tavi:50;varg:50;cassi-and-issac:47;vendetta:43;ryth:38;vesper-vale:2
+511,afdfcf47-296e-44db-99c2-c6cc155d746f,Invincible Coders,international,1400.0,1310,643,667,python,2,cassi-and-issac:50;stellar:50;varg:50;tavi:34;ren:28
+512,b4da17fa-37e5-4d41-9468-c1144b87e7ee,Teemo's Mushrooms,uk,1398.9,1328,663,665,python,4,cassi-and-issac:50;ryth:50;vendetta:50;varg:39;ren:27
+513,6c369b00-ee69-4e8b-a573-d18a392bd3cd,No Clue,uk,1397.4,166,70,96,,1,ryth:50;stellar:50;varg:50;tavi:41;marcella:34
+514,638e8cc7-bb59-4599-9167-a681cb566ba1,Sneaky Bush Campers,pending,1397.1,504,251,253,python,1,ren:47;varg:47;cassi-and-issac:44;stellar:36;vesper-vale:25;vendetta:7;ryth:5;marcella:4;willow:3;prism:2;tavi:2
+515,7d07c0f3-d4ef-4722-aad2-2531397e3be9,CHERI Blossom,uk,1396.7,551,268,283,cpp,1,marcella:50;stellar:50;ren:42;ryth:42;varg:42
+516,d3e47e1f-ec5d-4dfb-8d42-6c5fe35e2710,it’s the first that we thought that it’s they but what if it’s the time for team,international,1395.9,1257,623,634,cpp,3,stellar:35;varg:25;vesper-vale:23;ryth:20;vendetta:20;heart-of-ruin:19;cassi-and-issac:18;ren:16;prism:13;tavi:13;marcella:11;willow:11
+517,1be287a9-ab48-4874-88d0-6ec07be9da4a,"Royal Holloway, University of London",uk,1395.4,659,318,341,cpp,4,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:41;ryth:38
+518,6af72e0e-5e9e-4ccc-9864-b163f78241d4,gold digger,international,1395.3,1365,701,664,python,1,cassi-and-issac:50;stellar:50;varg:49;ren:40;ryth:34;heart-of-ruin:1;tavi:1
+519,8d8f5160-f68e-4660-916f-6729a42537e3,Midnight Recallers,uk,1395.3,1211,586,625,python,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:40;vesper-vale:35
+520,477d3dd7-4994-4d50-bc33-2a454bbac221,six seven,international,1394.6,213,105,108,cpp,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;marcella:41;ryth:30
+521,dba8d35f-fd1d-432d-8ba5-9f076cb3dcac,eclipsed Sunlight,pending,1394.2,1343,664,679,python,3,cassi-and-issac:50;ryth:50;willow:50;varg:42;stellar:28
+522,70bd7930-6d8a-49d1-94d5-3ad4faf6b7b4,Atlas,international,1393.4,761,381,380,,1,cassi-and-issac:50;stellar:50;vendetta:50;ryth:39;varg:36
+523,2e9c14b3-1c27-4723-a77d-2f15954d6001,Mimikyu,uk,1393.4,500,249,251,,1,cassi-and-issac:50;ren:50;ryth:44;marcella:39;varg:36
+524,11e3ef88-957d-41d3-9f75-3663994131d5,Entropy Tamers,international,1392.6,951,468,483,cpp,2,cassi-and-issac:50;stellar:50;varg:50;ryth:40;ren:30
+525,c8773982-afe9-4f64-99ba-0cc1fb3fe3c2,Hidden Gem Thieves,pending,1392.1,771,377,394,cpp,2,tavi:50;varg:50;vendetta:50;ryth:43;vesper-vale:30
+526,625bb51a-8d9e-4035-a16e-ce4eea8eb739,Stubborn Altar Keepers,international,1390.9,1243,602,641,cpp,1,cassi-and-issac:46;stellar:43;marcella:40;ryth:29;ren:22;tavi:22;vendetta:17;varg:5;willow:5;heart-of-ruin:4;vesper-vale:1
+527,07278352-d849-4c77-9ce1-0f8307fd4fa9,Return by Death,international,1390.4,829,402,427,cpp,4,ren:50;stellar:50;tavi:50;prism:43;ryth:20;marcella:11
+528,69cf5873-f8ae-41fa-93c6-772a41e5f559,THE THINK TANK,international,1387.5,1203,591,612,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ren:32;vendetta:29;tavi:4;vesper-vale:2;ryth:1
+529,0948671e-bedc-4ca1-8dde-2526adff3d0e,Aviators,pending,1387.1,1341,671,670,python,2,cassi-and-issac:50;varg:50;vendetta:45;tavi:38;ryth:31;stellar:10;vesper-vale:1
+530,67a36d90-9e17-47c1-bb1f-71ce81374e90,Big Data Energy,international,1386.6,650,315,335,cpp,1,cassi-and-issac:50;stellar:50;varg:50;marcella:43;vesper-vale:30
+531,cb893c90-5cd1-4b38-86b2-0bfc6c8c5305,Midnight Wardens,international,1385.6,958,480,478,cpp,4,varg:50;vesper-vale:49;ren:48;vendetta:39;marcella:22;heart-of-ruin:17;stellar:2
+532,ff0e5bb8-d683-4423-9e5f-6e230d9d7daf,se31,international,1385.5,893,436,457,cpp,4,heart-of-ruin:50;varg:45;ryth:41;vendetta:41;ren:27;marcella:18;cassi-and-issac:2;tavi:1
+533,41f7413c-f6ff-48f8-9531-f8301e71ea49,TheFools.com,international,1383.4,926,456,470,cpp,3,cassi-and-issac:50;ren:50;stellar:50;ryth:46;varg:37
+534,70dc8c4e-5d63-4f8d-8915-1b9c7fe7fee7,haha,international,1383.3,949,480,469,cpp,1,cassi-and-issac:50;tavi:50;varg:50;willow:45;vendetta:37
+535,d5e1fbdf-184c-4e9c-9ccc-e13c53841b14,Mackey,pending,1382.1,1190,562,628,rust,1,stellar:50;tavi:42;ren:38;ryth:31;cassi-and-issac:26;prism:24;varg:15
+536,f0415fa5-b2aa-4958-a47a-4422f74d9ede,MicroStella,uk,1380.9,1379,681,698,cpp,3,stellar:49;tavi:48;ryth:43;varg:38;ren:34;cassi-and-issac:13;vendetta:1
+537,3421f13e-cca4-45a9-946e-c6885ec1c85b,Rogue Lock Pickers,uk,1380.8,1030,511,519,python,1,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:46;varg:33
+538,72a14fc8-01de-4c5e-870e-4a739c7bb134,4 Bet Jammers,international,1379.1,629,305,324,cpp,1,heart-of-ruin:50;ren:50;vendetta:50;varg:43;marcella:35
+539,d23f2627-97ea-48b1-b353-5bf2368008f4,High Frequency Gaming,international,1378.2,1196,589,607,python,2,cassi-and-issac:50;varg:48;stellar:43;ryth:34;tavi:17;marcella:13;willow:8;prism:7;vendetta:5;ren:4;vesper-vale:2
+540,23626fbe-2c8f-4ee8-ba0d-5042e85fc98a,QS2³,uk,1376.7,1038,515,523,python,4,cassi-and-issac:50;ren:50;stellar:50;varg:41;ryth:32
+541,cfd44d0a-4d7b-42db-a1e6-e04ff397f391,Patient Gem Thieves,non_student,1375.4,1315,644,671,cpp,1,cassi-and-issac:50;ryth:50;vendetta:41;tavi:35;marcella:16;varg:15;ren:14
+542,554677ee-3b56-4fb8-a5df-28b476bfa8c1,Lone Oski,international,1375.3,1355,693,662,rust,1,cassi-and-issac:50;stellar:50;vesper-vale:50;varg:41;ryth:30
+543,e46d08af-94b4-4629-9548-7dc7e7240f1e,Quantum Recallers,international,1371.8,698,345,353,cpp,1,cassi-and-issac:50;stellar:50;ren:46;ryth:45;varg:36;prism:2
+544,c14b952b-899c-4f25-a4f8-d3a4b06cbf9a,DeepSleep,uk,1370.4,622,308,314,cpp,1,stellar:50;ren:46;varg:43;tavi:39;ryth:25;prism:13;cassi-and-issac:8;willow:6
+545,cbc808a6-d967-4c52-a60f-4778924ad7d5,Quantum Wolves,pending,1368.9,1209,612,597,cpp,1,ren:50;ryth:50;varg:50;prism:38;willow:38;tavi:5
+546,ba7979c9-b8ef-4bf5-86e1-0b4eb18a753a,Midnight Pathfinders,international,1367.8,623,297,326,cpp,1,marcella:50;vendetta:50;vesper-vale:50;varg:38;ryth:29
+547,59ffaf30-962d-4729-8cde-f4732f04f436,GPT dot,non_student,1367.6,1185,577,608,cpp,1,stellar:49;ren:44;varg:42;cassi-and-issac:39;prism:24;tavi:19;ryth:9;vesper-vale:2;marcella:1;vendetta:1
+548,1992b096-dcdb-4643-9858-249c76b9a020,Yaso,uk,1366.2,514,259,255,python,1,cassi-and-issac:50;heart-of-ruin:50;stellar:50;ren:41;varg:31
+549,f537e7fe-e576-4563-8fd8-3cd30a318652,Watermelon,uk,1365.9,658,321,337,cpp,3,ryth:41;willow:38;varg:35;marcella:33;vendetta:25;vesper-vale:13;stellar:9;cassi-and-issac:8;prism:6;ren:5;tavi:5
+550,910ccbab-531b-4efa-a223-0335a686ad83,vc?,international,1365.3,1365,676,689,python,2,cassi-and-issac:50;tavi:50;vendetta:50;stellar:46;varg:35
+551,f5c8c4ef-8788-4296-918f-401e36a12dfa,Sneaky Goblins,uk,1365.2,687,331,356,python,1,ryth:50;varg:50;vendetta:50;cassi-and-issac:39;vesper-vale:24;marcella:23
+552,0263b3aa-28cf-469f-abd3-e07327c6e757,tvojtatko,non_student,1364.6,662,324,338,cpp,1,cassi-and-issac:50;stellar:50;ryth:48;varg:47;tavi:32;ren:7
+553,be47daf4-28ca-4d99-add8-3ebcc27cf50e,New Jabees,international,1362.6,1051,511,540,python,1,marcella:50;ryth:50;varg:50;stellar:37;cassi-and-issac:30
+554,09e4ad71-e217-428b-a63b-c0a025bb2e12,4 Monkeys At Typewriters,uk,1362.0,801,382,419,python,4,ryth:50;stellar:50;varg:50;marcella:40;vesper-vale:24
+555,90ddaf0d-1cf1-4110-a127-d14da2ce2c66,3 Treasure,uk,1361.1,906,436,470,python,3,cassi-and-issac:50;prism:50;stellar:50;ryth:43;tavi:42
+556,23f1309e-917f-4666-8747-a5898a677aa2,University of Wroclaw,international,1361.0,1407,692,715,cpp,1,varg:50;vendetta:49;ren:35;ryth:35;tavi:34;vesper-vale:9;cassi-and-issac:7;willow:2
+557,5d4e6798-122b-4cbb-a685-78c5f075ff46,Water Water Water,international,1360.9,1033,517,516,cpp,3,cassi-and-issac:50;stellar:50;varg:50;ren:42;ryth:21;vendetta:11
+558,775572bb-1052-4089-883d-61943e261640,Kukuku,international,1359.0,1265,621,644,cpp,1,varg:50;cassi-and-issac:43;marcella:43;ren:36;stellar:36;ryth:7;tavi:7;vendetta:7
+559,5a7c6bbe-de02-4c53-b5d5-72cd3115624d,Saurabh Chavan,non_student,1357.8,690,344,346,python,1,tavi:50;varg:50;vendetta:50;cassi-and-issac:45;ryth:33
+560,0f060c24-2c46-4b4d-8ea9-e98d1d46ff09,Lattanzi,international,1355.4,687,346,341,cpp,2,cassi-and-issac:50;stellar:50;varg:50;ren:42;ryth:32
+561,3edd1441-9f24-4e2c-9645-d8f1e489a2c0,Patient Stunners,international,1353.5,930,466,464,cpp,2,cassi-and-issac:50;ren:50;stellar:50;vendetta:40;varg:30
+562,1158c8e5-3ab7-47da-9a7a-344e175243d0,777,non_student,1351.9,1073,520,553,cpp,1,cassi-and-issac:50;stellar:50;varg:50;ren:41;tavi:36
+563,c38052e1-f3a0-44f8-a433-ef47a9d1181c,Heavenly Court,uk,1351.6,1276,619,657,cpp,4,cassi-and-issac:50;stellar:49;ryth:42;ren:38;varg:37;tavi:9;prism:4;vendetta:1
+564,20e9357a-3bf8-4de4-857d-77765677fa98,placeholder,international,1351.3,360,169,191,python,4,cassi-and-issac:50;ryth:50;willow:45;varg:44;marcella:38
+565,8bb0b5c7-0244-464f-b33d-70cd8b5c6669,Mousa,international,1350.1,1337,652,685,cpp,1,varg:27;vendetta:26;ryth:24;vesper-vale:24;cassi-and-issac:23;marcella:21;prism:21;stellar:20;ren:15;tavi:13;willow:13
+566,bc62afb2-9016-405d-bd90-2e5e83492e6c,LiteralyAFK,pending,1348.0,1383,670,713,cpp,1,ryth:50;stellar:50;varg:47;cassi-and-issac:34;marcella:31;vesper-vale:5;prism:3
+567,a419db6e-302f-43e5-8bd4-c2909edd9cc5,Electric Muffin,uk,1347.3,624,300,324,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:47;ryth:35
+568,b6acb43f-e816-4bd3-bc2e-e7c137d3b218,Null Reign,non_student,1346.4,187,88,99,python,1,tavi:49;varg:49;vendetta:44;ryth:34;vesper-vale:34;prism:16;willow:7;marcella:1
+569,fc41f0e7-97a3-4ac1-ac0b-1019bc4f749b,NameTBD,international,1344.5,1020,486,534,cpp,1,cassi-and-issac:50;ren:50;stellar:50;tavi:43;varg:33
+570,6c59147e-576f-465f-8d00-bdde9ed12f22,xanarchy,uk,1344.2,625,311,314,cpp,1,cassi-and-issac:50;varg:44;ryth:43;vendetta:36;tavi:27;stellar:18;ren:9
+571,839fe79a-519b-44ce-98ba-d2e6d7d8f9d4,sPaM VS SpAm,international,1343.9,1052,520,532,cpp,4,cassi-and-issac:50;ren:50;stellar:50;tavi:44;vendetta:33
+572,333d13a7-b695-4887-a1d4-ee67c1c23c32,Nuko's Nukamp,international,1343.6,1381,688,693,python,1,heart-of-ruin:50;ren:50;vesper-vale:50;varg:42;cassi-and-issac:28
+573,8e9079de-36c7-4dc0-a52b-7ef0a5c6e562,denk,pending,1342.3,1242,607,635,cpp,1,cassi-and-issac:50;ryth:42;stellar:41;ren:37;varg:37;vendetta:12;tavi:4;marcella:3;willow:2
+574,9a506738-3bd6-4cf8-9ccd-47e8689f6eee,nondegenerate formalities,international,1340.8,739,355,384,python,1,cassi-and-issac:50;marcella:50;ryth:50;vendetta:45;willow:34
+575,986a80ac-72d9-4d57-a715-80d69a07d06c,Gilded Stunners,international,1339.0,748,354,394,cpp,1,cassi-and-issac:50;ren:50;stellar:50;varg:42;ryth:31
+576,e160c0c7-7a9f-4f3a-86f5-ceb059bc70b8,Maverick,international,1338.9,1328,633,695,cpp,1,varg:43;ryth:28;vendetta:28;marcella:25;cassi-and-issac:22;stellar:22;tavi:22;prism:20;ren:20
+577,79cc89da-1447-4d75-bf87-fa8f8a4a8ea4,Jack Get Off League,international,1337.1,1387,691,696,python,3,cassi-and-issac:50;ren:50;stellar:50;varg:43;ryth:37
+578,42cc8191-bacb-4458-bbc0-7d891847d030,Crimson Recallers,international,1336.8,1392,684,708,cpp,1,cassi-and-issac:50;stellar:50;varg:50;vendetta:47;tavi:36
+579,d8fa3c9c-2701-4f9e-850a-34108c8fdecf,Delta Warriors,uk,1336.7,226,102,124,cpp,3,cassi-and-issac:50;heart-of-ruin:50;ryth:50;marcella:39;willow:28
+580,b8d07577-45df-4639-8479-bd703585e180,janestreethireusplease,pending,1334.9,230,115,115,cpp,2,vendetta:47;varg:39;cassi-and-issac:34;willow:34;vesper-vale:30;heart-of-ruin:23;marcella:13;tavi:8
+581,abb3b776-7d71-41f6-90c6-885aebdc64b4,Shinshilachki,pending,1332.8,622,301,321,cpp,4,cassi-and-issac:50;marcella:50;stellar:50;vesper-vale:42;varg:33
+582,2ba1aa46-638d-4051-90fc-c73746cc1a18,Lucky Fog Walkers,international,1330.6,1117,557,560,python,2,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:43;ryth:33
+583,3fbea707-267e-447a-8482-5ac13ffdc377,P(DOOM),international,1330.2,1361,672,689,cpp,1,ryth:40;varg:40;vendetta:35;stellar:30;cassi-and-issac:23;marcella:17;prism:15;vesper-vale:15;tavi:5;heart-of-ruin:4;ren:4;willow:2
+584,9b085942-6e6f-47f1-a50f-38f6829b9171,Mahog,international,1329.5,1129,554,575,cpp,1,heart-of-ruin:50;vendetta:50;vesper-vale:50;cassi-and-issac:47;ryth:34
+585,66d6d257-336f-4760-9d46-0b95248fe518,Valoretta,international,1325.7,1349,685,664,cpp,1,cassi-and-issac:50;tavi:50;varg:50;vendetta:42;vesper-vale:30
+586,e39c3d57-1813-4a18-a7e7-2b1df6bb3594,B-Team,pending,1325.6,819,388,431,cpp,3,cassi-and-issac:50;varg:50;stellar:41;ryth:40;tavi:28;ren:11;vendetta:6
+587,45835821-75c5-4175-bc84-2b99ebd3d5c9,Mind of Metal and Wheels,non_student,1325.6,1320,677,643,python,2,prism:34;ren:24;stellar:23;varg:23;vesper-vale:23;ryth:20;vendetta:19;willow:19;marcella:17;tavi:17;cassi-and-issac:13
+588,42b9e5a7-6059-4029-83e5-a37d48bf0444,Cattlecode,international,1325.4,768,365,403,cpp,4,ryth:30;varg:27;stellar:23;vesper-vale:23;vendetta:21;ren:20;cassi-and-issac:19;prism:19;marcella:16;willow:16;tavi:13
+589,e67c84b9-9bfd-46d6-bc2e-6f9b7a8a713f,Imagine Winning,international,1325.2,842,420,422,python,1,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:41;ryth:32
+590,db94d858-5170-41ef-ad90-b2faf85dd5e8,Sigma Coder,uk,1322.3,676,323,353,python,1,cassi-and-issac:50;ren:50;stellar:50;varg:42;ryth:32
+591,5103e4d4-3d07-463c-adb4-a09d13a57b7a,Acerz,international,1322.2,782,402,380,python,1,ryth:50;vendetta:50;willow:50;vesper-vale:44;prism:34
+592,0dea7f3d-6ed7-4ca5-af89-6fc719e59965,Gilded Lock Pickers,pending,1320.9,1338,667,671,python,1,cassi-and-issac:50;ren:50;stellar:50;marcella:46;ryth:41
+593,79c5c7d0-7b18-422f-8291-9979da649196,Schrödinger’s Elite,international,1320.8,1244,591,653,python,1,stellar:50;cassi-and-issac:48;ren:47;varg:36;ryth:32;tavi:5;prism:4;vesper-vale:4;vendetta:2
+594,4e6d067e-75a9-4891-bc9d-cf69e5def756,Motu Patlu,uk,1318.0,1226,581,645,python,2,cassi-and-issac:50;ryth:50;vendetta:50;varg:45;vesper-vale:38
+595,9c75242b-8c91-4fa8-98e6-e3212fbe91a2,Looping The Functions,international,1317.7,706,349,357,rust,4,ren:24;tavi:24;vendetta:24;stellar:23;ryth:22;cassi-and-issac:21;willow:21;varg:19;marcella:18;vesper-vale:18;prism:16
+596,45e6cf78-22b2-4f4f-b644-fb4875bd3a22,The Green Eyed Dragon,international,1317.0,953,458,495,cpp,2,ryth:50;vesper-vale:49;vendetta:46;tavi:43;varg:27;prism:18;ren:3
+597,362dc7b6-ddbe-449c-935d-f642bc384907,CABT Team,uk,1316.7,1046,505,541,python,1,cassi-and-issac:50;stellar:50;varg:50;ren:43;ryth:32
+598,23498eec-4ca6-4cba-9755-206869e92d25,Trading Problem 🂽,international,1310.0,773,372,401,cpp,4,cassi-and-issac:50;stellar:50;tavi:50;ren:43;varg:34
+599,42124878-af44-4ad4-982a-8634083924bc,Unemployed Misfit,international,1309.9,1202,570,632,cpp,1,varg:50;vesper-vale:50;vendetta:40;marcella:32;tavi:32;cassi-and-issac:18
+600,5cb04d00-0f27-45a7-bf4a-c3a132cfb306,Import Victory,pending,1309.2,640,318,322,python,4,ryth:50;varg:50;tavi:48;stellar:38;marcella:21;vesper-vale:15
+601,10b34830-7c68-411a-b225-2c05c2cb2d95,Cucumber Crusader,pending,1308.2,711,334,377,python,1,cassi-and-issac:50;stellar:50;tavi:43;prism:39;varg:35;ren:9;ryth:2
+602,7bfb3f8d-c739-40d1-9632-113d6485e15d,Lie groups lie,pending,1307.8,509,247,262,cpp,1,ryth:50;varg:50;vesper-vale:50;vendetta:45;marcella:34
+603,2c36b971-c229-40b8-b134-0fa636ff1e65,i use arch btw,international,1306.0,1259,624,635,python,1,cassi-and-issac:50;ryth:50;tavi:50;stellar:42;marcella:40
+604,355e2fff-f3fb-4dcc-b359-115fea891c62,Magic Water,uk,1304.2,663,315,348,python,3,cassi-and-issac:50;ren:50;stellar:50;varg:48;tavi:34
+605,1b66915a-6393-48e8-96de-732d9ed96e90,Eevee,international,1303.0,720,346,374,cpp,1,cassi-and-issac:50;vesper-vale:34;marcella:33;vendetta:28;tavi:26;varg:12;ren:11;stellar:11;prism:10;ryth:8;willow:5;heart-of-ruin:4
+606,c5103e97-e5e8-42a5-9fd0-455e60cb01ed,Silent Wardens,international,1302.7,689,331,358,cpp,1,stellar:50;varg:50;cassi-and-issac:44;tavi:39;ren:35;vendetta:4
+607,8034f8a9-8a1b-4f8c-a74d-7bc9ed8d381d,ez,international,1301.0,737,369,368,cpp,1,ryth:50;marcella:46;ren:41;varg:32;heart-of-ruin:24;vesper-vale:11;prism:7;stellar:7;willow:3;vendetta:2
+608,ab1f317b-ef21-4d9b-915d-48af5a47ade4,My Turn!,international,1299.4,688,330,358,python,1,tavi:50;varg:50;vendetta:50;ryth:42;willow:31
+609,116bf55f-783e-4eb5-a637-ce3729838a48,crazyx13,international,1298.7,712,354,358,cpp,2,cassi-and-issac:50;prism:50;tavi:50;willow:39;vesper-vale:29;marcella:8
+610,5412a307-2829-4b6c-a25a-c0af6821414a,Kowloon Park Final Boss,international,1297.6,1053,513,540,cpp,4,cassi-and-issac:50;ren:50;stellar:50;varg:41;tavi:31
+611,3f23c6ba-c3dc-4f4a-ac85-2e972f1e6826,Young Stars,uk,1292.9,637,308,329,cpp,4,heart-of-ruin:50;ren:50;stellar:50;varg:36;ryth:17;marcella:11;vesper-vale:6
+612,bfe2173c-54ea-4687-80db-96fed7f45753,Booners,international,1292.9,1202,602,600,python,4,cassi-and-issac:50;tavi:50;vendetta:49;stellar:46;ryth:33;prism:1
+613,207e2263-1bf8-4f7c-b167-d24475e55108,GameTheory,international,1292.1,1277,639,638,python,3,cassi-and-issac:50;varg:50;vendetta:50;vesper-vale:42;tavi:29
+614,e89db5d4-c0a7-43eb-9d6d-23732bae07a5,test_2580,uk,1291.0,1082,513,569,python,1,cassi-and-issac:50;varg:50;ren:42;stellar:40;vendetta:32;ryth:8
+615,07b236c9-7989-4d60-a8a6-10e87a93ef03,Turbo Tributers,pending,1291.0,299,134,165,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;tavi:46;ryth:38
+616,a1473258-b024-49b1-92ed-f407debef801,Heartbreaker,international,1286.9,118,52,66,,1,tavi:35;stellar:30;varg:28;ryth:21;marcella:19;cassi-and-issac:18;vesper-vale:17;prism:16;ren:16;willow:16;vendetta:10
+617,2d2e25b6-aed4-4957-b598-e6d9646432fe,Gilded Pathfinders,international,1286.8,364,179,185,rust,1,cassi-and-issac:50;varg:50;willow:50;ryth:38;vendetta:34
+618,76138114-cb3d-499d-8a12-eea8ae6fbd24,BFS Enjoyer,pending,1284.7,1114,562,552,cpp,1,ryth:50;varg:50;vesper-vale:50;willow:43;marcella:33
+619,c840d963-7629-4947-b6d6-cc03fa53de51,Midnight Shard Casters,international,1283.1,634,307,327,cpp,1,stellar:50;tavi:50;vesper-vale:50;prism:47;vendetta:35
+620,8a41ed4e-4e36-4606-91d4-7e497d174ffe,sugar spice and everything nice,pending,1282.1,661,329,332,python,3,stellar:50;marcella:48;ren:47;ryth:46;willow:8;vendetta:5;heart-of-ruin:4;prism:4;varg:4;tavi:3;cassi-and-issac:2;vesper-vale:1
+621,538a0b9a-cff1-4c72-b414-006f9d968b08,UglyAhhMF,international,1282.0,383,193,190,cpp,1,heart-of-ruin:50;varg:50;vesper-vale:50;ren:39;ryth:31
+622,fcc30cd9-7364-4da2-9e4f-c6b1929043ee,NGC-6302,uk,1279.6,1395,699,696,cpp,1,varg:50;vesper-vale:49;vendetta:45;stellar:31;ryth:25;marcella:15;prism:6
+623,ac50d6b4-ff87-4f30-af3d-c2b08577c6ba,arghunter,international,1279.1,1053,519,534,python,1,stellar:42;tavi:40;prism:34;willow:34;marcella:29;varg:11;ryth:9;cassi-and-issac:8;ren:8;vesper-vale:7;vendetta:4
+624,ddd90b28-61fd-4acb-acde-5343279e1192,אני אוהב את טל אּּביב,pending,1278.1,1280,614,666,cpp,1,stellar:50;varg:50;tavi:39;ryth:33;vendetta:25;ren:18;cassi-and-issac:17
+625,35b3f70d-e1d8-490d-a1f3-d1078dc7cdc4,Bit by Bit,international,1276.4,1138,576,562,cpp,2,stellar:50;cassi-and-issac:46;varg:45;ren:35;ryth:34;tavi:12;vesper-vale:2
+626,2ad48995-1b53-4091-9cc3-c151adf9eb48,Besvikomat,international,1275.5,1285,662,623,python,2,ryth:50;vesper-vale:45;vendetta:40;prism:32;stellar:23;cassi-and-issac:19;marcella:12
+627,32f8709e-c261-4c4e-869a-86e47860303f,Aphelie,international,1271.7,980,482,498,cpp,1,marcella:50;prism:50;willow:50;ryth:44;vesper-vale:34
+628,c75f2be2-5d0e-424e-b7eb-8808b0d4c8ff,Ulm,international,1270.7,1070,515,555,cpp,3,cassi-and-issac:50;stellar:50;ren:45;varg:41;tavi:23;ryth:8
+629,1157d9bd-a9b4-4481-ba1c-fc87d797809e,Chocolate icecream,international,1269.0,974,489,485,python,1,ryth:47;vendetta:39;ren:29;marcella:28;tavi:27;prism:22;heart-of-ruin:8;cassi-and-issac:7;stellar:5;vesper-vale:5;varg:3;willow:2
+630,780cc1e6-4d84-4c7e-95d2-bafe351849c6,The House,uk,1268.4,724,370,354,cpp,4,vendetta:47;cassi-and-issac:35;ryth:35;vesper-vale:35;varg:32;willow:13;ren:9;marcella:5;heart-of-ruin:3;prism:3;stellar:3
+631,3b98fc38-33d4-4dd0-a1eb-f819dbd7ee00,the team,uk,1268.0,1333,639,694,cpp,2,prism:50;stellar:50;tavi:50;ryth:43;ren:34
+632,02e29027-9af1-462d-bc44-302a240ef63e,AIpha Jump,international,1263.2,1301,626,675,python,1,cassi-and-issac:50;tavi:50;varg:50;vendetta:39;ryth:30
+633,aa795cbd-97f0-489d-868b-2988d7b2e394,The Onkeys,non_student,1263.1,738,352,386,cpp,4,cassi-and-issac:50;stellar:50;varg:50;ren:42;ryth:32
+634,655d7dbb-c9d5-4e22-8dac-48d9dec15676,Drunkardswalk,uk,1262.0,630,296,334,python,1,marcella:50;ryth:50;varg:50;vendetta:42;ren:34
+635,21d8df7b-ad37-4fe6-b0d2-0c754bc2c1b7,Spare Us 🙏,uk,1260.6,1380,677,703,python,4,ryth:50;stellar:50;varg:50;vesper-vale:42;vendetta:29
+636,11c65592-1ad6-42bc-b470-013414756f64,Photon,international,1260.5,650,306,344,cpp,2,cassi-and-issac:50;tavi:47;stellar:46;ryth:42;ren:35;varg:3;vesper-vale:3;prism:2;vendetta:2;willow:2;marcella:1
+637,7a21fed9-4c5c-419c-8a31-ba3177b5edb0,Oogway,international,1260.4,1142,555,587,cpp,1,heart-of-ruin:50;ryth:50;prism:47;stellar:37;varg:37;tavi:13
+638,95dd7f71-f5d6-4b25-a946-92e54918bf9e,AlphaGold,international,1258.3,1223,603,620,python,1,ryth:50;varg:50;vendetta:50;vesper-vale:38;ren:29
+639,ecb39696-469e-4e3d-abb0-b1677ef06815,IISER Bhopal,international,1256.6,1195,581,614,cpp,4,cassi-and-issac:50;stellar:48;ryth:43;ren:40;varg:35;tavi:6;vendetta:2;vesper-vale:2
+640,3657efc0-5e9e-43e5-b846-5c36088e85bb,I Am The Senate,international,1253.5,1048,520,528,cpp,2,varg:50;vendetta:50;cassi-and-issac:43;stellar:43;ryth:38
+641,0cb8e032-7bf2-4c7a-ab7d-3cad7d79e4fc,Big O Opps,uk,1252.8,628,295,333,python,3,tavi:50;varg:50;vesper-vale:50;vendetta:43;marcella:35
+642,3c6757a1-d155-4a50-815c-3f3dc4da0f43,Super Super Intelligence,international,1250.5,1291,657,634,rust,1,ryth:50;vendetta:50;vesper-vale:50;cassi-and-issac:39;stellar:30
+643,408e1cf8-3034-413f-8a0f-cde48d4af8f7,Team 29,uk,1249.6,707,332,375,python,2,stellar:49;ren:46;cassi-and-issac:42;ryth:37;varg:26;marcella:6;vendetta:4;vesper-vale:3;prism:2;tavi:2;willow:1
+644,2023a6e7-51ed-44b8-9079-6a96b6066764,Indian Joga bonito,international,1246.6,923,451,472,python,3,heart-of-ruin:50;ren:50;stellar:50;cassi-and-issac:43;ryth:33
+645,4383a88a-8dd7-4d65-9fcc-f1cec9f959d1,Jedi Council,international,1246.6,1263,616,647,python,1,tavi:50;varg:50;vendetta:50;marcella:40;vesper-vale:18;ryth:8
+646,5bf6d021-df3d-4412-8d8b-dcabb0850929,HRT Calling,international,1243.6,1069,526,543,cpp,4,ryth:33;prism:28;stellar:26;vendetta:26;varg:22;cassi-and-issac:21;ren:19;marcella:17;vesper-vale:17;tavi:15;willow:11
+647,8be29dbe-7175-4b72-9b94-861004dfb263,bum,international,1243.2,834,403,431,python,1,cassi-and-issac:50;ryth:50;vesper-vale:50;stellar:38;prism:27
+648,b5a3ee45-08fb-4516-b7ce-602ca9d6d7b0,posh earl matthew,pending,1243.0,430,194,236,cpp,1,marcella:50;tavi:50;vendetta:50;varg:46;vesper-vale:32
+649,43d797df-d2ad-4095-95da-179cc4fc12c2,Larp,international,1242.3,1204,584,620,cpp,3,cassi-and-issac:49;stellar:40;varg:35;tavi:31;heart-of-ruin:30;ren:13;ryth:11;vesper-vale:11;marcella:7;prism:2;vendetta:2;willow:1
+650,ffcfe55d-5e58-447c-9f64-7a362d0bc79b,Triple T,international,1241.8,1230,598,632,cpp,1,cassi-and-issac:48;ryth:42;varg:41;stellar:27;ren:25;vendetta:23;willow:17;tavi:1
+651,af446992-efdf-414c-98f2-ccc9a7f180a3,goobuh,pending,1240.9,1042,503,539,cpp,2,cassi-and-issac:50;tavi:50;varg:50;stellar:40;ren:33
+652,ffd0864b-b7fb-432a-a7dc-d35d620af36d,ERTH65,international,1240.6,114,41,73,cpp,1,ryth:50;vendetta:50;willow:50;vesper-vale:43;tavi:33
+653,a9c00d27-18e7-45ca-a720-5ba76ea45894,big dogs,international,1240.3,684,331,353,python,1,vesper-vale:35;ryth:29;prism:24;vendetta:23;varg:21;tavi:20;ren:19;willow:19;marcella:17;cassi-and-issac:12;stellar:12
+654,ce00917a-75da-4fd9-8fbf-4396607307e4,Pinned against the wall like a gecko,international,1238.9,1338,654,684,cpp,2,varg:50;cassi-and-issac:47;ryth:40;vesper-vale:35;vendetta:23;stellar:20;prism:3;ren:3;marcella:2
+655,1e59ce39-5eb0-4e82-bd4c-7f908492996a,Nectar,international,1238.4,700,339,361,cpp,1,marcella:50;ryth:50;varg:50;vendetta:39;ren:33
+656,aea89e7a-c53f-4f3d-b48f-6ef6547059f1,Arl,international,1237.6,941,454,487,python,1,marcella:50;ren:50;tavi:50;vendetta:36;stellar:29
+657,1cb723be-4958-490a-b6aa-3cb6c935d0a5,Codam students,international,1234.7,1325,638,687,python,2,varg:50;vendetta:48;cassi-and-issac:19;prism:18;tavi:18;stellar:15;vesper-vale:13;heart-of-ruin:12;marcella:9;willow:8;ryth:7;ren:4
+658,f1b13689-8bce-4cf2-ac51-b5103c5dde2d,Rogue.ai,international,1233.5,681,318,363,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:39;marcella:25
+659,08f042a5-93ca-44da-bddc-13ab089c95ee,Blocky,international,1232.0,915,453,462,python,2,cassi-and-issac:50;ryth:50;stellar:50;tavi:44;varg:35
+660,e9218767-c233-4e60-8d48-aab652b34c5d,Green Burger,uk,1226.5,1324,635,689,python,4,tavi:49;varg:47;ren:39;ryth:36;vendetta:34;cassi-and-issac:11;stellar:6
+661,133481f4-2465-4270-b1fa-e7129f72299a,glorp,pending,1224.3,816,381,435,python,2,ryth:50;stellar:50;vesper-vale:50;prism:44;willow:36
+662,73c1be9d-bbac-4e1a-a848-ceec3e1803e0,Kushan,uk,1223.6,1309,638,671,cpp,1,cassi-and-issac:50;stellar:50;vendetta:50;willow:41;varg:32
+663,5b467c82-dbaa-46c8-bf4c-7c68742300a8,Budushuyi,pending,1221.5,1300,644,656,cpp,3,tavi:50;varg:50;vendetta:50;stellar:20;vesper-vale:20;cassi-and-issac:10;ryth:10;willow:10
+664,14ac52d6-e437-45e4-bd53-2166d42648d7,dudududu,pending,1218.5,1359,662,697,rust,3,marcella:50;varg:50;vendetta:50;stellar:32;ren:17;prism:13;vesper-vale:8
+665,f5f151ba-bbbf-4ee3-8208-cbcc8746c96a,Atlas,international,1217.5,1346,657,689,rust,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:44;marcella:36
+666,d9f4281a-0298-4667-b59b-2a5c7f72c2c2,Larpers,uk,1215.7,924,458,466,python,2,ren:50;stellar:50;varg:50;cassi-and-issac:41;tavi:28
+667,efc144a0-a3c1-40c2-a2d3-e2dc7597aa85,Gilded Lock Pickers,international,1213.1,577,282,295,cpp,1,tavi:50;varg:50;vendetta:47;vesper-vale:42;marcella:36;stellar:3;willow:3
+668,0fb266c9-729f-4a44-a821-48ccaf71205b,All By Myself,international,1212.9,1016,486,530,cpp,1,cassi-and-issac:50;ryth:50;stellar:50;vendetta:44;tavi:38
+669,b202135f-7c90-4fa8-a134-d4aec445052b,Workshop 2.0,non_student,1209.7,1275,629,646,python,1,vendetta:50;cassi-and-issac:43;ryth:43;varg:38;marcella:23;ren:5;tavi:4;vesper-vale:4;heart-of-ruin:3;prism:3;stellar:3;willow:2
+670,e5637c02-652c-4ba5-8ccd-207c5a624f9d,GarrytheGOAT,international,1208.6,1112,520,592,cpp,1,tavi:50;varg:50;vesper-vale:50;vendetta:46;marcella:35
+671,3f50c0f5-9d3b-42aa-a192-18bf70a7da34,LoneSpider,international,1205.8,628,301,327,cpp,1,ryth:50;vendetta:50;willow:50;vesper-vale:36;varg:31
+672,6b8775ec-17b4-42ea-a311-eba2fcd69dbd,Blueberry muffins,international,1201.1,985,475,510,cpp,2,cassi-and-issac:50;stellar:50;varg:50;ren:39;ryth:32
+673,9f53d43a-0262-4488-871d-8e856cdef994,bots of bits,international,1200.7,665,314,351,cpp,3,cassi-and-issac:47;varg:47;vendetta:47;stellar:44;marcella:18;ryth:15;ren:3;vesper-vale:3;prism:2;tavi:2
+674,11912e18-b5eb-4e7a-bc2d-5673760562a1,Pirate-Emperor,international,1198.4,988,473,515,cpp,1,tavi:50;varg:50;vesper-vale:50;stellar:47;ren:35;ryth:2
+675,f6a8fd95-edda-4e5d-8fd7-82436292af3e,MelonFish,international,1198.1,283,129,154,python,1,marcella:50;ryth:50;varg:50;vendetta:41;ren:33
+676,fe6cea34-281f-4f08-9b0c-2cb79f9bd4a0,Eclipsed,pending,1197.2,1116,541,575,cpp,1,varg:50;prism:42;vesper-vale:42;tavi:35;stellar:26;ren:8;ryth:8;marcella:6;vendetta:4
+677,c2d01dbf-6961-425b-b47b-5af1ab18b437,ㄅㆤ˫ ㄌㄞ˫ ㄛ,uk,1196.7,1253,635,618,python,1,varg:50;cassi-and-issac:47;stellar:47;ryth:41;ren:36;vendetta:3
+678,ca9f6bbd-6919-43ac-a147-a307f4e09d6f,UOB,uk,1195.1,1333,647,686,cpp,2,cassi-and-issac:50;varg:50;vendetta:50;ryth:41;marcella:26
+679,84cff49d-3ac7-4942-94fd-76a2d029fa90,Ad Hoc Tuah,pending,1195.1,532,263,269,cpp,3,heart-of-ruin:50;vendetta:50;vesper-vale:50;willow:45;marcella:29;tavi:11
+680,4a52ea14-069c-4ff4-9caa-203464816c6e,TryHard,international,1188.8,1410,713,697,cpp,1,marcella:50;tavi:50;vesper-vale:50;varg:45;cassi-and-issac:29;vendetta:3
+681,92e7b995-4d5c-4121-82e4-e5f4ccbb79d8,sharkey,international,1187.2,624,304,320,python,2,cassi-and-issac:50;vendetta:50;vesper-vale:50;willow:41;ren:31
+682,8927a306-a624-4034-aa9c-6c66de349b59,french monster,uk,1185.7,655,304,351,python,1,varg:50;ryth:49;vendetta:49;ren:39;marcella:32;cassi-and-issac:6;tavi:6
+683,6f5ae6d5-ddae-43f5-9dea-338cb6b8696a,Bastion,international,1180.1,951,465,486,rust,1,prism:29;ren:24;vendetta:23;marcella:22;stellar:21;ryth:20;willow:20;varg:19;vesper-vale:17;cassi-and-issac:14;tavi:12
+684,11d1a255-9373-4856-9251-801cea3582c1,brochevarevarura,international,1176.9,1386,672,714,cpp,1,ryth:50;varg:50;vendetta:50;vesper-vale:45;marcella:36
+685,ffe4d415-c85b-46e5-a1bf-9eab17700ef6,Gurren laggan,international,1174.9,920,443,477,cpp,1,varg:50;vendetta:50;ryth:43;vesper-vale:43;stellar:40
+686,f6a69e4f-362a-49b8-b823-938ad983b650,Institution of Metaphorical Children Team 2,international,1174.6,1399,686,713,python,1,ryth:50;vendetta:50;vesper-vale:50;cassi-and-issac:39;stellar:26
+687,f24d392e-90dc-4034-a652-913e997105ef,doesnt_matter_yaar,international,1173.7,626,295,331,python,2,prism:31;vesper-vale:29;ryth:26;tavi:24;varg:23;willow:22;marcella:18;stellar:18;ren:17;cassi-and-issac:15;vendetta:13
+688,8eafd9e9-4206-4716-8218-19c6208aba5a,Electric Wardens,pending,1173.2,1358,664,694,python,1,vesper-vale:32;prism:27;varg:24;ren:22;ryth:21;stellar:20;tavi:19;cassi-and-issac:17;willow:17;vendetta:15;marcella:14
+689,c9fc67b6-0793-46e3-b34d-d44f7cc3bb9f,The crew,international,1169.0,1288,633,655,python,1,cassi-and-issac:50;ryth:50;stellar:50;varg:43;marcella:34
+690,ef0d4034-77a7-40ec-8eda-46d1a611397e,1.5 programátora,international,1167.7,940,468,472,python,4,ryth:50;tavi:50;varg:50;vendetta:41;vesper-vale:30
+691,d072b3ba-281f-4059-8f26-042836abbdb9,Hüter,international,1165.8,1069,498,571,python,2,cassi-and-issac:50;heart-of-ruin:49;marcella:48;prism:15;stellar:13;willow:13;varg:11;vendetta:10;vesper-vale:8;ryth:6;tavi:3;ren:2
+692,9f28a134-fd38-4425-9788-1d5ff0105ab1,Rice to Wednesday,international,1164.3,1398,679,719,cpp,2,ryth:50;vesper-vale:50;willow:50;cassi-and-issac:45;marcella:33
+693,e676a38b-487f-4753-b417-aa47bcec59ad,Codem Spartans,uk,1163.6,1307,634,673,python,4,cassi-and-issac:50;stellar:50;varg:47;ren:41;tavi:35;marcella:3;ryth:3
+694,ec50f4bd-5f3d-4d33-82b8-bb77616f5adb,nexo team,non_student,1162.2,891,427,464,python,1,cassi-and-issac:50;ren:50;vesper-vale:50;marcella:41;ryth:35
+695,2e1eefdd-9b7f-43d1-b59d-40f6a571f796,Royalty,uk,1156.2,1199,574,625,python,1,prism:50;ryth:50;willow:50;cassi-and-issac:46;vendetta:34
+696,dfdafd69-2dfe-4135-ba24-7474b51749ad,U_Blue_DOCS,uk,1152.6,1078,532,546,cpp,1,ryth:50;vesper-vale:50;vendetta:47;cassi-and-issac:37;stellar:29;ren:5;heart-of-ruin:3;prism:3
+697,7bfbc544-56ca-4887-9fda-beec91838fc3,Blue Dragon,pending,1152.0,44,7,37,cpp,2,ryth:27;marcella:26;varg:25;stellar:23;vesper-vale:22;ren:21;prism:19;vendetta:19;cassi-and-issac:17;tavi:16;willow:14
+698,5ae34c2b-f80b-4842-a37c-9722916b8109,UCDAlpha,international,1148.8,621,294,327,python,4,varg:50;vesper-vale:50;marcella:47;willow:44;ryth:33;vendetta:2
+699,da0c44bc-d8e9-461c-a230-d4ad3af1c2eb,Clutch Powers,uk,1147.2,780,366,414,python,1,tavi:50;varg:50;vendetta:50;cassi-and-issac:39;stellar:8;ren:5;willow:5;prism:4;ryth:4;marcella:2;heart-of-ruin:1;vesper-vale:1
+700,14c034ff-5c3e-45ea-800f-f862fb768f01,JSNLover,international,1140.5,757,359,398,cpp,1,cassi-and-issac:50;prism:50;stellar:50;ryth:41;tavi:41
+701,ed09fe80-f5b0-4f7a-b28d-9d0c85ceaccb,burgundy butterfly,international,1139.9,1197,573,624,python,1,vesper-vale:35;prism:26;ryth:22;tavi:22;varg:22;marcella:19;ren:19;willow:16;cassi-and-issac:15;vendetta:13;stellar:12
+702,fb67d8d6-f989-47ec-9cd3-0ee8dbecd1b8,Indecisive,uk,1137.2,1170,561,609,python,1,cassi-and-issac:50;stellar:50;tavi:50;varg:43;ren:32
+703,6aea7b3f-8391-41e9-8183-e0701d3731a0,vbot,uk,1133.7,636,300,336,cpp,1,cassi-and-issac:50;ren:50;stellar:50;ryth:44;tavi:36
+704,47065e9d-3fc7-4735-9f4d-d8ac4ce666a7,what a team/10,uk,1133.4,1202,600,602,python,1,vesper-vale:33;ryth:28;tavi:28;prism:25;varg:21;cassi-and-issac:19;vendetta:17;willow:17;marcella:15;stellar:15;ren:12
+705,c9e346a2-12c5-44fc-9173-25fbd0d6444b,south deccan,international,1127.8,1118,544,574,python,1,ryth:50;tavi:50;willow:50;vesper-vale:44;vendetta:32
+706,aaba0b1f-2216-40ad-9e95-b863d66356f9,Lennovo,international,1127.0,938,455,483,cpp,1,varg:50;vendetta:50;marcella:44;ryth:40;willow:29;tavi:9
+707,de24ed8d-a2c1-443a-bc3f-84a224fc65be,Crimson Gem Thieves,international,1126.1,782,359,423,,1,cassi-and-issac:50;ren:50;stellar:50;ryth:39;tavi:36
+708,fb60ce36-0bcd-42e6-9801-062868fdfd30,Tiny Flying Object,uk,1125.9,1350,657,693,python,1,ryth:50;vesper-vale:50;willow:50;cassi-and-issac:46;varg:37
+709,d7342351-ab76-44b2-9ef4-4ca6fd5fc666,The Salmons,pending,1118.0,659,321,338,python,2,cassi-and-issac:50;ren:50;willow:50;prism:17;marcella:13;vesper-vale:11;tavi:8;vendetta:7;ryth:5;stellar:5;varg:4
+710,d6be02b3-4084-4160-b94d-f38cfb62ce98,Tamandua,international,1114.7,886,414,472,cpp,2,cassi-and-issac:50;willow:45;ryth:44;vendetta:42;vesper-vale:42
+711,a268980f-49b5-456d-82b1-a946784d0e72,Auror,international,1112.9,985,489,496,python,1,prism:29;vesper-vale:28;tavi:26;ryth:25;varg:24;willow:22;ren:19;vendetta:18;cassi-and-issac:17;marcella:14;stellar:13
+712,34ecb7a2-9210-4571-93d0-73e00e68affc,Stubborn Bush Campers,uk,1110.3,631,305,326,cpp,1,ryth:31;marcella:26;prism:25;vendetta:22;vesper-vale:22;varg:21;cassi-and-issac:19;ren:16;stellar:16;willow:16;tavi:14
+713,bdae5b00-2ede-468d-9a24-8172107cc5d3,ETHanol,international,1109.7,846,402,444,python,3,vesper-vale:30;prism:28;varg:25;willow:23;cassi-and-issac:21;ren:19;tavi:18;vendetta:18;ryth:17;marcella:16;stellar:14
+714,ead471a8-4b66-4d5e-99f5-9b54704439a0,goose,pending,1106.0,1004,479,525,rust,3,cassi-and-issac:50;marcella:50;vendetta:50;ryth:46;vesper-vale:34
+715,59833da7-56cb-4b72-beec-a43469a0c5be,Dragonhunter,international,1104.4,623,294,329,cpp,1,cassi-and-issac:50;ren:50;stellar:50;marcella:48;tavi:41
+716,8b4b7e36-b612-487f-ae25-ba1d75ea05dc,OVERcooked,uk,1103.2,640,297,343,cpp,3,ryth:29;varg:28;marcella:27;stellar:22;vesper-vale:21;vendetta:20;prism:19;ren:19;cassi-and-issac:18;tavi:14;willow:10
+717,7de3987a-d978-4b26-a0f6-cb37ab9b1b12,Stubborn Elk,international,1099.5,987,492,495,cpp,1,varg:29;ryth:28;marcella:24;prism:23;vesper-vale:20;stellar:19;willow:19;ren:18;cassi-and-issac:17;tavi:15;vendetta:15
+718,6a4c9e73-12f0-4886-b4d9-e2b3b54c14e3,Last standing Cannoneer,international,1091.1,332,146,186,,1,ren:24;stellar:23;vesper-vale:23;tavi:22;varg:22;marcella:21;vendetta:20;willow:19;cassi-and-issac:18;ryth:18;prism:17
+719,7494682c-3605-4317-9ae3-61e842eb6e2b,Team VersusAI,non_student,1089.6,656,305,351,python,1,ryth:50;vesper-vale:46;stellar:44;varg:28;willow:18;tavi:9;ren:8;prism:7;cassi-and-issac:6;vendetta:6;marcella:5;heart-of-ruin:4
+720,af9470b0-359d-4473-bfd1-04808e92bced,Signal,international,1089.2,1341,689,652,rust,1,vesper-vale:27;prism:24;ren:22;willow:22;ryth:21;cassi-and-issac:20;vendetta:20;varg:19;stellar:18;marcella:17;tavi:17
+721,d759a801-72fb-4ac3-9996-76b102de6a68,TON-618,international,1084.3,1345,659,686,python,2,vesper-vale:34;prism:26;varg:26;tavi:24;ryth:22;stellar:18;vendetta:18;ren:17;cassi-and-issac:16;willow:15;marcella:14
+722,14d4d3b2-7559-4d2a-b3e7-eb17c8449d38,goofy goobers,international,1081.7,1001,485,516,cpp,1,varg:50;heart-of-ruin:21;stellar:21;vesper-vale:20;vendetta:18;prism:17;tavi:16;cassi-and-issac:13;marcella:13;ryth:11;ren:9;willow:9
+723,383ad717-ff82-4873-afcb-ce8ba440a6aa,Kindred Soul,uk,1080.8,603,294,309,python,1,vesper-vale:33;ryth:25;prism:23;cassi-and-issac:22;ren:21;willow:21;vendetta:19;tavi:18;varg:18;stellar:15;marcella:10
+724,bc71e7b0-7e6c-4b8b-b9d5-52f522b1eed3,SparkleBlink,international,1075.6,713,341,372,python,4,heart-of-ruin:50;vendetta:50;vesper-vale:50;ren:31;varg:23;ryth:16;marcella:10
+725,46c81ff3-2143-48de-b7ee-781e36c2edf0,Petachads,pending,1073.5,1192,579,613,cpp,2,ryth:29;ren:26;marcella:25;varg:25;prism:22;vesper-vale:21;tavi:18;cassi-and-issac:16;stellar:16;willow:16;vendetta:15
+726,326414a3-3cdb-40e9-b162-592b7073252d,Future QS2 student,uk,1071.1,1360,664,696,python,1,cassi-and-issac:50;prism:50;willow:50;heart-of-ruin:13;ryth:13;vesper-vale:11;varg:10;vendetta:9;marcella:7;ren:7;stellar:6;tavi:5
+727,f5b688d5-f6b7-4643-9cdc-a9f5489f2fef,unemployed,pending,1048.3,532,239,293,cpp,2,ryth:50;varg:50;vesper-vale:50;marcella:43;stellar:35
+728,6895fad2-f974-4769-84a9-6a3cedcc18cf,sausage bot,international,1047.9,692,332,360,python,1,tavi:50;varg:50;vesper-vale:50;ryth:44;marcella:33
+729,1062c3be-4d8b-41ae-9bcf-f3135c580df6,vom,international,1041.8,1322,660,662,cpp,3,ryth:47;stellar:45;marcella:43;tavi:41;prism:26;cassi-and-issac:8;ren:5;varg:4;vesper-vale:3
+730,08629213-9d8d-4666-88ac-cfc03210576d,Fische,international,1038.1,1241,616,625,cpp,2,ryth:28;vesper-vale:25;varg:24;ren:23;vendetta:23;stellar:20;marcella:19;cassi-and-issac:16;willow:16;tavi:14;prism:12
+731,30e977e1-d8c1-4bb0-a3ef-b723b10c3a14,Silent Stunners,uk,1036.0,1282,665,617,python,1,vesper-vale:32;prism:30;ryth:29;varg:22;vendetta:22;stellar:21;ren:17;willow:16;tavi:14;cassi-and-issac:12;marcella:11
+732,42694b25-8177-41ad-bf44-55ca6ab8cc4a,CompleX,international,1035.4,532,255,277,cpp,1,ryth:27;vesper-vale:26;prism:25;varg:22;ren:19;stellar:19;vendetta:19;marcella:17;tavi:17;cassi-and-issac:13;willow:10
+733,432f7d69-cce1-48c4-a446-2b293aa210b9,decrest,international,1033.4,928,438,490,cpp,4,prism:50;marcella:49;tavi:40;vesper-vale:38;ryth:18;vendetta:18;stellar:7;varg:1
+734,76a5efdb-c5de-4dd1-9b87-7fe5c7ea7c7e,CHAOS,pending,1029.8,930,465,465,cpp,1,ryth:33;varg:24;prism:23;vendetta:23;vesper-vale:22;cassi-and-issac:18;marcella:18;stellar:18;ren:17;tavi:14;willow:13
+735,953e5c18-ec79-4305-bdb9-b6d27060ea51,jeanne d'arc,international,1013.4,1349,664,685,cpp,1,cassi-and-issac:50;varg:50;vendetta:50;ryth:46;tavi:34
+736,969f3a6c-5d94-4f4d-b2cc-5229a2116228,Mikolajki top riders,international,1002.2,629,288,341,python,1,cassi-and-issac:50;stellar:50;varg:50;tavi:40;vendetta:31
+737,af22c521-c196-4707-8622-440423a2249d,never doubt u cart tree,international,973.6,978,479,499,python,1,tavi:50;ryth:36;varg:31;stellar:23;cassi-and-issac:22;prism:15;vesper-vale:12;ren:9;willow:9;vendetta:7;heart-of-ruin:6;marcella:6
+738,626450a6-dab1-46a3-b4f4-0df7867e275f,Ding,pending,963.6,1375,678,697,cpp,3,vesper-vale:45;cassi-and-issac:40;vendetta:40;marcella:28;ryth:28;heart-of-ruin:8
+739,a8e32a1d-166c-4a1d-a553-a1de72b3afe9,PACK,uk,960.3,622,283,339,python,4,ryth:50;stellar:44;cassi-and-issac:41;varg:35;ren:31;vesper-vale:6;vendetta:5;tavi:4;willow:3;heart-of-ruin:2;prism:2
+740,96651d08-6c6a-4bfd-840a-fd0f6ad8445a,Electric Gem Thieves,pending,960.3,651,319,332,cpp,2,marcella:50;vendetta:50;vesper-vale:50;tavi:45;prism:38
+741,2bca35b4-e2e7-426e-baf8-d120eeb74e2e,FlashAttention,international,948.6,952,466,486,cpp,1,cassi-and-issac:50;stellar:50;varg:50;tavi:40;ren:30
+742,4071abee-a1ba-4b48-a68a-a6502edb767a,Gay Gem Collectors and Hafiz,international,945.8,1068,521,547,cpp,3,ryth:50;stellar:50;varg:50;vendetta:43;marcella:27;tavi:6
+743,5d468938-dc48-4c6a-8a7f-c3792b29c2c1,CambridgeHorde,international,914.5,267,129,138,cpp,1,marcella:50;varg:50;vendetta:50;ryth:45;ren:31
+744,696b1d16-c602-4e9e-8738-f6470aaa155a,we know ball,uk,910.8,886,423,463,cpp,2,vendetta:47;varg:45;prism:43;vesper-vale:37;tavi:28;marcella:9;stellar:7;cassi-and-issac:4;ryth:4;ren:3;heart-of-ruin:1;willow:1
+745,ca525ed9-8b4e-4421-b640-4fc9e0ac7925,Team name,non_student,902.4,1132,572,560,cpp,1,marcella:50;tavi:50;varg:50;ryth:43;vendetta:31
+746,e0d4f7f8-dee7-4b01-8b14-5ffbbf17d7f1,I like potatoes,international,866.8,996,533,463,python,3,cassi-and-issac:50;willow:37;tavi:36;ryth:24;marcella:14;ren:11;vendetta:10;prism:8;vesper-vale:7;varg:6;stellar:4;heart-of-ruin:3
+747,d9d6305d-6046-40f4-a8d8-2ea5ea60a551,BZN Studios,international,824.0,650,294,356,python,4,ryth:50;stellar:45;vesper-vale:45;varg:40;willow:31
+748,bdc8cf79-b772-425d-b76e-23a179685c77,QS62 inshallah,uk,655.7,634,322,312,cpp,1,varg:35;prism:12;heart-of-ruin:10;stellar:9;vesper-vale:9;cassi-and-issac:8;ryth:8;tavi:8;ren:7;vendetta:7;marcella:6;willow:3
+749,39553487-17db-47f2-98cc-11a53768d2df,Kingdom of Sun,uk,652.4,1290,549,741,rust,3,ryth:35;vendetta:35;vesper-vale:35;stellar:10;cassi-and-issac:8;varg:7;marcella:6;willow:5;heart-of-ruin:4;ren:4;tavi:3;prism:1
+750,89d60b52-073e-4078-a1f6-94662454e6a5,Detroit Builders,international,360.9,1197,217,980,python,4,varg:45;tavi:35;vendetta:35;vesper-vale:29;ryth:21
+751,5b3f14a6-4e45-4ece-8a51-99f22fff181b,Delphin,international,36.8,329,43,286,cpp,1,
+752,d8785896-7961-4da1-9200-5e048f3818da,i lost the game,uk,-110.7,640,38,602,python,1,
