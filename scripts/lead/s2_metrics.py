@@ -4,7 +4,7 @@
 Two uses:
   python3 s2_metrics.py local <dir with *.json>                -> metrics.csv in that dir (validation on local games)
   python3 s2_metrics.py fetch <ids.csv> [--out matchdb] [--keep] [--cambc PATH] -> runs `cambc matches summary <id> --json -o <out>/<id>.json`
-     for every match_id in ids.csv (needs `cambc login` once), appends rows to <out>/metrics.csv, deletes each JSON unless --keep.
+     for every match_id in ids.csv (needs `cambc login` once), appends rows to <out>/metrics.csv and one row per champion to <out>/champions.csv, deletes each JSON unless --keep.
      Resume-safe: ids already in metrics.csv are skipped. Waits and retries on HTTP 429 (up to 8 tries per match, 0.5 s between matches). Stops after 5 consecutive download failures.
 Columns: match_id, map, rounds, team (A|B), team_name, opp_name, won, gems_submitted, submissions, round_250, round_500, round_1000,
   gems_from_camps, gems_from_kills, gems_lost_to_champions, gems_lost_to_camps, deaths_by_champions, deaths_by_camps, kills,
@@ -40,6 +40,31 @@ COLS = ["match_id", "map", "rounds", "team", "team_name", "opp_name", "won", "ge
         "round_1000", "gems_from_camps", "gems_from_kills", "gems_lost_to_champions", "gems_lost_to_camps", "deaths_by_champions",
         "deaths_by_camps", "kills", "dead_rounds", "gold_earned", "gold_spent", "items_bought", "locks_bought", "crystals_bought",
         "wards", "dmg_to_champions", "dmg_to_monsters", "dmg_from_champions", "dmg_from_monsters", "picks"]
+
+
+CH_METRICS = ["assists", "championDamageDone", "championDamageTaken", "collectedGems", "deaths", "earnedGold", "gems", "gold",
+              "healingDone", "healingReceived", "kills", "monsterDamageDone", "monsterDamageTaken", "saleRefunds", "shieldingDone",
+              "spentGold", "submittedGems"]
+CH_COLS = ["match_id", "map", "rounds", "team", "team_name", "won", "champion", "draft_pick"] + CH_METRICS + ["items_bought", "consumables_bought"]
+
+
+def champ_rows(d, match_id="", names=None):
+    """One row per champion: its summary metrics and its purchases as 'item:quantity;...'."""
+    m = d["match"]; rounds = int(m.get("roundsCompleted") or 0)
+    pick = {c["id"]: c["draftPick"] for c in d["roster"]["champions"]}
+    out = []
+    for c in d["champions"]:
+        mt = c.get("metrics") or {}
+        row = dict(match_id=match_id, map=(names or {}).get("map", ""), rounds=rounds, team=c["team"][-1],
+                   team_name=(names or {}).get(c["team"], ""), won=int(m.get("outcome") == c["team"]), champion=c["name"],
+                   draft_pick=pick.get(c["id"], ""))
+        for k in CH_METRICS:
+            v = mt.get(k, ""); row[k] = round(v, 1) if isinstance(v, float) else v
+        row["items_bought"] = ";".join(f"{x.get('item')}:{x.get('quantity')}" for x in (c.get("itemsBought") or []) if isinstance(x, dict))
+        row["consumables_bought"] = ";".join(f"{x.get('consumable', x.get('item', ''))}:{x.get('quantity', 1)}" if isinstance(x, dict) else str(x)
+                                             for x in (c.get("consumablesBought") or []))
+        out.append(row)
+    return out
 
 
 def metrics(d, match_id="", names=None):
@@ -103,6 +128,12 @@ def main():
                 rows += metrics(json.load(open(os.path.join(d0, f))), f[:-5])
         with open(os.path.join(d0, "metrics.csv"), "w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=COLS); w.writeheader(); w.writerows(rows)
+        ch = []
+        for f in sorted(os.listdir(d0)):
+            if f.endswith(".json"):
+                ch += champ_rows(json.load(open(os.path.join(d0, f))), f[:-5])
+        with open(os.path.join(d0, "champions.csv"), "w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=CH_COLS); w.writeheader(); w.writerows(ch)
         print(f"{len(rows)} rows -> {os.path.join(d0, 'metrics.csv')}")
         return
     ids_csv = sys.argv[2]
@@ -118,6 +149,10 @@ def main():
     ids = list(csv.DictReader(open(ids_csv)))
     new = not os.path.exists(mpath)
     fh = open(mpath, "a", newline=""); w = csv.DictWriter(fh, fieldnames=COLS)
+    cpath = os.path.join(out, "champions.csv"); cnew = not os.path.exists(cpath)
+    ch = open(cpath, "a", newline=""); cw = csv.DictWriter(ch, fieldnames=CH_COLS)
+    if cnew:
+        cw.writeheader()
     if new:
         w.writeheader()
     fails = 0
@@ -141,15 +176,18 @@ def main():
             continue
         fails = 0
         names = {"map": r.get("map", ""), "teamA": r.get("team_a", ""), "teamB": r.get("team_b", "")}
-        for row in metrics(json.load(open(jp)), mid, names):
+        dj = json.load(open(jp))
+        for row in metrics(dj, mid, names):
             w.writerow(row)
-        fh.flush()
+        for row in champ_rows(dj, mid, names):
+            cw.writerow(row)
+        fh.flush(); ch.flush()
         if not keep:
             os.remove(jp)
         if (i + 1) % 50 == 0:
             print(f"[{i+1}/{len(ids)}] ok")
-    fh.close()
-    print(f"metrics in {mpath}")
+    fh.close(); ch.close()
+    print(f"metrics in {mpath} and {cpath}")
 
 
 if __name__ == "__main__":

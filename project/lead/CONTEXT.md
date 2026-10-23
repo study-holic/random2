@@ -105,6 +105,25 @@ Labels follow A2.11. Every result names engine, pool, build, sample, and opponen
 
 - prism best girl (rank 1) against Intercontinental Fish (rank 2), road_of_riches, match de5c7061, engine 1.0.3, 847 rounds. At round 847: gold 8,263 vs 3,368; gems tributed 1,033 vs 150; kills 32 vs 8. The winner's tribute line rises in steps from about round 100. One game; the summary fetch measures this across 500.
 
+## 3j. S2 measures, partial (MEASUREMENT and DERIVED; laptop fetch 1, 241 top-20 vs top-20 ranked games on 1.0.3, 31 of 40 maps; data/s2/S2-MEASURES.csv)
+
+| Medians per team-game, per 100 rounds | Top-20 winners | Top-20 losers | v5r vs starter (local) |
+|---|---|---|---|
+| Gems tributed | 91.2 | 42.6 | 59.3 |
+| Gems from camps | 90.3 | 57.9 | 62.1 |
+| Gems lost | 0.46 | 3.96 | 0.71 |
+| Deaths | 0.31 | 0.78 | 0.25 |
+| Gold earned | 740 | 425 | 425 |
+| Items bought | 26.8 | 16.1 | 14.7 |
+| Wards placed | 11.0 | 8.9 | 0 |
+| Camp damage dealt | 11,029 | 7,856 | 9,111 |
+| Camp damage taken per damage dealt | 0.230 | 0.258 | 0.393 |
+| Camp gems per 1,000 camp damage | 7.76 | 5.95 | 6.34 |
+| Rounds to 250 / 500 / 1,000 gems | 508 / 754 / 1,115 | 614 / 874 / none | 644 / 955 / 1,417 |
+
+- v5r takes 0.39 to 0.42 camp damage per point dealt in every local set (vs starter, vs v4, and as v5r-meta), against 0.23 to 0.26 for the top 20. Issac takes 0.89 per point dealt. Per-champion figures for top teams arrive with fetch 2 (champions.csv).
+- Top-20 games run 1,129 rounds (median); v5r's games against the starter run 1,734, so its per-100-round rates come from a longer, mostly uncontested game.
+
 ## 4. Baselines (MEASUREMENT, release builds, 40 maps, both seats, salt 0, sandbox)
 
 | Set | Engine | Result | Fuel overruns (bot) | Losses |
