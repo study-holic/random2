@@ -5,13 +5,13 @@ Two uses:
   python3 s2_metrics.py local <dir with *.json>                -> metrics.csv in that dir (validation on local games)
   python3 s2_metrics.py fetch <ids.csv> [--out matchdb] [--keep] [--cambc PATH] -> runs `cambc matches summary <id> --json -o <out>/<id>.json`
      for every match_id in ids.csv (needs `cambc login` once), appends rows to <out>/metrics.csv, deletes each JSON unless --keep.
-     Resume-safe: ids already in metrics.csv are skipped. Stops after 5 consecutive download failures and prints the last error.
+     Resume-safe: ids already in metrics.csv are skipped. Waits and retries on HTTP 429 (up to 8 tries per match, 0.5 s between matches). Stops after 5 consecutive download failures.
 Columns: match_id, map, rounds, team (A|B), team_name, opp_name, won, gems_submitted, submissions, round_250, round_500, round_1000,
   gems_from_camps, gems_from_kills, gems_lost_to_champions, gems_lost_to_camps, deaths_by_champions, deaths_by_camps, kills,
   dead_rounds (60 per death, capped at game end), gold_earned, gold_spent, items_bought, locks_bought, crystals_bought, wards,
   dmg_to_champions, dmg_to_monsters, dmg_from_champions, dmg_from_monsters, picks.
 """
-import csv, json, os, shutil, subprocess, sys, sysconfig, collections
+import csv, json, os, re, shutil, subprocess, sys, sysconfig, time, collections
 
 
 def find_cambc():
@@ -126,7 +126,14 @@ def main():
         if mid in done:
             continue
         jp = os.path.join(out, f"{mid}.json")
-        p = subprocess.run([cambc, "matches", "summary", mid, "--json", "-o", jp], capture_output=True, text=True)
+        for attempt in range(8):
+            p = subprocess.run([cambc, "matches", "summary", mid, "--json", "-o", jp], capture_output=True, text=True)
+            err = (p.stderr or p.stdout or "")
+            if p.returncode == 0 or "429" not in err:
+                break
+            m429 = re.search(r"retry after (\d+)", err)
+            time.sleep((int(m429.group(1)) if m429 else 2) + 2 * attempt)
+        time.sleep(0.5)
         if p.returncode != 0 or not os.path.exists(jp):
             fails += 1; print(f"[{i+1}/{len(ids)}] {mid} failed: {(p.stderr or p.stdout).strip()[:200]}")
             if fails >= 5:
