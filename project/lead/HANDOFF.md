@@ -11,7 +11,7 @@ Read with CAMBC-LEAD-PROMPT.md (version 10) and CONTEXT.md. LEDGER.md holds ever
 - S2 index done (chat 2): 31,220 ranked matches since 21 Oct 05:30 UTC for the top 20, UK top 8, Xanarchy, and MicroStella; tables pick_rates, team_drafts, finish_by_map, xanarchy_by_map. Chat 1's smaller index (22,465) is superseded; its pace figures and Monolith-altar finding stand in CONTEXT 3f.
 - S3 v1 done (chat 2): production model, calibration, v5r at 0.76 of top teams' production (12 maps under 0.6), sensitivities, k = 6 archetypes.
 - D1 (chat 1): the top-20 draft on v5r's role code gives 48/80 against v5r (pre-registered lines 49 and 31); deaths halve and pace rises 22 per cent head to head; 75/80 against the starter. Verdict for the grader.
-- F2 references (chat 1, running): v5r against the random2 panel (12 of 19 done, 835 of 960) and then the 9-bot competitor panel. Results exist in chat 1's sandbox and the next push.
+- F2 references (chat 1): v5r against the 19 random2 panel bots 1,284 of 1,520 (complete 11:29); the 9-bot competitor panel is running.
 
 ## Files
 
