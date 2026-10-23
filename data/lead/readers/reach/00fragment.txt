@@ -1,0 +1,2 @@
+msprobe: walk 6 groups 68 gems | 1-TP 0 groups 0 gems | unreachable 0 (0 gems)
+  altars walk: [(14, 5), (15, 24)]  1-TP: []

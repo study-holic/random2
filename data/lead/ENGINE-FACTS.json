@@ -1,0 +1,1083 @@
+{
+ "camp_base_stats": {
+  "elk": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 2400,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 375,
+    "range": 4,
+    "str": 60,
+    "str_g": 0,
+    "vision": 8
+   }
+  ],
+  "gem_cluster": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 120,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 805,
+    "range": 3,
+    "str": 0,
+    "str_g": 0,
+    "vision": 8
+   }
+  ],
+  "gold_cluster": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 120,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 1044,
+    "range": 3,
+    "str": 0,
+    "str_g": 0,
+    "vision": 8
+   }
+  ],
+  "golem": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 5000,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 13,
+    "range": 4,
+    "str": 120,
+    "str_g": 0,
+    "vision": 8
+   }
+  ],
+  "monolith": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 20000,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 32,
+    "range": 5,
+    "str": 200,
+    "str_g": 0,
+    "vision": 8
+   }
+  ],
+  "wolf": [
+   {
+    "foc": 1,
+    "foc_g": 0,
+    "hp": 1350,
+    "hp_g": 0,
+    "move": 1,
+    "n_camps": 472,
+    "range": 3,
+    "str": 20,
+    "str_g": 0,
+    "vision": 8
+   }
+  ]
+ },
+ "champion": {
+  "cassi": {
+   "a1": {
+    "cd": 8,
+    "excl_move": true,
+    "kind": "damage",
+    "mod": 2,
+    "range": 4,
+    "targets": 3
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": false,
+    "kind": "cc",
+    "mod": 0,
+    "range": 4,
+    "targets": 3
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 70,
+    "foc_g": 13,
+    "hp": 600,
+    "hp_g": 65,
+    "move": 1,
+    "range": 3,
+    "str": 30,
+    "str_g": 3,
+    "vision": 8
+   },
+   "passive": "none",
+   "type": "cassi"
+  },
+  "heart_of_ruin": {
+   "a1": {
+    "cd": 8,
+    "dur": 5,
+    "excl_move": false,
+    "kind": "shield",
+    "mod": 1.5,
+    "range": 4,
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": false,
+    "kind": "dash",
+    "mod": 1.5,
+    "radius": 1,
+    "range": 2,
+    "targets": 16
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 12,
+    "hp": 1000,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 30,
+    "str_g": 3.5,
+    "vision": 8
+   },
+   "passive": "missing_health_damage",
+   "type": "heart_of_ruin"
+  },
+  "issac": {
+   "a1": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": false,
+    "kind": "dash",
+    "mod": 0,
+    "radius": 0,
+    "range": 2,
+    "targets": 16
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 10,
+    "hp": 900,
+    "hp_g": 80,
+    "move": 1,
+    "range": 1,
+    "str": 40,
+    "str_g": 3,
+    "vision": 8
+   },
+   "passive": "none",
+   "type": "issac"
+  },
+  "marcella": {
+   "a1": {
+    "cd": 8,
+    "enhanced": true,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "excl_move": true,
+    "kind": "damage",
+    "mod": 2,
+    "range": 4,
+    "targets": 3
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 60,
+    "foc_g": 15,
+    "hp": 1200,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 45,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "stun_immunity",
+   "type": "marcella"
+  },
+  "prism": {
+   "a1": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": true,
+    "kind": "cc",
+    "mod": 1.5,
+    "range": 4,
+    "targets": 3
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": true,
+    "kind": "aoe_damage",
+    "mod": 1,
+    "radius": 1,
+    "range": 4,
+    "targets": 19
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 80,
+    "foc_g": 8,
+    "hp": 700,
+    "hp_g": 60,
+    "move": 1,
+    "range": 3,
+    "str": 35,
+    "str_g": 2.5,
+    "vision": 8
+   },
+   "passive": "gem_focus",
+   "type": "prism"
+  },
+  "ren": {
+   "a1": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": true,
+    "kind": "cc",
+    "mod": 0.75,
+    "range": 4,
+    "targets": 3
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": false,
+    "kind": "dash",
+    "mod": 0,
+    "radius": 0,
+    "range": 2,
+    "targets": 16
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 9,
+    "hp": 900,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 35,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "retaliation",
+   "type": "ren"
+  },
+  "ryth": {
+   "a1": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": true,
+    "kind": "aoe_damage",
+    "mod": 1,
+    "radius": 1,
+    "range": 4,
+    "targets": 19
+   },
+   "a2": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 10,
+    "hp": 1200,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 45,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "health_strength",
+   "type": "ryth"
+  },
+  "stellar": {
+   "a1": {
+    "cd": 8,
+    "excl_move": true,
+    "kind": "damage",
+    "mod": 2,
+    "range": 4,
+    "targets": 3
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": true,
+    "kind": "aoe_damage",
+    "mod": 1.4,
+    "radius": 1,
+    "range": 4,
+    "targets": 19
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 70,
+    "foc_g": 7,
+    "hp": 650,
+    "hp_g": 65,
+    "move": 1,
+    "range": 3,
+    "str": 30,
+    "str_g": 3.5,
+    "vision": 8
+   },
+   "passive": "none",
+   "type": "stellar"
+  },
+  "tavi": {
+   "a1": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 1,
+    "excl_move": true,
+    "kind": "cc",
+    "mod": 1.4,
+    "range": 4,
+    "targets": 3
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 110,
+    "foc_g": 10,
+    "hp": 900,
+    "hp_g": 75,
+    "move": 1,
+    "range": 3,
+    "str": 45,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "remote_shop",
+   "type": "tavi"
+  },
+  "varg": {
+   "a1": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 5,
+    "excl_move": false,
+    "kind": "shield",
+    "mod": 2.5,
+    "range": 4,
+    "targets": 8
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 10,
+    "hp": 1000,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 40,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "splash_attack",
+   "type": "varg"
+  },
+  "vendetta": {
+   "a1": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": false,
+    "kind": "dash",
+    "mod": 0,
+    "radius": 0,
+    "range": 2,
+    "targets": 16
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 10,
+    "hp": 1000,
+    "hp_g": 100,
+    "move": 1,
+    "range": 1,
+    "str": 70,
+    "str_g": 6,
+    "vision": 8
+   },
+   "passive": "reset_cooldowns_on_kill",
+   "type": "vendetta"
+  },
+  "vesper_vale": {
+   "a1": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "a2": {
+    "cd": 8,
+    "dur": 0,
+    "excl_move": false,
+    "kind": "dash",
+    "mod": 0,
+    "radius": 0,
+    "range": 2,
+    "targets": 16
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 100,
+    "foc_g": 10,
+    "hp": 1000,
+    "hp_g": 100,
+    "move": 1,
+    "range": 3,
+    "str": 55,
+    "str_g": 5,
+    "vision": 8
+   },
+   "passive": "bonus_gold",
+   "type": "vesper_vale"
+  },
+  "willow": {
+   "a1": {
+    "cd": 8,
+    "excl_move": false,
+    "kind": "heal",
+    "mod": 3,
+    "range": 4,
+    "targets": 4
+   },
+   "a2": {
+    "cd": 8,
+    "enhanced": false,
+    "excl_move": false,
+    "kind": "attack_reset",
+    "targets": 8
+   },
+   "base": {
+    "camp_mult": 1,
+    "foc": 120,
+    "foc_g": 5,
+    "hp": 700,
+    "hp_g": 50,
+    "move": 1,
+    "range": 3,
+    "str": 55,
+    "str_g": 3,
+    "vision": 8
+   },
+   "passive": "none",
+   "type": "willow"
+  }
+ },
+ "consumable": {
+  "altar_lock": {
+   "carry": 1,
+   "cost": 10,
+   "type": "altar_lock"
+  },
+  "tp_crystal": {
+   "carry": 1,
+   "cost": 10,
+   "type": "tp_crystal"
+  }
+ },
+ "item": {
+  "bruiser_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 1,
+   "type": "bruiser_emblem_of_focus"
+  },
+  "bruiser_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 1,
+   "hp": 5,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 1,
+   "type": "bruiser_emblem_of_health"
+  },
+  "bruiser_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 1,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 5,
+   "type": "bruiser_emblem_of_strength"
+  },
+  "bruiser_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "bruiser_emblem_of_focus",
+   "str": 0,
+   "type": "bruiser_shard_of_focus"
+  },
+  "bruiser_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "bruiser_emblem_of_health",
+   "str": 0,
+   "type": "bruiser_shard_of_health"
+  },
+  "bruiser_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "bruiser_emblem_of_strength",
+   "str": 1,
+   "type": "bruiser_shard_of_strength"
+  },
+  "durability_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 0,
+   "mag": 0.1,
+   "passive": "durability",
+   "result": null,
+   "str": 0,
+   "type": "durability_emblem_of_focus"
+  },
+  "durability_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 5,
+   "mag": 0.1,
+   "passive": "durability",
+   "result": null,
+   "str": 0,
+   "type": "durability_emblem_of_health"
+  },
+  "durability_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0.1,
+   "passive": "durability",
+   "result": null,
+   "str": 5,
+   "type": "durability_emblem_of_strength"
+  },
+  "durability_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "durability_emblem_of_focus",
+   "str": 0,
+   "type": "durability_shard_of_focus"
+  },
+  "durability_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "durability_emblem_of_health",
+   "str": 0,
+   "type": "durability_shard_of_health"
+  },
+  "durability_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "durability_emblem_of_strength",
+   "str": 1,
+   "type": "durability_shard_of_strength"
+  },
+  "home_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 0,
+   "mag": 0.5,
+   "passive": "home",
+   "result": null,
+   "str": 0,
+   "type": "home_emblem_of_focus"
+  },
+  "home_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 5,
+   "mag": 0.5,
+   "passive": "home",
+   "result": null,
+   "str": 0,
+   "type": "home_emblem_of_health"
+  },
+  "home_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0.5,
+   "passive": "home",
+   "result": null,
+   "str": 5,
+   "type": "home_emblem_of_strength"
+  },
+  "home_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "home_emblem_of_focus",
+   "str": 0,
+   "type": "home_shard_of_focus"
+  },
+  "home_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "home_emblem_of_health",
+   "str": 0,
+   "type": "home_shard_of_health"
+  },
+  "home_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "home_emblem_of_strength",
+   "str": 1,
+   "type": "home_shard_of_strength"
+  },
+  "jungle_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 0,
+   "mag": 0.3,
+   "passive": "jungle",
+   "result": null,
+   "str": 0,
+   "type": "jungle_emblem_of_focus"
+  },
+  "jungle_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 5,
+   "mag": 0.3,
+   "passive": "jungle",
+   "result": null,
+   "str": 0,
+   "type": "jungle_emblem_of_health"
+  },
+  "jungle_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0.3,
+   "passive": "jungle",
+   "result": null,
+   "str": 5,
+   "type": "jungle_emblem_of_strength"
+  },
+  "jungle_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "jungle_emblem_of_focus",
+   "str": 0,
+   "type": "jungle_shard_of_focus"
+  },
+  "jungle_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "jungle_emblem_of_health",
+   "str": 0,
+   "type": "jungle_shard_of_health"
+  },
+  "jungle_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "jungle_emblem_of_strength",
+   "str": 1,
+   "type": "jungle_shard_of_strength"
+  },
+  "monster_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 0,
+   "mag": 0.1,
+   "passive": "monster",
+   "result": null,
+   "str": 0,
+   "type": "monster_emblem_of_focus"
+  },
+  "monster_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 5,
+   "mag": 0.1,
+   "passive": "monster",
+   "result": null,
+   "str": 0,
+   "type": "monster_emblem_of_health"
+  },
+  "monster_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0.1,
+   "passive": "monster",
+   "result": null,
+   "str": 5,
+   "type": "monster_emblem_of_strength"
+  },
+  "monster_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "monster_emblem_of_focus",
+   "str": 0,
+   "type": "monster_shard_of_focus"
+  },
+  "monster_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "monster_emblem_of_health",
+   "str": 0,
+   "type": "monster_shard_of_health"
+  },
+  "monster_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "monster_emblem_of_strength",
+   "str": 1,
+   "type": "monster_shard_of_strength"
+  },
+  "power_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 6,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 0,
+   "type": "power_emblem_of_focus"
+  },
+  "power_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 6,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 0,
+   "type": "power_emblem_of_health"
+  },
+  "power_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": null,
+   "str": 6,
+   "type": "power_emblem_of_strength"
+  },
+  "power_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "power_emblem_of_focus",
+   "str": 0,
+   "type": "power_shard_of_focus"
+  },
+  "power_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "power_emblem_of_health",
+   "str": 0,
+   "type": "power_shard_of_health"
+  },
+  "power_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "power_emblem_of_strength",
+   "str": 1,
+   "type": "power_shard_of_strength"
+  },
+  "treasure_emblem_of_focus": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 5,
+   "hp": 0,
+   "mag": 0.2,
+   "passive": "treasure",
+   "result": null,
+   "str": 0,
+   "type": "treasure_emblem_of_focus"
+  },
+  "treasure_emblem_of_health": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 5,
+   "mag": 0.2,
+   "passive": "treasure",
+   "result": null,
+   "str": 0,
+   "type": "treasure_emblem_of_health"
+  },
+  "treasure_emblem_of_strength": {
+   "buyable": false,
+   "combine": 0,
+   "cost": 150,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0.2,
+   "passive": "treasure",
+   "result": null,
+   "str": 5,
+   "type": "treasure_emblem_of_strength"
+  },
+  "treasure_shard_of_focus": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 1,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "treasure_emblem_of_focus",
+   "str": 0,
+   "type": "treasure_shard_of_focus"
+  },
+  "treasure_shard_of_health": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 1,
+   "mag": 0,
+   "passive": null,
+   "result": "treasure_emblem_of_health",
+   "str": 0,
+   "type": "treasure_shard_of_health"
+  },
+  "treasure_shard_of_strength": {
+   "buyable": true,
+   "combine": 5,
+   "cost": 30,
+   "foc": 0,
+   "hp": 0,
+   "mag": 0,
+   "passive": null,
+   "result": "treasure_emblem_of_strength",
+   "str": 1,
+   "type": "treasure_shard_of_strength"
+  }
+ },
+ "passive_constants": {
+  "heart_of_ruin_missing_health_damage_max_bonus": 0.5,
+  "marcella_gold_per_gem": 2,
+  "prism_focus_per_gem": 1.5,
+  "ren_retaliation_focus_ratio": 0.2,
+  "ryth_health_strength_ratio": 0.01,
+  "varg_splash_radius": 1,
+  "vesper_bonus_gold_percent": 33
+ },
+ "provenance": {
+  "cli": "cambc 3.0.5",
+  "engine": "1.0.3",
+  "label": "KNOWN (engine output)",
+  "sdk": "3.0.5",
+  "source": "census bot (bots/census) on all 40 platform maps, 23 Oct 2026"
+ },
+ "settings": {
+  "active_wards": 1,
+  "altar_lock_hits": 5,
+  "assist_gold": 0,
+  "camp_sleep_time": 2,
+  "capture_time": 5,
+  "control_ward_placement_radius": 2,
+  "control_ward_vision_radius": 6,
+  "draft_memory_bytes": 1024,
+  "kill_gold": 100,
+  "max_rounds": 2000,
+  "passive_gold": 0,
+  "recall_time": 5,
+  "respawn_time": 60,
+  "shared_memory_bytes": 8,
+  "spawn_healing": 1,
+  "submit_base": 0,
+  "submit_min": 1,
+  "submit_mult": 0.1,
+  "submit_range": 1,
+  "tile_reveal_rounds": 1,
+  "tp_crystal_time": 3,
+  "ward_charges": 1,
+  "ward_cooldown": 10,
+  "ward_lifetime": -1,
+  "ward_placement_radius": 2,
+  "ward_vision_radius": 6,
+  "winning_gems": 1000
+ }
+}

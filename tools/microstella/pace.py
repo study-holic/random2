@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """pace.py <bot> [opp=v20] [maps...]: run bot vs opp both sides on the 01 maps, print gems@300/@600, first tribute, deaths, winner."""
+import os
+WS = os.environ.get('CAMBC_WS', os.getcwd())  # workspace root (folder with bots/, maps/, cambc.toml)
+def MP(m):  # platform map files use hyphens (01big-world); random2/maps and older lists use underscores
+    for c in (m, m.replace('_', '-')):
+        if os.path.exists(f'{WS}/maps/{c}.map26a'): return f'{WS}/maps/{c}.map26a'
+    return f'{WS}/maps/{m}.map26a'
 import sys, os, json, subprocess, glob
 bot=sys.argv[1]; opp=sys.argv[2] if len(sys.argv)>2 else 'v20'
 maps=sys.argv[3:] or ['01big_world','01broken_curve','01concentrated_wealth','01corridors','01elk_arena','01fracture','01gold_rush','01hooks','01islands','00interlock']
@@ -10,7 +16,7 @@ with open(man,'w') as f:
         for side,(a,b) in (('A',(bot,opp)),('B',(opp,bot))):
             r=f'{out}/{m}-{side}.repl26a'
             if os.path.exists(r+'.json'): continue
-            f.write(f'/home/claude/bc/bots/{a} /home/claude/bc/bots/{b} /home/claude/bc/maps/{m}.map26a /home/claude/bc/{r} --statistics /home/claude/bc/{r}.json --json\n')
+            f.write(f'{WS}/bots/{a} {WS}/bots/{b} {MP(m)} {WS}/{r} --statistics {WS}/{r}.json --json\n')
 if os.path.getsize(man)>0:
     subprocess.run(['cambc','run-batch',man,'--jobs','2','--release','--json'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 def stats(path, team):
