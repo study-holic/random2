@@ -1,6 +1,6 @@
 # CAMBC 2026: lead prompt for the web chat
 
-Version 9, Fri 23 Oct 2026, 08:00 BST. Part A sets how you work. Part B holds the starting knowledge, labelled under rule A2.11.
+Version 10, Fri 23 Oct 2026, 08:00 BST. Part A sets how you work. Part B holds the starting knowledge, labelled under rule A2.11.
 
 ## Part A. Instructions
 
@@ -72,7 +72,7 @@ Target times are editable by Xans; the Sprint 2 lock (Sat 24 Oct, 23:59) bounds 
   - whether one player may belong to two teams, whether a team formed now can enter Sprint 2 and the final, and any rule on code shared between teams;
   - announced balance changes.
 - Set up the engine (A2.2).
-- Match database (A4): get from Xans the link URLs of one day's replay and summary parts; test whether the file host answers a 16-byte HTTP range request with status 206; and convert one summary with `cambc summary` to list its fields. Whether summaries carry team ids, the map, drafts, per-team gems, and the final round is OPEN until then.
+- Match database (A4): get from Xans the download URL of one part (replay parts are named replays-YYYY-MM-DD-partN.zip; summary part names are OPEN); test whether the file host answers a 16-byte HTTP range request with status 206; and convert one summary with `cambc summary` to list its fields. Whether summaries carry team ids, the map, drafts, per-team gems, the final round, and the start time is OPEN until then.
 - MicroStella's tools sit in random2/tools/microstella (README there; its bots carry the ms- prefix in random2). pace.py writes absolute paths under /home/claude/bc; change that prefix to the workspace.
 - Baselines on engine 1.0.2, 40 maps, both sides, release builds: F1 for v4, v5r, and v22; v5r against v22; and v22 against v4.
 - Put the A2.8, A2.21, and A2.22 decisions to Xans, with a recommendation for the live Xanarchy build drawn from the baselines.
@@ -100,8 +100,8 @@ Target times are editable by Xans; the Sprint 2 lock (Sat 24 Oct, 23:59) bounds 
 - Metrics source. Check what `cambc run --statistics --json` (local games), `cambc summary` (a downloaded summary; no login), and `cambc matches summary` (a platform game; login) report before using a decoder. random2/tools/decode (ladder replays) and tools/replay (final.mjs, extract.mjs) cover the remaining fields after a check: decode three games, watch them, and match gems, deaths, and score with the platform record. A decoder artefact (a recall share) misled us before. Replays decoded before 20 Oct use the pre-1.0 format.
 - Data set, for games since patch 1.0.2 (Wed 21 Oct, about 06:30 BST):
   - Index: from the platform API (scraper), the match UUID, day, map, teams, ratings, and ranked flag of every game involving the top 20, teams within 100 points of our rating, Xanarchy, or MicroStella.
-  - Fetch: the indexed entries from the match database. With range support, read each part's central directory and then the indexed entries alone (the Python package remotezip does both). A summary averages about 27 KB and a replay about 25 KB (DERIVED: 4.58 GiB over 169,225 summaries, and 4.28 GiB of replays, on 22 Oct), so 2,000 games cost about 100 MB. Without range support, the cloud runner or Xans's laptop downloads one part at a time, extracts the indexed entries, and deletes the part.
-  - Population tables: when summaries carry team ids and the map, one streaming pass over every summary since 1.0.2 yields drafts, pick rates, and win rates by map and rating band. A full day costs about 16.5 GiB of download, so the pass runs on the cloud runner or the laptop, and this chat receives the aggregate tables alone, each under 1 MB.
+  - Fetch: the indexed entries from the match database. Entries are named by match UUID, and the part holding a given UUID is unknown in advance. With range support, read the central directory of each part (about 2.5 MB for 23,400 entries, so about 60 MB per day; DERIVED at about 110 bytes per record), map each indexed UUID to its part, and fetch those entries alone; the Python package remotezip does both reads. A replay averages about 31 KiB and a summary about 34 KiB (DERIVED: 15.35 GiB over 505,571 replays, and 16.50 GiB of summaries, on 21 Oct), so 2,000 games cost about 130 MB. Without range support, the cloud runner or Xans's laptop downloads one part at a time, extracts the indexed entries, and deletes the part. The 21 Oct parts mix engines 1.0.1 and 1.0.2, so the index's start times set the cut.
+  - Population tables: when summaries carry team ids and the map, one streaming pass over every summary since 1.0.2 yields drafts, pick rates, and win rates by map and rating band. A full day holds about 505,000 matches and 16.5 GiB of summaries, so the pass runs on the cloud runner or the laptop, and this chat receives the aggregate tables alone, each under 1 MB.
   - Raw downloads go to matchdb/, which .gitignore excludes.
 - Measure, on a stated sample of top-20 games and of our ranked losses, per team per game:
   - gems acquired by source (each camp type and kills), tributed, lost to kills, and lost to camps;
@@ -137,7 +137,7 @@ Target times are editable by Xans; the Sprint 2 lock (Sat 24 Oct, 23:59) bounds 
 | `cambc match-groups create` | five unranked games of the live submission against a chosen team | draws on the team's shared quota |
 | `cambc view`, `cambc mapeditor` | replay visualiser and map viewer | headless under Playwright where the sandbox allows (A2.20) |
 | Scraper, ranked | listings, ratings, drafts, results, and replays for any team | the listing cache goes stale; move it aside before a refetch |
-| Match database (platform website) | daily ZIP parts of the binary replays and CAMSTAT summaries of every public completed match, named by match UUID; replays carry no debug data or bot output; no team download quota | about 0.7 GiB per part; 21 Oct: 22 parts, 15.35 GiB of replays and 16.50 GiB of summaries; 22 Oct: 534,699 matches; summaries mostly absent before 17 Oct; days in Europe/London time |
+| Match database (platform website) | daily ZIP parts of the binary replays (replays-YYYY-MM-DD-partN.zip) and CAMSTAT summaries of every public completed match with a replay, each entry named by match UUID; replays carry no debug data or bot output; summary parts may hold fewer entries; no team download quota; finished parts of the current day download while later parts build | from 20 Oct, about 727 MiB and 23,400 entries per replay part; 21 Oct: 505,571 matches in 22 parts (15.35 GiB of replays, 16.50 GiB of summaries); 22 Oct: 534,699 matches; summaries mostly absent before 17 Oct; days in Europe/London time |
 | study-holic/random2 | every Xanarchy bot (starter-cpp included), MicroStella v20 to v22 and its probe bots (ms-*), the archetype sparring bots, tools/maps21, tools/decode, tools/replay, tools/microstella, scripts/gate.py, mapgate.py, and preflight | MicroStella sources need building; the archetype bots predate SDK 3.0; the 18 to 22 Oct raw data sit in branch archive-full-2026-10-22 |
 | Cloud runner | large batches | one session; cap set at G0 |
 | Discord | rulings, quirks, and strategy talk | Xans reads and pastes |
