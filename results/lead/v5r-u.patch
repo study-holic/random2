@@ -1,0 +1,12 @@
+diff -ru ws305/bots/v5r/src/a/mapid.h ws305/bots/v5r-u/src/a/mapid.h
+--- ws305/bots/v5r/src/a/mapid.h	2026-10-23 07:58:29.041881690 +0100
++++ ws305/bots/v5r-u/src/a/mapid.h	2026-10-23 09:10:38.773013728 +0100
+@@ -143,7 +143,7 @@
+         try {
+             const int W = cambc::map::width(), H = cambc::map::height();
+             const int ng = needs_groups(W, H) ? static_cast<int>(cached_groups().size()) : -1;
+-            return identify_e1(W, H, ng);
++            (void)ng; return MapId::unknown;   // FORCED UNKNOWN (held-out proxy, lead chat 23 Oct)
+         }
+         catch (...) { return MapId::unknown; }
+     }();

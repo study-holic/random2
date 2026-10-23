@@ -1,0 +1,56 @@
+rank,team,patch,team_games,wins,modal_5_draft,modal_share,picks
+1,prism best girl,1.0.2,375,315,heart_of_ruin;marcella;prism;ryth;vesper_vale,0.842,prism:1.0;marcella:0.9;vesper_vale:0.89;heart_of_ruin:0.83;ryth:0.74;vendetta:0.17
+1,prism best girl,1.0.3,765,476,heart_of_ruin;marcella;prism;ryth;vesper_vale,0.533,prism:1.0;vesper_vale:0.92;marcella:0.86;heart_of_ruin:0.79;ryth:0.49;vendetta:0.38;ren:0.02
+2,Intercontinental Fish,1.0.2,765,453,cassi_and_issac;heart_of_ruin;ren;ryth;stellar,0.928,ren:1.0;stellar:1.0;heart_of_ruin:0.98;cassi_and_issac:0.78;ryth:0.58;prism:0.03;varg:0.02;vendetta:0.02
+2,Intercontinental Fish,1.0.3,765,536,cassi_and_issac;heart_of_ruin;ryth;vendetta;vesper_vale,0.813,heart_of_ruin:1.0;vendetta:0.99;vesper_vale:0.99;cassi_and_issac:0.82;ryth:0.53;varg:0.14;stellar:0.01;ren:0.01
+3,:3,1.0.2,760,394,heart_of_ruin;marcella;prism;vendetta;vesper_vale,0.386,heart_of_ruin:0.94;vesper_vale:0.92;vendetta:0.74;marcella:0.54;prism:0.48;ryth:0.29;ren:0.26;varg:0.14;stellar:0.1;tavi:0.06
+3,:3,1.0.3,765,401,heart_of_ruin;marcella;prism;vendetta;vesper_vale,0.548,vesper_vale:1.0;heart_of_ruin:0.87;marcella:0.71;vendetta:0.71;prism:0.7;ryth:0.34;tavi:0.13;stellar:0.02;ren:0.02
+4,policy wonk,1.0.2,765,412,marcella;ryth;tavi;vesper_vale;willow,0.977,vesper_vale:1.0;marcella:0.99;tavi:0.99;willow:0.84;ryth:0.62;stellar:0.01;ren:0.01;prism:0.01
+4,policy wonk,1.0.3,765,357,marcella;ryth;tavi;vesper_vale;willow,0.853,vesper_vale:1.0;tavi:1.0;marcella:0.98;willow:0.85;ryth:0.58;heart_of_ruin:0.08;prism:0.02
+5,procless,1.0.2,765,447,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.962,heart_of_ruin:1.0;vesper_vale:0.95;ryth:0.86;marcella:0.81;vendetta:0.75;ren:0.05;stellar:0.03
+5,procless,1.0.3,765,391,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,vesper_vale:1.0;heart_of_ruin:1.0;marcella:0.84;ryth:0.84;vendetta:0.78
+6,Univardisty of Shingtonwash,1.0.2,760,549,heart_of_ruin;marcella;varg;vendetta;vesper_vale,0.326,marcella:0.84;heart_of_ruin:0.84;vesper_vale:0.54;varg:0.53;ryth:0.5;stellar:0.44;vendetta:0.32;tavi:0.23;prism:0.1;cassi_and_issac:0.08;ren:0.05;willow:0.01
+6,Univardisty of Shingtonwash,1.0.3,765,365,heart_of_ruin;marcella;varg;vendetta;vesper_vale,0.621,heart_of_ruin:1.0;marcella:1.0;vesper_vale:0.9;varg:0.5;vendetta:0.46;ryth:0.37;tavi:0.24
+7,hello,1.0.2,765,374,marcella;ryth;tavi;vendetta;vesper_vale,0.709,marcella:1.0;ryth:0.73;vendetta:0.58;tavi:0.57;vesper_vale:0.47;heart_of_ruin:0.43;ren:0.27;cassi_and_issac:0.23;varg:0.11;prism:0.11;willow:0.01;stellar:0.0
+7,hello,1.0.3,765,394,marcella;ryth;tavi;vendetta;vesper_vale,1.0,marcella:1.0;ryth:0.82;vesper_vale:0.8;tavi:0.77;vendetta:0.77;heart_of_ruin:0.23;cassi_and_issac:0.03;varg:0.03;ren:0.02
+8,Trzy Kwaterki,1.0.2,765,369,cassi_and_issac;marcella;ryth;vendetta;vesper_vale,0.814,marcella:1.0;vendetta:0.86;ryth:0.85;cassi_and_issac:0.73;vesper_vale:0.56;heart_of_ruin:0.17;stellar:0.14;ren:0.11;tavi:0.06
+8,Trzy Kwaterki,1.0.3,765,365,cassi_and_issac;marcella;ryth;vendetta;vesper_vale,0.743,marcella:1.0;vendetta:1.0;ryth:1.0;vesper_vale:0.84;cassi_and_issac:0.51;heart_of_ruin:0.16;prism:0.02
+9,Pantheon,1.0.2,765,368,heart_of_ruin;marcella;ryth;stellar;vesper_vale,1.0,heart_of_ruin:1.0;vesper_vale:1.0;marcella:1.0;ryth:0.81;stellar:0.63
+9,Pantheon,1.0.3,765,374,heart_of_ruin;marcella;prism;ryth;vesper_vale,0.45,vesper_vale:1.0;marcella:0.89;prism:0.84;heart_of_ruin:0.81;ryth:0.53;vendetta:0.33;stellar:0.09
+10,new team(4),1.0.2,765,371,heart_of_ruin;ryth;stellar;tavi;varg,0.489,heart_of_ruin:1.0;ryth:0.8;varg:0.67;stellar:0.61;vesper_vale:0.35;marcella:0.33;prism:0.32;tavi:0.32;cassi_and_issac:0.1
+10,new team(4),1.0.3,765,376,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.952,heart_of_ruin:1.0;vesper_vale:1.0;marcella:1.0;ryth:0.84;vendetta:0.62;prism:0.04
+11,Zarzorki,1.0.2,760,381,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.79,heart_of_ruin:1.0;marcella:0.9;vesper_vale:0.83;ryth:0.77;vendetta:0.56;ren:0.18;varg:0.1;stellar:0.09
+11,Zarzorki,1.0.3,765,380,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,vesper_vale:1.0;heart_of_ruin:1.0;marcella:1.0;ryth:0.85;vendetta:0.67
+12,print dont int,1.0.2,760,383,heart_of_ruin;ren;ryth;stellar;varg,0.914,heart_of_ruin:1.0;stellar:0.9;ryth:0.84;varg:0.76;ren:0.73;vesper_vale:0.1;vendetta:0.08;tavi:0.07
+12,print dont int,1.0.3,765,402,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.633,vesper_vale:1.0;heart_of_ruin:1.0;ryth:0.87;vendetta:0.87;marcella:0.51;tavi:0.28
+13,Sponge(Albert and Bob),1.0.2,765,386,heart_of_ruin;marcella;ren;ryth;vendetta,0.681,heart_of_ruin:1.0;ryth:1.0;vendetta:0.97;marcella:0.75;ren:0.45;willow:0.23;stellar:0.03;varg:0.02
+13,Sponge(Albert and Bob),1.0.3,765,366,heart_of_ruin;marcella;ryth;vendetta;willow,0.863,heart_of_ruin:1.0;ryth:1.0;vendetta:0.95;willow:0.73;marcella:0.65;vesper_vale:0.09;varg:0.02;stellar:0.02;ren:0.02
+14,EMPEROR Tung,1.0.2,760,382,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.895,marcella:0.89;heart_of_ruin:0.89;ryth:0.85;vesper_vale:0.77;vendetta:0.68;tavi:0.12;ren:0.11;stellar:0.1;varg:0.06
+14,EMPEROR Tung,1.0.3,765,358,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,marcella:1.0;heart_of_ruin:0.88;vesper_vale:0.88;ryth:0.85;vendetta:0.75;tavi:0.12
+15,NEETCoders,1.0.2,765,378,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.504,vendetta:0.91;heart_of_ruin:0.74;vesper_vale:0.71;ryth:0.58;marcella:0.53;stellar:0.35;cassi_and_issac:0.26;varg:0.21;tavi:0.09;ren:0.09
+15,NEETCoders,1.0.3,765,386,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.546,vendetta:1.0;vesper_vale:0.78;heart_of_ruin:0.72;marcella:0.61;ryth:0.56;stellar:0.28;cassi_and_issac:0.28;varg:0.18;tavi:0.05
+16,Let's LARP again,1.0.2,760,389,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.606,heart_of_ruin:0.99;ryth:0.85;marcella:0.76;vesper_vale:0.59;vendetta:0.54;ren:0.32;varg:0.22;stellar:0.2
+16,Let's LARP again,1.0.3,765,371,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.998,marcella:1.0;vendetta:1.0;heart_of_ruin:0.86;ryth:0.86;vesper_vale:0.81;varg:0.0;stellar:0.0;ren:0.0
+17,subscribe to caterpillow,1.0.2,690,413,heart_of_ruin;marcella;ryth;varg;vesper_vale,1.0,varg:1.0;vesper_vale:1.0;heart_of_ruin:1.0;marcella:0.83;ryth:0.63
+17,subscribe to caterpillow,1.0.3,765,395,heart_of_ruin;marcella;ryth;varg;vesper_vale,1.0,heart_of_ruin:1.0;varg:1.0;vesper_vale:1.0;marcella:0.83;ryth:0.65
+18,Noobot,1.0.2,760,404,cassi_and_issac;marcella;ryth;stellar;tavi,0.421,ryth:0.98;marcella:0.86;tavi:0.83;cassi_and_issac:0.71;stellar:0.39;vesper_vale:0.27;vendetta:0.21;prism:0.14;varg:0.08;ren:0.0
+18,Noobot,1.0.3,765,396,marcella;ryth;tavi;vesper_vale;willow,0.779,vesper_vale:1.0;marcella:1.0;ryth:1.0;tavi:0.65;willow:0.65;vendetta:0.17;cassi_and_issac:0.02;heart_of_ruin:0.0
+19,FürFortnite,1.0.2,760,362,cassi_and_issac;heart_of_ruin;marcella;ryth;vesper_vale,0.644,heart_of_ruin:0.99;marcella:0.86;ryth:0.83;cassi_and_issac:0.62;vesper_vale:0.43;stellar:0.37;ren:0.37;varg:0.01;tavi:0.01;vendetta:0.01
+19,FürFortnite,1.0.3,765,385,cassi_and_issac;heart_of_ruin;marcella;ryth;vesper_vale,0.615,marcella:0.96;heart_of_ruin:0.93;ryth:0.9;vesper_vale:0.75;cassi_and_issac:0.6;stellar:0.18;tavi:0.07;willow:0.06;varg:0.03
+20,dromedaries,1.0.2,765,425,cassi_and_issac;heart_of_ruin;marcella;ryth;willow,0.59,heart_of_ruin:1.0;cassi_and_issac:0.81;ryth:0.8;willow:0.59;marcella:0.55;ren:0.26;stellar:0.25;vesper_vale:0.16;vendetta:0.09
+20,dromedaries,1.0.3,765,393,cassi_and_issac;heart_of_ruin;marcella;ryth;willow,0.901,heart_of_ruin:1.0;marcella:0.88;willow:0.83;ryth:0.82;cassi_and_issac:0.71;vesper_vale:0.22;tavi:0.03
+23,Mite,1.0.2,760,386,cassi_and_issac;heart_of_ruin;marcella;stellar;willow,0.383,cassi_and_issac:0.96;stellar:0.86;varg:0.57;ryth:0.51;ren:0.41;heart_of_ruin:0.35;willow:0.32;marcella:0.3;tavi:0.08;prism:0.06;vesper_vale:0.04
+23,Mite,1.0.3,765,390,cassi_and_issac;heart_of_ruin;marcella;stellar;willow,0.928,heart_of_ruin:0.96;marcella:0.8;cassi_and_issac:0.76;stellar:0.73;willow:0.62;ryth:0.25;vesper_vale:0.24;vendetta:0.06;prism:0.05;varg:0.04
+24,Claudus Maximus,1.0.3,275,213,heart_of_ruin;ryth;tavi;vendetta;vesper_vale,0.653,heart_of_ruin:1.0;vesper_vale:1.0;vendetta:1.0;tavi:0.83;ryth:0.42;marcella:0.22
+47,bentheboss,1.0.2,760,379,stellar;tavi;varg;vendetta;vesper_vale,0.342,vesper_vale:0.84;stellar:0.77;tavi:0.54;varg:0.53;ryth:0.46;vendetta:0.39;marcella:0.33;heart_of_ruin:0.26;cassi_and_issac:0.14;prism:0.08;willow:0.07;ren:0.04
+47,bentheboss,1.0.3,765,402,marcella;ryth;tavi;vesper_vale;willow,0.198,vesper_vale:0.93;ryth:0.65;marcella:0.61;tavi:0.54;stellar:0.37;heart_of_ruin:0.34;varg:0.31;vendetta:0.31;prism:0.24;willow:0.19;cassi_and_issac:0.07
+56,DOOMSDAY,1.0.2,760,392,heart_of_ruin;marcella;ryth;varg;vendetta,0.411,varg:0.88;ryth:0.66;vendetta:0.62;heart_of_ruin:0.58;stellar:0.53;cassi_and_issac:0.42;ren:0.39;marcella:0.26;willow:0.11;prism:0.01;tavi:0.01
+56,DOOMSDAY,1.0.3,765,382,heart_of_ruin;marcella;ryth;varg;vendetta,0.635,heart_of_ruin:1.0;vendetta:1.0;varg:0.98;ryth:0.51;marcella:0.42;stellar:0.33;willow:0.22;vesper_vale:0.02;cassi_and_issac:0.02;ren:0.02
+64,2/27TELEVIZR+1/6EIT,1.0.2,765,385,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,0.77,heart_of_ruin:1.0;ryth:0.95;marcella:0.74;vesper_vale:0.66;vendetta:0.46;stellar:0.24;ren:0.24;varg:0.14
+64,2/27TELEVIZR+1/6EIT,1.0.3,765,382,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,heart_of_ruin:1.0;marcella:1.0;ryth:1.0;vesper_vale:0.84;vendetta:0.63
+68,Hidden Altar Keepers,1.0.2,605,356,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,vesper_vale:1.0;heart_of_ruin:1.0;marcella:1.0;ryth:0.84;vendetta:0.63
+68,Hidden Altar Keepers,1.0.3,765,382,heart_of_ruin;marcella;ryth;vendetta;vesper_vale,1.0,heart_of_ruin:1.0;vesper_vale:1.0;marcella:1.0;ryth:0.85;vendetta:0.66
+71,剑桥夜爬者,1.0.2,765,372,cassi_and_issac;heart_of_ruin;ren;varg;vendetta,0.377,varg:0.7;heart_of_ruin:0.68;cassi_and_issac:0.66;vendetta:0.59;stellar:0.57;ren:0.51;willow:0.39;tavi:0.21;marcella:0.16;prism:0.05
+71,剑桥夜爬者,1.0.3,765,381,cassi_and_issac;heart_of_ruin;ren;varg;vendetta,0.396,heart_of_ruin:0.8;vendetta:0.68;cassi_and_issac:0.57;varg:0.55;ren:0.53;stellar:0.47;willow:0.43;tavi:0.24;marcella:0.18;prism:0.09
+578,xanarchy,1.0.2,765,379,cassi_and_issac;ryth;tavi;varg;vendetta,0.925,cassi_and_issac:1.0;vendetta:0.93;varg:0.82;ryth:0.82;tavi:0.62;stellar:0.23;ren:0.05
+578,xanarchy,1.0.3,765,376,cassi_and_issac;ryth;tavi;varg;vendetta,0.906,cassi_and_issac:1.0;vendetta:0.91;varg:0.83;ryth:0.82;tavi:0.63;stellar:0.24;ren:0.06

@@ -1,0 +1,22 @@
+F2 reference and D1 summaries (engine 1.0.3, 40 maps x 2 seats, release; raw games.csv and summary.json stay out of the repo by .gitignore)
+Written 23 Oct 11:15 BST from runs/*/summary.json by scripts/lead/panel_show.py
+
+opponent                                      v5r
+centre                               61/80   745-379 
+centre-v3                            61/80   745-376 
+hunter                               67/80   738-355 
+locker                               76/80   782-40  
+raider2                              72/80   739-258 
+tact                                 56/80   716-492 
+tung-clone                           77/80   825-253 
+x-foundry-v16                        61/80   692-447 
+x-hello                              75/80   806-198 
+x-ifish                              75/80   822-134 
+x-mite                               76/80   827-170 
+x-shawn                              76/80   833-133 
+x-v4-14                              58/80   716-483 
+v5r: 891/1040 over 13 opponents
+
+d1-meta-v5r {'set': 'd1-meta-v5r', 'a': 'v5r-meta', 'b': 'v5r', 'games': 80, 'a_wins': 48, 'a_gems_mean': 716.4, 'b_gems_mean': 584.3, 'a_deaths_mean': 12.39, 'b_deaths_mean': 27.04, 'a_fuel_exh': 0, 'b_fuel_exh': 0, 'unattributed_fuel': 0, 'a_faults': 0, 'b_faults': 0, 'batch_rc': 0, 'wall_s': 318}
+d1-meta-starter {'set': 'd1-meta-starter', 'a': 'v5r-meta', 'b': 'starter-cpp', 'games': 80, 'a_wins': 75, 'a_gems_mean': 763.6, 'b_gems_mean': 164.3, 'a_deaths_mean': 4.34, 'b_deaths_mean': 32.79, 'a_fuel_exh': 0, 'b_fuel_exh': 6, 'unattributed_fuel': 0, 'a_faults': 0, 'b_faults': 0, 'batch_rc': 0, 'wall_s': 275}
+d1-meta-v4 {'set': 'd1-meta-v4', 'a': 'v5r-meta', 'b': 'v4', 'games': 80, 'a_wins': 53, 'a_gems_mean': 722.3, 'b_gems_mean': 548.5, 'a_deaths_mean': 12.28, 'b_deaths_mean': 25.54, 'a_fuel_exh': 0, 'b_fuel_exh': 0, 'unattributed_fuel': 0, 'a_faults': 0, 'b_faults': 0, 'batch_rc': 0, 'wall_s': 308}

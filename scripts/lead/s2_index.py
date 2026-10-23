@@ -7,8 +7,6 @@ import argparse, csv, json, os, sys, time, urllib.parse, urllib.request
 sys.stdout.reconfigure(line_buffering=True)
 
 B = "https://2026a.battlecode.co.uk/api/v1"
-OUT = "/home/claude/data/s2"
-os.makedirs(OUT, exist_ok=True)
 ap = argparse.ArgumentParser()
 ap.add_argument("--top", type=int, default=20)
 ap.add_argument("--since", default="2026-10-21T05:30:00Z")
@@ -16,7 +14,11 @@ ap.add_argument("--extra", default="")
 ap.add_argument("--near", type=float, default=0)
 ap.add_argument("--sleep", type=float, default=0.15)
 ap.add_argument("--kind", default="ranked", help="ranked | unranked | all")
+ap.add_argument("--workers", type=int, default=4, help="parallel group-detail requests")
+ap.add_argument("--out", default="/home/claude/data/s2")
 a = ap.parse_args()
+OUT = a.out
+os.makedirs(OUT, exist_ok=True)
 DRAFT = ["ryth", "vesper_vale", "vendetta", "cassi_and_issac", "stellar", "prism", "marcella", "willow", "ren", "varg", "tavi", "heart_of_ruin"]
 nreq = 0
 
@@ -57,11 +59,14 @@ with open(f"{OUT}/ladder.csv", "w", newline="") as f:
         picks = ";".join(f'{p["champion"]}:{p["picks"]}' for p in t.get("mostPickedChampions") or [])
         w.writerow([t["rank"], t["teamId"], t["name"], t["category"], round(t["rating"], 1), t["matches"], t["wins"], t["losses"], t.get("language"), t.get("memberCount"), picks])
 by_name = {t["name"].lower(): t for t in teams}
+by_id = {t["teamId"]: t for t in teams}
 xan = by_name.get("xanarchy")
 targets = {t["teamId"]: t["name"] for t in sorted(teams, key=lambda t: t["rank"])[: a.top]}
 for nm in ["xanarchy", "microstella"] + [x.strip().lower() for x in a.extra.split(",") if x.strip()]:
     if nm in by_name:
         targets[by_name[nm]["teamId"]] = by_name[nm]["name"]
+    elif nm in by_id:
+        targets[nm] = by_id[nm]["name"]
     else:
         print("not on ladder:", nm)
 if a.near and xan:
@@ -70,9 +75,9 @@ if a.near and xan:
             targets[t["teamId"]] = t["name"]
 
 # 2. group ids per target since the cutoff
-gids = {}
-for tid, nm in targets.items():
-    before, n = None, 0
+def list_team(item):
+    tid, nm = item
+    before, out = None, {}
     while True:
         p = {"team": tid}
         if a.kind != "all":
@@ -86,11 +91,19 @@ for tid, nm in targets.items():
             if g["createdAt"] < a.since:
                 stop = True; break
             if g.get("status") == "finished":
-                gids[g["id"]] = g["createdAt"]; n += 1
+                out[g["id"]] = g["createdAt"]
         if stop or not d.get("more") or not gs:
             break
         before = d.get("next")
-    print(f"{nm[:28]:28s} groups since cutoff: {n}")
+    return nm, out
+
+
+from concurrent.futures import ThreadPoolExecutor
+gids = {}
+with ThreadPoolExecutor(max_workers=a.workers) as ex:
+    for nm, out in ex.map(list_team, list(targets.items())):
+        gids.update(out)
+        print(f"{nm[:28]:28s} groups since cutoff: {len(out)}")
 
 # 3. group details (cached)
 cache = {}
@@ -101,13 +114,15 @@ if os.path.exists(gpath):
             g = json.loads(line); cache[g["group"]["id"]] = g
         except Exception:
             pass
-with open(gpath, "a") as f:
-    for gid in gids:
-        if gid in cache:
-            continue
-        g = get(f"match-groups/{gid}")
+todo = [gid for gid in gids if gid not in cache]
+print(f"group details to fetch: {len(todo)} (cached {len(gids) - len(todo)})")
+from concurrent.futures import ThreadPoolExecutor
+with open(gpath, "a") as f, ThreadPoolExecutor(max_workers=a.workers) as ex:
+    for i, (gid, g) in enumerate(zip(todo, ex.map(lambda x: get(f"match-groups/{x}"), todo))):
         cache[gid] = g
         f.write(json.dumps(g) + "\n")
+        if i % 500 == 499:
+            f.flush(); print(f"  details {i + 1}/{len(todo)}")
 
 # 4. per-match index
 rows = []
