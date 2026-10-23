@@ -1,8 +1,0 @@
-w5: 180 games in 123 s (88.1/min, jobs 6), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-stampede     8.33/12  1.67/4    1705  17.8  408.3   0     0 fail
-fragment     9.0/12  2.0/4     831  13.6  369.7   0     0 PASS
-eight        8.0/12  1.0/4     734   9.5  264.3   0     0 fail
-collision    6.67/12  1.0/4     778   5.2   92.8   0     0 fail
-contest      10.33/12  2.33/4    2000  19.4    0.0   0     0 PASS
-total 42.33/60 (mean over salts [0, 1, 2]); maps passing 2/5; out C:/cambc-solo/results/w5-loop-v2.json

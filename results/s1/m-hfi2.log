@@ -1,4 +1,0 @@
-hfi2: 12 games in 8 s (86.8/min, jobs 3), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-islands      2.0/2   0.0/0    1489   0.7 1030.0   0    66 
-total 2.0/2 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/1; out results/s1/m-hfi2.json

@@ -1,7 +1,0 @@
-hob0: 48 games in 29 s (98.1/min, jobs 3), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-islands      2.0/2   0.0/0    1478   0.0  996.8   0  4114 
-corners      2.0/2   0.0/0    1331   0.0 1008.4   0    72 
-expanse      2.0/2   0.0/0    1549   0.2 1018.7   0    60 
-interlock    2.0/2   0.0/0    1288   0.2 1017.9   0    30 
-total 8.0/8 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/4; out results/s1/m-hob0.json

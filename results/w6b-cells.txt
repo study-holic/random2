@@ -1,1 +1,0 @@
-w6b: 108 games in 157 s rc 0; faults 0 errors 0

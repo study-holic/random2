@@ -36,3 +36,13 @@ data/top10/raw/
 data/unranked/sumj/
 data/unranked/decoded/
 data/ladder/decoded/
+# raw data stays out of the repo (23 Oct); the full 22 Oct state is in branch archive-full-2026-10-22
+matchdb/
+data/unranked/
+data/v3/
+data/real/
+data/newmaps/
+archive/
+results/**/*.json
+results/**/*.jsonl
+results/**/*.csv

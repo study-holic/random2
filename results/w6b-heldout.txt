@@ -1,5 +1,0 @@
-w6b: 20 games in 37 s (32.8/min, jobs 5), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-pilgrimage   7.0/10  0.0/0    1212  12.3  525.2   0     0 
-corners      10.0/10  0.0/0     515   7.3  525.4   0     0 
-total 17.0/20 (mean over salts [0]); maps passing 0/2; out C:/cambc-solo/results/w6b-heldout.json

@@ -1,7 +1,0 @@
-w1: 144 games in 390 s (22.1/min, jobs 4), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-collision    7.0/12  1.0/4     694   5.2   94.2   0     0 fail
-corners      6.0/12  1.0/4     466   3.1   32.5   0     3 fail
-eight        6.0/12  1.0/4     654   7.5   31.5   0     0 fail
-pilgrimage   7.0/12  1.33/4    1193   9.6  110.9   0     0 fail
-total 26.0/48 (mean over salts [0, 1, 2]); maps passing 0/4; out C:/cambc-solo/results/w1-drafts.json

@@ -10,6 +10,8 @@ Context for the claude.ai project "CAMBC 2026", run by start/CAMBC-LEAD-PROMPT.m
 | history/ and history-S4b.zip | attached at step S4b, and unread before it |
 | state/ | CONTEXT.md, LEDGER.md, HANDOFF.md, and data files committed at each gate |
 
+Main holds about 5,170 files and zips to about 9 MB. Branch archive-full-2026-10-22 keeps the full state of 22 Oct, including the raw data dumps, archive zips, and raw results files that main dropped on 23 Oct. Match-database downloads go to matchdb/, which .gitignore excludes.
+
 ## Set-up
 1. Settings > Capabilities: turn on code execution and allow 2026a.battlecode.co.uk.
 2. Project instructions:

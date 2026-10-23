@@ -1,6 +1,6 @@
 # CAMBC 2026: lead prompt for the web chat
 
-Version 8, Thu 22 Oct 2026, 02:20 BST. Part A sets how you work. Part B holds the starting knowledge, labelled under rule A2.11.
+Version 9, Fri 23 Oct 2026, 08:00 BST. Part A sets how you work. Part B holds the starting knowledge, labelled under rule A2.11.
 
 ## Part A. Instructions
 
@@ -24,7 +24,7 @@ Version 8, Thu 22 Oct 2026, 02:20 BST. Part A sets how you work. Part B holds th
 **Environment and tokens**
 1. Files in context from the start: this prompt; GameRules.md (the handbook export of 22 Oct, which matches patch 1.0.2; it replaces the 20 Oct copy in random2/docs/rules); and docs/rules/PATCH-NOTES-1.0.md. The sandbox holds the 40 map files (maps-40.zip, also in random2/project; identical to random2/maps) and, after `cambc init`, the SDK. sdk/cpp/cambc.h (SDK 3.0.4, 218 KB; also in random2/sdk/cpp) is searched with grep for the declarations a step needs and never loaded whole. At step S4b Xans attaches the history files listed there, and no earlier. Request any other repo file by path when a decision depends on it; the sandbox can also sparse-clone random2 (A2.3). random2/project/history stays unread until S4b.
 2. Engine access. KNOWN (tested in a claude.ai sandbox, 22 Oct 01:20): `pip install cambc==3.0.4` succeeds, and `cambc init` then fails, because it downloads the SDK and toolchain from 2026a.battlecode.co.uk and the sandbox blocks that host by default. Xans adds the host under Settings > Capabilities. Confirm with one starter-cpp game before relying on the sandbox; if a host stays blocked, the proxy status names it. Fallback: Xans's laptop (8 GB RAM, 4 parallel game jobs by day and 10 overnight). Commands that need a platform login (ladder, matches, match-groups, maps, and submit) run on Xans's machine, and no credential enters this chat.
-3. Clone random2 shallow, blobless, and sparse: `git clone --depth 1 --filter=blob:none --sparse https://github.com/study-holic/random2`, then `git sparse-checkout set <paths>`. It holds about 6,100 files, and no step needs it in full. Avoid `git ls-tree -l` on a blobless clone; it fetches every blob.
+3. Clone random2 shallow, blobless, and sparse: `git clone --depth 1 --filter=blob:none --sparse https://github.com/study-holic/random2`, then `git sparse-checkout set <paths>`. No step needs it in full. If the sandbox cannot reach github.com, Xans attaches GitHub's Download ZIP of main (about 9 MB). Branch archive-full-2026-10-22 keeps the raw data dumps, archive zips, and raw results files that main dropped on 23 Oct. Avoid `git ls-tree -l` on a blobless clone; it fetches every blob.
 4. Scripts perform every computation a script can perform. Output entering this context is capped at 60 lines of text or one CSV of 300 rows. Raw replays, logs, and map renders stay on disk; load one render when a decision depends on that map.
 5. CONTEXT.md, LEDGER.md (append-only, one line per entry), and data files live in the sandbox. At each gate, hand them to Xans as files for the repo.
 6. End each message to Xans with a numbered action list that covers a whole step in one round trip.
@@ -64,19 +64,20 @@ Version 8, Thu 22 Oct 2026, 02:20 BST. Part A sets how you work. Part B holds th
 22. Unranked games use the live submission (B4), so real-team testing follows upload. Xans's standing instruction sends unranked groups to the current top 10 (TIMELINE, 20 Oct 09:50), where 2-178 leaves no room to register a change; at G0 he decides whether a panel of teams near our rating joins it. The post-upload comparison uses gem share and production per 100 rounds against the previous build's panel, and the pre-registered rollback rule applies within 24 hours.
 
 ### A3. Steps and gates
-Target times are editable by Xans.
+Target times are editable by Xans; the Sprint 2 lock (Sat 24 Oct, 23:59) bounds them.
 
-**S0 → G0, Thu 10:00**
+**S0 → G0, Fri 23 Oct 12:00**
 - Establish from the platform, the rules pages, and Discord announcements:
   - how the overall winner is decided, qualification for the final, and every remaining deadline and lock;
   - whether one player may belong to two teams, whether a team formed now can enter Sprint 2 and the final, and any rule on code shared between teams;
   - announced balance changes.
 - Set up the engine (A2.2).
+- Match database (A4): get from Xans the link URLs of one day's replay and summary parts; test whether the file host answers a 16-byte HTTP range request with status 206; and convert one summary with `cambc summary` to list its fields. Whether summaries carry team ids, the map, drafts, per-team gems, and the final round is OPEN until then.
 - MicroStella's tools sit in random2/tools/microstella (README there; its bots carry the ms- prefix in random2). pace.py writes absolute paths under /home/claude/bc; change that prefix to the workspace.
 - Baselines on engine 1.0.2, 40 maps, both sides, release builds: F1 for v4, v5r, and v22; v5r against v22; and v22 against v4.
 - Put the A2.8, A2.21, and A2.22 decisions to Xans, with a recommendation for the live Xanarchy build drawn from the baselines.
 
-**S1 Engine census → G1, Thu 18:00**
+**S1 Engine census → G1, Fri 23 Oct 20:00**
 - Rerun the existing readers on engine 1.0.2 and all 40 maps before writing new ones: random2/tools/maps21 (designs.mjs reads the engine's design tables; dump.mjs and probe.mjs parse map files through the engine; econ21.py computes group economics), and bots/ms-probe (map, groups, walking distances, and an ASCII map) with tools/microstella/reach.py (walking and one-teleport reachability). They produced data/designs-1.0.0.json and data/maps21.json for the 21-map pool on engine 1.0.0.
 - Add a census bot for the values the readers miss, printing:
   - in the draft phase: draft::team_size() and, for each group from map::camp_groups(), gem_value, gold_value, max_respawn_timer, spawn tiles, and each camp's kind and base_stats() including the growth fields;
@@ -95,11 +96,13 @@ Target times are editable by Xans.
 - Read PATCH-NOTES-1.0.md line by line against ENGINE-FACTS.json and B5, and log every mismatch in LEDGER.md.
 - Check each map observation in B4 against the census.
 
-**S2 Data → G2, Fri 08:00**
-- Metrics source. Check what `cambc run --statistics --json` (local games) and `cambc matches summary` (platform games) report before using a decoder. random2/tools/decode (ladder replays) and tools/replay (final.mjs, extract.mjs) cover the remaining fields after a check: decode three games, watch them, and match gems, deaths, and score with the platform record. A decoder artefact (a recall share) misled us before. Replays decoded before 20 Oct use the pre-1.0 format.
-- Pull from the scraper, for games since patch 1.0.2:
-  - drafts, pick rates, and results by map, for the top 20 and for teams within 100 points of our rating;
-  - our ranked games by map and side, for Xanarchy and MicroStella.
+**S2 Data → G2, Sat 24 Oct 08:00**
+- Metrics source. Check what `cambc run --statistics --json` (local games), `cambc summary` (a downloaded summary; no login), and `cambc matches summary` (a platform game; login) report before using a decoder. random2/tools/decode (ladder replays) and tools/replay (final.mjs, extract.mjs) cover the remaining fields after a check: decode three games, watch them, and match gems, deaths, and score with the platform record. A decoder artefact (a recall share) misled us before. Replays decoded before 20 Oct use the pre-1.0 format.
+- Data set, for games since patch 1.0.2 (Wed 21 Oct, about 06:30 BST):
+  - Index: from the platform API (scraper), the match UUID, day, map, teams, ratings, and ranked flag of every game involving the top 20, teams within 100 points of our rating, Xanarchy, or MicroStella.
+  - Fetch: the indexed entries from the match database. With range support, read each part's central directory and then the indexed entries alone (the Python package remotezip does both). A summary averages about 27 KB and a replay about 25 KB (DERIVED: 4.58 GiB over 169,225 summaries, and 4.28 GiB of replays, on 22 Oct), so 2,000 games cost about 100 MB. Without range support, the cloud runner or Xans's laptop downloads one part at a time, extracts the indexed entries, and deletes the part.
+  - Population tables: when summaries carry team ids and the map, one streaming pass over every summary since 1.0.2 yields drafts, pick rates, and win rates by map and rating band. A full day costs about 16.5 GiB of download, so the pass runs on the cloud runner or the laptop, and this chat receives the aggregate tables alone, each under 1 MB.
+  - Raw downloads go to matchdb/, which .gitignore excludes.
 - Measure, on a stated sample of top-20 games and of our ranked losses, per team per game:
   - gems acquired by source (each camp type and kills), tributed, lost to kills, and lost to camps;
   - production per 100 rounds, and the round each side reaches 1,000;
@@ -115,7 +118,7 @@ Target times are editable by Xans.
 - Map archetypes from the S1 features, with our record and the top teams' record per archetype.
 - Draft: what each pick changes per archetype, from data and from ENGINE-FACTS.json.
 
-**S4 Strategy → G3, Fri 12:00**
+**S4 Strategy → G3, Sat 24 Oct 12:00**
 - S4a. Generate candidate strategies from S1 to S3, the top teams' measured behaviour, MOBA and RTS play, earlier Battlecodes, operations research, game theory, and sport. Each candidate gives its rule line, mechanism, predicted effect in gems per 100 rounds, the cheapest test that falsifies it, and its source.
 - S4b. Xans attaches random2/project/history-S4b.zip: TIMELINE.md, RESET.md, the findings file, Nmesoma's earlier audit, mining/tarot.md, mining/others.md, mining/retest.md, IDEAS.md, ideas/cross-domain.md, and MicroStella's TESTED-STRATEGIES.md and experiment log. Match each candidate against the ideas tested or proposed there. A tested idea returns to the list when you name what differs: engine version, implementation, or test.
 - S4c. Choose the code base among the Xanarchy line (v5r), the MicroStella line (v22), and a new base built on the census. Record the evidence for each: S0 baselines, lines of code, fuel per turn, and which behaviours rest on pre-1.0 values.
@@ -130,11 +133,12 @@ Target times are editable by Xans.
 | Source | What it gives | Limits |
 |---|---|---|
 | `cambc run`, `run-batch --jobs N --statistics` | local games and arena tests, with per-match statistics | sandbox or laptop |
-| `cambc summary`, `cambc matches summary` | per-match statistics as JSON | platform matches need login |
+| `cambc summary`, `cambc matches summary` | per-match statistics as JSON | `cambc summary` converts a downloaded file without login; `cambc matches summary` needs login |
 | `cambc match-groups create` | five unranked games of the live submission against a chosen team | draws on the team's shared quota |
 | `cambc view`, `cambc mapeditor` | replay visualiser and map viewer | headless under Playwright where the sandbox allows (A2.20) |
 | Scraper, ranked | listings, ratings, drafts, results, and replays for any team | the listing cache goes stale; move it aside before a refetch |
-| study-holic/random2 | every Xanarchy bot (starter-cpp included), MicroStella v20 to v22 and its probe bots (ms-*), the archetype sparring bots, tools/maps21, tools/decode, tools/replay, tools/microstella, scripts/gate.py, mapgate.py, and preflight | MicroStella sources need building; the archetype bots predate SDK 3.0 |
+| Match database (platform website) | daily ZIP parts of the binary replays and CAMSTAT summaries of every public completed match, named by match UUID; replays carry no debug data or bot output; no team download quota | about 0.7 GiB per part; 21 Oct: 22 parts, 15.35 GiB of replays and 16.50 GiB of summaries; 22 Oct: 534,699 matches; summaries mostly absent before 17 Oct; days in Europe/London time |
+| study-holic/random2 | every Xanarchy bot (starter-cpp included), MicroStella v20 to v22 and its probe bots (ms-*), the archetype sparring bots, tools/maps21, tools/decode, tools/replay, tools/microstella, scripts/gate.py, mapgate.py, and preflight | MicroStella sources need building; the archetype bots predate SDK 3.0; the 18 to 22 Oct raw data sit in branch archive-full-2026-10-22 |
 | Cloud runner | large batches | one session; cap set at G0 |
 | Discord | rulings, quirks, and strategy talk | Xans reads and pastes |
 | Consultants | independent analysis | A2.17 |

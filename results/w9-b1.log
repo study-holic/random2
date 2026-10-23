@@ -1,4 +1,0 @@
-w9b: 12 games in 117 s (6.1/min, jobs 1), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-contest      10.0/12  2.0/4    2000  17.5  483.3   0     0 PASS
-total 10.0/12 (mean over salts [0]); maps passing 1/1; out results/w9-monolith-b1.json

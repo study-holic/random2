@@ -1,9 +1,0 @@
-dgh: 72 games in 46 s (94.2/min, jobs 3), rc 0
-map            wins  strong  medR death   gemD flt fuelL gate
-islands      2.0/2   0.0/0    1484   0.3 1012.7   0  5281 
-corners      2.0/2   0.0/0    1331   0.0 1008.4   0    72 
-expanse      2.0/2   0.0/0    1510   0.2 1019.8   0    60 
-interlock    2.0/2   0.0/0    1284   0.3 1016.7   0    30 
-gold_rush    2.0/2   0.0/0    2000   5.8  579.3   0    25 
-fragment     2.0/2   0.0/0    1797   1.0 1007.4   0     8 
-total 12.0/12 (mean over salts [0, 1, 2, 3, 4, 5]); maps passing 0/6; out results/s1/m-dgh.json
